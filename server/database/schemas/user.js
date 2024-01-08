@@ -3,20 +3,19 @@ const Sequelize = require("sequelize");
 class User extends Sequelize.Model {
   static initiate(sequelize) {
     User.init({
-      id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-        comment: "(기본키)",
-      },
-      email: {
+      user_id: {
         type: Sequelize.STRING,
-        unique: true, //중복되면 안됨
+        primaryKey: true,
         allowNull: false,
         comment: "ID(이메일)",
       },
-      pwd: {
+      // user_email: {
+      //   type: Sequelize.STRING,
+      //   unique: true, //중복되면 안됨
+      //   allowNull: false,
+      //   comment: "ID(이메일)",
+      // },
+      user_pwd: {
         type: Sequelize.STRING(128),
         allowNull: false,
         comment: "비밀번호",
@@ -31,26 +30,26 @@ class User extends Sequelize.Model {
         allowNull: false,
         comment: "이름",
       },
-      phone: {
+      user_phone: {
         type: Sequelize.STRING(20),
         allowNull: false,
         comment: "회원 전화번호",
       },
-      address: {
+      user_address: {
         type: Sequelize.STRING(100),
         allowNull: false,
         comment: "주소",
       },
-      detail_address: {
+      user_detail_address: {
         type: Sequelize.STRING(100),
         allowNull: false,
         comment: "상세주소",
       },
-      birth: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-        comment: "생년월일",
-      },
+      // user_birth: {
+      //   type: Sequelize.DATEONLY,
+      //   allowNull: false,
+      //   comment: "생년월일",
+      // },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -70,11 +69,11 @@ class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    //참조키로 Order모델에 id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
-    db.User.hasMany(db.Order, { foreignKey: 'user_id', sourceKey: 'id'});
-    // db.User.hasMany(db.PlayHistory, { foreignKey: 'userId', sourceKey: 'id'});
-    // db.User.hasMany(db.PlayList, { foreignKey: 'userId', sourceKey: 'id'});
-    // db.User.hasMany(db.Reservation, { foreignKey: 'userId', sourceKey: 'id'});//Reservation로 보냄 hasMany 가 보낸다 라는뜻
+    //참조키로 Faq 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
+    db.User.hasMany(db.Faq, { foreignKey: 'user_id', sourceKey: 'user_id'});
+
+    //참조키로 Loans 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
+    db.User.hasMany(db.Loans, { foreignKey: 'user_id', sourceKey: 'user_id'});
   }
 };
 
