@@ -30,6 +30,7 @@
 //   const [prodQuantities, setProdQuantities] = useState([]);
 //   const navigate = useNavigate();
   
+
 //   /** 주문하기 */
 //   const handleOrder = () => {
 //     if(
@@ -49,6 +50,7 @@
 //       return;
 //     }
 //   }
+
 
 //   // useEffect(() => {
 //   //   const storedCart = JSON.parse(sessionStorage.getItem("cart"));
@@ -103,6 +105,7 @@
 //       <ul id="book-list-yjh">
 
 
+
 //       {cart && cart.length > 0 ?(
 //         cart.map((book, index) => (
 //           <li key={index} id="book-yjh">
@@ -139,6 +142,7 @@
 //       ) :
 //       <p>장바구니에 담은 책이 없습니다</p>
 //       }
+
 
 //         <li id="book-yjh">
 //           <div><input type="checkbox"/></div>

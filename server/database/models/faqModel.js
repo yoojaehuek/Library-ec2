@@ -1,4 +1,5 @@
 const Faq = require('../schemas/faq'); 
+const User = require('../schemas/user')
 const { Op } = require('sequelize');
 
 class FaqModel {
@@ -9,19 +10,51 @@ class FaqModel {
   }
 
   static async getAllFaq(){
-    const result = await Faq.findAll();
+    const result = await Faq.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
+    });
     return result;
   }
 
+  static async getCategoryFaq(category){
+    const result = await Faq.findAll({
+      where: {
+        tags : category,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
+    });
+    return result;
+  }
+  
   static async getOneFaq(faq_id){
     const result = await Faq.findOne({
       where: {
         faq_id: faq_id,
       },
+      include: [
+        {
+          model: User,    
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
     });
     return result;
   }
   
+
   static async updateFaq({ faq_id, toUpdate }){
     console.log("update: ",toUpdate);
     const result = await Faq.update({

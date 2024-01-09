@@ -31,14 +31,14 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel>카테고리</InputLabel>
           <Select value={newPost.category} onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}>
-            {categories.map((category) => (
+            {categories.filter(category => category !== '전체')
+            .map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
-
         <TextField
           label="제목"
           fullWidth
