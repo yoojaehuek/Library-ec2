@@ -35,10 +35,31 @@ class BookService{
 		return result;
 	}
 
-	static async getOneBook({book_id}){
-		const result = await BookModel.getOneBook({book_id});
+	static async getSearchBook(input){
+		const validationInput = this.buildWhereClause(input);
+		let result = await BookModel.getSearchBook(validationInput);
+    if (result.length == 0) {
+      result.errorMessage = "잘못 입력 OR 관련 도서 없음";
+			return result
+    }
+
+    // result = result.map(el => el.get({ plain: true }));
+
+		result.map((order, index) => {
+      const { created_at } = result[index];
+
+      // console.log(`${created_at.getFullYear()}-${created_at.getMonth()+1}-${created_at.getDate()}`);
+      result[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
+      result[index].created_at = result[index].created_at.toISOString().split('T')[0];
+    })
+    
 		return result;
 	}
+
+	// static async getOneBook({book_id}){
+	// 	const result = await BookModel.getOneBook({book_id});
+	// 	return result;
+	// }
 
 	static async updateBook({ book_id, toUpdate }){
 		console.log("서비스에서: ",toUpdate);

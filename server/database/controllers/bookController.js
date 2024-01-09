@@ -38,16 +38,33 @@ class BookController {
 			next(error);
 		}
 	}
-	
-	static async getOneBook(req, res, next){
+
+	static async getSearchBook(req, res, next){ //장르별 조회
 		try {
-			const book_id = req.params.book_id;
-			const result = await BookService.getOneBook({book_id});
+			const input = req.params.input;
+			console.log("input: ", input);
+			const result = await BookService.getSearchBook(input);
+			console.log(result);
+			if (result.errorMessage) {
+				console.log('에러걸림');
+        throw new Error(result.errorMessage)
+      }
+			
 			res.status(200).json(result);
 		} catch (error) {
-			next(error)
+			next(error);
 		}
 	}
+	
+	// static async getOneBook(req, res, next){
+	// 	try {
+	// 		const book_id = req.params.book_id;
+	// 		const result = await BookService.getOneBook({book_id});
+	// 		res.status(200).json(result);
+	// 	} catch (error) {
+	// 		next(error)
+	// 	}
+	// }
 
 	static async updateBook(req, res, next){
 		try {

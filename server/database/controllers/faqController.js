@@ -23,6 +23,17 @@ class FaqController {
 		}
 	}
 
+	static async getOneFaq(req, res, next){
+		try {
+			// const faq_id = req.faq_id;
+			// const result = await FaqService.getOneFaq(faq_id);
+			const result = {question:"123", category:"123", author:"123", date:"123", answer:"123"}
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
 	static async updateFaq(req, res, next){
 		try {
 			const faq_id = req.params.faq_id;
