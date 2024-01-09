@@ -1,23 +1,47 @@
-import React, { useState } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, Box, Typography, Pagination, TextField, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import FaqModal from './FaqModal';
+import React, { useState, useEffect } from "react";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
+  Typography,
+  Pagination,
+  TextField,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Button,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import FaqModal from "./FaqModal";
+import { API_URL } from "../../config/contansts";
+import axios from "axios";
 
-const categories = ['1', '2', '3'];
-
-const faqData = [
-  { id: '1', category: '1', question: '1', answer: '1', author: '1', date: '2024-01-08' },
-  { id: '2', category: '2', question: '2', answer: '2', author: '2', date: '2024-01-09' },
-  { id: '3', category: '3', question: '3', answer: '3', author: '3', date: '2024-01-10' },
-];
+const categories = ["전체", "사이트이용", "계정", "대출", "도서", "기타"];
 
 const Faq = () => {
-  const [selectedCategory, setSelectedCategory] = useState('1');
+  const [selectedCategory, setSelectedCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const itemsPerPage = 3;
+  const [faqData, setFaqData] = useState([]);
+
+  useEffect(() => {
+    const endpoint =
+      selectedCategory === "전체" ? "/" : `/category/${selectedCategory}`;
+    axios
+      .get(`${API_URL}/api/faq${endpoint}`)
+      .then((res) => {
+        setFaqData(res.data);
+        console.log(res.data);
+        // setSelectedCategory('전체');
+      })
+      .catch((error) => console.error("에러:", error));
+  }, [selectedCategory]);
+
+  const itemsPerPage = 5;
 
   const handleChangeCategory = (event) => {
     setSelectedCategory(event.target.value);
@@ -42,28 +66,34 @@ const Faq = () => {
   };
 
   const handleCreate = (newPost) => {
-    console.log('New:', newPost);
+    console.log("New:", newPost);
     setIsModalOpen(false);
   };
 
-  const filteredFaqs = faqData.filter(
-    (faq) =>
-      faq.category === selectedCategory &&
-      (faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-  const totalPages = Math.ceil(filteredFaqs.length / itemsPerPage);
+  const totalPages = Math.ceil(faqData.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentFaqs = filteredFaqs.slice(startIndex, endIndex);
+  const currentFaqs = faqData.slice(startIndex, endIndex);
 
   return (
-    <div>
-      <Box display="flex" alignItems="center" mb={2}>
-        <FormControl>
-          <InputLabel>카테고리</InputLabel>
-          <Select value={selectedCategory} onChange={handleChangeCategory}>
+    <div style={{ maxWidth: "60vw", margin: "2vw auto" }}>
+      <h1 style={{ textAlign: "center" }}>FAQ</h1>
+      <Box
+        display="flex"
+        alignItems="center"
+        mb={2}
+        style={{ maxWidth: "50vw", margin: "0 auto" }}
+      >
+        <FormControl
+          style={{ flex: 0.7, marginTop: "8px", marginRight: "10px" }}
+        >
+          <Select
+            value={selectedCategory}
+            onChange={handleChangeCategory}
+            fullWidth
+            style={{ width: "100%" }}
+          >
             {categories.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
@@ -78,30 +108,82 @@ const Faq = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          style={{ flex: 1.3 }}
         />
       </Box>
-      <RadioGroup value={selectedCategory} onChange={handleChangeCategory} row>
+      <RadioGroup
+        value={selectedCategory}
+        onChange={handleChangeCategory}
+        row
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "10px",
+          margin: "2vw",
+        }}
+      >
         {categories.map((category) => (
-          <FormControlLabel key={category} value={category} control={<Radio />} label={category} />
+          <FormControlLabel
+            key={category}
+            value={category}
+            control={<Radio style={{ color: "green" }} />}
+            label={category}
+          />
         ))}
       </RadioGroup>
-      <Box mt={2}>
+      <Box mt={2} style={{ display: "grid", gap: "16px" }}>
         {currentFaqs.map((faq, index) => (
-          <Link to={`/faq/${faq.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" border={1} p={2} borderRadius={4}>
-              <Typography variant="body1">{faq.category}</Typography>
-              <Typography variant="body1">{faq.question}</Typography>
-              <Typography variant="body1">{faq.author}</Typography>
-              <Typography variant="body1">{faq.date}</Typography>
+          <Link
+            to={`/faq/${faq.faq_id}`}
+            key={index}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Box
+              display="grid"
+              gridTemplateColumns="1fr 2fr 1.2fr"
+              alignItems="center"
+              border={1}
+              p={3}
+              borderRadius={4}
+              gap="16px"
+            >
+              <Typography variant="body1">{faq.tags}</Typography>
+              <Typography variant="body1">{faq.title}</Typography>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Typography variant="body1">{faq.User && faq.User.user_name}</Typography>
+                {faq.status ? 
+                <Typography variant="body1" style={{color: "green"}}>
+                   답변완료
+                </Typography> 
+                : 
+                <Typography variant="body1" style={{color: "red"}}>
+                  답변 대기
+                </Typography>}
+                <Typography variant="body1">{faq.created_at}</Typography>
+              </div>
             </Box>
           </Link>
         ))}
       </Box>
       <Box mt={2} display="flex" justifyContent="center">
-        <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+        />
       </Box>
-      <Box mt={2} display="flex" justifyContent="center">
-        <Button variant="contained" onClick={handleOpenModal}>
+      <Box mt={2} display="flex" justifyContent="flex-end">
+        <Button
+          variant="contained"
+          onClick={handleOpenModal}
+          style={{ backgroundColor: "green" }}
+        >
           글쓰기
         </Button>
       </Box>
