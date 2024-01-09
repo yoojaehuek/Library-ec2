@@ -9,31 +9,48 @@ class Faq extends Sequelize.Model {
           primaryKey: true,
           autoIncrement: true,
         },
+        user_id: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
         admin_id: {
           type: Sequelize.INTEGER,
           allowNull: true,
           comment: "admin테이블의 id참초",
         },
-        user_id: {
+        tags: {
           type: Sequelize.STRING,
           allowNull: false,
+          validate: {
+            isIn: [['기타', '사이트이용', '계정', '대출', '도서']],
+          },
+          comment: "문의 카테고리"
         },
         title: {
           type: Sequelize.STRING,
           allowNull: false,
+          comment: "문의 제목",
         },
         content: {
           type: Sequelize.TEXT,
-          allowNull: false, 
+          allowNull: false,
+          comment: "문의 내용",
         },
         response: {
           type: Sequelize.TEXT,
-          allowNull: true, 
+          allowNull: true,
+          comment: "관리자 답변 내용",
+        },
+        response_time: {
+          type: Sequelize.DATE,
+          allowNull: true,
+          comment: "답변 작성일",
         },
         status: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
-          defaultValue: false, 
+          defaultValue: false,
+          comment: "문의 상태 대기[0], 완료[1]",
         },
         created_at: {
           type: Sequelize.DATE,
