@@ -102,9 +102,6 @@ function Join() {
 		detailAddr: false,
 	});
 	const [selectedAddress, setSelectedAddress] = useState('');// 우편번호
-	const [selectedYear, setSelectedYear] = useState('');//생년월일
-	const [selectedMonth, setSelectedMonth] = useState('');
-	const [selectedDay, setSelectedDay] = useState('');  
 	// 각 입력창에 대한 라벨 숨김 및 나타내기를 위한 참조 생성
 	const inputRefs = {
 		email: useRef(null),
@@ -114,25 +111,6 @@ function Join() {
 		phone: useRef(null),
 		detailAddr: useRef(null),
 	};
-
-	/** 생년월일 선택 */
-	const currentYear = new Date().getFullYear();
-	const years = Array.from({ length: 100 }, (_, index) => currentYear - index);
-	const months = Array.from({ length: 12 }, (_, index) => index + 1);
-	const handleDayChange = (e) => { setSelectedDay(e.target.value);};
-	const handleMonthChange = (e) => {
-		setSelectedMonth(e.target.value);
-		// 선택된 월이 변경될 때 선택된 일을 임의로 초기화
-		setSelectedDay('');
-	};
-	const handleYearChange = (e) => {
-		setSelectedYear(e.target.value);
-		// 선택된 연도가 변경될 때 선택된 일을 임의로 초기화
-		setSelectedDay('');
-	};
-	/** 실제 날자 불러오기 */
-	const daysInMonth = (year, month) => new Date(year, month, 0).getDate();
-	const days = Array.from({ length: daysInMonth(selectedYear, selectedMonth) }, (_, index) => index + 1);
 
 	const [isPopupOpen, setIsPopupOpen] = useState(false)// 팝업창 상태 관리
 	const openPostCode = () => { setIsPopupOpen(true) }// 팝업창 열기
@@ -158,16 +136,13 @@ function Join() {
 			phone !== "" && 
 			address !== "" && 
 			detail_address !== "" && 
-			selectedYear !== "" && 
-			selectedMonth !== "" && 
-			selectedDay !== "" &&
 			isEmail &&
 			isName && 
 			isPassword &&
 			isPasswordConfirm &&
 			isPhone
 		){
-			axios.post(`${API_URL}/user/join`,{email, pwd, user_name, phone, address, detail_address, selectedYear, selectedMonth, selectedDay})
+			axios.post(`${API_URL}/api/user/join`,{email, pwd, user_name, phone, address, detail_address})
 			.then(() =>{
 				alert("가입성공!");
 				navigate('/');  
