@@ -13,6 +13,11 @@ class FaqService{
 		return result;
 	}
 
+	static async getCategoryFaq(){
+		const result = await FaqModel.getCategoryFaq();
+		return result;
+	}
+
 	static async updateFaq({ faq_id, toUpdate }){
 		console.log("서비스에서: ",toUpdate);
 		const result = await FaqModel.updateFaq({ faq_id, toUpdate });

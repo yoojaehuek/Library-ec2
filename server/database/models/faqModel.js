@@ -12,6 +12,11 @@ class FaqModel {
     const result = await Faq.findAll();
     return result;
   }
+
+  static async getCategoryFaq(){
+    const result = await Faq.getCategoryFaq();
+    return result;
+  }
   
   static async updateFaq({ faq_id, toUpdate }){
     console.log("update: ",toUpdate);
