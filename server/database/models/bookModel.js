@@ -23,22 +23,40 @@ class BookModel {
     return result;
   }
 
-  static async getOneBook({book_id}){
-    const result = await Book.findOne({
+  static async getSearchBook(validationInput){
+    console.log("validationInput: ", validationInput);
+    const result = await Book.findAll({
       where: {
-        book_id: book_id,
+        [Op.or]: [
+          {book_name: {[Op.like]: `%${validationInput}%`}},
+          {book_author: {[Op.like]: `%${validationInput}%`}},
+          {book_publisher: {[Op.like]: `%${validationInput}%`}},
+          {book_genre: {[Op.like]: `%${validationInput}%`}},
+          {book_ISBN: {[Op.like]: `%${validationInput}%`}},
+        ]
       },
+      // order: [ ['book_id', 'ASC'] ],
+      raw:true,
     });
     return result;
   }
+
+  // static async getOneBook({book_id}){
+  //   const result = await Book.findOne({
+  //     where: {
+  //       book_id: book_id,
+  //     },
+  //   });
+  //   return result;
+  // }
   
   static async updateBook({ book_id, toUpdate }){
     console.log("update: ",toUpdate);
     const result = await Book.update({
-      ...toUpdate
+      ...toUpdate 
     }, {
       where: {
-        id: book_id
+        book_id: book_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;
@@ -48,7 +66,7 @@ class BookModel {
     // console.log("bookId",bookId);
     const result = await Book.destroy({
       where: {
-        id: book_id
+        book_id: book_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;

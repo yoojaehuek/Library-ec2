@@ -29,13 +29,16 @@ const Faq = () => {
   const [faqData, setFaqData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/faq`)
-      .then(res => {
+    const endpoint =
+      selectedCategory === "전체" ? "/" : `/category/${selectedCategory}`;
+    axios
+      .get(`${API_URL}/api/faq${endpoint}`)
+      .then((res) => {
         setFaqData(res.data);
         console.log(res.data);
         // setSelectedCategory('전체');
       })
-      .catch(error => console.error('에러:', error));
+      .catch((error) => console.error("에러:", error));
   }, [selectedCategory]);
 
   const itemsPerPage = 5;
@@ -67,30 +70,15 @@ const Faq = () => {
     setIsModalOpen(false);
   };
 
-  const filteredFaqs = faqData.filter((faq) => {
-    if (selectedCategory === "전체") {
-      return (
-        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else {
-      return (
-        faq.category === selectedCategory &&
-        (faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          faq.answer.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
-  });
-
-  const totalPages = Math.ceil(filteredFaqs.length / itemsPerPage);
+  const totalPages = Math.ceil(faqData.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentFaqs = filteredFaqs.slice(startIndex, endIndex);
+  const currentFaqs = faqData.slice(startIndex, endIndex);
 
   return (
     <div style={{ maxWidth: "60vw", margin: "2vw auto" }}>
-      <h1 style={{ textAlign: 'center'}}>FAQ</h1>
+      <h1 style={{ textAlign: "center" }}>FAQ</h1>
       <Box
         display="flex"
         alignItems="center"
@@ -127,7 +115,12 @@ const Faq = () => {
         value={selectedCategory}
         onChange={handleChangeCategory}
         row
-        style={{ display: "flex", justifyContent: "center", gap: "10px", margin: '2vw' }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "10px",
+          margin: "2vw",
+        }}
       >
         {categories.map((category) => (
           <FormControlLabel
@@ -141,21 +134,21 @@ const Faq = () => {
       <Box mt={2} style={{ display: "grid", gap: "16px" }}>
         {currentFaqs.map((faq, index) => (
           <Link
-            to={`/faq/${faq.id}`}
+            to={`/faq/${faq.faq_id}`}
             key={index}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Box
               display="grid"
-              gridTemplateColumns="1fr 2fr 1fr"
+              gridTemplateColumns="1fr 2fr 1.2fr"
               alignItems="center"
               border={1}
-              p={2}
+              p={3}
               borderRadius={4}
               gap="16px"
             >
-              <Typography variant="body1">{faq.category}</Typography>
-              <Typography variant="body1">{faq.question}</Typography>
+              <Typography variant="body1">{faq.tags}</Typography>
+              <Typography variant="body1">{faq.title}</Typography>
               <div
                 style={{
                   display: "flex",
@@ -163,8 +156,16 @@ const Faq = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="body1">{faq.author}</Typography>
-                <Typography variant="body1">{faq.date}</Typography>
+                <Typography variant="body1">{faq.User && faq.User.user_name}</Typography>
+                {faq.status ? 
+                <Typography variant="body1" style={{color: "green"}}>
+                   답변완료
+                </Typography> 
+                : 
+                <Typography variant="body1" style={{color: "red"}}>
+                  답변 대기
+                </Typography>}
+                <Typography variant="body1">{faq.created_at}</Typography>
               </div>
             </Box>
           </Link>
@@ -178,7 +179,11 @@ const Faq = () => {
         />
       </Box>
       <Box mt={2} display="flex" justifyContent="flex-end">
-        <Button variant="contained" onClick={handleOpenModal} style={{backgroundColor: "green"}}>
+        <Button
+          variant="contained"
+          onClick={handleOpenModal}
+          style={{ backgroundColor: "green" }}
+        >
           글쓰기
         </Button>
       </Box>

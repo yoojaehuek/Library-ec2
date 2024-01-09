@@ -19,7 +19,8 @@ const FaqDetail = () => {
     axios
       .get(`${API_URL}/api/faq/${id}`)
       .then((res) => {
-        setDetailFaq(res.data);
+        setDetailFaq(res.data[0]);
+        console.log(res.data);
       })
       .catch((e) => {
         console.error(e);
@@ -54,13 +55,14 @@ const FaqDetail = () => {
         padding="10px"
       >
         <Typography variant="subtitle1" style={{ color: "#333" }}>
-          카테고리: {detailfaq.category}
+          카테고리: {detailfaq.tags}
         </Typography>
         <Typography variant="subtitle1" style={{ color: "#555" }}>
-          작성자: {detailfaq.author}
+          작성자: {detailfaq.User && detailfaq.User.user_name}
+          {/* 작성자: {detailfaq.User.user_name} */}
         </Typography>
         <Typography variant="subtitle1" style={{ color: "#555" }}>
-          날짜: {detailfaq.date}
+          날짜: {detailfaq.created_at}
         </Typography>
       </Box>
       <Box
@@ -81,14 +83,14 @@ const FaqDetail = () => {
             fontSize: "1rem",
           }}
         >
-          제목: {detailfaq.question}
+          제목: {detailfaq.title}
         </Typography>
         <div style={{ borderBottom: "1px solid #ddd", marginBottom: "20px" }}></div>
         <Typography variant="body1" style={{ color: "#555" }}>
           {detailfaq.content}
         </Typography>
       </Box>
-      {detailfaq.answer ? (
+      {detailfaq && detailfaq.status == 1 ? (
         <Box
           borderBottom="1px solid #ddd"
           paddingBottom="20px"
@@ -108,13 +110,13 @@ const FaqDetail = () => {
             관리자 답변
           </Typography>
           <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            작성자: {adminAnswer.author}
+            작성자: {adminAnswer.admin_id}
           </Typography>
           <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            날짜: {adminAnswer.date}
+            날짜: {adminAnswer.reponse_time}
           </Typography>
           <Typography variant="body1" style={{ color: "#555" }}>
-            {adminAnswer.answer}
+            {adminAnswer.reponse}
           </Typography>
         </Box>
       ) : (

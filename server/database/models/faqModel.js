@@ -1,4 +1,5 @@
 const Faq = require('../schemas/faq'); 
+const User = require('../schemas/user')
 const { Op } = require('sequelize');
 
 class FaqModel {
@@ -9,22 +10,58 @@ class FaqModel {
   }
 
   static async getAllFaq(){
-    const result = await Faq.findAll();
+    const result = await Faq.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
+    });
     return result;
   }
 
-  static async getCategoryFaq(){
-    const result = await Faq.getCategoryFaq();
+  static async getCategoryFaq(category){
+    const result = await Faq.findAll({
+      where: {
+        tags : category,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
+    });
     return result;
   }
   
+  static async getOneFaq(faq_id){
+    const result = await Faq.findOne({
+      where: {
+        faq_id: faq_id,
+      },
+      include: [
+        {
+          model: User,    
+          attributes: ['user_name'],
+        }
+      ],
+      // raw:true,
+    });
+    return result;
+  }
+  
+
   static async updateFaq({ faq_id, toUpdate }){
     console.log("update: ",toUpdate);
     const result = await Faq.update({
       ...toUpdate
     }, {
       where: {
-        id: faq_id
+        faq_id: faq_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;
@@ -34,7 +71,7 @@ class FaqModel {
     // console.log("faqId",faqId);
     const result = await Faq.destroy({
       where: {
-        id: faq_id
+        faq_id: faq_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;
