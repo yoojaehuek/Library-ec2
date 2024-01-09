@@ -38,6 +38,8 @@ const BookDetail = () => {
     console.log('도서카트에 추가');
   };
 
+
+
   const availabilityStyle = {
     backgroundColor: bookData.book_availability === '대출 가능' ? 'blue' : 'red',
   };
