@@ -12,6 +12,15 @@ class FaqModel {
     const result = await Faq.findAll();
     return result;
   }
+
+  static async getOneFaq(faq_id){
+    const result = await Faq.findOne({
+      where: {
+        faq_id: faq_id,
+      },
+    });
+    return result;
+  }
   
   static async updateFaq({ faq_id, toUpdate }){
     console.log("update: ",toUpdate);
@@ -19,7 +28,7 @@ class FaqModel {
       ...toUpdate
     }, {
       where: {
-        id: faq_id
+        faq_id: faq_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;
@@ -29,7 +38,7 @@ class FaqModel {
     // console.log("faqId",faqId);
     const result = await Faq.destroy({
       where: {
-        id: faq_id
+        faq_id: faq_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;
