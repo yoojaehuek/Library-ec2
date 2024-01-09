@@ -33,16 +33,16 @@ const Cart = () => {
   /** 주문하기 */
   const handleOrder = () => {
     if(
-      selectedStore !== null &&
-      totalProdPrice !== 0
-    ) { 
+      selectedStore !== null
+      //  && totalProdPrice !== 0
+    ){ 
       cart.map((item, index) => {
         item.quantity = prodQuantities[index].quantity;
       });
       const orderObject = {};
       orderObject.store_id  = selectedStore.id;
       orderObject.menu_items = cart;
-      orderObject.total_price = totalProdPrice;
+      // orderObject.total_price = totalProdPrice;
       navigate(`/payment`, { state: orderObject });
     }else{
       alert("상품이 없거나 매장을 선택하지않았습니다.");
@@ -109,7 +109,7 @@ const Cart = () => {
           <div><input type="checkbox"/></div>
           <div id="book-img-yjh">
             <div id="img-box-yjh">
-              <img src={API_URL+book.} alt="" />
+              {/* <img src={API_URL+book} alt="" /> */}
             </div>
             <NavLink >도서정보</NavLink>
           </div>
