@@ -1,0 +1,116 @@
+#cart-container-yjh{
+  width: 1200px;
+  margin: auto;
+  li{
+    list-style-type: none;
+  }
+  #cart-header-yjh{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-bottom: 1px solid #B3B3B3;
+    width: 90%;
+    margin: auto;
+    &>div{
+      display: flex;
+      span{line-height: 25px;}
+      input[type=checkbox]{
+        width: 20px;
+        height: 20px;
+        accent-color: #6BA10E;
+      }
+    }
+  }
+  #book-list-yjh{
+    padding: 0%;
+    #book-yjh{
+      border-bottom:1px solid #979797;
+    }
+    li{
+      height: 250px;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      margin: auto;
+      gap: 20px;
+      &>div{
+        text-align: start;
+        input[type=checkbox]{
+          width: 30px;
+          height: 30px;
+          accent-color: #6BA10E;
+        }
+      }
+      #book-img-yjh{
+        width: 15%;
+        height: 88%;
+        #img-box-yjh{
+          width: 150px;
+          height: 180px;
+          margin: auto;
+        }
+        a{
+          text-decoration: none;
+          width: 150px;
+          text-align: center;
+          display: block;
+          margin: 5px auto;
+          border: 1px solid #000;
+          font-weight: bold;
+          color: black;
+          padding: 5px 0px;
+        }
+      }
+      #book-info-yjh{
+        width: 70%;
+        height: 88%;
+        margin: 25px;
+        h3{
+          margin: 8px 0px;
+        }
+        #writer-yjh{
+          color: #979797;
+          margin: 0px;
+        }
+        #book-description-yjh{
+          width: 90%;
+          height: 100px;
+          margin-bottom: 0px;
+          overflow:hidden;
+          overflow-y: auto;
+          overflow: hidden; /* 스크롤바를 숨깁니다. */
+        }
+        #book-description-yjh:hover{
+          overflow-y: auto; /* 호버 상태에서만 스크롤바를 표시합니다. */
+        }
+        #loan-p-yjh{
+          width: 150px;
+          text-align: center;
+          font-weight: bold;
+          color: white;
+          padding: 5px 0px;
+          margin-top: 5px;
+          background-color: #4070CD;
+        }
+        // #loan-a-yjh{
+          
+        // }
+      }
+    }
+    #loan-btn-yjh{
+      width: 90%;
+      height: 80px;
+      position: relative;
+      button{
+        position: absolute;
+        right: 0px;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        padding: 5px 10px;
+        border: 0px;
+        background-color: #6BA10E;
+      }
+    }
+  }
+}
