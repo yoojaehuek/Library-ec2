@@ -23,11 +23,12 @@ class UserController {
         }
     }
     static async loginUser(req,res,next){
+        console.log("컨트롤러 들어옴");
         try {
             const tmp = req.body;
             console.log("컨트롤러에서 tmp: ",tmp);
             const user = await UserService.loginUser(tmp);
-            console.log("userControll.loginUser: ", user);
+            console.log("userControll.loginUser: ", user); 
             
             if(user.errorMessage){
                 throw new Error(user.errorMessage);
