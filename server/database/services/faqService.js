@@ -1,4 +1,4 @@
-const FaqModel = require('../database/models/faqModel')
+const FaqModel = require('../models/faqModel')
 
 
 class FaqService{
