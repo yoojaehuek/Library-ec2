@@ -15,7 +15,19 @@ class FaqController {
 
 	static async getAllFaq(req, res, next){
 		try {
-			const result = await FaqService.getAllFaq();
+			// const result = await FaqService.getAllFaq();
+			const result = {question:"123", category:"123", author:"123", date:"123", answer:"123"}
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
+	static async getOneFaq(req, res, next){
+		try {
+			// const faq_id = req.faq_id;
+			// const result = await FaqService.getOneFaq(faq_id);
+			const result = {question:"123", category:"123", author:"123", date:"123", answer:"123"}
 			res.status(200).json(result);
 		} catch (error) {
 			next(error)

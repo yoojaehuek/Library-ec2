@@ -1,4 +1,4 @@
-const FaqModel = require('../database/models/faqModel')
+const FaqModel = require('../models/faqModel')
 
 
 class FaqService{
@@ -10,6 +10,11 @@ class FaqService{
 
 	static async getAllFaq(){
 		const result = await FaqModel.getAllFaq();
+		return result;
+	}
+
+	static async getOneFaq(faq_id){
+		const result = await FaqModel.getOneFaq(faq_id);
 		return result;
 	}
 
