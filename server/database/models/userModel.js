@@ -12,7 +12,7 @@ class UserModel {
     // console.log("userId",id);
     const user = await User.findOne({
       where: {
-        id: id
+        user_id: id
       }
     }); //where: {id: asdf} 형태가 들어와야함
     return user;
@@ -22,7 +22,7 @@ class UserModel {
     console.log("userId",typeof(email));
     const user = await User.findOne({
       where: {
-        email: email
+        user_id: email
       }
     }); //where: {id: asdf} 형태가 들어와야함
     console.log("찾음: ",user);
