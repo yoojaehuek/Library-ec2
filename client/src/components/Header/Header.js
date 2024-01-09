@@ -41,14 +41,32 @@ const Header = () => {
     <div className='header-container-kjh'>
       <h1>
         <a className='hlogo-kjh' href='/'>
-          <img src='/images/Header/logo.png'></img>
+          <img src='/images/Header/Group_129.svg'></img>
         </a>
       </h1>
       <div className='LHeaderWrap-kjh'>
         <div className="LHeaderTop-kjh">
           <ul className='utilLi-kjh'>
-            <li id='LoginText'><a title='로그인' href='/'><em className='txt-kjh'>로그인</em></a></li>
-            <li><a title='회원가입' href='/'><em className='txt-kjh'>회원가입</em></a></li>
+            {/* <li id='LoginText'><a title='로그인' href='/'><em className='txt-kjh'>로그인</em></a></li>
+            <li><a title='회원가입' href='/'><em className='txt-kjh'>회원가입</em></a></li> */}
+            {isLogin ? 
+              <>
+              {/* 로그인 하고 난 후 */}
+                <NavLink to="/" className="txt-kjh">
+                  <p>로그아웃</p>
+                </NavLink>
+              </>
+              :
+              <>
+              {/* 로그인 하기 전 */}
+                <NavLink to="/" className="txt-kjh">
+                  <p>로그인</p>
+                </NavLink>
+                <NavLink to="/" className="txt-kjh">
+                  <p>회원가입</p>
+                </NavLink>
+              </>
+            }
           </ul>
         </div>
         <hr/>
@@ -69,12 +87,14 @@ const Header = () => {
                   </label>
                 </span>
                 <span className='schBtn-kjh'>
-                  <button onMouseOver={handleMouseOver}
+                  <button
+                    onMouseOver={handleMouseOver}
                     onMouseOut={handleMouseOut}
                     type='submit'
                     title='검색'
                     className={buttonClassName}>
-                    <span className='LBlind-kjh'></span>
+                    {/* <span className='LBlind-kjh'></span> */}
+                    <img src='/images/Header/search.png'></img>
                   </button>
                 </span>
                 {isKeyLayerVisible && (
@@ -106,49 +126,57 @@ const Header = () => {
               </fieldset>
             </form>
           </div>
+          <div className='util-kjh'>
+            {isLogin ? 
+              <>
+              {/* 로그인 하고 난 후 */}
+                <NavLink to="/" className="utilbtn-kjh">
+                  <img src="/images/Header/my.svg" alt="마이페이지"/>
+                </NavLink>
+                <NavLink to="/" className="utilbtn-kjh">
+                  <img src="/images/Header/ccart.svg" alt="장바구니"/>
+                </NavLink>
+              </>
+              :
+              <>
+              {/* 로그인 하기 전 */}
+                <NavLink to="/" className="utilbtn-kjh renter4">
+                  <img src="/images/Header/my.svg" alt="마이페이지"/>
+                </NavLink>
+                <NavLink to="/" className="utilbtn-kjh renter5">
+                  <img src="/images/Header/ccart.svg" alt="장바구니"/>
+                </NavLink>
+              </>
+            }
+          </div>
         </div>
+        <nav className='LHeaderBottom-kjh'>
+          <div className='Llist-kjh'>
+            <ul className='Llistul-kjh'>
+              <li>
+                <NavLink to="/" className="Llist_nav-kjh">
+                  베스트1
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className="Llist_nav-kjh">
+                  베스트2
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className="Llist_nav-kjh">
+                  베스트3
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/story" className="Llist_nav-kjh">
+                  베스트4
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <nav className='hmenu'>
-        <div className='menu'>
-          
-          <ul>
-            <li>
-              <NavLink to="/" className="">
-                Menu
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/" className="">
-                Store
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/" className="">
-                What's New
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/story" className="">
-                Story
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className='util'>
-        {isLogin ? 
-          <>
-            <NavLink to="/" className="" >마이페이지</NavLink>
-            <NavLink to="/" onClick={logout} className="renter2">로그아웃</NavLink>
-            <NavLink to="/" className="">장바구니.</NavLink>
-          </>
-          :
-          <>
-            <NavLink to="/" className="" >로그인</NavLink>
-            <NavLink to="/" className="">회원가입</NavLink>
-          </>
-        }
-        </div>
-      </nav>
 
     </div>
   );

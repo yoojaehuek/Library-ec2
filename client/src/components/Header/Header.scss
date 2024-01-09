@@ -18,6 +18,9 @@
   em {
     font-style: normal;
   }
+  fieldset {
+    border: none;
+  }
 
   h1 {
     width: 1200px;
@@ -30,12 +33,12 @@
     text-align: center;
     position: absolute;
     left: 0;
-    top: 42px;
+    top: 75px;
   }
   h1 a.hlogo-kjh img {
     display: inline-block;
-    width: 200px;
-    height: 103px;
+    width: 212px;
+    height: 48px;
     overflow: hidden;
     vertical-align: top;
     
@@ -51,7 +54,7 @@
 
   .LHeaderTop-kjh {
     height: 38px;
-    background-color: blue;
+    background-color: #6BA10E;
   }
   .LHeaderTop-kjh .utilLi-kjh {
     position: absolute;
@@ -59,17 +62,17 @@
     top: 5%;
     z-index: 5;
   }
-  .LHeaderTop-kjh .utilLi-kjh li {
-    position: relative;
-    float: left;
-  }
-  .LHeaderTop-kjh .utilLi-kjh li a {
+  // .LHeaderTop-kjh .utilLi-kjh li {
+  //   position: relative;
+  //   float: left;
+  // }
+  .LHeaderTop-kjh .utilLi-kjh p {
     padding: 1px 4px 0;
     height: 31px;
     line-height: 17px;
     color: #fff;
     white-space: nowrap;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: -1px;
     display: inline-block;
     zoom: 1;
@@ -87,12 +90,12 @@
   .LHeaderMiddle-kjh .LSearch-kjh {
     left: 265px;
     position: absolute;
-    top: 68px;
+    top: 75px;
     z-index: 4;
     width: 516px;
     height: 48px;
-    border: 2px solid #0080ff;
-    border-radius: 3px;
+    border: 4px solid #6BA10E;
+    border-radius: 25px;
     background-color: #fff;
   }
   .LHeaderMiddle-kjh .LSearch-kjh .LForm-kjh {
@@ -127,12 +130,14 @@
     width: 60px;
   }
   .schBtn-kjh button {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 41px;
     border: 0;
     float: right;
-    margin: 5px;
-    background: url(../../../public/images/Header/serch.png) no-repeat 0 0;
+    margin-right: -1.5px;
+    border-radius: 0 25px 25px 0;
+    background-color: #6BA10E;
+    // background: url(../../../public/images/Header/serch.png) no-repeat 0 0;
   }
 
   .keyLayer-kjh {
@@ -217,5 +222,58 @@
     overflow: hidden;
     font-size: 0;
     line-height: 0;
+  }
+
+  .util-kjh {
+    position: relative;
+    float: right;
+    margin: 25px 80px;
+  }
+  .utilbtn-kjh {
+    margin: 0 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    width: 50px;
+  }
+  .utilbtn-kjh img {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+  }
+
+  .LHeaderBottom-kjh {
+    position: relative;
+    z-index: 3;
+  }
+  .Llist-kjh {
+    position: absolute;
+    // left: 50%;
+    // top: 50%;
+    display: flex;
+    width: 100%;
+    // text-align: center;
+    justify-content: center;
+    height: 42px;
+    border-bottom: 1px solid #333;
+  }
+  .Llist-kjh ul {
+    float: left;
+  }
+  .Llist-kjh ul li {
+    float: left;
+    height: 42px;
+  }
+  .Llist-kjh ul li .Llist_nav-kjh {
+    
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    padding: 0 30px;
+    height: 42px;
+    line-height: 42px;
+    letter-spacing: 0.5px;
   }
 }
