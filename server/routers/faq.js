@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const FaqController = require('../controllers/faqController');
+const FaqController = require('../database/controllers/faqController');
 
 router.post('/', FaqController.createFaq);
 router.get('/', FaqController.getAllFaq);

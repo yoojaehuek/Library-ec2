@@ -1,6 +1,7 @@
 const User = require('../schemas/user'); 
 
 class UserModel {
+  
   static async createUser({newUser}){
     console.log("newUser",newUser);
     const createNewUser = await User.create(newUser);
