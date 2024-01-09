@@ -1,0 +1,36 @@
+/* 예제 스타일 - 실제로 사용하는 프로젝트에 맞게 조절하세요. */
+.book_container {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+  white-space: pre-wrap;
+  .book_details {
+    flex: 1;
+    position: relative;
+    .book_image {
+      width: 100px; /* 조절할 가로 크기 */
+      height: 150px; /* 조절할 세로 크기 */
+      margin-right: 10px;
+      position: relative;      
+      float: left;
+    }
+    .book_title{
+      font-size: 20px;
+      float: left;
+    }
+    .book_author{
+      float: left;
+    }
+    .book_description{
+      float: left;
+    }
+    .button-container{
+      .button-extension{
+        padding: 10px;
+      }
+    }
+  }  
+}
+
