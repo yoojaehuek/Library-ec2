@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import {API_URL} from '../../config/contansts'
+import axios from 'axios'
 
 const FaqDetail = () => {
-  const { faq } = useParams();
+  const [detailfaq, setDetailFaq] = useState('');
+  const {id} = useParams();
+  console.log(id);
+  useEffect(()=>{
+    axios.get(`${API_URL}/api/faq/${id}`)
+    .then((res)=>{
+      setDetailFaq(res.data);
+    }) .catch((e)=>{
+      console.error(e);
+    })
+  },[]);
 
-  if (!faq) {
-    return <div>왜 안나오세요 ㅋㅋㅋ</div>;
-  }
+  // if (!faq) {
+  //   return <div>왜 안나오세요 ㅋㅋㅋ</div>;
+  // }
 
   return (
     <Box>
-      <Typography variant="h4">{faq.question}</Typography>
-      <Typography variant="body1">{faq.category}</Typography>
-      <Typography variant="body1">{faq.author}</Typography>
-      <Typography variant="body1">{faq.date}</Typography>
-      <Typography variant="body1">{faq.answer}</Typography>
+      <Typography variant="h4">{detailfaq.question}</Typography>
+      <Typography variant="body1">{detailfaq.category}</Typography>
+      <Typography variant="body1">{detailfaq.author}</Typography>
+      <Typography variant="body1">{detailfaq.date}</Typography>
+      <Typography variant="body1">{detailfaq.answer}</Typography>
     </Box>
   );
 };
