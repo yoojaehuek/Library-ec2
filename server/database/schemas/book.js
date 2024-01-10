@@ -31,11 +31,6 @@ class Book extends Sequelize.Model {
           allowNull: false,
           comment: "출판사", 
         },
-        // book_publication_date: {
-        //   type: Sequelize.DATE,
-        //   allowNull: false,
-        //   comment: "저자",
-        // },
         book_genre: {
           type: Sequelize.STRING,
           allowNull: false, 
