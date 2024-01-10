@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Box, IconButton } from "@mui/material";
+import { Typography, Box, IconButton, Button } from "@mui/material";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../config/contansts";
 import axios from "axios";
@@ -30,8 +31,31 @@ const FaqDetail = () => {
   const goBack = () => {
     window.history.length > 1 ? window.history.back() : window.location.href = "/";
   };
-  
 
+  const handleDelete = () => {
+    const userConfirmed = window.confirm("삭제하시겠습니까?");
+  
+    if (userConfirmed) {
+      const Checkpassword = window.prompt("비밀번호를 입력하세요.");
+  
+      if (Checkpassword) {
+        axios.delete(`${API_URL}/api/faq/${id}`, { data: { faq_password: Checkpassword } })
+          .then(() => {
+            goBack();
+            alert("삭제되었습니다.");
+          })
+          .catch((error) => {
+            console.error("에러:", error);
+            alert(error.response.data.message);
+          });
+      } else {
+        console.log("삭제가 취소되었습니다.");
+      }
+    } else {
+      console.log("삭제가 취소되었습니다.");
+    }
+  };
+  
   return (
     <Box
       maxWidth="35vw"
@@ -55,7 +79,7 @@ const FaqDetail = () => {
         padding="10px"
       >
         <Typography variant="subtitle1" style={{ color: "#333" }}>
-          카테고리: {detailfaq.tags}
+          카테고리: {detailfaq.faq_tags}
         </Typography>
         <Typography variant="subtitle1" style={{ color: "#555" }}>
           작성자: {detailfaq.User && detailfaq.User.user_name}
@@ -64,6 +88,7 @@ const FaqDetail = () => {
         <Typography variant="subtitle1" style={{ color: "#555" }}>
           날짜: {detailfaq.created_at}
         </Typography>
+        <Button onClick={handleDelete}>삭제</Button>
       </Box>
       <Box
         borderBottom="1px solid #ddd"
@@ -83,14 +108,14 @@ const FaqDetail = () => {
             fontSize: "1rem",
           }}
         >
-          제목: {detailfaq.title}
+          제목: {detailfaq.faq_title}
         </Typography>
         <div style={{ borderBottom: "1px solid #ddd", marginBottom: "20px" }}></div>
         <Typography variant="body1" style={{ color: "#555" }}>
-          {detailfaq.content}
+          {detailfaq.faq_content}
         </Typography>
       </Box>
-      {detailfaq && detailfaq.status == 1 ? (
+      {detailfaq && detailfaq.faq_status == 1 ? (
         <Box
           borderBottom="1px solid #ddd"
           paddingBottom="20px"
@@ -113,10 +138,10 @@ const FaqDetail = () => {
             작성자: {adminAnswer.admin_id}
           </Typography>
           <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            날짜: {adminAnswer.reponse_time}
+            날짜: {adminAnswer.faq_reponse_time}
           </Typography>
           <Typography variant="body1" style={{ color: "#555" }}>
-            {adminAnswer.reponse}
+            내용: {adminAnswer.faq_reponse}
           </Typography>
         </Box>
       ) : (
@@ -132,7 +157,7 @@ const FaqDetail = () => {
           </Typography>
         </Box>
       )}
-      <IconButton style={{ position: 'absolute', top: '20%', left: '22%' }} onClick={goBack}>
+      <IconButton style={{ position: 'absolute', top: '30%', left: '25%' }} onClick={goBack}>
         <ArrowBackIcon style={{fontSize: '2.5rem'}} />
       </IconButton>
     </Box>
