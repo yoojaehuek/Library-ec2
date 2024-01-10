@@ -27,7 +27,9 @@ const Cart = () => {
     console.log("반납일", futureDate);
     // 선택된 책이 하나 이상인 경우에만 대출 신청 처리
     if (selectedBooks.length > 0) {
-      axios.post(`${API_URL}/api/loans`,{futureDate})
+      const bookOrder = { "book_id":1, "due_date": futureDate };
+
+      axios.post(`${API_URL}/api/loans`,{"book_id":1, "due_date": futureDate})
 			.then(() =>{
 				alert("대출성공!");
 				navigate('/');  
