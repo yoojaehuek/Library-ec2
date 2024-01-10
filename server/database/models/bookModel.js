@@ -13,10 +13,11 @@ class BookModel {
     return result;
   }
 
-  static async getCategoryBook(wheres){
+  static async getCategoryBook({limit, ...wheres}){
     console.log("wheres: ", wheres);
     const result = await Book.findAll({
       where: wheres,
+      limit: limit,
       // order: [ ['book_id', 'ASC'] ],
       raw:true,
     });
