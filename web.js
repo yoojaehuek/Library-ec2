@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 8000;
 require('dotenv').config();
+const port = process.env.PORT || 8001;
 const { sequelize } = require('./server/database/schemas');//DB테이블
 const cookieParser = require('cookie-parser');
 
