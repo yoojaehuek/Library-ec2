@@ -37,6 +37,9 @@ app.use(express.json());
 var cors = require('cors');
 app.use(cors());
 
+// '/server/upload'경로로 뭔가 요청이오면 여기서 걸리고 server/upload폴더의 정적 파일을 제공하겠다
+// 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
+app.use("/server/upload", express.static("server/upload"));  
 
 
 app.use('/api/admin', adminRouter);

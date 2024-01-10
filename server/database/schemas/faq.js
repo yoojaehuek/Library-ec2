@@ -18,7 +18,7 @@ class Faq extends Sequelize.Model {
           allowNull: true,
           comment: "admin테이블의 id참초",
         },
-        tags: {
+        faq_tags: {
           type: Sequelize.STRING,
           allowNull: false,
           validate: {
@@ -26,27 +26,32 @@ class Faq extends Sequelize.Model {
           },
           comment: "문의 카테고리"
         },
-        title: {
+        faq_title: {
           type: Sequelize.STRING,
           allowNull: false,
           comment: "문의 제목",
         },
-        content: {
+        faq_content: {
           type: Sequelize.TEXT,
           allowNull: false,
           comment: "문의 내용",
         },
-        response: {
+        faq_password: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          comment: "문의 비밀번호",
+        },
+        faq_response: {
           type: Sequelize.TEXT,
           allowNull: true,
           comment: "관리자 답변 내용",
         },
-        response_time: {
+        faq_response_time: {
           type: Sequelize.DATE,
           allowNull: true,
           comment: "답변 작성일",
         },
-        status: {
+        faq_status: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
           defaultValue: false,
