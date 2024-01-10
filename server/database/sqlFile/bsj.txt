@@ -1,0 +1,6 @@
+INSERT INTO `library`.`admin` (`admin_id`, `admin_email`, `admin_pwd`, `salt`, `admin_name`, `admin_phone`, `created_at`) VALUES ('1', '123@naver.com', '123', '111', '123', '123', '2023-11-02');
+
+INSERT INTO `library`.`event` VALUES 
+(`event_id`, `admin_id`, `event_title`, `event_thumbnail_img_url`, `event_content_img_url`, `read_count`, `created_at`) VALUES ('1', '1', '123', '123', '123', '1', '2023-11-02'),
+(`event_id`, `admin_id`, `event_title`, `event_thumbnail_img_url`, `event_content_img_url`, `read_count`, `created_at`) VALUES ('2', '1', '456', '456', '456', '5', '2023-11-05')
+;
