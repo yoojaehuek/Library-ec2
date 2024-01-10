@@ -4,7 +4,9 @@ class ReviewController {
 
 	static async createReview(req, res, next){
 		try {
+			// let user_id = 0719;
 			const newReview = req.body;
+			newReview.user_id = "0719";
 			console.log(newReview);
 			const result = await ReviewService.createReview({newReview});
 			res.status(201).json(result);

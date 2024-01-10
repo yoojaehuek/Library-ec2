@@ -59,8 +59,13 @@ class FaqController {
 	static async deleteFaq(req, res, next){
 		try {
 			const faq_id = req.params.faq_id;
+			const faq_password = req.body.faq_password;	
+			// console.log("faq:", req.body.faq_password);
 
-			const result = await FaqService.deleteFaq({ faq_id });
+			const result = await FaqService.deleteFaq({ faq_id, faq_password });
+			if(result.errorMessage){
+                throw new Error(result.errorMessage)
+            }
 			res.status(200).json(result);
 		} catch (error) {
 			next(error);

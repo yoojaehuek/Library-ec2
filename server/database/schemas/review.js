@@ -21,7 +21,7 @@ class Review extends Sequelize.Model {
           allowNull: false,
           comment: "유저 id",
         },
-        review_reating: {
+        review_rating: {
           type: Sequelize.INTEGER,
           allowNull: false,
           validate: {

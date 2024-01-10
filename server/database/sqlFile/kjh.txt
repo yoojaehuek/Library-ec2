@@ -6,7 +6,7 @@ VALUES
 ; 
 
 
-INSERT INTO `library`.`review` (`review_id`, `book_id`, `user_id`, `review_reating`, `review_title`, `review_content`, `created_at`)
+INSERT INTO `library`.`review` (`review_id`, `book_id`, `user_id`, `review_rating`, `review_title`, `review_content`, `created_at`)
 VALUES 
 ('123', '1', '0719', '5', '엄마밥줘', '지환(어미새)이가 밥줌', '2024-01-09 10:02:18'),
 ('1', '1', '0719', '1', '알아서먹어', '지환(어미새)이가 밥안줌', '2024-01-09 10:02:18')

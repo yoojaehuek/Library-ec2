@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
 
@@ -10,6 +12,18 @@ const Header = () => {
   const [buttonClassName, setButtonClassName] = useState('');
   const [isKeyLayerVisible, setKeyLayerVisible] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+
+  const [axiosResult, setAxiosResult] = useState([]);
+
+  useEffect(()=>{
+    axios.get(`${API_URL}/api/review`)
+    .then(res => {
+      console.log("응답 데이터: ", res.data);
+      setAxiosResult(res.data);
+    }).catch((err) =>{
+            console.error(err);
+        });
+  },[]);
 
   const logout = async () => {
     axios.get(`${API_URL}/logout`, { withCredentials: true })

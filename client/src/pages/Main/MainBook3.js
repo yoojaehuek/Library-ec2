@@ -9,10 +9,8 @@ const MainBook3 = () => {
 const gridData = [
   { image: '/images/main/Slider/dark.png', text: '맥북으로 일하는 저승사자' },
   { image: '/images/main/Slider/level.png', text: '일어나보니 이세계' },
-  { image: '/images/main/Slider/succubus.png', text: '도서관에 서큐버스가?' },
   { image: '/images/main/Slider/fantasy.png', text: '9서클 마법사가 여자?' },
   { image: '/images/main/Book2/mystey.png', text: '숲속의 저택' },
-  { image: '/images/main/Book2/mystery2.png', text: '새벽의 시간' },
   { image: '/images/main/Book2/thriller.png', text: '회귀한 회사원' },
   { image: '/images/main/Book2/thriller2.png', text: '대저택 살인사건' },
 ];

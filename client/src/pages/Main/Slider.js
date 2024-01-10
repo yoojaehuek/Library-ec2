@@ -17,7 +17,7 @@ const Slider1 = () => {
   const settings = {
     infinite: true,
     speed: 3000,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1500,
@@ -30,7 +30,7 @@ const Slider1 = () => {
     <div className='slider-container-lhs'>
       <Slider {...settings}>
         {slideData.map((slide, index) => (
-          <NavLink to='/test' key={index} className='main-slider-mid-lhs'>
+          <NavLink to='/BookDetail' key={index} className='main-slider-mid-lhs'>
             <div className='main-slider-img-lhs'>
               <img src={slide.image} alt={`temp${index + 1}`} />
             </div>
