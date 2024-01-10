@@ -42,7 +42,7 @@ const RentalManage = () => {
       author: '작가 1',
       desctitle : '책에 대한 설명',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\nLorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      coverImage: '/images/book1.jpg',
+      coverImage: '/images/Rental/book1.jpg',
       user: '홍길동',
       daylimit: '2024-01-10',
     },
