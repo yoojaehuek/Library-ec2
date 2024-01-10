@@ -62,6 +62,9 @@ class User extends Sequelize.Model {
 
     //참조키로 Loans 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
     db.User.hasMany(db.Loans, { foreignKey: 'user_id', sourceKey: 'user_id'});
+
+    //참조키로 Loans 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
+    db.User.hasMany(db.Review, { foreignKey: 'user_id', sourceKey: 'user_id'});
   }
 };
 

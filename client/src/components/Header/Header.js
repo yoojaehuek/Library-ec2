@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
@@ -12,7 +12,6 @@ const Header = () => {
   const [buttonClassName, setButtonClassName] = useState('');
   const [isKeyLayerVisible, setKeyLayerVisible] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
-
 
   const logout = async () => {
     axios.get(`${API_URL}/logout`, { withCredentials: true })
