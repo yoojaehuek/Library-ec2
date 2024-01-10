@@ -11,8 +11,13 @@ class LoansController {
         const tmp = req.body;
         // tmp.userId = req.userId;
         tmp.user_id = "ee@ee.com";
-        console.log("컨트롤러대출등록에서 받은 tmp: ",tmp);
-        const newLoans = await LoansService.addLoans(tmp);
+        tmp.order.forEach(orderItem => { 
+          orderItem.user_id = tmp.user_id;
+          // orderItem.user_id = req.userId; // 로그인 되면 이걸로
+        });
+        const one = tmp.order
+        console.log("tmp 안의 one: ", one);
+        const newLoans = await LoansService.addLoans(one);
         
         if(newLoans.errorMessage){
           throw new Error(newLoans.errorMessage)

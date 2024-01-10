@@ -2,28 +2,10 @@ const LoansModel = require('../models/loansModel');
 
 class LoansService{
 
-  static async addLoans({book_id, due_date, user_id}){
-
-    const newLoans = {book_id, due_date, user_id};
+  static async addLoans(one){
+    const newLoans = one;
 		console.log("서비스에서 받은 newLoans: ",newLoans);
-    //예약테이블에 INSERT INTO
 		const createNewLoans = await LoansModel.createLoans({newLoans});
-    const loans_id = createNewLoans.id;
-    console.log("createNewLoans: ", createNewLoans.get({ plain: true }));// 데이터만 추출
-    console.log("plain 없는 createNewLoans: ", createNewLoans);// 데이터만 추출
-    // console.log("loans_id: ", loans_id);
-    
-    // menu_items.map( (item, index) => { //장바구니에 담은 종류만큼 반복 
-    //   // console.log('item: ', item);
-    //   // const createNewLoansMenu = await LoansModel.createLoansMenu({loans_id, newLoans});
-    //   LoansModel.createLoansMenu({loans_id, item})
-    //     .then(createNewLoansMenu => {
-    //       const loansMenu_id = createNewLoansMenu.id;
-    //       console.log("createNewLoansMenu: ", createNewLoansMenu.get({ plain: true }));
-    //     })
-    // });
-    
-
 		return createNewLoans
   }
 
