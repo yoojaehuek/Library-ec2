@@ -34,8 +34,17 @@ class FaqService{
 		return result;
 	}
 
-	static async deleteFaq({ faq_id }){
-    const result = await FaqModel.deleteFaq({ faq_id });
+	static async deleteFaq({ faq_id, faq_password }){
+    let result = await FaqModel.deleteFaq({ faq_id, faq_password });
+
+	if (result == 0) {
+		console.log('null걸림');
+		result = {}; // null이면 속성 할당 안됨 그래서 {} 빈 객체 재할당
+		result.errorMessage = "비밀번호 틀렸어요.";
+		return result;
+	}
+
+	console.log("faqService/delete:", result);
     return result;
   }
 
