@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const errorMiddleware = require('./server/utils/errorMiddleware');
 const adminRouter = require('./server/routers/admin');
 const bookRouter = require('./server/routers/book');
+const reviewRouter = require('./server/routers/review');
 const faqRouter = require('./server/routers/faq');
 const loansRouter = require('./server/routers/loans');
 const userRouter = require('./server/routers/user');
@@ -43,6 +44,7 @@ app.use("/server/upload", express.static("server/upload"));
 
 app.use('/api/admin', adminRouter);
 app.use('/api/book', bookRouter);
+app.use('/api/review', reviewRouter);
 app.use('/api/faq', faqRouter);
 app.use('/api/loans', loansRouter);
 app.use('/api/user', userRouter);

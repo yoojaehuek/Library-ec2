@@ -1,0 +1,13 @@
+INSERT INTO `library`.`user` (`user_id`, `user_pwd`, `salt`, `user_name`, `user_phone`, `user_address`, `user_detail_address`, `created_at`) VALUES ('0719', '0719', '1', '김정혁', '6864', '수원', '장안아파트', '2024-01-09 10:02:18');
+
+INSERT INTO library.book (book_id, book_name, book_img_url, book_author, book_publisher, book_genre, book_availability, book_description, book_ISBN, created_at) 
+VALUES 
+('1', '책 먹는 여우', '/server/upload/test.jpg', '프란치스카 비어만', '주니어김영사', '문학', '1', '동화 베스트셀러『책 먹는 여우』 드디어 영어판 출간! 『THE FOX WHO ATE BOOKS』는 한국에서 40만 부, 100쇄 이상 팔린 아동서적 베스트셀러『책 먹는 여우』의 영어판입니다. 책에 대한 사랑이 지나쳐 급기야는 책을 먹는 여우의 이야기를 재치 있고 유쾌하게 풀어내었습니다. 영어로는 처음 출간되는 책으로, 원어민 수준의 철저한 번역과 저자의 확인을 받은 유일한 영어본입니다. 여우 아저씨는 책을 너무 좋아해 책을 다 읽은 다음 소금 한 줌, 후추 조금을 뿌려 꿀꺽 먹었어요. 하지만 책값이 워낙 비싸 돈이 없어 마음껏 책을 읽고 먹을 수가 없었어요. 결국 여우 아저씨는 도서관을 털기로 결심하는데….', '9788934908067', '2023-01-10 10:29:04')
+; 
+
+
+INSERT INTO `library`.`review` (`review_id`, `book_id`, `user_id`, `review_reating`, `review_title`, `review_content`, `created_at`)
+VALUES 
+('123', '1', '0719', '5', '엄마밥줘', '지환(어미새)이가 밥줌', '2024-01-09 10:02:18'),
+('1', '1', '0719', '1', '알아서먹어', '지환(어미새)이가 밥안줌', '2024-01-09 10:02:18')
+;
