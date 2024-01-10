@@ -79,6 +79,9 @@ class Book extends Sequelize.Model {
   static associate(db) {
     //참조키로 Loans 모델에 book_id(sourceKey)를 book_id(foreignKey)라는 이름으로 보냄
     db.Book.hasMany(db.Loans, { foreignKey: 'book_id', sourceKey: 'book_id'});
+
+    //참조키로 Loans 모델에 book_id(sourceKey)를 book_id(foreignKey)라는 이름으로 보냄
+    db.Book.hasMany(db.Review, { foreignKey: 'book_id', sourceKey: 'book_id'});
   }
 }
 
