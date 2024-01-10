@@ -7,8 +7,6 @@ import './Main.scss';
 const MainBook2 = () => {
 
 const gridData = [
-  { image: '/images/main/Book3/web6.png', text: '사쿠라가 지는 밤' },
-  { image: '/images/main/Book3/web7.png', text: '왕궁의 황녀' },
   { image: '/images/main/Book3/web8.png', text: '그녀의 마음을 훔쳐라' },
   { image: '/images/main/Book3/web9.png', text: '아이돌도 연애를 할 수 있을까?' },
   { image: '/images/main/Book3/web10.png', text: '도도한 물리치료사' },
