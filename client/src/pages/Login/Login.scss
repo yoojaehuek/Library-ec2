@@ -1,19 +1,25 @@
 .login-container-yjh {
   margin: 50px auto;
+  h1{
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
   li {
     list-style: none;
   }
-  #login-form {
+  #login-form-yjh {
     margin: 0 auto;
     width: 800px;
-    #login-input {
+    #login-input-yjh {
       display: flex;
       justify-content: space-between;
       width: 700px;
       height: 170px;
       margin: 0px;
       padding: 0px;
-      .input-li {
+      .input-li-yjh {
         margin: 0px;
         padding: 0px;
         width: 430px;
@@ -39,7 +45,7 @@
         }
       }
     }
-    #login-btn {
+    #login-btn-yjh {
       background-color: #6ba10e;
       margin: 20px 0px;
       width: 200px;
@@ -49,7 +55,7 @@
       color: white;
       border: 0px;
     }
-    #login_tip {
+    #login-tip-yjh {
       p {
         text-align: start;
         display: flex;

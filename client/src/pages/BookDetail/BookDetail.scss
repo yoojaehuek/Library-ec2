@@ -1,0 +1,141 @@
+
+.book-detail-container-lhs{
+  padding-left: 10.6875rem;
+  padding-right: 10.6875rem;
+
+  .book-detail-content-lhs {
+    display: flex;
+    margin: 20px;
+  
+    .book-detail-left-lhs {
+      img {
+        width: 70%;
+        height: 27vw;
+      }
+    }
+  
+    .book-detail-right-lhs {
+      width: 50%;
+      padding: 0 20px;
+      box-sizing: border-box;
+  
+      > h1 {
+        font-size: 30px;
+      }
+      > p {
+        text-align: left;
+        font-weight: 400;
+        font-size: 23px;
+  
+        > span{
+          font-size: 25px;
+          font-weight: 900;
+        }
+      }  
+  
+      .book-detail-availability-lhs{
+        margin-top: 20px;
+        padding: 20px 90px;
+        float: left;
+  
+        span{
+          font-size: 20px;
+          font-weight: 900;
+          color: white;
+        }
+      }
+    }
+    .buttons-container-lhs {
+      display: flex;
+      float: left;
+      width: 13%;
+      margin-top: 40px;
+      flex-direction: column;
+      gap: 10px;
+      
+  
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 800;
+        height: 3vw;
+        background-color: white;
+        cursor: pointer;
+        border: 2px solid #17ad51;
+        color: #17ad51; 
+        transition: background-color 0.3s ease;
+      
+        &:hover {
+          background-color: #17ad51;
+          color: white;
+        }
+      }      
+    }
+  }  
+
+  .book-description-top-lhs{
+    margin-top: 60px;
+    
+    .book-description-top-name-lhs{
+      text-align: left;
+      border-bottom: solid 1px gray;
+  
+      >h2{
+        margin-top: 20px;
+      }
+    }
+
+    >p{
+      margin: 4vh 0;
+      padding-left: 10px;
+      text-align: left;
+    }
+  }
+
+  .related-books-container-lhs {
+    margin: 30px 0;
+    width: 100%;
+
+    > h2 {
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .related-books-lhs {
+      display: flex;
+      border-top: 1px solid gray;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 40px 0;
+
+      .related-book-lhs {
+        max-width: 200px;
+        text-align: center;
+
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 5px;
+          margin-bottom: 10px;
+        }
+
+        h3 {
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+
+        p {
+          font-size: 14px;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+
+
+

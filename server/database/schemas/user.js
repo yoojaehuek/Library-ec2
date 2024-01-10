@@ -1,5 +1,4 @@
 const Sequelize = require("sequelize");
-//고객(id, pw, name, phone, 생일, 성별, companionName, companionPhone)
 class User extends Sequelize.Model {
   static initiate(sequelize) {
     User.init({
@@ -9,12 +8,6 @@ class User extends Sequelize.Model {
         allowNull: false,
         comment: "ID(이메일)",
       },
-      // user_email: {
-      //   type: Sequelize.STRING,
-      //   unique: true, //중복되면 안됨
-      //   allowNull: false,
-      //   comment: "ID(이메일)",
-      // },
       user_pwd: {
         type: Sequelize.STRING(128),
         allowNull: false,
@@ -45,11 +38,6 @@ class User extends Sequelize.Model {
         allowNull: false,
         comment: "상세주소",
       },
-      // user_birth: {
-      //   type: Sequelize.DATEONLY,
-      //   allowNull: false,
-      //   comment: "생년월일",
-      // },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
