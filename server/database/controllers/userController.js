@@ -51,6 +51,50 @@ class UserController {
             next(error)
         }
     }
+    static async naverLogin(req,res,next){
+        try {
+						//가입했는지 검사
+							//if 신규
+								//가입
+							//else 신규 아님
+								//if 이미 소셜
+									//이미 있는 회원 - 로그인처리
+								//else 소셜 아님 일반 회원
+									//연동
+            const tmp = req.body;
+            // console.log("컨트롤러에서 tmp: ", tmp);
+
+						const user = await UserService.naverLogin(tmp);
+            // console.log("userControll.loginUser: ", user); 
+
+						
+						
+
+            // const user = await UserService.loginUser(tmp);
+            // console.log("userControll.loginUser: ", user); 
+            
+            // if(user.errorMessage){
+            //     throw new Error(user.errorMessage);
+            // };
+
+            // res.cookie('accessToken', user.accessToken, {
+            //     httpOnly : true,
+            //     secure : false,
+            //     sameSite : 'strict',
+            // });
+            // res.cookie('refreshToken', user.refreshToken, {
+            //     httpOnly : true,
+            //     secure : false,
+            //     sameSite : 'strict',
+            // });
+            // console.log("req.cookie.accessToken: ", req.cookies.accessToken);
+            // console.log("req.cookie.accessToken: ", req.cookies.refreshToken);
+            res.status(200).end();
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async detailUser(req, res, next){
         try{
             const id = req.userId;

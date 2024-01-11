@@ -5,6 +5,7 @@ const authMiddleware = require('../utils/authMiddleware');
 
 router.post('/join', UserController.createUser);
 router.post('/login', UserController.loginUser);
+router.post('/naver-login', UserController.naverLogin)
 router.get('/one', authMiddleware, UserController.detailUser);
 router.patch('/', authMiddleware, UserController.putUser);
 router.delete('/', authMiddleware, UserController.deleteUser);
