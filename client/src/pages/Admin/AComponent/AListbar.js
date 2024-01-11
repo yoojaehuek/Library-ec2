@@ -141,12 +141,12 @@ const AListbar = () => {
             width: 240,
             boxSizing: 'border-box',
             backgroundColor: '#81c147',
-            paddingTop: 5,
+            paddingTop: 1,
           },
         }}
       >
-        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} />
+        <div style={{ textAlign: 'center' }}>
+          <NavLink to='/admin'><img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} /></NavLink>
         </div>
         <List>{renderListItems(ListItems)}</List>
       </Drawer>

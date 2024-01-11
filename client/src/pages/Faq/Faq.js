@@ -26,6 +26,7 @@ const Faq = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [faqData, setFaqData] = useState([]);
+  
 
   useEffect(() => {
     fetchData();

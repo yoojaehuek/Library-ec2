@@ -42,7 +42,7 @@ function App() {
         <Route path='/faq' element={<Faq></Faq>}></Route>
         <Route path='/faq/:id' element={<FaqDetail></FaqDetail>}></Route>
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
-        <Route path='Admin' element={<Adminmain></Adminmain>}></Route>
+        <Route path='/admin/*' element={<Adminmain></Adminmain>}></Route>
         <Route path='/mypage' element={<Mypage></Mypage>}></Route>
       </Routes>
       {!currentPath.includes('/admin') && <Footer />}
