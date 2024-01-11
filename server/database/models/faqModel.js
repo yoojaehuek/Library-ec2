@@ -61,7 +61,7 @@ class FaqModel {
       ...toUpdate
     }, {
       where: {
-        faq_id: faq_id
+        "faq_id": faq_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;

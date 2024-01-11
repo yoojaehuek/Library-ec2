@@ -55,7 +55,7 @@ class UserService{
 			user_name: tmp.name, 
 			user_phone: tmp.mobile.replace(/\D/g, ''), 
 			user_pwd: hashPassword,
-			"salt": salt,
+			salt: salt,
 			sns_id: tmp.id, 
 			sns_type: "naver", 
 		}
@@ -65,7 +65,8 @@ class UserService{
 		console.log("naver/service/result: ", result[1]);
 		
 		if (!result[1]) { // 가입 내역 있음
-			if (!result[0].sns_id) { //네이버 안함
+			if (!result[0].sns_id) { //계정은 있는데 네이버 아이디 아님
+				console.log('가입 했지만 네이버 아님 연동!');
 				const update = {
 					sns_id: tmp.id, 
 					sns_type: "naver", 
@@ -77,9 +78,11 @@ class UserService{
 			
 			}else { //연동 했음
 				//로그인 처리
+				console.log('가입도 했고 네이버도 연동됨');
 			} 
 		} else { // 가입 내역 없음
 			//위에서 함 필요 없음
+			console.log('신규 회원 회원 가입!');
 		}
 	}
 
@@ -115,7 +118,7 @@ class UserService{
 			const refreshToken = makeRefreshToken();
 
 			// userId를 키값으로 refresh token을 redis server에 저장
-			await redisClient.set(user.user_id, refreshToken);
+			await redisClient.set(user.user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 			// await redisClient.get(user.id, (err, value) => {
 			// 	console.log("redis.value: ", value); 
 			// });
@@ -136,28 +139,34 @@ class UserService{
 		const user = await UserModel.findOneUserId({id});
 		// console.log({myId});
 		const name = user.user_name;
-		const user_email = user.email;
-		const address = user.address;
-		const detail_address = user.detail_address;
+		const pwd = user.user_pwd;
+		const phone = user.user_phone;
+		const address = user.user_address;
+		const detail_address = user.user_detail_address;
+		// const user_email = user.email;
+		// const address = user.address;
+		// const detail_address = user.detail_address;
 		// const phone = user.phone;
-		const phone_number_prefix = user.phone.substring(0, 3);
-		const phone_number_suffix = user.phone.substring(3);
+		// const phone_number_prefix = user.phone.substring(0, 3);
+		// const phone_number_suffix = user.phone.substring(3);
 		// const birth = user.birth;
-		const date = new Date(user.birth);
-		const year = date.getFullYear();
-		const month = date.getMonth()+1;
-		const day = date.getDate();
+		// const date = new Date(user.birth);
+		// const year = date.getFullYear();
+		// const month = date.getMonth()+1;
+		// const day = date.getDate();
 
 		const userInfo = {
 			name,
-			user_email,
+			pwd,
+			phone,
 			address,
 			detail_address,
-			phone_number_prefix,
-			phone_number_suffix,
-			year,
-			month,
-			day,
+			// user_email,
+			// phone_number_prefix,
+			// phone_number_suffix,
+			// year,
+			// month,
+			// day,
 		};
 
 		return userInfo;

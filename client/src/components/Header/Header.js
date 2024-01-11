@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
@@ -36,9 +36,6 @@ const Header = () => {
     setKeyLayerVisible(false);
   };
 
-
-
-
   return (
     <div className='header-container-kjh'>
       <h1>
@@ -54,17 +51,17 @@ const Header = () => {
             {isLogin ? 
               <>
               {/* 로그인 하고 난 후 */}
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/" onClick={logout} className="txt-kjh">
                   <p>로그아웃</p>
                 </NavLink>
               </>
               :
               <>
               {/* 로그인 하기 전 */}
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/login" className="txt-kjh">
                   <p>로그인</p>
                 </NavLink>
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/join" className="txt-kjh">
                   <p>회원가입</p>
                 </NavLink>
               </>
@@ -145,7 +142,7 @@ const Header = () => {
                 <NavLink to="/" className="utilbtn-kjh renter4">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
-                <NavLink to="/" className="utilbtn-kjh renter5">
+                <NavLink to="/cart" className="utilbtn-kjh renter5">
                   <img src="/images/Header/ccart.svg" alt="장바구니"/>
                 </NavLink>
               </>

@@ -10,7 +10,7 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
 	// const NAVER_CLIENT_ID = process.env.NAVER_LOGIN_CLIENT_ID; // 발급 받은 Client ID 입력 
 	// const NAVER_CALLBACK_URL = process.env.NAVER_LOGIN_CLIENT_SECRET; // 작성했던 Callback URL 입력
 	const NAVER_CLIENT_ID = "V46m2qDiFvzaAGDvibP4"; // 발급 받은 Client ID 입력 
-	const NAVER_CALLBACK_URL = "http://localhost:3000/test"; // 작성했던 Callback URL 입력
+	const NAVER_CALLBACK_URL = "http://localhost:3000"; // 작성했던 Callback URL 입력
 
 	const initializeNaverLogin = () => {
 		const naverLogin = new naver.LoginWithNaverId({
@@ -21,7 +21,7 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
 			isPopup: false,
       
       // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
-			loginButton: { color: 'green', type: 1, height: 58 },
+			loginButton: { color: 'green', type: 3, height: 58 },
 			callbackHandle: true,
 		})
 		naverLogin.init();
@@ -56,12 +56,17 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
   // 네이버 소셜 로그인 (네아로) 는 URL 에 엑세스 어스코드가 붙어서 전달된다.
   // 우선 아래와 같이 어스코드를 추출 할 수 있으며,
   // 3부에 작성 될 Redirect 페이지를 통해 빠르고, 깨끗하게 처리가 가능하다.
-  
   const userAccessToken = () => {
+
+    // window.location.href는 현재 페이지의 URL을 문자열로 반환하는 속성입니다.
+    // includes 메소드를 사용하여 URL에 'access_token'이라는 문자열이 포함되어 있는지 확인합니다.
+    // 만약 포함되어 있다면 getToken() 함수를 호출합니다.
     window.location.href.includes('access_token') && getToken()
 	}
         
   const getToken = () => {
+
+    //주소에서 엑세스토큰만 가져옴
     const token = window.location.href.split('=')[1].split('&')[0]
     // console.log, alert 창을 통해 어스코드가 잘 추출 되는지 확인하자! 
   

@@ -14,7 +14,7 @@ class UserModel {
     const result = await User.findOrCreate({
       where: {user_email: newUser.user_email},
       defaults: newUser
-    })
+    });
 
     return result;
   }
