@@ -38,7 +38,7 @@ const AFaq = () => {
         setEditStatus(faqDetails.faq_status);
       })
       .catch((err) => {
-        console.error(`Error fetching FAQ details for ID ${faq_Id}:`, err);
+        console.error(`에러. ${faq_Id}:`, err);
       });
   };
 
@@ -46,7 +46,8 @@ const AFaq = () => {
     axios.patch(`${API_URL}/api/faq/${editFaqId}`, {
       faq_response: editAnswer,
       faq_response_time: editResponseTime,
-      faq_status: editStatus === '1' ? '답변 완료' : '대기',
+      faq_status: editStatus,
+      //fq_status: editStatus === '1' ? '답변 완료' : '대기',
     })
       .then(() => {
         fetchFaqData();
@@ -57,7 +58,7 @@ const AFaq = () => {
         setEditStatus('');
       })
       .catch((err) => {
-        console.error(`Error updating FAQ ID ${editFaqId}:`, err);
+        console.error(`업데이트 에러. ${editFaqId}:`, err);
       });
   };
 
@@ -119,7 +120,8 @@ const AFaq = () => {
               <TableCell>{item.faq_password}</TableCell>
               <TableCell>{item.faq_response}</TableCell>
               <TableCell>{item.faq_response_time}</TableCell>
-              <TableCell>{item.faq_status ? '대기' : '답변 완료'}</TableCell>
+              <TableCell>{item.faq_status}</TableCell>
+              {/* <TableCell>{item.faq_status ? '대기' : '답변 완료'}</TableCell> */}
               <TableCell>{item.faq_created_at}</TableCell>
               <TableCell>
                 <Button variant="contained" color="primary" onClick={() => handleEdit(item.faq_id)}>
