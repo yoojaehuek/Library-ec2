@@ -15,7 +15,7 @@ class FaqController {
 
 	static async getAllFaq(req, res, next){
 		try {
-			const result = await FaqService.getAllFaq();		//async await = 응답이 올때까지 기다리겠다.(p.79)
+			const result = await FaqService.getAllFaq(); //async await = 응답이 올때까지 기다리겠다.(p.79)
 			res.status(200).json(result);
 		} catch (error) {
 			next(error)
@@ -46,9 +46,9 @@ class FaqController {
 	static async updateFaq(req, res, next){
 		try {
 			const faq_id = req.params.faq_id;
-			const {...props} = req.body;
-      const toUpdate = {...props}
-
+			// const toUpdate = { ...req.body }; // 이런식으로 한 줄로 써도 됨??????
+			const {...props} = req.body; // 새로운 개체를 만들어 할당하는 이유는 원본 객체를 직접 수정하지 않고
+      		const toUpdate = {...props} // 복사본을 만들어 사용하는 것이 일반적으로 안전하다고 여겨지기 때문.
 			const result = await FaqService.updateFaq({ faq_id, toUpdate });
 			res.status(200).json(result);
 		} catch (error) {

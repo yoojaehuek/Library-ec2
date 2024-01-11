@@ -95,7 +95,7 @@ const Faq = () => {
             value={selectedCategory}
             onChange={handleChangeCategory}
             fullWidth
-            style={{ width: "100%" }}
+            style={{ width: "15vw" }}
           >
             {categories.map((category) => (
               <MenuItem key={category} value={category}>

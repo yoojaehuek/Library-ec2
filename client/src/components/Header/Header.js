@@ -36,9 +36,6 @@ const Header = () => {
     setKeyLayerVisible(false);
   };
 
-
-
-
   return (
     <div className='header-container-kjh'>
       <h1>
@@ -61,10 +58,10 @@ const Header = () => {
               :
               <>
               {/* 로그인 하기 전 */}
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/login" className="txt-kjh">
                   <p>로그인</p>
                 </NavLink>
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/join" className="txt-kjh">
                   <p>회원가입</p>
                 </NavLink>
               </>
@@ -145,7 +142,7 @@ const Header = () => {
                 <NavLink to="/" className="utilbtn-kjh renter4">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
-                <NavLink to="/" className="utilbtn-kjh renter5">
+                <NavLink to="/cart" className="utilbtn-kjh renter5">
                   <img src="/images/Header/ccart.svg" alt="장바구니"/>
                 </NavLink>
               </>
