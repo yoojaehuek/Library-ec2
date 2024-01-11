@@ -1,6 +1,6 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
+import React, { useEffect } from 'react';
 
 const BookDetail = () => {
   const bookData = {
@@ -88,6 +88,10 @@ const BookDetail = () => {
   const availabilityStyle = {
     backgroundColor: bookData.book_availability === '대출 가능' ? 'blue' : 'red',
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className='book-detail-container-lhs'>

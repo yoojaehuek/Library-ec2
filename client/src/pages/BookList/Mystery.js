@@ -15,6 +15,9 @@ const Mystery = () => {
       setShowWelcome(true);
     }, 500);
 
+    window.scrollTo(0, 0);
+
+
     return () => clearTimeout(timeout);
   }, []);
 

@@ -40,7 +40,7 @@ const Main = () => {
     <div className={`main-container-lhs ${showWelcome ? 'show' : ''}`}>
       <div className={`main-content-lhs ${showWelcome ? 'show' : ''}`}>
         <div className={`main-welcome-lhs ${showWelcome ? 'visible' : ''}`}>
-          <span>환영합니다<br></br>저희 -- 북을 찾아주셔서 감사합니다.</span>
+          <span>환영합니다<br></br>찾아주셔서 감사합니다.</span>
         </div>
         <div className={`main-top-lhs ${showWelcome ? 'show' : ''}`}>
           <NavLink to="/">
