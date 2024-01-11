@@ -5,22 +5,31 @@ class LoansService{
   static async addLoans(one){
     const newLoans = one;
 		console.log("서비스에서 받은 newLoans: ",newLoans);
-		const createNewLoans = await LoansModel.createLoans({newLoans});
-		return createNewLoans
+     // newLoans 배열을 반복하면서 각 객체를 처리
+    const createdLoans = await Promise.all(newLoans.map(async (loansData) => {
+      const createNewLoans = await LoansModel.createLoans(loansData);
+      return createNewLoans
+    }));
+    return createdLoans;
   }
 
   static async getAllLoans(){
+    console.log("서비스 전체조회들어옴 ");
     let loansData = await LoansModel.getAllLoans();
     loansData = loansData.map(el => el.get({ plain: true }));
     
     loansData.map((loans, index) => {
-      const { created_at } = loansData[index];
-
-      // console.log(`${created_at.getFullYear()}-${created_at.getMonth()+1}-${created_at.getDate()}`);
-      loansData[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
-      loansData[index].format_date = loansData[index].created_at.toISOString().split('T')[0];
-    })  
-    console.log(loansData);
+      const { loan_date, due_date } = loansData[index];
+      if (loan_date) {// 한국표준시로 변경, T뒷부분인 시간 값을 자르고 날짜만 가져옴
+        loansData[index].loan_date = new Date(loan_date.setHours(loan_date.getHours() + 9));
+        loansData[index].loan_date = loansData[index].loan_date.toISOString().split('T')[0];
+      }
+      if (due_date) {
+        loansData[index].due_date = new Date(due_date.setHours(due_date.getHours() + 9));
+        loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
+      }
+    }) 
+    console.log("서비스 전체조회 받음 : ", loansData);
 
     return loansData;
   }

@@ -115,53 +115,49 @@ const FaqDetail = () => {
           {detailfaq.faq_content}
         </Typography>
       </Box>
-      {detailfaq && detailfaq.faq_status == 1 ? (
-        <Box
-          borderBottom="1px solid #ddd"
-          paddingBottom="20px"
-          borderRadius="8px"
-          backgroundColor="#fff"
-          padding="20px"
+      {detailfaq && ![1, 2, 3, 4].includes(detailfaq.faq_id) && (
+  <Box
+    borderBottom="1px solid #ddd"
+    paddingBottom="20px"
+    borderRadius="8px"
+    backgroundColor="#fff"
+    padding="20px"
+  >
+    {detailfaq.faq_status === 1 ? (
+      <>
+        <Typography
+          variant="h5"
+          style={{
+            color: "#007bff",
+            marginBottom: "10px",
+            borderBottom: "1px solid #ddd",
+            paddingBottom: "10px"
+          }}
         >
-          <Typography
-            variant="h5"
-            style={{
-              color: "#007bff",
-              marginBottom: "10px",
-              borderBottom: "1px solid #ddd",
-              paddingBottom: "10px"
-            }}
-          >
-            관리자 답변
-          </Typography>
-          <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            작성자: {adminAnswer.admin_id}
-          </Typography>
-          <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            날짜: {adminAnswer.faq_reponse_time}
-          </Typography>
-          <Typography variant="body1" style={{ color: "#555" }}>
-            내용: {adminAnswer.faq_reponse}
-          </Typography>
-        </Box>
-      ) : (
-        <Box
-          borderBottom="1px solid #ddd"
-          paddingBottom="20px"
-          borderRadius="8px"
-          backgroundColor="#fff"
-          padding="20px"
-        >
-          <Typography variant="subtitle1" style={{ color: "#555" }}>
-            아직 관리자 답변이 없습니다.
-          </Typography>
-        </Box>
-      )}
+          관리자 답변
+        </Typography>
+        <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
+          작성자: {adminAnswer.author}
+        </Typography>
+        <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
+          날짜: {adminAnswer.date}
+        </Typography>
+        <Typography variant="body1" style={{ color: "#555" }}>
+          내용: {adminAnswer.answer}
+        </Typography>
+      </>
+    ) : (
+      <Typography variant="subtitle1" style={{ color: "#555" }}>
+        아직 관리자 답변이 없습니다.
+      </Typography>
+    )}
+  </Box>
+)}
       <IconButton style={{ position: 'absolute', top: '30%', left: '25%' }} onClick={goBack}>
         {/* <ArrowBackIcon style={{fontSize: '2.5rem'}} /> */}
       </IconButton>
     </Box>
   );
-  }  
+}   
 
 export default FaqDetail;
