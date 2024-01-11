@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 8000;
 require('dotenv').config();
+const port = process.env.PORT || 8001;
 const { sequelize } = require('./server/database/schemas');//DB테이블
 const cookieParser = require('cookie-parser');
 
 const errorMiddleware = require('./server/utils/errorMiddleware');
 const adminRouter = require('./server/routers/admin');
 const bookRouter = require('./server/routers/book');
+const reviewRouter = require('./server/routers/review');
 const faqRouter = require('./server/routers/faq');
 const loansRouter = require('./server/routers/loans');
 const userRouter = require('./server/routers/user');
-// const multer = require('multer'); //파일 업로드
+const eventRouter = require('./server/routers/event');
+const multer = require('multer'); //파일 업로드
 
 //시퀄라이즈 연결 부분
 sequelize.sync({ force: false }) //force가 true면 킬때마다 DB 새로 만듬
@@ -43,9 +45,11 @@ app.use("/server/upload", express.static("server/upload"));
 
 app.use('/api/admin', adminRouter);
 app.use('/api/book', bookRouter);
+app.use('/api/review', reviewRouter);
 app.use('/api/faq', faqRouter);
 app.use('/api/loans', loansRouter);
 app.use('/api/user', userRouter);
+app.use('/api/event', eventRouter);
 
 app.use(errorMiddleware);
 

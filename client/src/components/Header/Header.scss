@@ -1,4 +1,6 @@
 //헤더 css 무조건 .header-container-kjh{} 안쪽에 작성하기
+
+
 .header-container-kjh {
   margin-bottom: 20px;
   height: 195px;
@@ -25,6 +27,7 @@
   h1 {
     width: 1200px;
     position: relative;
+    cursor: pointer;
     margin: 0 auto;
     z-index: 61;
   }

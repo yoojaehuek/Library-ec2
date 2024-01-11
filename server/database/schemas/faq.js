@@ -14,7 +14,7 @@ class Faq extends Sequelize.Model {
           allowNull: false,
         },
         admin_id: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           allowNull: true,
           comment: "admin테이블의 id참초",
         },

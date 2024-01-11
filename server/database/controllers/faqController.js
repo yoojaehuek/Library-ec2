@@ -15,7 +15,7 @@ class FaqController {
 
 	static async getAllFaq(req, res, next){
 		try {
-			const result = await FaqService.getAllFaq();		
+			const result = await FaqService.getAllFaq();		//async await = 응답이 올때까지 기다리겠다.(p.79)
 			res.status(200).json(result);
 		} catch (error) {
 			next(error)

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
 

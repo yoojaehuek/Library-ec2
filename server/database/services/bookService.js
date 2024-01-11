@@ -120,6 +120,11 @@ class BookService{
 				[Op.eq]: options.book_ISBN,
 			};
 		}
+
+		//도서 고유 번호
+		if (options.limit) {
+			wheres.limit = parseInt(options.limit);
+		}
 		return wheres;
 	}
 

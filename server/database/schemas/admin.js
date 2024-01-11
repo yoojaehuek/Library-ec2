@@ -4,9 +4,8 @@ class Admin extends Sequelize.Model {
   static initiate(sequelize) {
     Admin.init({
       admin_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
         comment: "ID (기본키)",
       },
@@ -58,6 +57,7 @@ class Admin extends Sequelize.Model {
     // 참조키로 Faq 모델에 admin_id(sourceKey)를 admin_id(foreignKey)라는 이름으로 보냄
     db.Admin.hasMany(db.Faq, { foreignKey: 'admin_id', sourceKey: 'admin_id'});
     
+    db.Admin.hasMany(db.Event, { foreignKey: 'admin_id', sourceKey: 'admin_id'});
   }
 };
 
