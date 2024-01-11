@@ -17,6 +17,7 @@ import Thiller from './pages/BookList/Thiller.js'
 import SF from './pages/BookList/SF.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
+import Mypage from './pages/Mypage/Mypage.js';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path='/faq' element={<Faq></Faq>}></Route>
         <Route path='/faq/:id' element={<FaqDetail></FaqDetail>}></Route>
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
+        <Route path='/mypage' element={<Mypage></Mypage>}></Route>
       </Routes>
       <Footer />
     </div>
