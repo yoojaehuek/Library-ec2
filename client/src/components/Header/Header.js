@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
@@ -14,16 +14,6 @@ const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
 
   const [axiosResult, setAxiosResult] = useState([]);
-
-  useEffect(()=>{
-    axios.get(`${API_URL}/api/review`)
-    .then(res => {
-      console.log("응답 데이터: ", res.data);
-      setAxiosResult(res.data);
-    }).catch((err) =>{
-            console.error(err);
-        });
-  },[]);
 
   const logout = async () => {
     axios.get(`${API_URL}/logout`, { withCredentials: true })
