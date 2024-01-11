@@ -72,12 +72,10 @@ const ListItems = [
 ];
 
 const AListbar = () => {
-  const [openStates, setOpenStates] = useState(ListItems.map(() => false));
+  const [openIndex, setOpenIndex] = useState(null);
 
   const handleClick = (index) => {
-    const newOpenStates = [...openStates];
-    newOpenStates[index] = !newOpenStates[index];
-    setOpenStates(newOpenStates);
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleSubtitleClick = (event, index, subIndex) => {
@@ -97,12 +95,12 @@ const AListbar = () => {
             },
           }}
         >
-          <ListItemIcon sx={{ color: '#000'}}>{item.icon}</ListItemIcon>
+          <ListItemIcon sx={{ color: '#000' }}></ListItemIcon>
           <ListItemText primary={item.title} sx={{ color: '#000' }} />
-          {item.sub_title && (openStates[index] ? <ExpandLess /> : <ExpandMore />)}
+          {item.sub_title && (openIndex === index ? <ExpandLess /> : <ExpandMore />)}
         </ListItem>
         {item.sub_title && (
-          <Collapse in={openStates[index]} timeout="auto" unmountOnExit>
+          <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {item.sub_title.map((subItem, subIndex) => (
                 <ListItem
@@ -131,7 +129,9 @@ const AListbar = () => {
 
   return (
     <div id='AListbar-container-kjn'>
-        <img src='/images/Footer/kakao.svg'></img>
+      {/* <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} />
+      </div> */}
       <Drawer
         variant="permanent"
         sx={{
@@ -141,10 +141,13 @@ const AListbar = () => {
             width: 240,
             boxSizing: 'border-box',
             backgroundColor: '#81c147',
-            paddingTop: 10,
+            paddingTop: 5,
           },
         }}
       >
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} />
+        </div>
         <List>{renderListItems(ListItems)}</List>
       </Drawer>
     </div>
