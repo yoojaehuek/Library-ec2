@@ -5,7 +5,7 @@ import { API_URL } from "../../config/contansts";
 
 const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
   const [newPost, setNewPost] = useState({
-    user_id: 'i1004902@naver.com',
+    user_id: '123@naver.com',
     faq_password: '',
     faq_tags: '',
     faq_title: '',
