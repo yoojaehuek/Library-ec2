@@ -1,0 +1,26 @@
+
+#Admin{
+  display: grid;
+  // grid-template-areas:
+  // "header header header"
+  // "menu main main"
+  // "menu main main"
+  // "menu main main";
+
+  grid-template-columns: 2fr 12fr;
+  grid-template-rows: 1fr 8fr;
+
+  
+  #AdminMain{
+    grid-area: main;
+  }
+  
+  #AHeader{
+    grid-area: header;
+  }
+  
+  #AMenu{
+    grid-area: menu;
+  }
+  
+}

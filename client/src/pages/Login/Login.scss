@@ -1,0 +1,70 @@
+.login-container-yjh {
+  margin: 50px auto;
+  h1{
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+  li {
+    list-style: none;
+  }
+  #login-form-yjh {
+    margin: 0 auto;
+    width: 800px;
+    #login-input-yjh {
+      display: flex;
+      justify-content: space-between;
+      width: 700px;
+      height: 170px;
+      margin: 0px;
+      padding: 0px;
+      .input-li-yjh {
+        margin: 0px;
+        padding: 0px;
+        width: 430px;
+        label {
+          color: gray;
+          float: inline-start;
+          height: 20px;
+        }
+        input {
+          height: 51px;
+          width: 470px;
+          padding: 5px 7px;
+          outline: none;
+          font-size: 20px;
+          transition: border-color 0.5s;
+          &:focus {
+            border-color: #6ba10e; // 클릭시 border 색상 변경
+          }
+          &:focus::placeholder {
+            //엣지에선 안됨
+            color: transparent;
+          }
+        }
+      }
+    }
+    #login-btn-yjh {
+      background-color: #6ba10e;
+      margin: 20px 0px;
+      width: 200px;
+      height: 150px;
+      font-size: 35px;
+      font-weight: bold;
+      color: white;
+      border: 0px;
+    }
+    #login-tip-yjh {
+      p {
+        text-align: start;
+        display: flex;
+        line-height: 30px;
+        .icon {
+          margin-right: 10px;
+          color: #6ba10e;
+        }
+      }
+    }
+  }
+}

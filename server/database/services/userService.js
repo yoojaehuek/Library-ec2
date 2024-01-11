@@ -1,13 +1,13 @@
-const UserModel = require('../database/models/userModel')
+const UserModel = require('../models/userModel')
 const crypto = require('crypto');
-const redisClient = require("../utils/redis.utils");
+const redisClient = require("../../utils/redis.utils");
 require('dotenv').config();
-const { makeRefreshToken, makeAccessToken } = require('../utils/token');
+const { makeRefreshToken, makeAccessToken } = require('../../utils/token');
 
 
 class UserService{
 	//유효성 검사 이메일 겹치는지 등등
-	static async createUser({email, pwd, user_name, phone, address, detail_address, selectedYear, selectedMonth, selectedDay}){
+	static async createUser({email, pwd, user_name, phone, address, detail_address}){
 
 		const user = await UserModel.findOneUserEmail({ email });
 		if (user) {
@@ -15,9 +15,6 @@ class UserService{
 			return user;
 		}
 
-		// const birth = selectedYear+'-'+selectedMonth+'-'+selectedDay;
-		const birth = selectedYear+'-'+selectedMonth+'-'+selectedDay;
-		console.log("birth: ", birth);
 		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
 		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
 		const salt = crypto.randomBytes(128).toString('base64'); 
@@ -30,7 +27,7 @@ class UserService{
 			.update(pwd + salt)
 			.digest('hex'); 
 
-		const newUser = { email, pwd: hashPassword, salt, user_name, phone, address, detail_address, birth }
+		const newUser = { user_id: email, user_pwd: hashPassword, salt, user_name, user_phone: phone, user_address: address, user_detail_address: detail_address }
 
 		const createNewUser = await UserModel.createUser({newUser});
 		return createNewUser
@@ -61,20 +58,20 @@ class UserService{
 			.digest('hex');
 
 		// hashedPassword와 DB의 비밀번호 비교
-		if (hashedPassword === user.pwd) {
+		if (hashedPassword === user.user_pwd) {
 			console.log('Login successful!');
 			// console.log("userService.js/loginUser()/user: ", user);
-			const accessToken = makeAccessToken({id: user.id});
+			const accessToken = makeAccessToken({id: user.user_id});
 			const refreshToken = makeRefreshToken();
 
 			// userId를 키값으로 refresh token을 redis server에 저장
-			await redisClient.set(user.id, refreshToken);
+			await redisClient.set(user.user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 			// await redisClient.get(user.id, (err, value) => {
 			// 	console.log("redis.value: ", value); 
 			// });
 			
 			const name = user.user_name; 
-			const email = user.email;			
+			const email = user.user_id;			
 			const newUser = {name, email, accessToken, refreshToken};
 
 			return newUser
@@ -89,28 +86,34 @@ class UserService{
 		const user = await UserModel.findOneUserId({id});
 		// console.log({myId});
 		const name = user.user_name;
-		const user_email = user.email;
-		const address = user.address;
-		const detail_address = user.detail_address;
+		const pwd = user.user_pwd;
+		const phone = user.user_phone;
+		const address = user.user_address;
+		const detail_address = user.user_detail_address;
+		// const user_email = user.email;
+		// const address = user.address;
+		// const detail_address = user.detail_address;
 		// const phone = user.phone;
-		const phone_number_prefix = user.phone.substring(0, 3);
-		const phone_number_suffix = user.phone.substring(3);
+		// const phone_number_prefix = user.phone.substring(0, 3);
+		// const phone_number_suffix = user.phone.substring(3);
 		// const birth = user.birth;
-		const date = new Date(user.birth);
-		const year = date.getFullYear();
-		const month = date.getMonth()+1;
-		const day = date.getDate();
+		// const date = new Date(user.birth);
+		// const year = date.getFullYear();
+		// const month = date.getMonth()+1;
+		// const day = date.getDate();
 
 		const userInfo = {
 			name,
-			user_email,
+			pwd,
+			phone,
 			address,
 			detail_address,
-			phone_number_prefix,
-			phone_number_suffix,
-			year,
-			month,
-			day,
+			// user_email,
+			// phone_number_prefix,
+			// phone_number_suffix,
+			// year,
+			// month,
+			// day,
 		};
 
 		return userInfo;

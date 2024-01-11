@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "DB-password",
-    "database": "DB-name",
+    "password": "1234",
+    "database": "library",
     "host": "127.0.0.1", 
     "dialect": "mysql",
     "timezone": "+09:00"
