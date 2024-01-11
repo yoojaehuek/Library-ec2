@@ -3,40 +3,45 @@ class User extends Sequelize.Model {
   static initiate(sequelize) {
     User.init({
       user_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+      },
+      user_email: {
+        type: Sequelize.STRING,
         allowNull: false,
         comment: "ID(이메일)",
       },
       user_pwd: {
         type: Sequelize.STRING(128),
-        allowNull: false,
+        allowNull: true,
         comment: "비밀번호",
       },
       salt: {
         type: Sequelize.STRING(200),
-        allowNull: false,
+        allowNull: true,
         comment: "암호화할때 쓴 난수",
       }, 
       user_name: {
         type: Sequelize.STRING(20),
-        allowNull: false,
+        allowNull: true,
         comment: "이름",
       },
       user_phone: {
         type: Sequelize.STRING(20),
-        allowNull: false,
+        allowNull: true,
         comment: "회원 전화번호",
       },
-      user_address: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        comment: "주소",
+      sns_id: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        comment: "소셜 로그인 아이디",
       },
-      user_detail_address: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        comment: "상세주소",
+      sns_type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        comment: "소셜 로그인 타입",
       },
       created_at: {
         type: Sequelize.DATE,

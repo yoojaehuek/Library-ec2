@@ -10,10 +10,13 @@ class UserService{
 	static async createUser({email, pwd, user_name, phone, address, detail_address}){
 
 		const user = await UserModel.findOneUserEmail({ email });
+		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
 			return user;
 		}
+
+		
 
 		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
 		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
@@ -31,6 +34,56 @@ class UserService{
 
 		const createNewUser = await UserModel.createUser({newUser});
 		return createNewUser
+	}
+
+	static async naverLogin(tmp){
+
+		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
+		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
+		const salt = crypto.randomBytes(128).toString('base64'); 
+
+		// crypto.createHash('sha512'): SHA-512 해시 개체를 생성
+		//.update(pwd + salt): 비밀번호( pwd)와 솔트를 연결하여 해시를 업데이트
+		//.digest('hex'): 16진수 형식으로 최종 해시를 생성
+		const hashPassword = crypto
+			.createHash('sha512')
+			.update(tmp.email + salt)
+			.digest('hex');
+		
+		const newUser = {
+			user_email: tmp.email, 
+			user_name: tmp.name, 
+			user_phone: tmp.mobile.replace(/\D/g, ''), 
+			user_pwd: hashPassword,
+			salt: salt,
+			sns_id: tmp.id, 
+			sns_type: "naver", 
+		}
+		// console.log(newUser);
+
+		const result = await UserModel.naverLogin(newUser);
+		console.log("naver/service/result: ", result[1]);
+		
+		if (!result[1]) { // 가입 내역 있음
+			if (!result[0].sns_id) { //계정은 있는데 네이버 아이디 아님
+				console.log('가입 했지만 네이버 아님 연동!');
+				const update = {
+					sns_id: tmp.id, 
+					sns_type: "naver", 
+				}
+				const userId = tmp.email;
+
+				const result = await UserModel.putUser({update, userId}); // 네이버 연동!
+				console.log(result);
+			
+			}else { //연동 했음
+				//로그인 처리
+				console.log('가입도 했고 네이버도 연동됨');
+			} 
+		} else { // 가입 내역 없음
+			//위에서 함 필요 없음
+			console.log('신규 회원 회원 가입!');
+		}
 	}
 
 	static async loginUser({email, pwd}){
