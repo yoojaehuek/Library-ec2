@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { useRecoilState } from "recoil";
@@ -51,7 +51,7 @@ const Header = () => {
             {isLogin ? 
               <>
               {/* 로그인 하고 난 후 */}
-                <NavLink to="/" className="txt-kjh">
+                <NavLink to="/" onClick={logout} className="txt-kjh">
                   <p>로그아웃</p>
                 </NavLink>
               </>

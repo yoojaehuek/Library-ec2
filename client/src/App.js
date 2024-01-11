@@ -17,11 +17,15 @@ import Thiller from './pages/BookList/Thiller.js'
 import SF from './pages/BookList/SF.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
+import Adminmain from './pages/Admin/Adminmain.js'
+import Mypage from './pages/Mypage/Mypage.js';
+
+const currentPath = window.location.pathname;
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      {!currentPath.includes('/admin') && <Header />}
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
         <Route path='/BookDetail' element={<BookDetail></BookDetail>}></Route>
@@ -38,8 +42,10 @@ function App() {
         <Route path='/faq' element={<Faq></Faq>}></Route>
         <Route path='/faq/:id' element={<FaqDetail></FaqDetail>}></Route>
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
+        <Route path='Admin' element={<Adminmain></Adminmain>}></Route>
+        <Route path='/mypage' element={<Mypage></Mypage>}></Route>
       </Routes>
-      <Footer />
+      {!currentPath.includes('/admin') && <Footer />}
     </div>
   );
 }

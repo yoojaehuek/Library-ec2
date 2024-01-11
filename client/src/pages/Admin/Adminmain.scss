@@ -1,0 +1,32 @@
+#Admin {
+  display: grid;
+  // grid-template-areas:
+  //   "header header header"
+  //   "menu main main"
+  //   "menu main main"
+  //   "menu main main";
+
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 1fr 8fr;
+  height: 100vh;
+
+  //   grid-template-columns: 2fr 12fr;
+  //   grid-template-rows: 1fr 8fr;
+
+  #Header {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  #Listbar {
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    background-color: #81c147;
+  }
+
+  .AdminMain {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 20px;
+  }
+}

@@ -86,28 +86,34 @@ class UserService{
 		const user = await UserModel.findOneUserId({id});
 		// console.log({myId});
 		const name = user.user_name;
-		const user_email = user.email;
-		const address = user.address;
-		const detail_address = user.detail_address;
+		const pwd = user.user_pwd;
+		const phone = user.user_phone;
+		const address = user.user_address;
+		const detail_address = user.user_detail_address;
+		// const user_email = user.email;
+		// const address = user.address;
+		// const detail_address = user.detail_address;
 		// const phone = user.phone;
-		const phone_number_prefix = user.phone.substring(0, 3);
-		const phone_number_suffix = user.phone.substring(3);
+		// const phone_number_prefix = user.phone.substring(0, 3);
+		// const phone_number_suffix = user.phone.substring(3);
 		// const birth = user.birth;
-		const date = new Date(user.birth);
-		const year = date.getFullYear();
-		const month = date.getMonth()+1;
-		const day = date.getDate();
+		// const date = new Date(user.birth);
+		// const year = date.getFullYear();
+		// const month = date.getMonth()+1;
+		// const day = date.getDate();
 
 		const userInfo = {
 			name,
-			user_email,
+			pwd,
+			phone,
 			address,
 			detail_address,
-			phone_number_prefix,
-			phone_number_suffix,
-			year,
-			month,
-			day,
+			// user_email,
+			// phone_number_prefix,
+			// phone_number_suffix,
+			// year,
+			// month,
+			// day,
 		};
 
 		return userInfo;
