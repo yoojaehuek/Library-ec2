@@ -26,6 +26,7 @@ const Faq = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [faqData, setFaqData] = useState([]);
+  
 
   useEffect(() => {
     fetchData();
@@ -73,11 +74,17 @@ const Faq = () => {
     setIsModalOpen(false);
   };
 
-  const totalPages = Math.ceil(faqData.length / itemsPerPage);
+
+  const fixedFaqId = [1, 2, 3, 4];
+  const fixedFaqs = faqData.filter((faq) => fixedFaqId.includes(faq.faq_id));
+  const remainingFaqs = faqData.filter((faq) => !fixedFaqId.includes(faq.faq_id));
+  const sortedFaqData = [...fixedFaqs, ...remainingFaqs];
+
+  const totalPages = Math.ceil(sortedFaqData.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentFaqs = faqData.slice(startIndex, endIndex);
+  const currentFaqs = sortedFaqData.slice(startIndex, endIndex);
 
   return (
     <div style={{ maxWidth: "60vw", margin: "2vw auto" }}>
@@ -149,9 +156,16 @@ const Faq = () => {
               p={3}
               borderRadius={4}
               gap="16px"
+              style={{
+                backgroundColor: [1, 2, 3, 4].includes(faq.faq_id) ? "#ffcccc" : undefined,
+              }}
             >
-              <Typography variant="body1">{faq.faq_tags}</Typography>
-              <Typography variant="body1">{faq.faq_title}</Typography>
+              <Typography variant="body1" style={{ fontWeight: [1, 2, 3, 4].includes(faq.faq_id) ? "bold" : "normal" }}>
+                {faq.faq_tags}
+              </Typography>
+              <Typography variant="body1" style={{ fontWeight: [1, 2, 3, 4].includes(faq.faq_id) ? "bold" : "normal" }}>
+                {faq.faq_title}
+              </Typography>
               <div
                 style={{
                   display: "flex",
@@ -159,16 +173,25 @@ const Faq = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="body1">{faq.User && faq.User.user_name}</Typography>
-                {faq.faq_status ? 
-                <Typography variant="body1" style={{color: "green"}}>
-                   답변완료
-                </Typography> 
-                : 
-                <Typography variant="body1" style={{color: "red"}}>
-                  답변 대기
-                </Typography>}
-                <Typography variant="body1">{faq.created_at}</Typography>
+                <Typography variant="body1" style={{ fontWeight: [1, 2, 3, 4].includes(faq.faq_id) ? "bold" : "normal" }}>
+                  {faq.User && faq.User.user_name}
+                </Typography>
+                {!([1, 2, 3, 4].includes(faq.faq_id)) && (
+                  <>
+                    {faq.faq_status ? (
+                      <Typography variant="body1" style={{ color: "green", fontWeight: "bold" }}>
+                        답변완료
+                      </Typography>
+                    ) : (
+                      <Typography variant="body1" style={{ color: "red", fontWeight: "bold" }}>
+                        답변 대기
+                      </Typography>
+                    )}
+                  </>
+                )}
+                <Typography variant="body1" style={{ fontWeight: [1, 2, 3, 4].includes(faq.faq_id) ? "bold" : "normal" }}>
+                  {faq.created_at}
+                </Typography>
               </div>
             </Box>
           </Link>
