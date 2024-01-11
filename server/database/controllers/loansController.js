@@ -10,7 +10,7 @@ class LoansController {
     try {
         const tmp = req.body;
         // tmp.userId = req.userId;
-        tmp.user_id = "rlarorn@naver.com";
+        tmp.user_id = "ee@ee.com";
         tmp.order.forEach(orderItem => { 
           orderItem.user_id = tmp.user_id;
           // orderItem.user_id = req.userId; // 로그인 되면 이걸로
