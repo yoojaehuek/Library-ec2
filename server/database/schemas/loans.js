@@ -15,7 +15,7 @@ class Loans extends Sequelize.Model {
           comment: "book테이블의 id참초",
         },
         user_id: {
-          type: Sequelize.STRING,
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
         loan_date: {

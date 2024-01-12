@@ -2,13 +2,11 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../config/contansts'
 import axios from 'axios';
-import PopupDom from '../../components/AddressPopup/PopupDom'; // 우편번호 주소창 
-import PopupPostCode from '../../components/AddressPopup/PopupPostCode';  // 우편번호 주소창
 import './Join.scss'
 
 function Join() {
 	const navigate = useNavigate();
-	// 초기값 세팅 - 이메일, 비밀번호, 비밀번호확인, 이름, 전화번호, 주소, 상세주소, 생년-월-일
+	// 초기값 세팅 - 이메일, 비밀번호, 비밀번호확인, 이름, 전화번호
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
@@ -99,9 +97,7 @@ function Join() {
 		password: false,
 		passwordConfirm: false,
 		phone: false,
-		detailAddr: false,
 	});
-	const [selectedAddress, setSelectedAddress] = useState('');// 우편번호
 	// 각 입력창에 대한 라벨 숨김 및 나타내기를 위한 참조 생성
 	const inputRefs = {
 		email: useRef(null),
@@ -109,14 +105,7 @@ function Join() {
 		password: useRef(null),
 		passwordConfirm: useRef(null),
 		phone: useRef(null),
-		detailAddr: useRef(null),
 	};
-
-	const [isPopupOpen, setIsPopupOpen] = useState(false)// 팝업창 상태 관리
-	const openPostCode = () => { setIsPopupOpen(true) }// 팝업창 열기
-	const closePostCode = () => {	setIsPopupOpen(false)	}// 팝업창 닫기
-	const handleSelectedAddress = (address) => { setSelectedAddress(address); };// 선택된 주소를 업데이트하는 콜백 함수
-	const handleAddressChange = (e) => { setSelectedAddress(e.target.value); };/** 우편검색 결과가 인풋창에 업데이트 되지않아서 이함수로 업데이트 시켜줌 */
 
 	const onSubmitJoin = async (e) => {// 회원가입
 		e.preventDefault();
@@ -125,8 +114,6 @@ function Join() {
 		const confirmPwd = e.target.confirmPwd.value.trim(); 
 		const user_name = e.target.name.value.trim(); 
 		const phone = e.target.phone.value.trim(); 
-		const address = e.target.address.value.trim(); 
-		const detail_address = e.target.detail_address.value.trim();
 		// 모두 입력했을 시 실행
 		if(pwd === confirmPwd && 
 			email !== "" && 
@@ -134,15 +121,13 @@ function Join() {
 			confirmPwd !== "" && 
 			user_name !== "" &&
 			phone !== "" && 
-			address !== "" && 
-			detail_address !== "" && 
 			isEmail &&
 			isName && 
 			isPassword &&
 			isPasswordConfirm &&
 			isPhone
 		){
-			axios.post(`${API_URL}/api/user/join`,{email, pwd, user_name, phone, address, detail_address})
+			axios.post(`${API_URL}/api/user/join`,{email, pwd, user_name, phone})
 			.then(() =>{
 				alert("가입성공!");
 				navigate('/');  
@@ -158,8 +143,7 @@ function Join() {
   const handleInputFocus = (inputType) => { // 라벨 보여지는 여부 
     setIsLabelVisible((prev) => ({ ...prev, [inputType]: true }));
   };
-
-	const handleInputBlur = (inputType) => {
+	const handleInputBlur = (inputType) => {// input필드에 값이 없으면 라벨을 숨김 
 		const inputValue = inputRefs[inputType].current.value.trim();
 		if (!inputValue) {
 			setIsLabelVisible((prev) => ({ ...prev, [inputType]: false }));
@@ -240,40 +224,6 @@ function Join() {
             onBlur={() => handleInputBlur('phone')}
 					/>
 					<p className={`message ${!isPhone ? 'error' : ''}`}>{phoneMessage}</p>
-				</li>
-				<li className="input-li-yjh">
-					<div id='input-li-addr-yjh'>
-						<input
-							type="text"
-							id="address"
-							placeholder="주소"
-							value={selectedAddress} // 주소 입력 필드의 값을 선택된 주소로 설정
-							onChange={handleAddressChange} // 주소 변경을 처리하기 위한 이벤트 핸들러 추가
-							disabled='disabled'
-						/>
-						{/* 버튼 클릭 시 팝업 생성 */}
-						<button type='button' onClick={openPostCode}>우편번호 검색</button>
-					</div>
-					<label className={isLabelVisible.detailAddr ? '' : 'hidden'} >상세주소</label>
-					<input
-						id="detail_address"
-						type="text"
-						ref={inputRefs.detailAddr}
-						placeholder="상세주소"
-						onFocus={() => handleInputFocus('detailAddr')}
-						onBlur={() => handleInputBlur('detailAddr')}
-					/>
-					<div>
-						{/* 우편번호 창 팝업 생성 기준 div */}
-						<div id='popupDom'>
-							{isPopupOpen && (
-								<PopupDom>
-									{/* onSelectAddress prop을 전달 */}
-									<PopupPostCode onSelectAddress={handleSelectedAddress} onClose={closePostCode} />
-								</PopupDom>
-							)}
-						</div>
-					</div>
 				</li>
 			</ul>
 			<li><button type='submit' id='join-btn-yjh'>가입</button></li>
