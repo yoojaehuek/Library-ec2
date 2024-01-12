@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Box, IconButton, Button } from "@mui/material";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../config/contansts";
 import axios from "axios";
-
-const adminAnswer = {
-  author: "관리자",
-  date: "2024-01-10",
-  answer: "이 질문에 대한 답변입니다.",
-};
 
 const FaqDetail = () => {
   const [detailfaq, setDetailFaq] = useState("");
@@ -115,53 +109,49 @@ const FaqDetail = () => {
           {detailfaq.faq_content}
         </Typography>
       </Box>
-      {detailfaq && detailfaq.faq_status == 1 ? (
-        <Box
-          borderBottom="1px solid #ddd"
-          paddingBottom="20px"
-          borderRadius="8px"
-          backgroundColor="#fff"
-          padding="20px"
+      {detailfaq && ![1, 2, 3, 4].includes(detailfaq.faq_id) && (
+  <Box
+    borderBottom="1px solid #ddd"
+    paddingBottom="20px"
+    borderRadius="8px"
+    backgroundColor="#fff"
+    padding="20px"
+  >
+    {detailfaq.faq_status === true ? (
+      <>
+        <Typography
+          variant="h5"
+          style={{
+            color: "#007bff",
+            marginBottom: "10px",
+            borderBottom: "1px solid #ddd",
+            paddingBottom: "10px"
+          }}
         >
-          <Typography
-            variant="h5"
-            style={{
-              color: "#007bff",
-              marginBottom: "10px",
-              borderBottom: "1px solid #ddd",
-              paddingBottom: "10px"
-            }}
-          >
-            관리자 답변
-          </Typography>
-          <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            작성자: {adminAnswer.admin_id}
-          </Typography>
-          <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-            날짜: {adminAnswer.faq_reponse_time}
-          </Typography>
-          <Typography variant="body1" style={{ color: "#555" }}>
-            내용: {adminAnswer.faq_reponse}
-          </Typography>
-        </Box>
-      ) : (
-        <Box
-          borderBottom="1px solid #ddd"
-          paddingBottom="20px"
-          borderRadius="8px"
-          backgroundColor="#fff"
-          padding="20px"
-        >
-          <Typography variant="subtitle1" style={{ color: "#555" }}>
-            아직 관리자 답변이 없습니다.
-          </Typography>
-        </Box>
-      )}
+          관리자 답변
+        </Typography>
+        <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
+          작성자: {detailfaq.admin_id}
+        </Typography>
+        <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
+          날짜: {detailfaq.faq_response_time}
+        </Typography>
+        <Typography variant="body1" style={{ color: "#555" }}>
+          내용: {detailfaq.faq_response}
+        </Typography>
+      </>
+    ) : (
+      <Typography variant="subtitle1" style={{ color: "#555" }}>
+        아직 관리자 답변이 없습니다.
+      </Typography>
+    )}
+  </Box>
+)}
       <IconButton style={{ position: 'absolute', top: '30%', left: '25%' }} onClick={goBack}>
-        <ArrowBackIcon style={{fontSize: '2.5rem'}} />
+        {/* <ArrowBackIcon style={{fontSize: '2.5rem'}} /> */}
       </IconButton>
     </Box>
   );
-  }  
+}   
 
 export default FaqDetail;

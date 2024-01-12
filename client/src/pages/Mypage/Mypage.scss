@@ -1,0 +1,84 @@
+.mypage-container-kjh {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 1200px;
+  height: 1000px;
+
+  .pageTop-kjh {
+    margin: 50px auto;
+    width: 1000px;
+    height: 100px;
+    position: relative;
+    border-bottom: 3px solid #333;
+  }
+  .pageTop-kjh h1 {
+    width: 700px;
+    float: left;
+    position: absolute;
+    bottom: 0;
+  }
+  .myEdit-kjh {
+    width: 120px;
+    float: right;
+    text-align: center;
+    position: absolute;
+    bottom: 1px;
+    right: 0;
+  }
+
+  table {
+    width: 900px;
+    margin: 20px 0;
+  }
+  .myTable-kjh {
+    width: 900px;
+    margin: 10px auto;
+  }
+  .rentTable-kjh {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .rentTable-kjh td {
+    height: 30px;
+    text-align: center;
+    border: 1px solid #000;
+    border-width: 2px 0px;
+  }
+  .readTable-kjh {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .readTable-kjh td {
+    height: 30px;
+    border: 1px solid #000;
+    border-width: 2px 0px;
+    text-align: center;
+  }
+  .tdTitle-kjh {
+    background-color: #6BA10E;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+  }
+
+  .tWriter-kjh {
+    width: 50px;
+  }
+  .tTitle-kjh {
+    width: 300px;
+  }
+  .tSdate-kjh {}
+  .tEdate-kjh {}
+
+  .more-kjh {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    display: flex;
+  }
+  
+
+}

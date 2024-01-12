@@ -1,10 +1,8 @@
 .join-container-yjh {
   margin: 50px auto;
-  li { list-style: none; }
-  a { color: blue; }
-  h1{
-    color: #6BA10E;
-  }
+  li{ list-style: none; }
+  a{ color: blue; }
+  h1{ color: #6BA10E; }
   #Join-form-yjh {
     margin: 0 auto;
     width: 500px;
@@ -88,6 +86,81 @@
       font-size: 22px;
       font-weight: bold;
       color: white;
+    }
+  }
+}
+
+//미디어 쿼리 
+@media (max-width: 1023px) {
+  .join-container-yjh {
+    // 모바일 화면에 대한 추가 스타일
+    width: 80%; // 화면 너비를 80%로 조정
+    padding: 20px; // 좌우 여백을 추가
+    #Join-form-yjh {
+      width: 100%; // 폼의 폭을 100%로 조정
+      #join-input-yjh {
+        .input-li-yjh {
+          margin: 10px auto; // 입력 요소들 간의 간격을 조정
+        }
+        .boxecal {
+          flex-direction: column; // 상자 선택 부분을 세로로 배열
+          align-items: flex-start; // 상자 선택 부분을 시작점에 정렬
+          
+          select {
+            width: 100%; // 선택 상자 폭을 100%로 조정
+            margin-bottom: 10px; // 선택 상자 간의 간격을 조정
+          }
+        }
+        .message {
+          margin-top: 10px; // 메시지 상자 위 여백을 조정
+          margin-bottom: 10px; // 메시지 상자 아래 여백을 조정
+        }
+      }
+    }
+    #join-btn-yjh {
+      width: 100%; // 가입 버튼 폭을 100%로 조정
+    }
+  }
+}
+// 767px 이하의 화면 크기에 대한 스타일
+@media (max-width: 767px) {
+  .join-container-yjh {
+    // 모바일 화면에 대한 추가 스타일
+    width: 90%; // 화면 너비를 90%로 조정
+    padding: 10px; // 좌우 여백을 조정
+    #Join-form-yjh {
+      width: 100%; // 폼의 폭을 100%로 조정
+      #join-input-yjh {
+        .input-li-yjh {
+          margin: 10px auto; // 입력 요소들 간의 간격을 조정
+        }
+        #input-li-addr-yjh {
+          flex-direction: column; // 주소 입력 부분을 세로로 배열
+          align-items: flex-start; // 주소 입력 부분을 시작점에 정렬
+          input {
+            width: 100%; // 주소 입력 필드의 폭을 100%로 조정
+            margin-bottom: 10px; // 입력 필드 간의 간격을 조정
+          }
+          button {
+            width: 100%; // 우편번호 검색 버튼 폭을 100%로 조정
+          }
+        }
+        .boxecal {
+          flex-direction: column; // 상자 선택 부분을 세로로 배열
+          align-items: flex-start; // 상자 선택 부분을 시작점에 정렬
+          select {
+            width: 100%; // 선택 상자 폭을 100%로 조정
+            margin-bottom: 10px; // 선택 상자 간의 간격을 조정
+          }
+        }
+        .message {
+          margin-top: 10px; // 메시지 상자 위 여백을 조정
+          margin-bottom: 10px; // 메시지 상자 아래 여백을 조정
+        }
+      }
+    }
+    #join-btn-yjh {
+      width: 100%; // 가입 버튼 폭을 100%로 조정
     }
   }
 }

@@ -6,19 +6,15 @@ const { Op, QueryTypes } = require('sequelize');
 
 class LoansModel {
 
-  static async createLoans({newLoans}){
+  static async createLoans(newLoans){
     console.log("모델에서받은 newLoans: ",newLoans);
-
-    // newLoans 배열을 반복하면서 각 객체를 처리
-    const createdLoans = await Promise.all(newLoans.map(async (loansData) => {
-      const createNewLoans = await Loans.create({
-        book_id: loansData.book_id,
-        user_id: loansData.user_id,
-        due_date: loansData.due_date,
-      });
-      return createNewLoans;
-    }));
-    return createdLoans;
+    const createNewLoans = await Loans.create({
+      book_id: newLoans.book_id,
+      // book_email: newLoans.book_email,
+      user_id: newLoans.user_id,
+      due_date: newLoans.due_date,
+    });
+    return createNewLoans;
   }
 
   // static async createLoansMenu({loans_id, item}){
@@ -44,8 +40,9 @@ class LoansModel {
 
   //조회 쿼리
   static async getAllLoans(){
-    // console.log("loansId",id);
+    console.log("모델 전체조회 들어옴");
     const loans = await Loans.findAll();
+    console.log("전체조회로 찾은거: ",loans);
     return loans;
   }
 

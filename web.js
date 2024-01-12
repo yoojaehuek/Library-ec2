@@ -14,6 +14,7 @@ const faqRouter = require('./server/routers/faq');
 const loansRouter = require('./server/routers/loans');
 const userRouter = require('./server/routers/user');
 const eventRouter = require('./server/routers/event');
+const testRouter = require('./server/routers/test');
 const multer = require('multer'); //파일 업로드
 
 //시퀄라이즈 연결 부분
@@ -50,6 +51,7 @@ app.use('/api/faq', faqRouter);
 app.use('/api/loans', loansRouter);
 app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
+app.use('/api/test', testRouter);
 
 app.use(errorMiddleware);
 
