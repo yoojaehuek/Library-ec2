@@ -132,7 +132,7 @@ const Header = () => {
                 <NavLink to="/" className="utilbtn-kjh">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
-                <NavLink to="/" className="utilbtn-kjh">
+                <NavLink to="/cart" className="utilbtn-kjh">
                   <img src="/images/Header/ccart.svg" alt="장바구니"/>
                 </NavLink>
               </>
@@ -142,7 +142,7 @@ const Header = () => {
                 <NavLink to="/" className="utilbtn-kjh renter4">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
-                <NavLink to="/cart" className="utilbtn-kjh renter5">
+                <NavLink to="/login" className="utilbtn-kjh renter5">
                   <img src="/images/Header/ccart.svg" alt="장바구니"/>
                 </NavLink>
               </>

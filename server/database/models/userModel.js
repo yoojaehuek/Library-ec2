@@ -36,7 +36,7 @@ class UserModel {
         user_email: email
       }
     }); //where: {id: asdf} 형태가 들어와야함
-    console.log("찾음: ",user);
+    console.log("user 모델에서 email로 찾음: ",user);
     return user;
   }
   

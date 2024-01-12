@@ -35,7 +35,8 @@ class UserService{
 	}
 
 	static async loginUser({email, pwd}){
-		console.log("서비스에서: ",email);
+		// console.log("서비스에서: ",email);
+		console.log("로그인서비스들어옴");
 		// console.log("id: ",id);
 		// console.log("pwd: ",pwd);
 
@@ -148,32 +149,11 @@ class UserService{
 		const name = user.user_name;
 		const pwd = user.user_pwd;
 		const phone = user.user_phone;
-		const address = user.user_address;
-		const detail_address = user.user_detail_address;
-		// const user_email = user.email;
-		// const address = user.address;
-		// const detail_address = user.detail_address;
-		// const phone = user.phone;
-		// const phone_number_prefix = user.phone.substring(0, 3);
-		// const phone_number_suffix = user.phone.substring(3);
-		// const birth = user.birth;
-		// const date = new Date(user.birth);
-		// const year = date.getFullYear();
-		// const month = date.getMonth()+1;
-		// const day = date.getDate();
 
 		const userInfo = {
 			name,
 			pwd,
 			phone,
-			address,
-			detail_address,
-			// user_email,
-			// phone_number_prefix,
-			// phone_number_suffix,
-			// year,
-			// month,
-			// day,
 		};
 
 		return userInfo;
