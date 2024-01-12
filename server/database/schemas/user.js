@@ -28,16 +28,6 @@ class User extends Sequelize.Model {
         allowNull: false,
         comment: "회원 전화번호",
       },
-      user_address: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        comment: "주소",
-      },
-      user_detail_address: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        comment: "상세주소",
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

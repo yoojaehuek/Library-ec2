@@ -97,9 +97,7 @@ function Join() {
 		password: false,
 		passwordConfirm: false,
 		phone: false,
-		detailAddr: false,
 	});
-	const [selectedAddress, setSelectedAddress] = useState('');// 우편번호
 	// 각 입력창에 대한 라벨 숨김 및 나타내기를 위한 참조 생성
 	const inputRefs = {
 		email: useRef(null),
@@ -107,7 +105,6 @@ function Join() {
 		password: useRef(null),
 		passwordConfirm: useRef(null),
 		phone: useRef(null),
-		detailAddr: useRef(null),
 	};
 
 	const onSubmitJoin = async (e) => {// 회원가입
@@ -117,8 +114,6 @@ function Join() {
 		const confirmPwd = e.target.confirmPwd.value.trim(); 
 		const user_name = e.target.name.value.trim(); 
 		const phone = e.target.phone.value.trim(); 
-		const address = e.target.address.value.trim(); 
-		const detail_address = e.target.detail_address.value.trim();
 		// 모두 입력했을 시 실행
 		if(pwd === confirmPwd && 
 			email !== "" && 

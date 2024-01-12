@@ -11,7 +11,7 @@ class LoansController {
       const tmp = req.body;
       // tmp.userId = req.userId;
       tmp.user_id = "ee@ee.com";
-      tmp.order.forEach(orderItem => { 
+      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
         orderItem.user_id = tmp.user_id;
         // orderItem.user_id = req.userId; // 로그인 되면 이걸로
       });
@@ -31,10 +31,8 @@ class LoansController {
   static async getAllLoans(req, res, next){
     console.log("컨트롤러 전체조회 들어옴");
     try {
-      
       const result = await LoansService.getAllLoans();
       console.log("컨트롤러 전체조회 받음: ",result);
-
       res.status(200).json(result);
     } catch (error) {
       next(error);
@@ -93,13 +91,15 @@ class LoansController {
   /** 수정 */
   static async updateLoans(req, res, next){
 		try {
-			const loans_id = req.params.loans_id;
-			const { state, cancel } = req.query;
-      console.log(state);
-      console.log(cancel);
+			const loans_id = req.params.loans_id;// api_url 에서 가져옴
+      const Return = req.body;
+      console.log("Return: ", Return);
+      console.log("loans_id: ", loans_id);
+			// const { state, cancel } = req.query;
+      // console.log("state: ", state);
+      // console.log("cancel: ", cancel);
       // const toUpdate = {...props}
-
-			const result = await LoansService.updateLoans({loans_id, state, cancel});
+			const result = await LoansService.updateLoans({loans_id});
 			res.status(200).json(result);
 		} catch (error) {
       console.log(error);

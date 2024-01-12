@@ -7,7 +7,7 @@ import axios from "axios";
 import "./Cart.scss";
 
 const Cart = () => {
-  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   // const [cart, setCart] = useState([]); /** 장바구니에 담은 상품목록 */
   const [user, setUser] = useState({}); /** 로그인한 사용자정보 */
   const navigate = useNavigate();
@@ -19,6 +19,15 @@ const Cart = () => {
   };
   /** 대출신청함수 */
   const handleOrder = () => {
+
+
+    //책 반납 데이터 
+    const Return ={
+      is_returned: true,
+      returned_date: "2024-12-12",
+    } 
+
+
     // 선택된 책들만 필터링
     const selectedBooks = cart.filter((book) => checkItems.includes(book.id));
     const futureDate = getFutureDate(); // 7일뒤 반납일
@@ -31,12 +40,17 @@ const Cart = () => {
         due_date: futureDate,
       }));
       axios
-        .post(`${API_URL}/api/loans`, { order: booksWithDueDate })
-        // axios.get(`${API_URL}/api/loans`)
+        // .post(`${API_URL}/api/loans`, { order: booksWithDueDate })
+        // .get(`${API_URL}/api/loans`)// 전체조회
+        .patch(`${API_URL}/api/loans/return/${Return.loans_id}`,{Return})// 책반납
+        // .patch(`${API_URL}/api/loans/renew/:loans_id`)// 대출연장
+        // .delete(`${API_URL}/api/loans/:loans_id`)// 대출 삭제
         .then((req) => {
-          alert("대출성공!");
+          // alert("대출성공!");
           // alert("전체조회 성공!"); console.log("전체조회 req: ",req.data);
-          navigate("/");
+          alert("책반납 성공!"); /* console.log("조회 req: ",req.data); */
+          // alert("대출연장 성공!"); console.log("전체조회 req: ",req.data);
+          // navigate("/");
         })
         .catch((err) => {
           console.error(err);
