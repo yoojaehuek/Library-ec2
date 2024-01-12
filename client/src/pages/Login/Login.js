@@ -6,11 +6,10 @@ import { loginState } from "../../recoil/atoms/State";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import axios from 'axios';
 import './Login.scss';
-import NaverLogin from '../../components/NaverLogin/NaverLogin';
 
 const Login = () => {
 	const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
-	// const [getToken, setGetToken] = useState();
+	// const [member, setMember] = useState();
   // const [userInfo, setUserInfo] = useState();
 	
 	const navigate = useNavigate();
@@ -52,8 +51,7 @@ const Login = () => {
     window.location.href.includes('code') && getToken();
 	}
         
-  const getToken = () => {
-    //주소에서 엑세스토큰만 가져옴
+  const getToken = async () => {
     //?code=c4HdngWVGK3jEDwp2y&state=NAVER_STATE
     const code = window.location.href.split('=')[1].split('&')[0];
     const state = window.location.href.split('=')[2];
@@ -62,28 +60,49 @@ const Login = () => {
     localStorage.setItem('code', code);
     localStorage.setItem('state', state);
 
-    //naverlogin에서 받은 code로 access_token 발급
-    axios.get(`${API_URL}/api/test/callback?code=${code}&state=${state}`)
-    .then(res => {
-      console.log(res.data);
-      if (res.data.access_token) {
-        localStorage.setItem('access_token', res.data.access_token);
-        localStorage.setItem('refresh_token', res.data.refresh_token);
 
-        //callback에서 받은 access_token으로 유저 조회
-        axios.get(`${API_URL}/api/test/member?access_token=${res.data.access_token}`)
-        .then(res => {
-          console.log('member: ', res.data);
-          axios.post(`${API_URL}/api/user/naver-login`, res.data.response);
-          navigate('/');
-        }).catch(e => {
-          console.error('member 에러: ',e);
-        })
-      }
-    }).catch(e => {
-      console.log(e);
-    })
+			const callbackRes = await axios.get(`${API_URL}/api/test/callback?code=${code}&state=${state}`);
+			console.log("callbackRes: ", callbackRes);
+
+			const memberRes = await axios.get(`${API_URL}/api/test/member?access_token=${callbackRes.data.access_token}`);
+			console.log("memberRes: ", memberRes);
+
+			const naverlogin = await axios.post(`${API_URL}/api/user/naver-login`, 
+				memberRes.data.response,
+				{ withCredentials: true }// 쿠키 수정허용
+			);
+			
+			console.log("naverlogin: ", naverlogin);
+
+			if(naverlogin.status == 200){
+				console.log('if 들어옴');
+				alert("로그인성공!");
+				setIslogin(true);// 로컬스토리지에 저장. 브라우저닫아도 유지
+				navigate('/'); 
+			}
 	}
+		
+		// console.log("member2: ", member);
+		// serverNaverLogin(member.response);
+
+	// const serverNaverLogin = (memberResponse) => {
+	// 	axios.post(`${API_URL}/api/user/naver-login`, 
+	// 		memberResponse,
+	// 		{ withCredentials: true }// 쿠키 수정허용
+	// 	).then((res) =>{
+	// 		console.log('naver-login 성공', res.data);
+	// 		alert("로그인성공!");
+	// 		setIslogin(true);// 로컬스토리지에 저장. 브라우저닫아도 유지
+	// 		navigate('/');  
+	// 	})
+	// 	.catch(err =>{
+	// 		// console.error(err);
+	// 		console.error(err);
+	// 		alert(`로그인 실패!\n${err}`);
+	// 		navigate('/login');
+	// 	})
+	// }
+	
         
   
 
@@ -102,7 +121,7 @@ const Login = () => {
 			axios.post(
 				`${API_URL}/api/user/login`,
 				{email, pwd},
-				// { withCredentials: true }// 쿠키 수정허용
+				{ withCredentials: true }// 쿠키 수정허용
 			)
 			.then(() =>{
 				alert("로그인성공!");
@@ -153,7 +172,7 @@ const Login = () => {
 				<p><AiOutlineQuestionCircle className='icon' size={30}/>로그인이 안되시는 경우 한/영키와 Caps Lock이 켜져 있는지 확인해주세요</p>
 				<p><AiOutlineQuestionCircle className='icon' size={30}/>계속 로그인이 안되시는 경우 관리자에게 문의 해주세요</p>
 			</div>
-			{/* <NaverLogin setGetToken={setGetToken} setUserInfo={setUserInfo} /> */}
+
 			{naverLoginButton}
 		</form>
 	</div>

@@ -40,7 +40,7 @@ class UserModel {
     return user;
   }
   
-  static async putUser({update, userId}){
+  static async patchUser({update, userId}){
     console.log("update: ",update);
     const user = await User.update({
       ...update
