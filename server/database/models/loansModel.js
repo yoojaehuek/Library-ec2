@@ -10,7 +10,7 @@ class LoansModel {
     console.log("모델에서받은 newLoans: ",newLoans);
     const createNewLoans = await Loans.create({
       book_id: newLoans.book_id,
-      // book_email: newLoans.book_email,
+      user_email: newLoans.user_email,
       user_id: newLoans.user_id,
       due_date: newLoans.due_date,
     });
@@ -174,7 +174,7 @@ class LoansModel {
   //   return result;
   // }
 
-
+  /** 대출 수정 */
   static async updateLoans({loans_id, state, cancel}){
     console.log("update: ",state);
     const result = await Loans.update({
@@ -187,15 +187,45 @@ class LoansModel {
     });//where: {id: asdf} 형태가 들어와야함
     return result;
   }
+  /** 책 반납 */
+  static async returnLoans({loans_id, returned, returnDate}){
+    console.log("모델에서 받음 책반납 : ",loans_id, returned, returnDate);
+    // 받은 값을 loans_id와 id가 일치하는 값을 찾아 그 값의 반환여부 와 실제 반납일 에 업데이트 함
+    const result = await Loans.update({
+      "is_returned": returned,
+      "returned_date": returnDate,
+    },{
+      where: { 
+        loans_id: loans_id
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    console.log("책반납성공!! result: ",result);
+    return result;
+  }
+  /** 대출 기간연장 */
+  static async renewLoans({loans_id, due_date}){
+    console.log("모델에서 받음 대출연장 : ",loans_id, due_date);
+    // 받은 값을 loans_id와 id가 일치하는 값을 찾아 그 값의 반환여부 와 실제 반납일 에 업데이트 함
+    const result = await Loans.update({
+      "due_date": due_date,
+    },{
+      where: { 
+        loans_id: loans_id
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    console.log("대출연장성공!! result: ",result);
+    return result;
+  }
 
-//삭제 쿼리
+  //삭제 쿼리
   static async deleteLoans({loans_id}){
     // console.log("loansId",loansId);
     const loans = await Loans.destroy({
       where: {
-        id: loans_id
+        loans_id: loans_id
       }
     });//where: {id: asdf} 형태가 들어와야함
+    
     return loans;
   }
 

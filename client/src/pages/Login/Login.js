@@ -48,8 +48,8 @@ function Login() {
 			console.log(email);
 			axios.post(
 				`${API_URL}/api/user/login`,
-				{email, pwd},
-				{ withCredentials: true }// 쿠키 수정허용
+				{email, pwd}
+				// { withCredentials: true }// 쿠키 수정허용
 			)
 			.then(() =>{
 				alert("로그인성공!");

@@ -19,6 +19,7 @@ import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
+import LoanTest from './pages/Cart/loanTest.js';
 
 const currentPath = window.location.pathname;
 
@@ -30,7 +31,7 @@ function App() {
         <Route path='/' element={<Main></Main>}></Route>
         <Route path='/BookDetail' element={<BookDetail></BookDetail>}></Route>
         <Route path='/test' element={<Test></Test>}></Route>
-        <Route path='/fear' element={<Fear></Fear>}></Route>
+        <Route path='/fear' element={<Fear></Fear>}></Route> 
         <Route path='/fantasy' element={<Fantasy></Fantasy>}></Route>
         <Route path='/mystery' element={<Mystery></Mystery>}></Route>
         <Route path='/comic' element={<Comic></Comic>}></Route>
@@ -44,6 +45,7 @@ function App() {
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
         <Route path='/admin/*' element={<Adminmain></Adminmain>}></Route>
         <Route path='/mypage' element={<Mypage></Mypage>}></Route>
+        <Route path='/loantest' element={<LoanTest></LoanTest>}></Route>
       </Routes>
       {!currentPath.includes('/admin') && <Footer />}
     </div>
