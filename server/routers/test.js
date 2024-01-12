@@ -5,8 +5,8 @@ require('dotenv').config();
 var client_id = process.env.NAVER_LOGIN_CLIENT_ID;
 var client_secret = process.env.NAVER_LOGIN_CLIENT_SECRET;
 var state = process.env.NAVER_STATE;
-var loginRedirectURI = encodeURI(process.env.NAVER_CALLBACK_REDIRECT_URL);
-var callbackRedirectURI = encodeURI(process.env.NAVER_CALLBACK_REDIRECT_URL);
+var loginRedirectURI = encodeURI(process.env.NAVER_LOGIN_REDIRECT_URL);
+var callbackRedirectURI = encodeURI(process.env.NAVER_LOGIN_REDIRECT_URL);
 var api_url = "";
 
 router.get("/naverlogin", function (req, res) {
