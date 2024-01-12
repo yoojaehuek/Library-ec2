@@ -5,6 +5,7 @@
 
   .book-detail-content-lhs {
     display: flex;
+    justify-content: space-around;
     margin: 20px;
   
     .book-detail-left-lhs {
@@ -22,15 +23,15 @@
       box-sizing: border-box;
   
       > h1 {
-        font-size: 30px;
+        font-size: 2.2vw
       }
       > p {
         text-align: left;
         font-weight: 400;
-        font-size: 23px;
+        font-size: 1.2vw;
   
         > span{
-          font-size: 25px;
+          font-size: 1.5vw;
           font-weight: 900;
         }
       }  
@@ -59,7 +60,7 @@
       button {
         margin-top: 10px;
         padding: 10px;
-        font-size: 20px;
+        font-size: 1.1vw;
         font-weight: 800;
         height: 3vw;
         background-color: white;
@@ -84,12 +85,14 @@
       border-bottom: solid 1px gray;
   
       >h2{
+        font-size: 2vw;
         margin-top: 20px;
       }
     }
 
     >p{
       margin: 4vh 0;
+      font-size: 1.1vw;
       padding-left: 10px;
       text-align: left;
     }
@@ -102,11 +105,13 @@
     > h2 {
       text-align: left;
       margin-top: 20px;
+      font-size: 2vw;
       margin-bottom: 20px;
     }
 
     .related-books-lhs {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       border-top: 1px solid gray;
       gap: 20px;
       overflow-x: auto;
@@ -114,8 +119,6 @@
 
       .related-book-lhs {
         cursor: pointer;
-        max-width: 200px;
-        max-height: 300px;
         text-align: center;
         position: relative;
         transition: filter 0.3s ease; /* Adding transition for smooth effect */
@@ -130,6 +133,7 @@
 
         h3 {
           position: absolute;
+          font-size: 1vw;
           width: 80%;
           top: 30%;
           left: 50%;
@@ -144,6 +148,7 @@
           position: absolute;
           top: 60%;
           left: 50%;
+          font-size: 0.9vw;
           transform: translate(-50%, -50%);
           opacity: 0; /* Initially hidden */
           color: rgb(255, 255, 255);

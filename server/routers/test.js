@@ -62,6 +62,7 @@ router.get('/member', function (req, res) {
   request.get(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
+      console.log(body);
       res.end(body);
     } else {
       console.log('error');

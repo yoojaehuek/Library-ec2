@@ -74,6 +74,7 @@ class BookService{
 
 
 	static buildWhereClause(options){
+		// console.log("options: ", options);
 		const wheres = {};
 
 		//책 id 조회
@@ -106,7 +107,10 @@ class BookService{
 
 		//장르 조회
 		if (options.book_genre && validationUtils.isValidGenre(options.book_genre)) { //장르가 존재하고 진짜 있는 장르인지
-			wheres.book_genre = options.book_genre;
+			// wheres.book_genre = options.book_genre;
+			wheres.book_genre = {
+				[Op.eq]: options.book_genre,
+			}
 		}
 	
 		//도서 대출 여부
@@ -121,7 +125,7 @@ class BookService{
 			};
 		}
 
-		//도서 고유 번호
+		//불러올 도서 개수
 		if (options.limit) {
 			wheres.limit = parseInt(options.limit);
 		}
