@@ -25,7 +25,7 @@ const AdminMain = () => {
     <div id='Admin' >
       <AListbar id='Listbar' />
       <AHeader id='Header' />
-      <div className='AdminMain' style={{padding: ' 50px 0 100px'}}>
+      <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
         <Route path='/' element={<AChart></AChart>}></Route>
         <Route path='/test' element={<ALogin />} />

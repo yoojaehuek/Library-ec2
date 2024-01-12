@@ -7,7 +7,7 @@ const { makeRefreshToken, makeAccessToken } = require('../../utils/token');
 
 class UserService{
 	//유효성 검사 이메일 겹치는지 등등
-	static async createUser({email, pwd, user_name, phone, address, detail_address}){
+	static async createUser({email, pwd, user_name, phone}){
 
 		const user = await UserModel.findOneUserEmail({ email });
 		
@@ -15,8 +15,6 @@ class UserService{
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
 			return user;
 		}
-
-		
 
 		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
 		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
@@ -30,7 +28,7 @@ class UserService{
 			.update(pwd + salt)
 			.digest('hex'); 
 
-		const newUser = { user_id: email, user_pwd: hashPassword, salt, user_name, user_phone: phone, user_address: address, user_detail_address: detail_address }
+		const newUser = { user_email: email, user_pwd: hashPassword, salt, user_name, user_phone: phone }
 
 		const createNewUser = await UserModel.createUser({newUser});
 		return createNewUser

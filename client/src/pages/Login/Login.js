@@ -44,12 +44,15 @@ function Login() {
 		const email = e.target.email.value.trim();
 		const pwd = e.target.pwd.value.trim();
 
+		console.log("email:", email);
+		console.log("pwd:", pwd);
+
 		if( email !== "" && pwd !== ""){
 			console.log(email);
 			axios.post(
 				`${API_URL}/api/user/login`,
 				{email, pwd},
-				{ withCredentials: true }// 쿠키 수정허용
+				// { withCredentials: true }// 쿠키 수정허용
 			)
 			.then(() =>{
 				alert("로그인성공!");
@@ -58,8 +61,8 @@ function Login() {
 			})
 			.catch(err =>{
 				// console.error(err);
-				console.error(err.response.data);
-				alert(`로그인 실패!\n${err.response.data.message}`);
+				console.error(err);
+				alert(`로그인 실패!\n${err}`);
 			})
 		}else{
 			return alert("전부 입력해주세요");
