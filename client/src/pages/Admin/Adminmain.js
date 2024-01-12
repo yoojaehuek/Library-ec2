@@ -4,6 +4,8 @@ import AListbar from './AComponent/AListbar.js';
 import './Adminmain.scss';
 import AChart from './AComponent/AChart.js';
 import AHeader from './AComponent/AHeader.js';
+import ALogin from './ALogin/ALogin.js';
+import AFaq from './AFaq/AFaq.js';
 // import { getCookie } from '../utils/cookie.js';
 
 const AdminMain = () => {
@@ -26,6 +28,8 @@ const AdminMain = () => {
       <div className='AdminMain' style={{padding: ' 50px 0 100px'}}>
         <Routes>
         <Route path='/' element={<AChart></AChart>}></Route>
+        <Route path='/test' element={<ALogin />} />
+        <Route path='/faq/faq' element={<AFaq />} />
         </Routes>
       </div>
     </div>

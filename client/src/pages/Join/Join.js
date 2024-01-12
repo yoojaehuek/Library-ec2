@@ -121,15 +121,13 @@ function Join() {
 			confirmPwd !== "" && 
 			user_name !== "" &&
 			phone !== "" && 
-			address !== "" && 
-			detail_address !== "" && 
 			isEmail &&
 			isName && 
 			isPassword &&
 			isPasswordConfirm &&
 			isPhone
 		){
-			axios.post(`${API_URL}/api/user/join`,{email, pwd, user_name, phone, address, detail_address})
+			axios.post(`${API_URL}/api/user/join`,{email, pwd, user_name, phone})
 			.then(() =>{
 				alert("가입성공!");
 				navigate('/');  
