@@ -79,7 +79,7 @@ const Main = () => {
     { image: '/images/main/Book1/web5.png', text: '노을이 붉었다' },
   ];
 
-  const genre = [{genre:'문학', content:'3132123'} ,{genre:'철학', content:'3132123'}, {genre:'역사', content:'3132123'}];
+  const genre = [{genre:'문학', content:'3132123'} ,{genre:'기술과학', content:'3132123'}, {genre:'역사', content:'3132123'}];
   const genrebottom = [{genre:'문학', content:'3132123', img_url:'/images/main/horro.png'}, {genre:'철학', content:'213213213철학' ,img_url:'images/main/sf.png'},{genre:'역사', content:'역사', img_url:'images/main/fantasymain.png'},{genre:'종교', content:'역사', img_url:'images/main/thiller.png'}, {genre:'예술', content:'역사', img_url:'images/main/comic.png'}, {genre:'언어', content:'역사', img_url:'images/main/fullbook.png'}];
 
 

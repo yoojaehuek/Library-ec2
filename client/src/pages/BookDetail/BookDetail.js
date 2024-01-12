@@ -91,9 +91,6 @@ const BookDetail = () => {
           <div className="buttons-container-lhs">
             <button onClick={handleAddToCart}>도서카트</button>
             <button onClick={handleReservation}>예약하기</button>
-            <button onClick={() => setNewReview({ ...newReview, book_id: axiosResult.id })}>
-              리뷰 작성
-            </button>
           </div>
         </div>
         <div className='book-description-top-lhs'>

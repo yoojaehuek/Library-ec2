@@ -11,13 +11,13 @@ const GenreLink = ({ item, index }) => {
       : 'main-bottom-comic-lhs main-bottom-sf-lhs'
   );
 
-  // 장르에 따라 다른 링크 설정
+  // 장르에 따라 다른 페이지 URL을 반환
   const getGenreLink = (genre) => {
     switch (genre) {
       case '문학':
-        return '/BookList'; // 원하는 Fantasy 페이지의 링크로 변경
-      case 'Comic':
-        return '/comicLink'; // 원하는 Comic 페이지의 링크로 변경
+        return '/BookList?genre=문학'; // 원하는 Literary 페이지의 링크로 변경
+      case '철학':
+        return '/BookList?genre=철학'; // 원하는 Philosophical 페이지의 링크로 변경
       default:
         return '/';
     }
