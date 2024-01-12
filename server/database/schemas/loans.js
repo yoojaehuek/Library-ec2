@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 class Loans extends Sequelize.Model {
   static initiate(sequelize) {
     Loans.init(
-      {
+      { 
         loans_id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
