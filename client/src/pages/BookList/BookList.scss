@@ -29,7 +29,7 @@
   justify-content: center;
   line-height: 5rem;
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
   font-size: 35px;
   font-weight: 700;
   text-align: center;
@@ -39,34 +39,34 @@
   }
 }
 
-.BookList-SF-welcome-lhs{
-  background-image: url('../../../public/images/main/sf.png');
-}
+// .BookList-SF-welcome-lhs{
+//   background-image: url('../../../public/images/main/sf.png');
+// }
 
-.BookList-horro-welcome-lhs{
-  background-image: url('../../../public/images/main/horro.png');
-}
+// .BookList-horro-welcome-lhs{
+//   background-image: url('../../../public/images/main/horro.png');
+// }
 
-.BookList-Fantasy-welcome-lhs{
-  background-image: url('../../../public/images/main/fantasymain.png');
-}
+// .BookList-Fantasy-welcome-lhs{
+//   background-image: url('../../../public/images/main/fantasymain.png');
+// }
 
-.BookList-Comic-welcome-lhs{
-  background-image: url('../../../public/images/main/comic.png');
-}
+// .BookList-Comic-welcome-lhs{
+//   background-image: url('../../../public/images/main/comic.png');
+// }
 
-.BookList-Mystery-welcome-lhs{
-  background-image: url('../../../public/images/main/mystery.png');
-}
+// .BookList-Mystery-welcome-lhs{
+//   background-image: url('../../../public/images/main/mystery.png');
+// }
 
-.BookList-Thiller-welcome-lhs{
-  background-image: url('../../../public/images/main/thiller.png');
-}
+// .BookList-Thiller-welcome-lhs{
+//   background-image: url('../../../public/images/main/thiller.png');
+// }
 
 .BookList-main-content-lhs {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1s, transform 2s;
+  transition: opacity 0.5s, transform 1s;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

@@ -1,69 +1,49 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
+import { API_URL } from '../../config/contansts';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import axios  from 'axios';
+
 
 const BookDetail = () => {
-  const bookData = {
-    image: '/images/main/Book1/martial.png',
-    book_name: '책 제목',
-    book_author: '저자',
-    book_publisher: '국제북기',
-    book_publisher_date: '출판일',
-    book_genre: '장르',
-    book_availability: '대출 가능', // 여기서 '대출가능' 또는 '불가능'으로 변경
-    book_ISBN: '책 고유번호',
-    create_at: '책 등록날짜',
-    book_description: '태권도 국가대표로 활약하던 김지환이 사고로 죽게 되어 다음 세계에서 다시 깨어납니다. 그리고 그는 전생한 태권도 9단이 되어 다양한 모험과 로맨스를 겪게 됩니다. 초월적인 능력과 예측 불가능한 전개로 독자들을 매료시키는 작품!',
-  };
+  const [axiosResult, setAxiosResult] = useState("");
+  const { id } = useParams();
+  console.log(id);
+  const [book_publisher,setBook_Publisher] = useState("");
+  const [book_author,setbook_author] = useState("");
 
-  const relatedBooks = [
-    {
-      id: 1,
-      image: '/images/main/Book1/web1.png',
-      name: '세계 종말까지 2일',
-      author: '김준녕',
-    },
-    {
-      id: 2,
-      image: '/images/main/Book1/web2.png',
-      name: '일어나보니 회장님 비서',
-      author: '임헌성',
-    },
-  ];
+  useEffect(()=>{
+    axios.get(`${API_URL}/api/book?book_id=${id}`)
+    .then(res => {
+      setAxiosResult(res.data[0]);
+      console.log("응답 데이터: ", res.data[0]);
 
-  const otherBooksBySameAuthor = [
-    {
-      id: 3,
-      image: '/images/main/Book1/web3.png',
-      name: '다른 작품 1',
-      author: '저자',
-    },
-    {
-      id: 4,
-      image: '/images/main/Book1/web4.png',
-      name: '다른 작품 2',
-      author: '저자',
-    },
-  ];
+      axios.get(`${API_URL}/api/book?book_publisher=${res.data[0].book_publisher}&limit=5`)
+      .then(res => {
+        setBook_Publisher(res.data);
+        console.log("관련 도서:", res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
-  const reviewsBySameAuthor = [
-    {
-      id: 5,
-      book_id: 3,
-      user_id: 'user123',
-      review_text: '이 작품 정말 좋아요!',
-      rating: 5,
-      create_at: '2024-01-10',
-    },
-    {
-      id: 6,
-      book_id: 4,
-      user_id: 'user456',
-      review_text: '재미있는 이야기에요!',
-      rating: 4,
-      create_at: '2024-01-11',
-    },
-  ];
+      axios.get(`${API_URL}/api/book?book_author=${res.data[0].book_author}&limit=5`)
+      .then(res => {
+        setbook_author(res.data);
+        console.log("관련 도서:", res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    }).catch((err) =>{
+            console.error(err);
+        });
+
+      window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+  },[id]);
+  
 
   const handleReservation = () => {
     console.log('예약하기');
@@ -85,100 +65,102 @@ const BookDetail = () => {
   };
 
 
-  const availabilityStyle = {
-    backgroundColor: bookData.book_availability === '대출 가능' ? 'blue' : 'red',
-  };
-
-  return (
-    <div className='book-detail-container-lhs'>
-      <div className="book-detail-content-lhs">
-        <div className="book-detail-left-lhs">
-          <img src={bookData.image} alt="Book Cover" />
-        </div>
-        <div className="book-detail-right-lhs">
-          <h1>{bookData.book_name}</h1>
-          <p><span>저자: </span>{bookData.book_author}</p>
-          <p><span>출판사: </span>{bookData.book_publisher}</p>
-          <p><span>출판일: </span>{bookData.book_publisher_date}</p>
-          <p><span>장르: </span>{bookData.book_genre}</p>
-          <p><span>책 고유번호: </span>{bookData.book_ISBN}</p>
-          <p><span>책 등록날짜: </span>{bookData.create_at}</p>
-          <div className='book-detail-availability-lhs' style={availabilityStyle}>
-            <span>{bookData.book_availability}</span>
+    return (
+      <div className='book-detail-container-lhs'>
+        <div className="book-detail-content-lhs">
+          <div className="book-detail-left-lhs">
+            <img src={API_URL + axiosResult.book_img_url} alt="Book Cover" />
           </div>
-        </div>
-        <div className="buttons-container-lhs">
-          <button onClick={handleAddToCart}>도서카트</button>
-          <button onClick={handleReservation}>예약하기</button>
-          <button onClick={() => setNewReview({ ...newReview, book_id: bookData.id })}>
+          <div className="book-detail-right-lhs">
+            <h1>{axiosResult.book_name}</h1>
+            <p><span>저자: </span>{axiosResult.book_author}</p>
+            <p><span>출판사: </span>{axiosResult.book_publisher}</p>
+            <p><span>장르: </span>{axiosResult.book_genre}</p>
+            <p><span>책 고유번호: </span>{axiosResult.book_ISBN}</p>
+            <p><span>책 등록날짜: </span>{axiosResult.created_at}</p>
+            {axiosResult.book_availability == 1? 
+              <div className='book-detail-availability-lhs' style={{backgroundColor: "blue"}}> 
+                <span> 대출 가능 </span>
+              </div> 
+              : 
+              <div className='book-detail-availability-lhs' style={{backgroundColor: "red"}}> 
+                <span> 대출 불가능 </span>
+              </div> 
+            }
+          </div>
+          <div className="buttons-container-lhs">
+            <button onClick={handleAddToCart}>도서카트</button>
+            <button onClick={handleReservation}>예약하기</button>
+            <button onClick={() => setNewReview({ ...newReview, book_id: axiosResult.id })}>
               리뷰 작성
-          </button>
+            </button>
+          </div>
         </div>
-      </div>
-      <div className='book-description-top-lhs'>
-        <div className='book-description-top-name-lhs'>
-          <h2>책 소개</h2>
+        <div className='book-description-top-lhs'>
+          <div className='book-description-top-name-lhs'>
+            <h2>책 소개</h2>
+          </div>
+          <p className='book-description'>{axiosResult.book_description}</p>
         </div>
-        <p className='book-description'>{bookData.book_description}</p>
-      </div>
-      <div className='related-books-container-lhs'>
-        <h2>같은 출판사의 다른 작품</h2>
-        <div className='related-books-lhs'>
-          {relatedBooks.map((relatedBook) => (
-            <div key={relatedBook.id} className='related-book-lhs'>
-              <NavLink to={`/book/${relatedBook.id}`}>
-                <img src={relatedBook.image} alt={`${relatedBook.name} Cover`} />
-                <h3>{relatedBook.name}</h3>
-                <p>{relatedBook.author}</p>
-              </NavLink>
+        <div className='related-books-container-lhs'>
+          <h2>같은 출판사의 다른 작품</h2>
+          <div className='related-books-lhs'>
+            {/* 관련 도서를 매핑하고 렌더링합니다 */}
+              {Array.isArray(book_publisher) && book_publisher.map(book => (
+              <div key={book.id} className='related-book-lhs'>
+                <NavLink to={`/BookDetail/${book.book_id}`}>
+                  <img src={API_URL + book.book_img_url} alt={`${book.book_name} 표지`} />
+                  <h3>{book.book_name}</h3>
+                  <p>{book.book_author}</p>
+                </NavLink>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='other-books-container-lhs related-books-container-lhs'>
+          <h2>같은 저자의 다른 작품</h2>
+          <div className='related-books-lhs'>
+              {Array.isArray(book_author) && book_author.map(book => (
+                <div key={book.id} className='related-book-lhs'>
+                  <NavLink to={`/BookDetail/${book.book_id}`}>
+                    <img src={API_URL + book.book_img_url} alt={`${book.book_name} 표지`} />
+                    <h3>{book.book_name}</h3>
+                    <p>{book.book_author}</p>
+                  </NavLink>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className='reviews-container-lhs'>
+          <h2>리뷰</h2>
+          {/* 리뷰 목록 표시 로직 추가 */}
+          {axiosResult.reviews && axiosResult.reviews.map((review) => (
+            <div key={review.id} className='review-item-lhs'>
+              <p>{review.review_text}</p>
+              <p>평점: {review.rating}</p>
+              <p>작성일: {review.create_at}</p>
             </div>
           ))}
-        </div>
-      </div>
-      <div className='other-books-container-lhs related-books-container-lhs'>
-        <h2>같은 저자의 다른 작품</h2>
-        <div className='other-books-lhs related-books-lhs'>
-          {otherBooksBySameAuthor.map((otherBook) => (
-            <div key={otherBook.id} className='related-book-lhs'>
-              <NavLink to={`/book/${otherBook.id}`}>
-                <img src={otherBook.image} alt={`${otherBook.name} Cover`} />
-                <h3>{otherBook.name}</h3>
-                <p>{otherBook.author}</p>
-              </NavLink>
+          {/* 새 리뷰 작성 양식 */}
+          {newReview.book_id && (
+            <div className='new-review-form-lhs'>
+              <textarea
+                placeholder='리뷰를 작성하세요...'
+                value={newReview.review_text}
+                onChange={(e) => setNewReview({ ...newReview, review_text: e.target.value })}
+              />
+              <input
+                type='number'
+                placeholder='평점 (1~5)'
+                value={newReview.rating}
+                onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })}
+              />
+              <button onClick={handleReviewSubmit}>리뷰 작성</button>
             </div>
-          ))}
+          )}
         </div>
       </div>
-      <div className='reviews-container-lhs'>
-        <h2>리뷰</h2>
-        {/* 리뷰 목록 표시 로직 추가 */}
-        {reviewsBySameAuthor.map((review) => (
-          <div key={review.id} className='review-item-lhs'>
-            <p>{review.review_text}</p>
-            <p>평점: {review.rating}</p>
-            <p>작성일: {review.create_at}</p>
-          </div>
-        ))}
-        {/* 새 리뷰 작성 양식 */}
-        {newReview.book_id && (
-          <div className='new-review-form-lhs'>
-            <textarea
-              placeholder='리뷰를 작성하세요...'
-              value={newReview.review_text}
-              onChange={(e) => setNewReview({ ...newReview, review_text: e.target.value })}
-            />
-            <input
-              type='number'
-              placeholder='평점 (1~5)'
-              value={newReview.rating}
-              onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })}
-            />
-            <button onClick={handleReviewSubmit}>리뷰 작성</button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    );
 }
 
 export default BookDetail;
