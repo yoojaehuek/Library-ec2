@@ -70,7 +70,7 @@ const ACalendar = () => {
 
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', margin: '0 auto' }}>
       <h2>많이 이쁜 달력.</h2>
       <Calendar
         onChange={handleDateChange}
