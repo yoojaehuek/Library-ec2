@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main.js';
 import BookDetail from './pages/BookDetail/BookDetail.js';
-import Test from './pages/Test/Test.js';
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js'
 import Join from './pages/Join/Join.js';
@@ -26,7 +25,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
         <Route path='/BookDetail/:id' element={<BookDetail></BookDetail>}></Route>
-        <Route path='/test' element={<Test></Test>}></Route>
         <Route path='/booklist' element={<BookList></BookList>}></Route>
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

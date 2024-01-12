@@ -1,4 +1,4 @@
-gi  import React from 'react';
+import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 import AMap from './AMap';
 import AChart2 from './AChart2';
