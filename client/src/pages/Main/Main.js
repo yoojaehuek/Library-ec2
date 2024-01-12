@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Main.scss';
@@ -11,6 +11,7 @@ import { API_URL } from '../../config/contansts';
 import Genre from './Genre';
 
 const Main = () => {
+  const navigate = useNavigate();
   const [showWelcome, setShowWelcome] = useState(false);
   // const [selectedGenre, setSelectedGenre] = useState(null);
 
@@ -53,6 +54,7 @@ const Main = () => {
         .then(res => {
           console.log('member: ', res.data);
           axios.post(`${API_URL}/api/user/naver-login`, res.data.response);
+          navigate('/');
         }).catch(e => {
           console.error('member 에러: ',e);
         })
@@ -61,11 +63,6 @@ const Main = () => {
       console.log(e);
     })
 	}
-
-  const naverLogin = () => {
-    // axios.get(`${API_URL}/api/test/callback?code=${}&state=${}`)
-  }
-
         
   // 화면 첫 렌더링이후 바로 실행하기 위해 useEffect 를 사용하였다.
 	useEffect(() => {

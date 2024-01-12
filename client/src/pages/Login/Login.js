@@ -12,10 +12,10 @@ function Login() {
 	const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
 	// const [getToken, setGetToken] = useState();
   // const [userInfo, setUserInfo] = useState();
-	const [naverLoginButton, setNaverLoginButton] = useState();
-
+	
 	const navigate = useNavigate();
-
+	
+	const [naverLoginButton, setNaverLoginButton] = useState();
 
 	function createMarkup(html) {
 		return {__html: html};
