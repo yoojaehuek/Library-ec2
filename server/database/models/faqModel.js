@@ -25,7 +25,7 @@ class FaqModel {
   static async getCategoryFaq(category){
     const result = await Faq.findAll({
       where: {
-        tags : category,
+        faq_tags : category,
       },
       include: [
         {
@@ -67,11 +67,12 @@ class FaqModel {
     return result;
   }
 
-  static async deleteFaq({ faq_id }){
+  static async deleteFaq({ faq_id, faq_password }){
     // console.log("faqId",faqId);
     const result = await Faq.destroy({
       where: {
-        faq_id: faq_id
+        faq_id: faq_id,
+        faq_password: faq_password
       }
     });//where: {id: asdf} 형태가 들어와야함
     return result;

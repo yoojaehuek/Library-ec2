@@ -25,10 +25,13 @@ const Faq = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [faqData, setFaqData] = useState([]);
 
   useEffect(() => {
+    fetchData();
+  }, [selectedCategory]);
+
+  const fetchData = () => {
     const endpoint =
       selectedCategory === "전체" ? "/" : `/category/${selectedCategory}`;
     axios
@@ -36,10 +39,9 @@ const Faq = () => {
       .then((res) => {
         setFaqData(res.data);
         console.log(res.data);
-        // setSelectedCategory('전체');
       })
       .catch((error) => console.error("에러:", error));
-  }, [selectedCategory]);
+  };
 
   const itemsPerPage = 5;
 
@@ -66,7 +68,8 @@ const Faq = () => {
   };
 
   const handleCreate = (newPost) => {
-    console.log("New:", newPost);
+    fetchData();
+    console.log(newPost);
     setIsModalOpen(false);
   };
 
@@ -147,8 +150,8 @@ const Faq = () => {
               borderRadius={4}
               gap="16px"
             >
-              <Typography variant="body1">{faq.tags}</Typography>
-              <Typography variant="body1">{faq.title}</Typography>
+              <Typography variant="body1">{faq.faq_tags}</Typography>
+              <Typography variant="body1">{faq.faq_title}</Typography>
               <div
                 style={{
                   display: "flex",
@@ -157,7 +160,7 @@ const Faq = () => {
                 }}
               >
                 <Typography variant="body1">{faq.User && faq.User.user_name}</Typography>
-                {faq.status ? 
+                {faq.faq_status ? 
                 <Typography variant="body1" style={{color: "green"}}>
                    답변완료
                 </Typography> 

@@ -5,6 +5,8 @@ const User = require('./user'); //user파일을 User로 불러옴
 const Book = require('./book');
 const Loans = require('./loans');
 const Banner = require('./banner');
+const Event = require('./event');
+const Review = require('./review');
 
 const env = process.env.NODE_ENV || 'development'; //상수 env에 NODE_ENV없으면 'development' 넣음
 const config = require('../../config/config.json')[env]; //상수config에 ../config/config파일에서 env(development) 불러옴
@@ -23,6 +25,8 @@ db.Faq = Faq;
 db.Book = Book;
 db.Loans = Loans;
 db.Banner = Banner;
+db.Review = Review;
+db.Event = Event;
 
 
 
@@ -32,6 +36,8 @@ Faq.initiate(sequelize);
 Book.initiate(sequelize);
 Loans.initiate(sequelize);
 Banner.initiate(sequelize);
+Review.initiate(sequelize); 
+Event.initiate(sequelize);
 
 
 Admin.associate(db);
@@ -40,5 +46,7 @@ Faq.associate(db);
 Book.associate(db);
 Loans.associate(db);
 Banner.associate(db);
+Review.associate(db);
+Event.associate(db);
 
 module.exports = db;

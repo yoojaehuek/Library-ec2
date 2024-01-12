@@ -8,10 +8,37 @@
   display: flex;
   overflow-y: hidden;
 
-  
   .main-content-lhs{
     padding-left: 20.6875rem;
     padding-right: 19.6875rem;
+
+    @media only screen and (max-width: 1200px) {
+      .main-content-lhs {
+        padding-left: 10rem;
+        padding-right: 9.6875rem;
+      }
+    }
+  
+    @media only screen and (max-width: 1000px) {
+      .main-content-lhs {
+        padding-left: 5rem;
+        padding-right: 4.6875rem;
+      }
+    }
+  
+    @media only screen and (max-width: 768px) {
+      .main-content-lhs {
+        padding-left: 2rem;
+        padding-right: 1.6875rem;
+      }
+    }
+  
+    @media only screen and (max-width: 576px) {
+      .main-content-lhs {
+        padding-left: 1rem;
+        padding-right: 0.6875rem;
+      }
+    }
 
     .main-welcome-lhs {
       position: fixed;
@@ -38,7 +65,7 @@
       opacity: 0;
     }
 
-  //////////////////////////////topcomponent
+  //////////////////////////////topcomponentzzz
     .main-top-lhs{
       // background-color: rgb(189, 180, 180);
       opacity: 0;
@@ -257,7 +284,7 @@
         }
       }
     }
-
+    .main-bottom1-content-lhs,
     .main-bottom-content-lhs {
       opacity: 0;
       transform: translateY(-20px);
@@ -278,8 +305,6 @@
       }
     
       .main-bottom-container-lhs {
-        display: flex;
-        justify-content: space-between;
         width: 100%;
         height: auto;
         padding: 0 20px;
@@ -316,7 +341,8 @@
           .main-bottom-dark2-lhs,
           .main-bottom-sf-lhs {
             width: 100%;
-            padding: 20px;
+            margin-bottom: 30px;
+            padding: 30px;
             box-sizing: border-box;
             color: #fff;
             position: relative;
@@ -361,41 +387,49 @@
           background: url('../../../public/images/main/fullbook.png') center/cover; /* dark 이미지 경로 */
         }
       
-        .main-bottom-dark2-lhs::before {
-          background: url('../../../public/images/main/horro.png') center/cover; /* dark 이미지 경로 */
-          border-radius: 0 30px 30px 0;
-        }
+        // .main-bottom-dark2-lhs::before {
+        //   background: url('../../../public/images/main/horro.png') center/cover; /* dark 이미지 경로 */
+        //   border-radius: 0 30px 30px 0;
+        // }
 
-        .main-bottom-fantsymain-lhs::before{
-          background: url('../../../public/images/main/fantasymain.png') center/cover; /* dark 이미지 경로 */
-          border-radius: 0 30px 30px 0;
-        }
+        // .main-bottom-fantsymain-lhs::before{
+        //   background: url('../../../public/images/main/fantasymain.png') center/cover; /* dark 이미지 경로 */
+        //   border-radius: 0 30px 30px 0;
+        // }
 
-        .main-bottom-mystery-lhs::before{
-          background: url('../../../public/images/main/mystery.png') center/cover; /* dark 이미지 경로 */
-          border-radius: 0 30px 30px 0;
-        }
+        // .main-bottom-mystery-lhs::before{
+        //   background: url('../../../public/images/main/mystery.png') center/cover; /* dark 이미지 경로 */
+        //   border-radius: 0 30px 30px 0;
+        // }
       
-        .main-bottom-sf-lhs::before {
-          background: url('../../../public/images/main/sf.png') center/cover; /* sf 이미지 경로 */
-          border-radius: 30px 0 0 30px;
-        }
+        // .main-bottom-sf-lhs::before {
+        //   background: url('../../../public/images/main/sf.png') center/cover; /* sf 이미지 경로 */
+        //   border-radius: 30px 0 0 30px;
+        // }
 
-        .main-bottom-comic-lhs::before{
-          background: url('../../../public/images/main/comic.png') center/cover; /* dark 이미지 경로 */
-          border-radius: 30px 0 0 30px;
-        }
+        // .main-bottom-comic-lhs::before{
+        //   background: url('../../../public/images/main/comic.png') center/cover; /* dark 이미지 경로 */
+        //   border-radius: 30px 0 0 30px;
+        // }
 
-        .main-bottom-thiller-lhs::before {
-          background: url('../../../public/images/main/thiller.png') center/cover; /* sf 이미지 경로 */
-          border-radius: 30px 0 0 30px;
-        }
+        // .main-bottom-thiller-lhs::before {
+        //   background: url('../../../public/images/main/thiller.png') center/cover; /* sf 이미지 경로 */
+        //   border-radius: 30px 0 0 30px;
+        // }
       
-        .main-bottom-fullbook-lhs:hover::before,
-        .main-bottom-sf-lhs:hover::before,
-        .main-bottom-dark2-lhs:hover::before {
-          transform: scale(1.5); /* 이미지 축소 효과 적용 */
-        }
+        // .main-bottom-fullbook-lhs:hover::before,
+        // .main-bottom-sf-lhs:hover::before,
+        // .main-bottom-dark2-lhs:hover::before {
+        //   transform: scale(1.5); /* 이미지 축소 효과 적용 */
+        // }
+      }
+    }
+
+    .main-bottom-content-lhs{
+
+      &.show{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

@@ -15,7 +15,7 @@ class FaqController {
 
 	static async getAllFaq(req, res, next){
 		try {
-			const result = await FaqService.getAllFaq();		
+			const result = await FaqService.getAllFaq();		//async await = 응답이 올때까지 기다리겠다.(p.79)
 			res.status(200).json(result);
 		} catch (error) {
 			next(error)
@@ -59,8 +59,13 @@ class FaqController {
 	static async deleteFaq(req, res, next){
 		try {
 			const faq_id = req.params.faq_id;
+			const faq_password = req.body.faq_password;	
+			// console.log("faq:", req.body.faq_password);
 
-			const result = await FaqService.deleteFaq({ faq_id });
+			const result = await FaqService.deleteFaq({ faq_id, faq_password });
+			if(result.errorMessage){
+                throw new Error(result.errorMessage)
+            }
 			res.status(200).json(result);
 		} catch (error) {
 			next(error);

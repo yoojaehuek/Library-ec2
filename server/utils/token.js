@@ -4,9 +4,6 @@ const JWT_KEY = process.env.ACCESS_TOKEN_SECRET;
 const redisClient = require("./redis.utils");
 const { promisify } = require('util');
 
-
-
-
 // AccessToken을 만드는 함수로 회원정보(Object)를 인자로 받아 시크릿 키, 유효기간을 인자로 jwt.sign() 함수를 호출한다.
 // jwt.sign() 함수는 jsonwebtoken 라이브러리의 토큰을 발급하는 함수이다.
 exports.makeAccessToken = (Object) =>{
