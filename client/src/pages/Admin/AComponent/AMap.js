@@ -21,8 +21,8 @@ const AMap = () => {
           rotation: [-11, 0, 0],
         }}
         style={{
-          width: '70%',
-          height: 'auto',
+          width: '100%',
+          height: '50vh',
         }}
       >
         <Geographies geography="/features.json">
@@ -31,7 +31,7 @@ const AMap = () => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={hoverGeo === geo.rsmKey ? '#FFD700' : '#EAEAEC'}
+                fill={hoverGeo === geo.rsmKey ? 'purple' : '#EAEAEC'}
                 stroke="#D6D6DA"
                 onMouseEnter={() => handleMouseIn(geo.rsmKey)}
                 onMouseLeave={handleMouseOut}
@@ -40,7 +40,7 @@ const AMap = () => {
           }
         </Geographies>
         <Marker coordinates={korea}>
-          <circle r={8} fill="#F00" />
+          <circle r={5} fill="black" />
         </Marker>
       </ComposableMap>
     </div>

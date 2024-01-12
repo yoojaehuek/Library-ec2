@@ -20,10 +20,10 @@ const AChart = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
         <div style={{ textAlign: 'center', margin: 'auto' }}>
           <h2>도서 카테고리</h2>
-          <PieChart width={400} height={300}>
+          <PieChart width={500} height={300}>
             <Pie
               data={Chartdata}
-              cx={200}
+              cx={250}
               cy={150}
               outerRadius={80}
               fill="#8884d8"
@@ -40,7 +40,7 @@ const AChart = () => {
         </div>
         <AMap />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '70%' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '90%' }}>
         <AChart2 />
         <ACalendar />
       </div>

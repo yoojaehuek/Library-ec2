@@ -46,7 +46,7 @@ function escapeHTML(input) { //HTML 이스케이핑을 수행하는 함수
 }
 
 function isValidGenre(genre) {
-  const allowedGenres = ['sf', 'fantasy', 'mystery', 'romance']; //장르 넣기
+  const allowedGenres = ['총류', '철학', '종교', '사회과학','자연과학','기술과학', '예술', '언어', '문학','역사']; //장르 넣기
   const cleanedGenre = genre.trim().toLowerCase(); // 공백 및 대소문자에 대한 처리
 
   return allowedGenres.includes(cleanedGenre);
