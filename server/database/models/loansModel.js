@@ -40,17 +40,18 @@ class LoansModel {
 
   //조회 쿼리
   static async getAllLoans(){
-    console.log("모델 전체조회 들어옴");
+    // console.log("모델 전체조회 들어옴");
     const loans = await Loans.findAll();
-    console.log("전체조회로 찾은거: ",loans);
+    // console.log("전체조회로 찾은거: ",loans);
     return loans;
   }
-
+  /** 유저대출정보조회 */
   static async findOneLoansUserId({id}){
     // console.log("loansId",id);
+    console.log("모델에서 받은 유저id: ", id.user_id);
     const loans = await Loans.findAll({
       where: {
-        user_id: id,
+        user_id: id.user_id,
       },
     }); //where: {id: asdf} 형태가 들어와야함
     return loans;
