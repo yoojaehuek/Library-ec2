@@ -149,11 +149,14 @@ class UserService{
 		const name = user.user_name;
 		const pwd = user.user_pwd;
 		const phone = user.user_phone;
-
+		const email = user.user_email;
+		const user_id = user.user_id;
 		const userInfo = {
+			user_id,
 			name,
 			pwd,
 			phone,
+			email,
 		};
 
 		return userInfo;
