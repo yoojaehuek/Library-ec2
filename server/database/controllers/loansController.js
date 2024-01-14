@@ -10,11 +10,14 @@ class LoansController {
     try {
       const tmp = req.body;
       // tmp.userId = req.userId;
-      tmp.user_id = "ee@ee.com";
-      tmp.order.forEach(orderItem => { 
+      tmp.user_email = "ee@ee.com";
+      tmp.user_id = 1;
+      
+      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
         orderItem.user_id = tmp.user_id;
+        orderItem.user_email = tmp.user_email;
         // orderItem.user_id = req.userId; // 로그인 되면 이걸로
-      });
+      }); 
       const one = tmp.order
       console.log("tmp 안의 one: ", one);
       const newLoans = await LoansService.addLoans(one);
@@ -31,10 +34,8 @@ class LoansController {
   static async getAllLoans(req, res, next){
     console.log("컨트롤러 전체조회 들어옴");
     try {
-      
       const result = await LoansService.getAllLoans();
       console.log("컨트롤러 전체조회 받음: ",result);
-
       res.status(200).json(result);
     } catch (error) {
       next(error);
@@ -93,20 +94,53 @@ class LoansController {
   /** 수정 */
   static async updateLoans(req, res, next){
 		try {
-			const loans_id = req.params.loans_id;
-			const { state, cancel } = req.query;
-      console.log(state);
-      console.log(cancel);
+			const loans_id = req.params.loans_id;// api_url 에서 가져옴
+      const Return = req.body;
+      console.log("Return: ", Return);
+      console.log("loans_id: ", loans_id);
+			// const { state, cancel } = req.query;
+      // console.log("state: ", state);
+      // console.log("cancel: ", cancel);
       // const toUpdate = {...props}
-
-			const result = await LoansService.updateLoans({loans_id, state, cancel});
+			const result = await LoansService.updateLoans({loans_id});
 			res.status(200).json(result);
 		} catch (error) {
       console.log(error);
 			next(error);
 		}
 	}
-  /** 삭제 */
+  /** 책 반납 */
+  static async returnLoans(req, res, next){
+		try {
+      console.log("책반납 컨트롤러 들어옴");
+			const loans_id = req.params.loans_id;// api_url 에서 가져옴
+			const { returned, returnDate } = req.query;
+      console.log("loans_id: ", loans_id);
+      console.log("returned: ", returned);
+      console.log("returnDate: ", returnDate);
+			const result = await LoansService.returnLoans({loans_id, returned, returnDate});
+			res.status(200).json(result);
+		} catch (error) {
+      console.log(error);
+			next(error);
+		}
+	}
+  /** 대출연장 */
+  static async renewLoans(req, res, next){
+		try {
+      console.log("대출연장 컨트롤러 들어옴");
+			const loans_id = req.params.loans_id;// api_url 에서 가져옴
+			const { due_date } = req.query;
+      console.log("loans_id: ", loans_id);
+      console.log("due_date: ", due_date);
+			const result = await LoansService.renewLoans({loans_id, due_date});
+			res.status(200).json(result);
+		} catch (error) {
+      console.log(error);
+			next(error);
+		}
+	}
+  /** 대출 삭제 */
   static async deleteLoans(req, res, next){
     try {
       const loans_id = req.params.loans_id;

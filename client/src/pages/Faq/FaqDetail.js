@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Box, IconButton, Button } from "@mui/material";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../config/contansts";
 import axios from "axios";
-
-const adminAnswer = {
-  author: "관리자",
-  date: "2024-01-10",
-  answer: "이 질문에 대한 답변입니다.",
-};
 
 const FaqDetail = () => {
   const [detailfaq, setDetailFaq] = useState("");
@@ -123,7 +117,7 @@ const FaqDetail = () => {
     backgroundColor="#fff"
     padding="20px"
   >
-    {detailfaq.faq_status === 1 ? (
+    {detailfaq.faq_status === true ? (
       <>
         <Typography
           variant="h5"
@@ -137,13 +131,13 @@ const FaqDetail = () => {
           관리자 답변
         </Typography>
         <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-          작성자: {adminAnswer.author}
+          작성자: {detailfaq.admin_id}
         </Typography>
         <Typography variant="subtitle1" style={{ marginBottom: "10px", color: "#555" }}>
-          날짜: {adminAnswer.date}
+          날짜: {detailfaq.faq_response_time}
         </Typography>
         <Typography variant="body1" style={{ color: "#555" }}>
-          내용: {adminAnswer.answer}
+          내용: {detailfaq.faq_response}
         </Typography>
       </>
     ) : (
@@ -154,7 +148,7 @@ const FaqDetail = () => {
   </Box>
 )}
       <IconButton style={{ position: 'absolute', top: '30%', left: '25%' }} onClick={goBack}>
-        <ArrowBackIcon style={{fontSize: '2.5rem'}} />
+        {/* <ArrowBackIcon style={{fontSize: '2.5rem'}} /> */}
       </IconButton>
     </Box>
   );

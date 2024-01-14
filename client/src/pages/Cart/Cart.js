@@ -7,9 +7,8 @@ import axios from "axios";
 import "./Cart.scss";
 
 const Cart = () => {
-  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   // const [cart, setCart] = useState([]); /** 장바구니에 담은 상품목록 */
-  const [user, setUser] = useState({}); /** 로그인한 사용자정보 */
   const navigate = useNavigate();
   /** 반납일 날짜 계산 함수 */
   const getFutureDate = () => {
@@ -22,8 +21,6 @@ const Cart = () => {
     // 선택된 책들만 필터링
     const selectedBooks = cart.filter((book) => checkItems.includes(book.id));
     const futureDate = getFutureDate(); // 7일뒤 반납일
-    console.log("선택된 책들: ", selectedBooks);
-    console.log("반납일", futureDate);
     // 선택된 책이 하나 이상인 경우에만 대출 신청 처리
     if (selectedBooks.length > 0) {
       const booksWithDueDate = selectedBooks.map((book) => ({
@@ -32,10 +29,8 @@ const Cart = () => {
       }));
       axios
         .post(`${API_URL}/api/loans`, { order: booksWithDueDate })
-        // axios.get(`${API_URL}/api/loans`)
-        .then((req) => {
+        .then(() => {
           alert("대출성공!");
-          // alert("전체조회 성공!"); console.log("전체조회 req: ",req.data);
           navigate("/");
         })
         .catch((err) => {
@@ -101,7 +96,6 @@ const Cart = () => {
   ];
   // 체크된 아이템을 담을 배열
   const [checkItems, setCheckItems] = useState([]);
-
   // 체크박스 단일 선택
   const handleSingleCheck = (checked, id) => {
     if (checked) {

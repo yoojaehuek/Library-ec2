@@ -20,7 +20,7 @@ const AChart2 = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>월 이용자</h2>
-      <AreaChart width={400} height={300} data={data}>
+      <AreaChart width={800} height={300} data={data}>
         <XAxis dataKey="month" />
         <YAxis />
         <Tooltip />

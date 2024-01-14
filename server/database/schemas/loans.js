@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 class Loans extends Sequelize.Model {
   static initiate(sequelize) {
     Loans.init(
-      {
+      { 
         loans_id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
@@ -15,7 +15,7 @@ class Loans extends Sequelize.Model {
           comment: "book테이블의 id참초",
         },
         user_id: {
-          type: Sequelize.STRING,
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
         loan_date: {

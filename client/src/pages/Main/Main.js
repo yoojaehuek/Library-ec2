@@ -1,22 +1,19 @@
 
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Main.scss';
+import axios from 'axios'
 import Slider1 from './Slider';
 import MainBook from './MainBook';
-import MainBook2 from './MainBook2';
-import MainBook3 from './MainBook3';
-import MainBook4 from './MainBook4';
+import { API_URL } from '../../config/contansts';
 import Genre from './Genre';
-import Genre2 from './Genre2';
-import Genre3 from './Genre3';
 
 const Main = () => {
+  const navigate = useNavigate();
   const [showWelcome, setShowWelcome] = useState(false);
   // const [selectedGenre, setSelectedGenre] = useState(null);
-
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -35,12 +32,15 @@ const Main = () => {
     { image: '/images/main/Book1/web5.png', text: '노을이 붉었다' },
   ];
 
+  const genre = [{genre:'문학', content:'3132123'} ,{genre:'기술과학', content:'3132123'}, {genre:'역사', content:'3132123'}];
+  const genrebottom = [{genre:'문학', content:'3132123', img_url:'/images/main/horro.png'}, {genre:'철학', content:'213213213철학' ,img_url:'images/main/sf.png'},{genre:'역사', content:'역사', img_url:'images/main/fantasymain.png'},{genre:'종교', content:'역사', img_url:'images/main/thiller.png'}, {genre:'예술', content:'역사', img_url:'images/main/comic.png'}, {genre:'언어', content:'역사', img_url:'images/main/fullbook.png'}];
+
 
   return (
     <div className={`main-container-lhs ${showWelcome ? 'show' : ''}`}>
       <div className={`main-content-lhs ${showWelcome ? 'show' : ''}`}>
         <div className={`main-welcome-lhs ${showWelcome ? 'visible' : ''}`}>
-          <span>환영합니다<br></br>저희 -- 북을 찾아주셔서 감사합니다.</span>
+          <span>환영합니다<br></br>찾아주셔서 감사합니다.</span>
         </div>
         <div className={`main-top-lhs ${showWelcome ? 'show' : ''}`}>
           <NavLink to="/">
@@ -65,19 +65,13 @@ const Main = () => {
               ))}
             </div>
           </div>
-          <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
-            <MainBook />
-          </div>
-          <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
-            <MainBook2 />
-          </div>
-          <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
-            <MainBook3 />
-          </div>
-          <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
-            <MainBook4 />
-          </div>
-          <div className={`main-bottom-content-lhs ${showWelcome ? 'show' : ''}`}>
+            {genre.map((item, index) => (
+              <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
+                <MainBook key={index} Genre={item.genre} /> 
+              </div>
+            ))}
+
+          <div className={`main-bottom1-content-lhs ${showWelcome ? 'show' : ''}`}>
             <div className='main-bottom-container-lhs'>
               <NavLink to='/test' className='main-bottom-fullbooktop-lhs'>
                 <div className='main-bottom-fullbook-lhs'>
@@ -87,13 +81,9 @@ const Main = () => {
             </div>
           </div>
           <div className={`main-bottom-content-lhs ${showWelcome ? 'show' : ''}`}>
-            <Genre/>
-          </div>
-          <div className={`main-bottom-content-lhs ${showWelcome ? 'show' : ''}`}>
-            <Genre2/>
-          </div>
-          <div className={`main-bottom-content-lhs ${showWelcome ? 'show' : ''}`}>
-            <Genre3/>
+            {genrebottom.map((item, index) => (
+              <Genre key={index} index={index} item={item}/>
+            ))}
           </div>
         </div>
       </div>

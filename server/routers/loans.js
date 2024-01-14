@@ -6,8 +6,9 @@ const LoansController = require('../database/controllers/loansController');
 router.post('/', LoansController.addLoans);
 router.get('/', LoansController.getAllLoans);//전체조회
 router.get('/:loans_id', LoansController.getAllLoans);//한개조회
-router.patch('/return/:loans_id', LoansController.updateLoans);// 반납
-router.patch('/renew/:loans_id', LoansController.updateLoans);// 기간연장
-router.delete('/:loans_id', LoansController.deleteLoans);
+router.patch('/:loans_id', LoansController.updateLoans);
+router.patch('/return/:loans_id', LoansController.returnLoans);// 반납
+router.patch('/renew/:loans_id', LoansController.renewLoans);// 기간연장
+router.delete('/:loans_id', LoansController.deleteLoans); //대출 삭제
 
 module.exports = router;

@@ -17,7 +17,7 @@ class Review extends Sequelize.Model {
           comment: "책 id",
         },
         user_id: {
-          type: Sequelize.STRING,
+          type: Sequelize.INTEGER,
           allowNull: false,
           comment: "유저 id",
         },

@@ -10,7 +10,7 @@ class Faq extends Sequelize.Model {
           autoIncrement: true,
         },
         user_id: {
-          type: Sequelize.STRING,
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
         admin_id: {
