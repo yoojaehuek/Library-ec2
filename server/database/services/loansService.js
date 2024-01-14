@@ -5,7 +5,7 @@ class LoansService{
   static async addLoans(one){
     const newLoans = one;
 		console.log("서비스에서 받은 newLoans: ",newLoans);
-     // newLoans 배열을 반복하면서 각 객체를 처리
+    // newLoans 배열을 반복하면서 각 객체를 처리
     const createdLoans = await Promise.all(newLoans.map(async (loansData) => {
       const createNewLoans = await LoansModel.createLoans(loansData);
       return createNewLoans
@@ -14,7 +14,7 @@ class LoansService{
   }
 
   static async getAllLoans(){
-    console.log("서비스 전체조회들어옴 ");
+    // console.log("서비스 전체조회들어옴 ");
     let loansData = await LoansModel.getAllLoans();
     loansData = loansData.map(el => el.get({ plain: true }));
     
@@ -29,16 +29,20 @@ class LoansService{
         loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
       }
     }) 
-    console.log("서비스 전체조회 받음 : ", loansData);
+    // console.log("서비스 전체조회 받음 : ", loansData);
 
     return loansData;
   }
 
-  static async getLoansByUserId({id}){
+  /** 유저대출정보조회 */
+  static async getLoansByUserId(id){
+    console.log("서비스 들어옴 id: ", id);
+
     const loansData = await LoansModel.findOneLoansUserId({id});
     // if (loansData.length === 0) {
     //   return [];
     // }
+    console.log("서비에서 찾은거 받음", loansData);
     return loansData;
   }
 
@@ -98,13 +102,25 @@ class LoansService{
 		const result = await LoansModel.rankMenu();
 		return result;
 	}
-
+  /** 대출 수정 */
 	static async updateLoans({loans_id, state, cancel}){
     console.log("service:",loans_id, state, cancel);
 		const result = await LoansModel.updateLoans({loans_id, state, cancel});
 		return result;
 	}
-
+  /** 책 반납 */
+	static async returnLoans({loans_id, returned, returnDate}){
+    console.log("서비스에서 책반납 들어옴:",loans_id, returned, returnDate);
+		const result = await LoansModel.returnLoans({loans_id, returned, returnDate});
+		return result;
+	}
+  /** 대출기간 연장 */
+	static async renewLoans({loans_id, due_date}){
+    console.log("서비스에서 대출연장 들어옴:",loans_id, due_date);
+		const result = await LoansModel.renewLoans({loans_id, due_date});
+		return result;
+	}
+  /** 대출 삭제 */
   static async deleteLoans({loans_id}){
     const result = await LoansModel.deleteLoans({loans_id});
     return result;

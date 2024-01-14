@@ -11,25 +11,31 @@ class Event extends Sequelize.Model {
           allowNull: false,
           comment: "event_id",
         },
-        admin_id: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          comment: "참조해온 어드민 id", 
-        },
         event_title: {
           type: Sequelize.STRING,
           allowNull: false,
           comment: "이벤트 제목",
         },
-        event_thumbnail_img_url: {
+        event_img_url: {
           type: Sequelize.STRING,
           allowNull: false,
           comment: "이벤트 썸네일 이미지 경로", 
         },
-        event_content_img_url: {
-          type: Sequelize.STRING,
+        event_status: {
+          type: Sequelize.INTEGER,
           allowNull: false,
-          comment: "이벤트 내용 이미지 경로",
+          defaultValue: 1,
+          comment: "이벤트 상태 (0: 종료, 1: 진행중, 2: 상시)"
+        },
+        event_start_date: {
+          type: Sequelize.DATE,
+          allowNull: false,
+          comment: "이벤트 시작일"
+        },
+        event_end_date: {
+          type: Sequelize.DATE,
+          allowNull: false,
+          comment: "이벤트 종료일"
         },
         read_count: {
           type: Sequelize.INTEGER,
@@ -57,8 +63,6 @@ class Event extends Sequelize.Model {
   }
 
   static associate(db) {
-    //참조키로 admin 모델의 admin_id(sourceKey)를 admin_id(targetKey)라는 이름으로 받음
-    db.Event.belongsTo(db.Admin, { foreignKey: 'admin_id', targetKey: 'admin_id'});
   }
 }
 
