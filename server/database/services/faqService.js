@@ -1,5 +1,5 @@
 const FaqModel = require('../models/faqModel')
-const {formatDate, faqFormatDate} = require('../../utils/dateUtils');
+const {formatDate, faqFormatDate} = require('../../utils/dataUtils');
 
 class FaqService{
 	

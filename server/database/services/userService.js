@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const redisClient = require("../../utils/redis.utils");
 require('dotenv').config();
 const { makeRefreshToken, makeAccessToken } = require('../../utils/token');
-
+const {formatDate, faqFormatDate, userFormat} = require('../../utils/dataUtils');
 
 class UserService{
 	//유효성 검사 이메일 겹치는지 등등
@@ -141,6 +141,14 @@ class UserService{
 		const serviceResult = {name, email, accessToken, refreshToken};
 
 		return serviceResult
+	}
+
+	static async getAllUser(){
+		const user = await UserModel.getAllUser();
+		// const phoneFormatUser = phoneFormat(user);
+		// console.log("phoneFormatUser:",phoneFormatUser);
+		const dataFormatUser = userFormat(user);
+		return dataFormatUser;
 	}
 
 	static async detailUser({id}){

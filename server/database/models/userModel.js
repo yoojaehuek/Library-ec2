@@ -19,6 +19,14 @@ class UserModel {
     return result;
   }
 
+  static async getAllUser(){
+    const user = await User.findAll({
+      attributes: ["user_id", "user_email", "user_name", "user_phone", "sns_type", "created_at"]
+    })
+    console.log(user);
+    return user;
+  }
+
   static async findOneUserId({id}){
     // console.log("userId",id);
     const user = await User.findOne({
@@ -61,7 +69,6 @@ class UserModel {
     });//where: {id: asdf} 형태가 들어와야함
     return user;
   }
-
 }
 
 module.exports = UserModel; 
