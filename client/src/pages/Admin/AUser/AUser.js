@@ -43,17 +43,24 @@ const AUser = () => {
     setPage(0);
   };
 
-  const handleDelete = (userId) => {
-    axios
-		.delete(`${API_URL}/api/user/${userId}`)
-		.then(() => {
-			console.log(` ${userId} 삭제 완료.`);
-			fetchUserData();
-		})
-		.catch((err) => {
-			console.error(` ${userId} 에러:`, err);
-		})
-  };
+	const handleDelete = (userId) => {
+		const deleteUser = window.confirm(` 선택한 ${userId} 를 삭제하시겠습니까?`);
+		
+		if (deleteUser) {
+			axios
+				.delete(`${API_URL}/api/user/${userId}`)
+				.then(() => {
+					console.log(`ID ${userId} 사용자 삭제 완료.`);
+					fetchUserData();
+				})
+				.catch((err) => {
+					console.error(`ID ${userId} 삭제 중 에러:`, err);
+				});
+		} else {
+			console.log('삭제 취소');
+		}
+	};
+	
 
   return (
     <>

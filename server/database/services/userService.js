@@ -9,7 +9,7 @@ class UserService{
 	//유효성 검사 이메일 겹치는지 등등
 	static async createUser({email, pwd, user_name, phone}){
 
-		const user = await UserModel.findOneUserEmail({ email });
+		const user = await UserModel.findOneUserEmail({ user_email: email });
 		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
@@ -63,17 +63,17 @@ class UserService{
 		if (hashedPassword === user.user_pwd) {
 			console.log('Login successful!');
 			// console.log("userService.js/loginUser()/user: ", user);
-			const accessToken = makeAccessToken({id: user.user_id});
+			const accessToken = makeAccessToken({email: user.user_email});
 			const refreshToken = makeRefreshToken();
 
 			// userId를 키값으로 refresh token을 redis server에 저장
-			await redisClient.set(user.user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+			await redisClient.set(user.user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 			// await redisClient.get(user.id, (err, value) => {
 			// 	console.log("redis.value: ", value); 
 			// });
 			
 			const name = user.user_name; 
-			const email = user.user_id;			
+			const email = user.user_email;			
 			const newUser = {name, email, accessToken, refreshToken};
 
 			return newUser
@@ -101,7 +101,7 @@ class UserService{
 		const newUser = {
 			user_email: tmp.email, 
 			user_name: tmp.name, 
-			user_phone: tmp.mobile.replace(/\D/g, ''), 
+			// user_phone: tmp.mobile.replace(/\D/g, ''), 
 			user_pwd: hashPassword,
 			salt: salt,
 			sns_id: tmp.id, 
@@ -119,8 +119,8 @@ class UserService{
 					sns_id: tmp.id, 
 					sns_type: "naver", 
 				}
-				const userId = tmp.email;
-				const putResult = await UserModel.patchUser({update, userId}); // 네이버 연동!
+				const user_email = tmp.email;
+				const putResult = await UserModel.patchUser({update, user_email}); // 네이버 연동!
 			}else { //연동 했음
 				//로그인 처리
 				console.log('가입도 했고 네이버도 연동됨');
@@ -130,14 +130,14 @@ class UserService{
 			console.log('신규 회원 회원 가입!');
 		}
 		
-		const accessToken = makeAccessToken({id: result[0].user_id});
+		const accessToken = makeAccessToken({email: result[0].user_email});
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
-		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		await redisClient.set(result[0].user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 		
 		const name = result[0].user_name; 
-		const email = result[0].user_id;			
+		const email = result[0].user_email;			
 		const serviceResult = {name, email, accessToken, refreshToken};
 
 		return serviceResult
@@ -151,8 +151,8 @@ class UserService{
 		return dataFormatUser;
 	}
 
-	static async detailUser({id}){
-		const user = await UserModel.findOneUserId({id});
+	static async detailUser({user_email}){
+		const user = await UserModel.findOneUserEmail({user_email});
 		// console.log({myId});
 		const name = user.user_name;
 		const pwd = user.user_pwd;
@@ -170,8 +170,8 @@ class UserService{
 		return userInfo;
 	}
 
-	static async patchUser({toUpdate, userId}){
-		console.log("서비스에서: ",toUpdate, userId);
+	static async patchUser({toUpdate, user_email}){
+		console.log("서비스에서: ",toUpdate, user_email);
 		// const email = toUpdate.user_name;
 		// const phone = toUpdate.phoneNumberPrefix + toUpdate.phoneNumberSuffix;
 		// const address = toUpdate.address;
@@ -191,13 +191,18 @@ class UserService{
 		// update.birth = toUpdate.selectedYear+'-'+toUpdate.selectedMonth+'-'+toUpdate.selectedDay;
 		console.log(update);
 
-		const user = await UserModel.patchUser({update, userId});
+		const user = await UserModel.patchUser({update, user_email});
 		return user;
 	}
 
-	static async deleteUser({userId}){
-		console.log("서비스에서: ", userId);
-		const user = await UserModel.destroyUser({userId});
+	static async deleteUser({user_email}){
+		console.log("서비스에서: ", user_email);
+		const user = await UserModel.destroyUser({user_email});
+		return user;
+	}
+	static async deleteAdminUser({user_id}){
+		console.log("서비스에서: ", user_id);
+		const user = await UserModel.deleteAdminUser({user_id});
 		return user;
 	}
 }

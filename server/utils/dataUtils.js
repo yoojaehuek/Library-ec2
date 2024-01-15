@@ -28,7 +28,9 @@ const formatDate = (result) => {
 		const { user_phone, created_at } = tmp[index];
 		tmp[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
 		tmp[index].created_at = tmp[index].created_at.toISOString().split('T')[0];
-		tmp[index].user_phone = user_phone.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		if(user_phone){
+			tmp[index].user_phone = user_phone.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		}
 	})
 	return tmp
   }

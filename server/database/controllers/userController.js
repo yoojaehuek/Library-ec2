@@ -99,10 +99,10 @@ class UserController {
 
   static async detailUser(req, res, next) {
     try {
-      // const id = req.userId;
-      const id = "rlarorn@naver.com";
-      console.log("id: ", id);
-      const user = await UserService.detailUser({ id });
+      const user_email = req.user_email;
+      // const id = "rlarorn@naver.com";
+      console.log("email: ", user_email);
+      const user = await UserService.detailUser({ user_email });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
@@ -134,6 +134,20 @@ class UserController {
       // const userId = 1;
       console.log("userController/deleteUser: ", userId);
       const user = await UserService.deleteUser({ userId });
+
+      // console.log("res임니다요: ",res);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteAdminUser(req, res, next) {
+    try {
+      const user_id = req.params.user_id;
+      // const userId = 1;
+      console.log("userController/deleteUser: ", user_id);
+      const user = await UserService.deleteAdminUser({ user_id });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
