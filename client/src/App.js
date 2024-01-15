@@ -8,7 +8,6 @@ import Join from './pages/Join/Join.js';
 import Login from './pages/Login/Login.js';
 import Cart from './pages/Cart/Cart.js';
 import Faq from './pages/Faq/Faq.js';
-import Fear from './pages/BookList/Literature.js'
 import BookList from './pages/BookList/BookList.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
