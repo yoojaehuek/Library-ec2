@@ -40,7 +40,7 @@ class UserService{
 		// console.log("id: ",id);
 		// console.log("pwd: ",pwd);
 
-		let user = await UserModel.findOneUserEmail({ email });
+		let user = await UserModel.findOneUserEmail({user_email: email });
 		console.log("user: ", user);
 		
 		if (!user) {
