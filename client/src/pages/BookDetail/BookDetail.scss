@@ -38,11 +38,15 @@
   
       .book-detail-availability-lhs{
         margin-top: 20px;
-        padding: 20px 90px;
+        width: 60%;
+        height: 14%;
+        text-align: center;
         float: left;
   
         span{
-          font-size: 20px;
+          font-size: 1.6vw;
+          position: relative;
+          top: 25%;
           font-weight: 900;
           color: white;
         }
@@ -51,7 +55,7 @@
     .buttons-container-lhs {
       display: flex;
       float: left;
-      width: 13%;
+      width: 9vw;
       margin-top: 40px;
       flex-direction: column;
       gap: 10px;
@@ -168,6 +172,24 @@
           }
         }
       }
+    }
+  }
+
+  .reviews-container-lhs{
+    .review-item-lhs {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .rating-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .star-icon {
+      color: #FFD700; // 금색 별 아이콘 색상
+      margin-right: 5px;
     }
   }
 }

@@ -46,7 +46,6 @@ app.use(cors());
 // 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
 app.use("/server/upload", express.static("server/upload"));  
 
-
 app.use('/api/admin', adminRouter);
 app.use('/api/book', bookRouter);
 app.use('/api/review', reviewRouter);

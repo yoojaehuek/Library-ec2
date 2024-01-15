@@ -47,8 +47,8 @@ class FaqController {
 		try {
 			const faq_id = req.params.faq_id;
 			// const toUpdate = { ...req.body }; // 이런식으로 한 줄로 써도 됨??????
-			const {...props} = req.body; // 새로운 개체를 만들어 할당하는 이유는 원본 객체를 직접 수정하지 않고
-      		const toUpdate = {...props} // 복사본을 만들어 사용하는 것이 일반적으로 안전하다고 여겨지기 때문.
+			// const {...props} = req.body; // 새로운 개체를 만들어 할당하는 이유는 원본 객체를 직접 수정하지 않고
+      		const toUpdate = {...req.body} // 복사본을 만들어 사용하는 것이 일반적으로 안전하다고 여겨지기 때문.
 			const result = await FaqService.updateFaq({ faq_id, toUpdate });
 			res.status(200).json(result);
 		} catch (error) {

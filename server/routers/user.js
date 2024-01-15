@@ -7,9 +7,11 @@ router.post('/join', UserController.createUser);
 router.post('/login', UserController.loginUser);
 router.post('/naver-login', UserController.naverLogin);
 // router.get('/one', authMiddleware, UserController.detailUser);
-router.get('/one', UserController.detailUser);
+router.get('/', UserController.getAllUser)
+router.get('/one', authMiddleware, UserController.detailUser);
 router.patch('/', authMiddleware, UserController.patchUser);
 router.delete('/', authMiddleware, UserController.deleteUser);
+router.delete('/:user_id', UserController.deleteAdminUser);
 router.get('/logout', (req, res) => {
   console.log("logout");
   res.cookie('accessToken',{},{
