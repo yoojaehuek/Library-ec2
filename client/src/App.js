@@ -22,7 +22,7 @@ const currentPath = window.location.pathname;
 function App() {
   return (
     <div className="App">
-      {/* {!currentPath.includes('/admin') && <Header />} */}
+      {!currentPath.includes('/admin') && <Header />}
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
         <Route path='/BookDetail/:id' element={<BookDetail></BookDetail>}></Route>
@@ -39,7 +39,7 @@ function App() {
         <Route path='/loantest' element={<LoanTest></LoanTest>}></Route>
         <Route path='/event' element={<Event></Event>}></Route>
       </Routes>
-      {/* {!currentPath.includes('/admin') && <Footer />} */}
+      {!currentPath.includes('/admin') && <Footer />}
     </div>
   );
 }
