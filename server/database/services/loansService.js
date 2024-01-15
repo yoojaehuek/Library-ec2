@@ -14,7 +14,7 @@ class LoansService{
   }
 
   static async getAllLoans(){
-    console.log("서비스 전체조회들어옴 ");
+    // console.log("서비스 전체조회들어옴 ");
     let loansData = await LoansModel.getAllLoans();
     loansData = loansData.map(el => el.get({ plain: true }));
     
@@ -29,16 +29,20 @@ class LoansService{
         loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
       }
     }) 
-    console.log("서비스 전체조회 받음 : ", loansData);
+    // console.log("서비스 전체조회 받음 : ", loansData);
 
     return loansData;
   }
 
-  static async getLoansByUserId({id}){
+  /** 유저대출정보조회 */
+  static async getLoansByUserId(id){
+    console.log("서비스 들어옴 id: ", id);
+
     const loansData = await LoansModel.findOneLoansUserId({id});
     // if (loansData.length === 0) {
     //   return [];
     // }
+    console.log("서비에서 찾은거 받음", loansData);
     return loansData;
   }
 

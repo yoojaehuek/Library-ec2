@@ -6,38 +6,39 @@ import { API_URL } from '../../config/contansts';
 
 const Mypage = () => {
   const [user, setUser] = useState({});
-  const [book, setBook] = useState({});
-  const [loans, setLoans] = useState([]);
+  const [userId, setUserId] = useState({});
+  const [userbyLoans, setUserbyLoans] = useState([]);
+  const [showAllBooks, setShowAllBooks] = useState(false);
+  // const [book, setBook] = useState({});
+  // const [loans, setLoans] = useState([]);
 
   useEffect(()=>{
     axios.get(`${API_URL}/api/user/one`)
     .then(res => {
       setUser(res.data);
+      setUserId(res.data.user_id);
+      console.log("받은 유저정보: ", res.data);
     }).catch((err) =>{
-        console.error(err);
-      });
+      console.error(err);
+    });
   },[]);
-  // useEffect(()=>{
-  //   axios.get(`${API_URL}/api/book`)
-  //   .then(res => {
-  //     console.log(res.data);
-  //     setBook(res.data[0]);
-  //   }).catch((err) =>{
-  //       console.error(err);
-  //     });
-  // },[]);
-  useEffect(()=>{
-    axios.get(`${API_URL}/api/loans`)
-    .then(res => {
-      setLoans(res.data);
-      console.log("대출 응답 받음: ", res.data);
+  /** 받은 유저id로 유저 대출정보 조회요청 */
+  useEffect(() => {
+    if (userId) { 
+      axios.get(`${API_URL}/api/loans/userbyloans/${userId}`)
+        .then(res => {
+          setUserbyLoans(res.data);
+          console.log("유저 대출정보 : ", res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [userId]);
+    // console.log("유저 대출정보 : ", userbyLoans);
 
-    }).catch((err) =>{
-        console.error(err);
-      });
-  },[]);
-
-
+  const visibleBooks = showAllBooks ? userbyLoans : userbyLoans.slice(0, 3);
+ 
   return (
     <div className='mypage-container-kjh'>
       <div className='pageTop-kjh'>
@@ -55,14 +56,30 @@ const Mypage = () => {
               //   {id:2, name: "유재혁", "여"}
               // ] */}
               <tr>
-                <td className='tWriter-kjh'>{loans.book_author}</td>
-                <td className='tTitle-kjh'>{loans.book_name}</td>
+                <td className='tWriter-kjh'>{book.book_author}</td>
+                <td className='tTitle-kjh'>{book.book_name}</td>
                 <td className='tSdate-kjh'>{loans.loan_date}</td>
                 <td className='tEdate-kjh'>{loans.due_date}</td>
               </tr>
             {/* })} */}
+            ;
+            <tr>
+              <td className='tWriter-kjh'>작가</td>
+              <td className='tTitle-kjh'>제목</td>
+              <td className='tSdate-kjh'>대여시작일</td>
+              <td className='tEdate-kjh'>반납일</td>
+            </tr>
+            <tr>
+              <td className='tWriter-kjh'>작가</td>
+              <td className='tTitle-kjh'>제목</td>
+              <td className='tSdate-kjh'>대여시작일</td>
+              <td className='tEdate-kjh'>반납일</td>
+            </tr>
           </table>
-          <NavLink className='more-kjh'>더보기 {'>'}</NavLink>
+          {!showAllBooks && (
+            <NavLink onClick={() => setShowAllBooks(true)} className='more-kjh'>더보기 {'>'}</NavLink>
+          )}
+          
         </div>
         
         <div className='readTable-kjh'>

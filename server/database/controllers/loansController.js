@@ -32,22 +32,22 @@ class LoansController {
   }
   /** 전체조회 */
   static async getAllLoans(req, res, next){
-    console.log("컨트롤러 전체조회 들어옴");``
+    // console.log("컨트롤러 전체조회 들어옴");
     try {
       const result = await LoansService.getAllLoans();
-      console.log("컨트롤러 전체조회 받음: ",result);
+      // console.log("컨트롤러 전체조회 받음: ",result);
       res.status(200).json(result);
     } catch (error) {
       next(error);
     }
   }
-
+  // 유저 대출정보 가져오기 전거
   static async getLoansByUserId(req, res, next){
+    console.log("유저 대출정보 조회 컨트롤러 들어옴");
     try {
-      console.log("req.userId: ", req.userId);
-      const userId = req.userId;
-      // const userId = 1;
-      const result = await LoansService.getLoansByUserId({id: userId});
+      const finduserid = req.params.user_id;
+      console.log("컨트롤러에서 유저대출정보 : ", finduserid);
+      const result = await LoansService.getLoansByUserId({user_id: finduserid});
       console.log("loansController.js/getLoansByUserId()/result: ", result);
       res.status(200).json(result);
     } catch (error) {
