@@ -7,6 +7,7 @@ const Loans = require('./loans');
 const Banner = require('./banner');
 const Event = require('./event');
 const Review = require('./review');
+const Event_applicants = require('./event_applicants');
 
 const env = process.env.NODE_ENV || 'development'; //상수 env에 NODE_ENV없으면 'development' 넣음
 const config = require('../../config/config.json')[env]; //상수config에 ../config/config파일에서 env(development) 불러옴
@@ -27,6 +28,7 @@ db.Loans = Loans;
 db.Banner = Banner;
 db.Review = Review;
 db.Event = Event;
+db.Event_applicants = Event_applicants
 
 
 
@@ -38,6 +40,7 @@ Loans.initiate(sequelize);
 Banner.initiate(sequelize);
 Review.initiate(sequelize); 
 Event.initiate(sequelize);
+Event_applicants.initiate(sequelize);
 
 
 Admin.associate(db);
@@ -48,5 +51,6 @@ Loans.associate(db);
 Banner.associate(db);
 Review.associate(db);
 Event.associate(db);
+Event_applicants.associate(db);
 
 module.exports = db;

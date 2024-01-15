@@ -22,10 +22,9 @@ class Event extends Sequelize.Model {
           comment: "이벤트 썸네일 이미지 경로", 
         },
         event_status: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          defaultValue: 1,
-          comment: "이벤트 상태 (0: 종료, 1: 진행중, 2: 상시)"
+          type: Sequelize.DataTypes.ENUM('always', 'ongoing', 'expired'),
+          defaultValue: 'ongoing',          
+          comment: "이벤트 상태 설정( 1 : always, 2 : ongoing, 3 : expired)",
         },
         event_start_date: {
           type: Sequelize.DATE,
@@ -37,6 +36,12 @@ class Event extends Sequelize.Model {
           allowNull: false,
           comment: "이벤트 종료일"
         },
+        event_max_applicants: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+          comment: "이벤트 인원 제한"
+        },
+        
         read_count: {
           type: Sequelize.INTEGER,
           allowNull: false,
@@ -63,6 +68,8 @@ class Event extends Sequelize.Model {
   }
 
   static associate(db) {
+    //참조키로 Event_applicants 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
+    db.Event.hasMany(db.Event_applicants, { foreignKey: 'event_id', sourceKey: 'event_id'});
   }
 }
 

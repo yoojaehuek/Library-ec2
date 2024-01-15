@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Box, IconButton, Button } from "@mui/material";
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-// import DeleteIcon from '@material-ui/icons/Delete';
+import { IoMdArrowBack } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../config/contansts";
 import axios from "axios";
@@ -148,7 +147,7 @@ const FaqDetail = () => {
   </Box>
 )}
       <IconButton style={{ position: 'absolute', top: '30%', left: '25%' }} onClick={goBack}>
-        {/* <ArrowBackIcon style={{fontSize: '2.5rem'}} /> */}
+        <IoMdArrowBack style={{fontSize: '2.5rem'}} />
       </IconButton>
     </Box>
   );

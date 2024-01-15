@@ -69,8 +69,7 @@ class EventController {
 	static async updateEvent(req, res, next){
 		try {
 			const event_id = req.params.event_id;
-			const {...props} = req.body;
-        const toUpdate = {...props}
+        const toUpdate = {...req.body};
 
 			const result = await EventService.updateEvent({ event_id, toUpdate });
 			res.status(200).json(result);

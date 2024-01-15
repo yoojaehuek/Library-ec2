@@ -1,0 +1,24 @@
+.myedit-container-kjh {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 1200px;
+  height: 1000px;
+
+  .editpageTop-kjh {
+    margin: 50px auto;
+    width: 1000px;
+    height: 100px;
+    position: relative;
+    border-bottom: 3px solid #333;
+  }
+  .editpageTop-kjh h1 {
+    width: 700px;
+    float: left;
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
+  }
+
+
+
+}

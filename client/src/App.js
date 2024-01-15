@@ -8,13 +8,12 @@ import Join from './pages/Join/Join.js';
 import Login from './pages/Login/Login.js';
 import Cart from './pages/Cart/Cart.js';
 import Faq from './pages/Faq/Faq.js';
-import Fear from './pages/BookList/Literature.js'
 import BookList from './pages/BookList/BookList.js'
-import ABanner from './admin/page/ABanner/ABanner.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
+import Check from './pages/Mypage/Check.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 
@@ -36,6 +35,7 @@ function App() {
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
         <Route path='/admin/*' element={<Adminmain></Adminmain>}></Route>
         <Route path='/mypage' element={<Mypage></Mypage>}></Route>
+        <Route path='/check' element={<Check></Check>}></Route>
         <Route path='/loantest' element={<LoanTest></LoanTest>}></Route>
         <Route path='/event' element={<Event></Event>}></Route>
       </Routes>

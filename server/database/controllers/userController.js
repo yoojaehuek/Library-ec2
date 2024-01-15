@@ -86,6 +86,33 @@ class UserController {
       next(error);
     }
   }
+  static async checkPassword(req, res, next) {
+    try {
+      const user_email = req.user_email;
+      const user_pwd = req.body.pwd;
+      console.log("컨트롤러에서 pwd: ", user_pwd);
+      const user = await UserService.checkPassword({user_email, user_pwd});
+      console.log("userControll.loginUser: ", user);
+
+      if (user.errorMessage) {
+        throw new Error(user.errorMessage);
+      }
+
+      res.status(200).json({"status": user});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllUser(req, res, next) {
+    try {
+      const user = await UserService.getAllUser();
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
 
   static async detailUser(req, res, next) {
     try {
@@ -124,6 +151,20 @@ class UserController {
       // const userId = 1;
       console.log("userController/deleteUser: ", userId);
       const user = await UserService.deleteUser({ userId });
+
+      // console.log("res임니다요: ",res);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteAdminUser(req, res, next) {
+    try {
+      const user_id = req.params.user_id;
+      // const userId = 1;
+      console.log("userController/deleteUser: ", user_id);
+      const user = await UserService.deleteAdminUser({ user_id });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
