@@ -42,7 +42,6 @@ const BookList = () => {
   // 현재 페이지에 표시할 데이터 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = books.slice(indexOfFirstItem, indexOfLastItem);
 
   // 페이지 변경 함수
   const handlePageChange = (event, pageNumber) => {
@@ -56,7 +55,7 @@ const BookList = () => {
         <div className='BookList-content-lhs'>
           <div className={`BookList-main-content-lhs  ${showWelcome ? 'show' : ''}`}>
             <div className='BookList-main-img-lhs'>
-              {books.map((item, index) => {
+              {books.slice(indexOfFirstItem,indexOfLastItem).map((item, index) => {
                 return (
                   <NavLink to={`/BookDetail/${item.book_id}`} key={index} className={`grid-item-lhs ${item.book_availability === '대출 가능' ? 'available' : 'unavailable'}`}>
                     <div className='grid-item-info-lhs'>

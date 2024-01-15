@@ -12,6 +12,7 @@ const BookDetail = () => {
   console.log(id);
   const [book_publisher,setBook_Publisher] = useState("");
   const [book_author,setbook_author] = useState("");
+  const [reviews, setReviews] = useState([]); // 리뷰 상태 추가
 
   useEffect(()=>{
     axios.get(`${API_URL}/api/book?book_id=${id}`)
@@ -53,17 +54,14 @@ const BookDetail = () => {
     console.log('도서카트에 추가');
   };
 
-  const [newReview, setNewReview] = React.useState({
-    user_id: 'currentUserId', // 현재 사용자 ID를 얻어와야 함
-    review_text: '',
-    rating: 0,
-  });
+  if (!reviews || reviews.length === 0) {
+  const tempReviews = [
+    { id: 1, review_text: '정말 좋은 책이었습니다!', rating: 5, create_at: '2022-01-15' },
+    { id: 2, review_text: '재미있게 읽었습니다.', rating: 4, create_at: '2022-01-14' },
+  ];
 
-  const handleReviewSubmit = () => {
-    // TODO: 새 리뷰를 저장하는 로직 추가
-    console.log('새 리뷰를 저장합니다:', newReview);
-  };
-
+  setReviews(tempReviews);
+}
 
     return (
       <div className='book-detail-container-lhs'>
@@ -130,31 +128,18 @@ const BookDetail = () => {
         </div>
         <div className='reviews-container-lhs'>
           <h2>리뷰</h2>
-          {/* 리뷰 목록 표시 로직 추가 */}
-          {axiosResult.reviews && axiosResult.reviews.map((review) => (
-            <div key={review.id} className='review-item-lhs'>
+            {reviews.map((review) => (
+              <div key={review.id} className='review-item-lhs'>
               <p>{review.review_text}</p>
-              <p>평점: {review.rating}</p>
+              <div className="rating-container">
+                <p>평점:</p>
+                {Array.from({ length: review.rating }, (_, index) => (
+                  <span key={index} className="star-icon">★</span>
+                ))}
+              </div>
               <p>작성일: {review.create_at}</p>
             </div>
           ))}
-          {/* 새 리뷰 작성 양식 */}
-          {newReview.book_id && (
-            <div className='new-review-form-lhs'>
-              <textarea
-                placeholder='리뷰를 작성하세요...'
-                value={newReview.review_text}
-                onChange={(e) => setNewReview({ ...newReview, review_text: e.target.value })}
-              />
-              <input
-                type='number'
-                placeholder='평점 (1~5)'
-                value={newReview.rating}
-                onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })}
-              />
-              <button onClick={handleReviewSubmit}>리뷰 작성</button>
-            </div>
-          )}
         </div>
       </div>
     );

@@ -5,6 +5,7 @@ import './Adminmain.scss';
 import AChart from './AComponent/AChart.js';
 import AHeader from './AComponent/AHeader.js';
 import ALogin from './ALogin/ALogin.js';
+import ABanner from './ABanner/ABanner.js';
 import AFaq from './AFaq/AFaq.js';
 // import { getCookie } from '../utils/cookie.js';
 
@@ -30,6 +31,7 @@ const AdminMain = () => {
         <Route path='/' element={<AChart></AChart>}></Route>
         <Route path='/test' element={<ALogin />} />
         <Route path='/faq/faq' element={<AFaq />} />
+        <Route path='/banner/banner' element={<ABanner />} />
         </Routes>
       </div>
     </div>

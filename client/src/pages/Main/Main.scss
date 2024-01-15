@@ -6,42 +6,14 @@
   width: 100%;
   transition: background-color 1s ease;
   display: flex;
-  overflow-y: hidden;
+  max-width: 60vw;
+  margin: 0 auto;
 
   .main-content-kjh{
-    // padding-left: 20.6875rem;
-    // padding-right: 19.6875rem;
-    padding: 0 12rem;
-    min-width: 500px;
-    
-    @media only screen and (max-width: 1200px) {
-      .main-content-lhs {
-        padding-left: 10rem;
-        padding-right: 9.6875rem;
-      }
-    }
-  
-    @media only screen and (max-width: 1000px) {
-      .main-content-lhs {
-        padding-left: 5rem;
-        padding-right: 4.6875rem;
-      }
-    }
-  
-    @media only screen and (max-width: 768px) {
-      .main-content-lhs {
-        padding-left: 2rem;
-        padding-right: 1.6875rem;
-      }
-    }
-  
-    @media only screen and (max-width: 576px) {
-      .main-content-lhs {
-        padding-left: 1rem;
-        padding-right: 0.6875rem;
-      }
-    }
+    max-width: 60vw;
+    margin: 0 auto;
 
+    
     .main-welcome-lhs {
       position: fixed;
       top: 0;
@@ -180,16 +152,15 @@
             font-family: 'Nanum Gothic', sans-serif; /* 글꼴 설정 */
             color: white;
             text-align: center;
-            font-size: 18px;
+            font-size: 1.1vw;
             font-weight: 600;
-            line-height: 1.3;
-            padding: 8px;
-            top: 75%;
-            right:20%;
+            top: 65%;
+            left: 5%;
             margin-bottom: 5px;
           
             > span {
-              font-size: 14px;
+              font-size: 1vw;
+              width: 58vw;
               opacity: 0.8;
             }
           }
@@ -201,24 +172,22 @@
   ///////////////////////////////////슬라이더 아래 css 
   .mid-content-lhs{
     padding: auto;
+    max-width: 60vw;
+    margin: 0 auto;
     cursor: pointer;
 
     .main-mid-top-lhs{
       cursor: default;
       margin: 0;
-      width: 68vw;
-      margin-top: 40px;
+      width: 79vw;
+      margin-top: 10px;
       margin-bottom: 20px;
-      border-top: 3px solid black;
-      border-bottom: 3px solid black;
 
       >h1{
         margin: 2px;
         text-align: left;
-        width: 66vw;
+        width: 77.5vw;
         padding: 10px;
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
       }
     }
 
@@ -226,10 +195,12 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 1s, transform 2s;
+      padding: 15px 0 ;
+      margin-top: 15px;
+      border: 1px solid black;
+      border-radius: 15px;
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
       grid-template-rows: auto; /* 행 크기 자동 조절 */
-      width: calc(100% + 4px);
 
       &.show {
         opacity: 1;
@@ -239,7 +210,6 @@
       .main-mid-img-lhs {
         display: flex;
         align-items: center;
-        width: 85vw;
         margin: 5px;
       
 
@@ -263,7 +233,7 @@
           }
         
           > img {
-            width: 10vw;
+            width: 10.2vw;
             height: 15vw;
             border-radius: 10px; // 이미지에 원하는 모양의 모서리를 적용하세요
             z-index: 2; // 그라데이션 위에 표시되도록 설정
@@ -279,7 +249,7 @@
             box-sizing: border-box;
             border-radius: 0 0 10px 10px; // 텍스트 영역에 원하는 모양의 모서리를 적용하세요
             color: #fff; // 텍스트 색상
-            font-size: 16px; // 텍스트 크기
+            font-size: 1vw;// 텍스트 크기
             font-weight: 600;
             z-index: 3; // 그라데이션 위에 표시되도록 설정
           }
@@ -291,7 +261,7 @@
       opacity: 0;
       transform: translateY(-20px);
       transition: opacity 1s, transform 1s;
-      display: flex;
+      display: grid;
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
@@ -307,7 +277,7 @@
       }
     
       .main-bottom-container-lhs {
-        width: 100%;
+        // width: 100%;
         height: auto;
         padding: 0 20px;
         box-sizing: border-box;
@@ -317,7 +287,7 @@
           width: 100%;
 
           .main-bottom-fullbook-lhs{
-            width: 100%;
+            width: 57.7vw;
             padding: 20px;
             box-sizing: border-box;
             color: #fff;
@@ -346,6 +316,7 @@
             margin-bottom: 30px;
             padding: 30px;
             box-sizing: border-box;
+            background-size: 100% 100%;
             color: #fff;
             position: relative;
             overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */

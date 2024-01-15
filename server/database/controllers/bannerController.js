@@ -21,6 +21,17 @@ class BannerController {
 		}
 	}
 
+	
+	static async getOneBanner(req, res, next){
+		try {
+			const banner_id = req.params.banner_id;
+			const result = await BannerService.getOneBanner(banner_id);
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
 	static async updateBanner(req, res, next){
 		try {
 			const banner_id = req.params.banner_id;
