@@ -31,6 +31,11 @@ class Event extends Sequelize.Model {
           allowNull: false,
           comment: "이벤트 내용 이미지 경로",
         },
+        event_status: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          comment: "이벤트 상태 설정 (0: 종료, 1: 진행중 2: 상시)",
+        },
         read_count: {
           type: Sequelize.INTEGER,
           allowNull: false,
