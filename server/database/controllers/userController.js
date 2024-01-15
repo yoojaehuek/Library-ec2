@@ -89,10 +89,10 @@ class UserController {
 
   static async detailUser(req, res, next) {
     try {
-      // const id = req.userId;
-      const id = "rlarorn@naver.com";
-      console.log("id: ", id);
-      const user = await UserService.detailUser({ id });
+      const user_email = req.user_email;
+      // const id = "rlarorn@naver.com";
+      console.log("email: ", user_email);
+      const user = await UserService.detailUser({ user_email });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
