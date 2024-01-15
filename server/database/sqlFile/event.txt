@@ -1,0 +1,12 @@
+
+
+https://lib.seoul.go.kr/lecture/applyList
+
+
+INSERT INTO `library`.`event` (`event_id`, `event_title`, `event_img_url`, `event_status`, `event_start_date`, `event_end_date`, `event_max_applicants`, `read_count`, `created_at`) 
+VALUES 
+('1', '세계적인 그림책 작가 바루 작가 초청 환경 토론회', '/server/upload/event/36968730387692245.png', 'always', '2023-01-19 10:29:04', '2023-01-20 10:29:04', '30', '0', '2023-01-14 10:29:04'),
+('2', '세계적인 그림책 작가 바루 작가 초청 어린이 워크샵', '/server/upload/event/36968186431227336.png', 'expired', '2023-01-19 10:29:04', '2023-01-20 10:29:04', '1', '0', '2023-01-14 10:29:04');
+
+INSERT INTO `library`.`event` (`event_id`, `event_title`, `event_img_url`, `event_status`, `event_start_date`, `event_end_date`, `read_count`, `created_at`) 
+VALUES ('3', '세계적인 그림책 작가 바루 작가 초청 어린이 워크샵', '/server/upload/event/36968186431227336.png', 'expired', '2023-01-19 10:29:04', '2023-01-20 10:29:04', '0', '2023-01-14 10:29:04');

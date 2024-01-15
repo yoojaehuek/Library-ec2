@@ -34,58 +34,9 @@ class UserService{
 		return createNewUser
 	}
 
-	static async naverLogin(tmp){
-
-		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
-		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
-		const salt = crypto.randomBytes(128).toString('base64'); 
-
-		// crypto.createHash('sha512'): SHA-512 해시 개체를 생성
-		//.update(pwd + salt): 비밀번호( pwd)와 솔트를 연결하여 해시를 업데이트
-		//.digest('hex'): 16진수 형식으로 최종 해시를 생성
-		const hashPassword = crypto
-			.createHash('sha512')
-			.update(tmp.email + salt)
-			.digest('hex');
-		
-		const newUser = {
-			user_email: tmp.email, 
-			user_name: tmp.name, 
-			user_phone: tmp.mobile.replace(/\D/g, ''), 
-			user_pwd: hashPassword,
-			salt: salt,
-			sns_id: tmp.id, 
-			sns_type: "naver", 
-		}
-		// console.log(newUser);
-
-		const result = await UserModel.naverLogin(newUser);
-		console.log("naver/service/result: ", result[1]);
-		
-		if (!result[1]) { // 가입 내역 있음
-			if (!result[0].sns_id) { //계정은 있는데 네이버 아이디 아님
-				console.log('가입 했지만 네이버 아님 연동!');
-				const update = {
-					sns_id: tmp.id, 
-					sns_type: "naver", 
-				}
-				const userId = tmp.email;
-
-				const result = await UserModel.putUser({update, userId}); // 네이버 연동!
-				console.log(result);
-			
-			}else { //연동 했음
-				//로그인 처리
-				console.log('가입도 했고 네이버도 연동됨');
-			} 
-		} else { // 가입 내역 없음
-			//위에서 함 필요 없음
-			console.log('신규 회원 회원 가입!');
-		}
-	}
-
 	static async loginUser({email, pwd}){
-		console.log("서비스에서: ",email);
+		// console.log("서비스에서: ",email);
+		console.log("로그인서비스들어옴");
 		// console.log("id: ",id);
 		// console.log("pwd: ",pwd);
 
@@ -133,44 +84,85 @@ class UserService{
 		}
 	}
 
+	static async naverLogin(tmp){
+
+		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
+		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
+		const salt = crypto.randomBytes(128).toString('base64'); 
+
+		// crypto.createHash('sha512'): SHA-512 해시 개체를 생성
+		//.update(pwd + salt): 비밀번호( pwd)와 솔트를 연결하여 해시를 업데이트
+		//.digest('hex'): 16진수 형식으로 최종 해시를 생성
+		const hashPassword = crypto
+			.createHash('sha512')
+			.update(tmp.email + salt)
+			.digest('hex');
+		
+		const newUser = {
+			user_email: tmp.email, 
+			user_name: tmp.name, 
+			user_phone: tmp.mobile.replace(/\D/g, ''), 
+			user_pwd: hashPassword,
+			salt: salt,
+			sns_id: tmp.id, 
+			sns_type: "naver", 
+		}
+		// console.log(newUser);
+
+		const result = await UserModel.naverLogin(newUser);
+		console.log("naver/service/result: ", result[1]);
+		
+		if (!result[1]) { // 가입 내역 있음 (생성 못했기 때문에 false임)
+			if (!result[0].sns_id) { //계정은 있는데 네이버 아이디 아님
+				console.log('가입 했지만 네이버 아님 연동!');
+				const update = {
+					sns_id: tmp.id, 
+					sns_type: "naver", 
+				}
+				const userId = tmp.email;
+				const putResult = await UserModel.patchUser({update, userId}); // 네이버 연동!
+			}else { //연동 했음
+				//로그인 처리
+				console.log('가입도 했고 네이버도 연동됨');
+			} 
+		} else { // 가입 내역 없음
+			//위에서 함 필요 없음
+			console.log('신규 회원 회원 가입!');
+		}
+		
+		const accessToken = makeAccessToken({id: result[0].user_id});
+		const refreshToken = makeRefreshToken();
+
+		// userId를 키값으로 refresh token을 redis server에 저장
+		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		
+		const name = result[0].user_name; 
+		const email = result[0].user_id;			
+		const serviceResult = {name, email, accessToken, refreshToken};
+
+		return serviceResult
+	}
+
 	static async detailUser({id}){
 		const user = await UserModel.findOneUserId({id});
 		// console.log({myId});
 		const name = user.user_name;
 		const pwd = user.user_pwd;
 		const phone = user.user_phone;
-		const address = user.user_address;
-		const detail_address = user.user_detail_address;
-		// const user_email = user.email;
-		// const address = user.address;
-		// const detail_address = user.detail_address;
-		// const phone = user.phone;
-		// const phone_number_prefix = user.phone.substring(0, 3);
-		// const phone_number_suffix = user.phone.substring(3);
-		// const birth = user.birth;
-		// const date = new Date(user.birth);
-		// const year = date.getFullYear();
-		// const month = date.getMonth()+1;
-		// const day = date.getDate();
-
+		const email = user.user_email;
+		const user_id = user.user_id;
 		const userInfo = {
+			user_id,
 			name,
 			pwd,
 			phone,
-			address,
-			detail_address,
-			// user_email,
-			// phone_number_prefix,
-			// phone_number_suffix,
-			// year,
-			// month,
-			// day,
+			email,
 		};
 
 		return userInfo;
 	}
 
-	static async putUser({toUpdate, userId}){
+	static async patchUser({toUpdate, userId}){
 		console.log("서비스에서: ",toUpdate, userId);
 		// const email = toUpdate.user_name;
 		// const phone = toUpdate.phoneNumberPrefix + toUpdate.phoneNumberSuffix;
@@ -191,7 +183,7 @@ class UserService{
 		// update.birth = toUpdate.selectedYear+'-'+toUpdate.selectedMonth+'-'+toUpdate.selectedDay;
 		console.log(update);
 
-		const user = await UserModel.putUser({update, userId});
+		const user = await UserModel.patchUser({update, userId});
 		return user;
 	}
 

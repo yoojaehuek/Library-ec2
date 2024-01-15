@@ -5,8 +5,8 @@ require('dotenv').config();
 var client_id = process.env.NAVER_LOGIN_CLIENT_ID;
 var client_secret = process.env.NAVER_LOGIN_CLIENT_SECRET;
 var state = process.env.NAVER_STATE;
-var loginRedirectURI = encodeURI(process.env.NAVER_CALLBACK_REDIRECT_URL);
-var callbackRedirectURI = encodeURI(process.env.NAVER_CALLBACK_REDIRECT_URL);
+var loginRedirectURI = encodeURI(process.env.NAVER_LOGIN_REDIRECT_URL);
+var callbackRedirectURI = encodeURI(process.env.NAVER_LOGIN_REDIRECT_URL);
 var api_url = "";
 
 router.get("/naverlogin", function (req, res) {
@@ -62,7 +62,9 @@ router.get('/member', function (req, res) {
   request.get(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
-      console.log(body);
+      console.log("-------------------------------------------");
+      console.log("body: ", body);
+      console.log("-------------------------------------------");
       res.end(body);
     } else {
       console.log('error');
@@ -73,5 +75,9 @@ router.get('/member', function (req, res) {
     }
   });
 });
+
+
+
+
 
 module.exports = router;
