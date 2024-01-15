@@ -17,19 +17,21 @@ const Mypage = () => {
         console.error(err);
       });
   },[]);
-  useEffect(()=>{
-    axios.get(`${API_URL}/api/book`)
-    .then(res => {
-      console.log(res.data);
-      setBook(res.data[0]);
-    }).catch((err) =>{
-        console.error(err);
-      });
-  },[]);
+  // useEffect(()=>{
+  //   axios.get(`${API_URL}/api/book`)
+  //   .then(res => {
+  //     console.log(res.data);
+  //     setBook(res.data[0]);
+  //   }).catch((err) =>{
+  //       console.error(err);
+  //     });
+  // },[]);
   useEffect(()=>{
     axios.get(`${API_URL}/api/loans`)
     .then(res => {
       setLoans(res.data);
+      console.log("대출 응답 받음: ", res.data);
+
     }).catch((err) =>{
         console.error(err);
       });
@@ -53,25 +55,12 @@ const Mypage = () => {
               //   {id:2, name: "유재혁", "여"}
               // ] */}
               <tr>
-                <td className='tWriter-kjh'>{book.book_author}</td>
-                <td className='tTitle-kjh'>{book.book_name}</td>
+                <td className='tWriter-kjh'>{loans.book_author}</td>
+                <td className='tTitle-kjh'>{loans.book_name}</td>
                 <td className='tSdate-kjh'>{loans.loan_date}</td>
                 <td className='tEdate-kjh'>{loans.due_date}</td>
               </tr>
             {/* })} */}
-            ;
-            <tr>
-              <td className='tWriter-kjh'>작가</td>
-              <td className='tTitle-kjh'>제목</td>
-              <td className='tSdate-kjh'>대여시작일</td>
-              <td className='tEdate-kjh'>반납일</td>
-            </tr>
-            <tr>
-              <td className='tWriter-kjh'>작가</td>
-              <td className='tTitle-kjh'>제목</td>
-              <td className='tSdate-kjh'>대여시작일</td>
-              <td className='tEdate-kjh'>반납일</td>
-            </tr>
           </table>
           <NavLink className='more-kjh'>더보기 {'>'}</NavLink>
         </div>

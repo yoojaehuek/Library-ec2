@@ -10,7 +10,7 @@ class LoansController {
     try {
       const tmp = req.body;
       // tmp.userId = req.userId;
-      tmp.user_email = "ee@ee.com";
+      tmp.user_email = "ki";
       tmp.user_id = 1;
       
       tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
@@ -32,7 +32,7 @@ class LoansController {
   }
   /** 전체조회 */
   static async getAllLoans(req, res, next){
-    console.log("컨트롤러 전체조회 들어옴");
+    console.log("컨트롤러 전체조회 들어옴");``
     try {
       const result = await LoansService.getAllLoans();
       console.log("컨트롤러 전체조회 받음: ",result);
