@@ -53,7 +53,7 @@ class UserService{
 		// 입력한 비밀번호와 조회해온 암호화 난수 함침
 		const combinedPassword = pwd + user.salt; // 1234ajksdhf;adhf;laskdnflas
 
-		// 함친 combinedPassword 암호화
+		// 합친 combinedPassword 암호화
 		const hashedPassword = crypto  //asldgfiahsgdkajsdfabijvabsijdvb
 			.createHash('sha512')
 			.update(combinedPassword)
@@ -63,17 +63,17 @@ class UserService{
 		if (hashedPassword === user.user_pwd) {
 			console.log('Login successful!');
 			// console.log("userService.js/loginUser()/user: ", user);
-			const accessToken = makeAccessToken({id: user.user_id});
+			const accessToken = makeAccessToken({email: user.user_email});
 			const refreshToken = makeRefreshToken();
 
 			// userId를 키값으로 refresh token을 redis server에 저장
-			await redisClient.set(user.user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+			await redisClient.set(user.user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 			// await redisClient.get(user.id, (err, value) => {
 			// 	console.log("redis.value: ", value); 
 			// });
 			
 			const name = user.user_name; 
-			const email = user.user_id;			
+			const email = user.user_email;			
 			const newUser = {name, email, accessToken, refreshToken};
 
 			return newUser
@@ -119,8 +119,8 @@ class UserService{
 					sns_id: tmp.id, 
 					sns_type: "naver", 
 				}
-				const userId = tmp.email;
-				const putResult = await UserModel.patchUser({update, userId}); // 네이버 연동!
+				const user_email = tmp.email;
+				const putResult = await UserModel.patchUser({update, user_email}); // 네이버 연동!
 			}else { //연동 했음
 				//로그인 처리
 				console.log('가입도 했고 네이버도 연동됨');
@@ -130,21 +130,55 @@ class UserService{
 			console.log('신규 회원 회원 가입!');
 		}
 		
-		const accessToken = makeAccessToken({id: result[0].user_id});
+		const accessToken = makeAccessToken({email: result[0].user_email});
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
-		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		await redisClient.set(result[0].user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 		
 		const name = result[0].user_name; 
-		const email = result[0].user_id;			
+		const email = result[0].user_email;			
 		const serviceResult = {name, email, accessToken, refreshToken};
 
 		return serviceResult
 	}
 
-	static async detailUser({id}){
-		const user = await UserModel.findOneUserId({id});
+	static async checkPassword({user_email, user_pwd}){
+		console.log("이메일서비스들어옴 : ", user_email);
+		console.log("비번서비스들어옴 : ", user_pwd);
+		
+		let user = await UserModel.findOneUserEmail({ user_email });
+		console.log("user: ", user);
+		
+		if (!user) {
+			console.log('null걸림');
+			user = {}; // null이면 속성 할당 안됨 그래서 {} 빈 객체 재할당
+			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."; // {errorMessage: "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."}
+			return user;
+		}
+
+		// 입력한 비밀번호와 조회해온 암호화 난수 함침
+		const combinedPassword = user_pwd + user.salt; // 1234ajksdhf;adhf;laskdnflas
+
+		// 합친 combinedPassword 암호화
+		const hashedPassword = crypto  //asldgfiahsgdkajsdfabijvabsijdvb
+			.createHash('sha512')
+			.update(combinedPassword)
+			.digest('hex');
+
+		// hashedPassword와 DB의 비밀번호 비교
+		if (hashedPassword === user.user_pwd) {
+			console.log('Login successful!');
+			// console.log("userService.js/loginUser()/user: ", user);
+			// const accessToken = makeAccessToken({email: user.user_email});
+			// const refreshToken = makeRefreshToken();
+		} else {
+			console.log("비번 일치 x");
+		}
+	}
+
+	static async detailUser({user_email}){
+		const user = await UserModel.findOneUserEmail({user_email});
 		// console.log({myId});
 		const name = user.user_name;
 		const pwd = user.user_pwd;
@@ -162,8 +196,8 @@ class UserService{
 		return userInfo;
 	}
 
-	static async patchUser({toUpdate, userId}){
-		console.log("서비스에서: ",toUpdate, userId);
+	static async patchUser({toUpdate, user_email}){
+		console.log("서비스에서: ",toUpdate, user_email);
 		// const email = toUpdate.user_name;
 		// const phone = toUpdate.phoneNumberPrefix + toUpdate.phoneNumberSuffix;
 		// const address = toUpdate.address;
@@ -183,13 +217,13 @@ class UserService{
 		// update.birth = toUpdate.selectedYear+'-'+toUpdate.selectedMonth+'-'+toUpdate.selectedDay;
 		console.log(update);
 
-		const user = await UserModel.patchUser({update, userId});
+		const user = await UserModel.patchUser({update, user_email});
 		return user;
 	}
 
-	static async deleteUser({userId}){
-		console.log("서비스에서: ", userId);
-		const user = await UserModel.destroyUser({userId});
+	static async deleteUser({user_email}){
+		console.log("서비스에서: ", user_email);
+		const user = await UserModel.destroyUser({user_email});
 		return user;
 	}
 }

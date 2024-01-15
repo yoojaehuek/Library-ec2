@@ -43,7 +43,7 @@ const Mypage = () => {
     <div className='mypage-container-kjh'>
       <div className='pageTop-kjh'>
         <h1>{user.name}님 환영합니다.</h1>
-        <NavLink to='/' className="myEdit-kjh">내 정보 수정 {'>'}</NavLink>
+        <NavLink to='/check' className="myEdit-kjh">내 정보 수정 {'>'}</NavLink>
       </div>
 
       <div className='myTable-kjh'>

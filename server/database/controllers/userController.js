@@ -86,13 +86,29 @@ class UserController {
       next(error);
     }
   }
+  static async checkPassword(req, res, next) {
+    try {
+      const user_email = req.user_email;
+      const pwd = req.body;
+      console.log("컨트롤러에서 pwd: ", pwd);
+      const user = await UserService.checkPassword({user_email, user_pwd: pwd});
+      console.log("userControll.loginUser: ", user);
+
+      if (user.errorMessage) {
+        throw new Error(user.errorMessage);
+      }
+      res.status(200).end();
+    } catch (error) {
+      next(error);
+    }
+  }
 
   static async detailUser(req, res, next) {
     try {
-      const id = req.userId;
+      const user_email = req.user_email;
       // const id = "rlarorn@naver.com";
-      console.log("id: ", id);
-      const user = await UserService.detailUser({ id });
+      console.log("email: ", user_email);
+      const user = await UserService.detailUser({ user_email });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);

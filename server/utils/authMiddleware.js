@@ -14,7 +14,7 @@ const authMiddleware = async (req, res, next) => {
     const accessTokenResult = await verify(accessToken);  
     const decode = jwt.decode(accessToken); 
     console.log("verify.get.accessTokenResult: ",accessTokenResult.ok);
-    const refreshTokenResult = await refreshVerify(refreshToken, decode.id);
+    const refreshTokenResult = await refreshVerify(refreshToken, decode.email);
     console.log("verify.get.refreshTokenResult: ",refreshTokenResult);
 
     if (accessTokenResult.ok == false || accessToken == undefined) { //accToken 쿠키없음
@@ -37,7 +37,7 @@ const authMiddleware = async (req, res, next) => {
         console.log("accessTokenResult.decoded: ",decoded);
         console.log("accessTokenResult.accessToken: ",accessToken);
         console.log("accessTokenResult.req.cookies.accessToken: ", req.cookies.accessToken);
-        const newAccessToken = makeAccessToken({id: decoded.id});
+        const newAccessToken = makeAccessToken({email: decoded.email});
         res.cookie('accessToken', newAccessToken, {
           httpOnly : true,
           secure : false,
@@ -48,7 +48,7 @@ const authMiddleware = async (req, res, next) => {
         //   ok: true,
         //   message: 'accessToken 재생성!' 
         // });
-        req.userId = decode.id; 
+        req.user_email = decode.email; 
         next();
       }
     }else{ //accToken있음
@@ -58,7 +58,7 @@ const authMiddleware = async (req, res, next) => {
       //   ok: true,
       //   message: 'accToken유효 통과!' 
       // });
-      req.userId = decode.id;
+      req.user_email = decode.email;
       next();
     }
   } catch (error) {
