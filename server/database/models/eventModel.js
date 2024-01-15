@@ -46,6 +46,7 @@ class EventModel {
       where: {
         event_id: event_id,
       },
+      raw:true,
     });
     return result;
   }

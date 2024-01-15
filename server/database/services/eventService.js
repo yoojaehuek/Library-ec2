@@ -1,6 +1,6 @@
 const EventModel = require('../models/eventModel');
 const { Op } = require('sequelize');
-const validationUtils = require('../../utils/validationUtils');
+const {eventFormatDate} = require('../../utils/dataUtils');
 
 class EventService{
 	
@@ -10,7 +10,8 @@ class EventService{
 	}
 
 	static async getAllEvent(){
-		const result = await EventModel.getAllEvent();
+		const tmpResult = await EventModel.getAllEvent();
+		const result = await eventFormatDate(tmpResult);
 		return result;
 	}
 
@@ -57,7 +58,8 @@ class EventService{
 	}
 
 	static async getOneEvent({event_id}){
-		const result = await EventModel.getOneEvent({event_id});
+		const tmpResult = await EventModel.getOneEvent({event_id});
+		const result = await eventFormatDate(tmpResult);
 		return result;
 	}
 

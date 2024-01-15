@@ -59,7 +59,7 @@ const Main = () => {
           <div className={`main-mid-content-lhs  ${showWelcome ? 'show' : ''}`}>
             <div className='main-mid-img-lhs'>
               {axiosResult.slice(0, 5).map((item, index) => (
-                <NavLink to='/BookDetail' key={index} className='grid-item-lhs'>
+                <NavLink to={'/event/'+item.event_id} key={index} className='grid-item-lhs'>
                   <img src={API_URL + item.event_img_url} alt={`grid${index + 1}`} />
                   <div className='image-text-lhs'>{item.event_title}</div>
                 </NavLink>
