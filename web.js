@@ -17,6 +17,7 @@ const bannerRouter = require('./server/routers/banner');
 // const multer = require('multer'); //파일 업로드
 const eventRouter = require('./server/routers/event');
 const testRouter = require('./server/routers/test');
+const event_applicantsRouter = require('./server/routers/event_applicants');
 const multer = require('multer'); //파일 업로드
 
 //시퀄라이즈 연결 부분
@@ -54,6 +55,7 @@ app.use('/api/user', userRouter);
 app.use('/api/banner', bannerRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/test', testRouter);
+app.use('/api/event_applicants', event_applicantsRouter);
 
 app.use(errorMiddleware);
 
