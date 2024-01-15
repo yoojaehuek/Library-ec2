@@ -1,5 +1,6 @@
 const EventService = require("../services/eventService");
 
+
 class EventController {
 
 	static async createEvent(req, res, next){

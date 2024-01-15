@@ -6,9 +6,9 @@ const formatDate = (result) => {
 		tmp[index].created_at = tmp[index].created_at.toISOString().split('T')[0];
 	})
 	return tmp
-  }
+}
 
-  const faqFormatDate = (result) => {	
+const faqFormatDate = (result) => {	
 	const tmp = result.map(el => el.get({ plain: true }));
 	tmp.map((order, index) => {
 		const { faq_response_time, created_at } = tmp[index];
@@ -20,9 +20,37 @@ const formatDate = (result) => {
 			}
 	})
 	return tmp
-  }
+}
 
-  const userFormat = (result) => {
+const eventFormatDate = (result) => {	
+	console.log("eventFormatDate: ", result.length);
+	let tmp = null;
+	if (result.length > 1) {
+		tmp = result.map(el => el.get({ plain: true }));
+		tmp.map((order, index) => {
+			const { event_start_date, event_end_date } = tmp[index];
+	
+			tmp[index].event_start_date = new Date(event_start_date.setHours(event_start_date.getHours() + 9));
+			tmp[index].event_start_date = tmp[index].event_start_date.toISOString().split('T')[0];
+	
+			tmp[index].event_end_date = new Date(event_end_date.setHours(event_end_date.getHours() + 9));
+			tmp[index].event_end_date = tmp[index].event_end_date.toISOString().split('T')[0];
+		})
+	}else {
+		console.log("들어옴");
+		tmp = result;
+		console.log("tmp.event_end_date: ", tmp.event_start_date);
+		tmp.event_start_date = new Date(tmp.event_start_date.setHours(tmp.event_start_date.getHours() + 9));
+		tmp.event_start_date = tmp.event_start_date.toISOString().split('T')[0];
+
+		tmp.event_end_date = new Date(tmp.event_end_date.setHours(tmp.event_end_date.getHours() + 9));
+		tmp.event_end_date = tmp.event_end_date.toISOString().split('T')[0];
+		console.log(tmp);
+	}
+	return tmp
+}
+
+const userFormat = (result) => {
 	const tmp = result.map(el => el.get({ plain: true }));
 	tmp.map((order, index) => {
 		const { user_phone, created_at } = tmp[index];
@@ -33,6 +61,6 @@ const formatDate = (result) => {
 		}
 	})
 	return tmp
-  }
+}
 
-  module.exports = { formatDate, faqFormatDate, userFormat };
+  module.exports = { formatDate, faqFormatDate, eventFormatDate, userFormat };
