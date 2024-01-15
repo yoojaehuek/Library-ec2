@@ -13,6 +13,13 @@ class BannerService{
 		return result;
 	}
 
+	static async getOneBanner(banner_id){
+		const tmpResult = await BannerModel.getOneBanner(banner_id);
+		console.log("tmpResult:", tmpResult);
+		// const result = bannerFormatDate([tmpResult])
+		return tmpResult;
+	}
+
 	static async updateBanner({ Banner_id, toUpdate }){
 		console.log("서비스에서: ",toUpdate);
 		const result = await BannerModel.updateBanner({ Banner_id, toUpdate });

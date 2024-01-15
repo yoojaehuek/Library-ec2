@@ -11,6 +11,15 @@ class BannerModel {
     const result = await Banner.findAll();
     return result;
   }
+
+  static async getOneBanner(banner_id){
+    const result = await Banner.findOne({
+      where: {
+        banner_id: banner_id,
+      },
+    });
+    return result;
+  }
   
   static async updateBanner({ Banner_id, toUpdate }){
     console.log("update: ",toUpdate);
