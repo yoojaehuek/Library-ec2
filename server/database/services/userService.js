@@ -46,15 +46,15 @@ class UserService{
 		if (!user) {
 			console.log('null걸림');
 			user = {}; // null이면 속성 할당 안됨 그래서 {} 빈 객체 재할당
-			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."; // {errorMessage: "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."}
 			return user;
 		}
 
 		// 입력한 비밀번호와 조회해온 암호화 난수 함침
-		const combinedPassword = pwd + user.salt;
+		const combinedPassword = pwd + user.salt; // 1234ajksdhf;adhf;laskdnflas
 
 		// 함친 combinedPassword 암호화
-		const hashedPassword = crypto
+		const hashedPassword = crypto  //asldgfiahsgdkajsdfabijvabsijdvb
 			.createHash('sha512')
 			.update(combinedPassword)
 			.digest('hex');
@@ -101,7 +101,7 @@ class UserService{
 		const newUser = {
 			user_email: tmp.email, 
 			user_name: tmp.name, 
-			user_phone: tmp.mobile.replace(/\D/g, ''), 
+			// user_phone: tmp.mobile.replace(/\D/g, ''), 
 			user_pwd: hashPassword,
 			salt: salt,
 			sns_id: tmp.id, 
