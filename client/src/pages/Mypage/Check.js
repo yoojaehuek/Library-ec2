@@ -1,25 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { API_URL } from '../../config/contansts';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useRecoilState } from "recoil";
-import { loginState } from "../../recoil/atoms/State";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Check.scss';
 
 const Check = () => {
 
+  const navigate = useNavigate();
+  const [ checkPwd, setCheckPwd ] = useState(true);
 
   const onSubmitCheckPwd = async (e) => {
     e.preventDefault();
     const pwd = e.target.pwd.value.trim();
 
     console.log("pwd:", pwd);
-    if(pwd !== ""){
-      await axios.post(
+    if(pwd !== ""){ 
+      const res = await axios.post(
         `${API_URL}/api/user/password-check`,
         {pwd}
       )
+
+      console.log("res.status : ", res.data);
+
+      if(res.data.status == true){
+        navigate('/mypage');
+      } else {
+        setCheckPwd(false);
+      }
     }
   }
 
@@ -32,6 +39,7 @@ const Check = () => {
         
         <div className='checkMain-kjh'>
           <label>비밀번호</label>
+          {!checkPwd && <span style={{ float: 'right', color: 'red'}}>비밀번호 불일치!</span>}
           <input
             type="password"
             id="pwd"
