@@ -52,6 +52,7 @@
         #img-box-yjh{
           width: 150px;
           height: 180px;
+          border: 1px solid #000;
           margin: auto;
           display: table;
           &>div{
@@ -60,7 +61,8 @@
             img{
               max-width: 150px;
               max-height: 180px;
-              border: 1px solid #B3B3B3;
+              border: 1px solid #B3B3B3;margin: 0px;
+              padding: 0px;
             }
           }
         }
@@ -104,7 +106,7 @@
           font-weight: bold;
           color: white;
           padding: 5px 0px;
-          margin-top: 5px;
+          margin-top: 12px;
           background-color: #D64940;
         }
         #loan-a-yjh{
@@ -113,7 +115,7 @@
           font-weight: bold;
           color: white;
           padding: 5px 0px;
-          margin-top: 5px;
+          margin-top: 12px;
           background-color: #4070CD;
           
         }
