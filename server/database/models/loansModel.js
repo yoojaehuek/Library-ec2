@@ -10,7 +10,6 @@ class LoansModel {
     console.log("모델에서받은 newLoans: ",newLoans);
     const createNewLoans = await Loans.create({
       book_id: newLoans.book_id,
-      user_email: newLoans.user_email,
       user_id: newLoans.user_id,
       due_date: newLoans.due_date,
     });
