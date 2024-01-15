@@ -87,6 +87,16 @@ class UserController {
     }
   }
 
+  static async getAllUser(req, res, next) {
+    try {
+      const user = await UserService.getAllUser();
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
   static async detailUser(req, res, next) {
     try {
       const user_email = req.user_email;
@@ -124,6 +134,20 @@ class UserController {
       // const userId = 1;
       console.log("userController/deleteUser: ", userId);
       const user = await UserService.deleteUser({ userId });
+
+      // console.log("res임니다요: ",res);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteAdminUser(req, res, next) {
+    try {
+      const user_id = req.params.user_id;
+      // const userId = 1;
+      console.log("userController/deleteUser: ", user_id);
+      const user = await UserService.deleteAdminUser({ user_id });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);

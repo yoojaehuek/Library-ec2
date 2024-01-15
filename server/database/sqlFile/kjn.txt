@@ -60,15 +60,6 @@ INSERT INTO `library`.`book` (`book_id`, `book_name`, `book_img_url`, `book_auth
 
 
 
-
-
-
-
-
-
-
-
-
 --------------------User---------------------
 INSERT INTO `library`.`user` (`user_id`, `user_pwd`, `salt`, `user_name`, `user_phone`, `user_address`, `user_detail_address`, `created_at`)
 VALUES ('0719', '0719', '1', '김정혁', '6864', '수원', '장안아파트', '2024-01-09 10:02:18'),

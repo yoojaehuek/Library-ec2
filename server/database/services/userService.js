@@ -3,13 +3,13 @@ const crypto = require('crypto');
 const redisClient = require("../../utils/redis.utils");
 require('dotenv').config();
 const { makeRefreshToken, makeAccessToken } = require('../../utils/token');
-
+const {formatDate, faqFormatDate, userFormat} = require('../../utils/dataUtils');
 
 class UserService{
 	//유효성 검사 이메일 겹치는지 등등
 	static async createUser({email, pwd, user_name, phone}){
 
-		const user = await UserModel.findOneUserEmail({ email });
+		const user = await UserModel.findOneUserEmail({ user_email: email });
 		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
@@ -143,6 +143,14 @@ class UserService{
 		return serviceResult
 	}
 
+	static async getAllUser(){
+		const user = await UserModel.getAllUser();
+		// const phoneFormatUser = phoneFormat(user);
+		// console.log("phoneFormatUser:",phoneFormatUser);
+		const dataFormatUser = userFormat(user);
+		return dataFormatUser;
+	}
+
 	static async detailUser({user_email}){
 		const user = await UserModel.findOneUserEmail({user_email});
 		// console.log({myId});
@@ -190,6 +198,11 @@ class UserService{
 	static async deleteUser({user_email}){
 		console.log("서비스에서: ", user_email);
 		const user = await UserModel.destroyUser({user_email});
+		return user;
+	}
+	static async deleteAdminUser({user_id}){
+		console.log("서비스에서: ", user_id);
+		const user = await UserModel.deleteAdminUser({user_id});
 		return user;
 	}
 }

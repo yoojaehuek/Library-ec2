@@ -10,7 +10,6 @@ import Cart from './pages/Cart/Cart.js';
 import Faq from './pages/Faq/Faq.js';
 import Fear from './pages/BookList/Literature.js'
 import BookList from './pages/BookList/BookList.js'
-import ABanner from './admin/page/ABanner/ABanner.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
