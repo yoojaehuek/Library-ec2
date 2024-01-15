@@ -13,6 +13,7 @@ import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
+import Check from './pages/Mypage/Check.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
         <Route path='/admin/*' element={<Adminmain></Adminmain>}></Route>
         <Route path='/mypage' element={<Mypage></Mypage>}></Route>
+        <Route path='/check' element={<Check></Check>}></Route>
         <Route path='/loantest' element={<LoanTest></LoanTest>}></Route>
         <Route path='/event' element={<Event></Event>}></Route>
       </Routes>

@@ -46,15 +46,15 @@ class UserService{
 		if (!user) {
 			console.log('null걸림');
 			user = {}; // null이면 속성 할당 안됨 그래서 {} 빈 객체 재할당
-			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."; // {errorMessage: "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."}
 			return user;
 		}
 
 		// 입력한 비밀번호와 조회해온 암호화 난수 함침
-		const combinedPassword = pwd + user.salt;
+		const combinedPassword = pwd + user.salt; // 1234ajksdhf;adhf;laskdnflas
 
-		// 함친 combinedPassword 암호화
-		const hashedPassword = crypto
+		// 합친 combinedPassword 암호화
+		const hashedPassword = crypto  //asldgfiahsgdkajsdfabijvabsijdvb
 			.createHash('sha512')
 			.update(combinedPassword)
 			.digest('hex');
@@ -141,6 +141,42 @@ class UserService{
 		const serviceResult = {name, email, accessToken, refreshToken};
 
 		return serviceResult
+	}
+
+	static async checkPassword({user_email, user_pwd}){
+		console.log("이메일서비스들어옴 : ", user_email);
+		console.log("비번서비스들어옴 : ", user_pwd);
+		
+		let user = await UserModel.findOneUserEmail({ user_email });
+		console.log("user: ", user);
+		
+		if (!user) {
+			console.log('null걸림');
+			user = {}; // null이면 속성 할당 안됨 그래서 {} 빈 객체 재할당
+			user.errorMessage = "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."; // {errorMessage: "해당 id는 가입 내역이 없습니다. 다시 한 번 확인해 주세요."}
+			return user;
+		}
+
+		// 입력한 비밀번호와 조회해온 암호화 난수 함침
+		const combinedPassword = user_pwd + user.salt; // 1234ajksdhf;adhf;laskdnflas
+
+		// 합친 combinedPassword 암호화
+		const hashedPassword = crypto  //asldgfiahsgdkajsdfabijvabsijdvb
+			.createHash('sha512')
+			.update(combinedPassword)
+			.digest('hex');
+
+		// hashedPassword와 DB의 비밀번호 비교
+		if (hashedPassword === user.user_pwd) {
+			console.log('Login successful!');
+			// console.log("userService.js/loginUser()/user: ", user);
+			// const accessToken = makeAccessToken({email: user.user_email});
+			// const refreshToken = makeRefreshToken();
+			return true;
+		} else {
+			console.log("비번 일치 x");
+			return false;
+		}
 	}
 
 	static async getAllUser(){
