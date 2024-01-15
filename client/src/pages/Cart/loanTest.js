@@ -80,8 +80,35 @@ const LoanTest = () => {
   };
 
 
+  // 이미지 파일 경로
+  const box1Content = (
+    <div>
+      <h2>Box 1</h2>
+      {/* <img src={process.env.PUBLIC_URL + '/images/box1-image.jpg'} alt="Box 1" /> */}
+    </div>
+  );;
+
+  const box2Content = <div><h2>Box 2</h2></div>;
+  const box3Content = <div><h2>Box 3</h2></div>;
+  const box4Content = <div><h2>Box 4</h2></div>;
+  const box5Content = <div><h2>Box 5</h2></div>;
+  const box6Content = <div><h2>Box 6</h2></div>;
+  const box7Content = <div><h2>Box 7</h2></div>;
+  
+  const gridbox = [
+    box1Content, box1Content, box2Content, box2Content,
+    box3Content, box3Content, box3Content, box3Content,
+    box4Content, box5Content, box6Content, box7Content
+  ];
   return (
     <form id="cart-container-yjh">
+
+      <div className="grid-container">
+        {gridbox.map((item, index) => (
+          <div key={index} className="grid-item">{item}</div>
+        ))}
+      </div>
+
       <button type="button" onClick={findAllOrder}>대출 전체조회</button>
       <button type="button" onClick={returnOrder}>책 반납</button>
       <button type="button" onClick={renewOrder}>대출 기간 연장</button>

@@ -56,7 +56,7 @@ const BookDetail = () => {
     const cartItem = {
       id:axiosResult.book_id,
       book_ISBN: axiosResult.book_ISBN,
-      book_AUTHOR: axiosResult.book_AUTHOR,
+      book_AUTHOR: axiosResult.book_author,
       book_availability:axiosResult.book_availability,
       book_description: axiosResult.book_description,
       book_genre:axiosResult.book_genre,

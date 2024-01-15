@@ -102,6 +102,8 @@ const Cart = () => {
         {cart && cart.length > 0 ? (
           cart.map((book, index) => (
             <li key={index} id="book-yjh">
+
+
               <div id="book-checkbox-yjh">
                 {book.book_availability === false ? (
                   <div id="empty-yjh"></div>
@@ -118,18 +120,22 @@ const Cart = () => {
                   />
                 )}
               </div>
+
+
               <div id="book-img-yjh">
                 <div id="img-box-yjh">
                   <div>
                     <img src={API_URL + book.book_img_url} alt="" />
                   </div>
                 </div>
-                <NavLink>도서정보</NavLink>
+                <NavLink to={`/BookDetail/${book.id}`}>도서정보</NavLink>
               </div>
+
+
               <div id="book-info-yjh">
                 <h3>{book.book_name}</h3>
                 <p id="writer-yjh">
-                  {book.book_author} | {book.book_publisher} | {book.book_publication_date}
+                  {book.book_AUTHOR} | {book.book_publisher} | {book.book_publisher}
                 </p>
                 <p id="book-description-yjh">{book.book_description}</p>
                 {book.book_availability == true ? (
@@ -138,6 +144,8 @@ const Cart = () => {
                   <div id="loan-p-yjh">대출불가</div>
                 )}
               </div>
+
+              
             </li>
           ))
         ) : (
