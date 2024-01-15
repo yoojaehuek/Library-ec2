@@ -9,7 +9,7 @@ class UserService{
 	//유효성 검사 이메일 겹치는지 등등
 	static async createUser({email, pwd, user_name, phone}){
 
-		const user = await UserModel.findOneUserEmail({ user_email: email });
+	const user = await UserModel.findOneUserEmail({ user_email: email });
 		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
@@ -40,7 +40,7 @@ class UserService{
 		// console.log("id: ",id);
 		// console.log("pwd: ",pwd);
 
-		let user = await UserModel.findOneUserEmail({ email });
+		let user = await UserModel.findOneUserEmail({user_email: email });
 		console.log("user: ", user);
 		
 		if (!user) {
