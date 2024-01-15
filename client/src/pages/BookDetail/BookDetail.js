@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
 import { API_URL } from '../../config/contansts';
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios  from 'axios';
 
 
@@ -12,6 +12,7 @@ const BookDetail = () => {
   console.log(id);
   const [book_publisher,setBook_Publisher] = useState("");
   const [book_author,setbook_author] = useState("");
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axios.get(`${API_URL}/api/book?book_id=${id}`)
@@ -49,8 +50,28 @@ const BookDetail = () => {
     console.log('예약하기');
   };
 
+  /** 카트담기 버튼 */
   const handleAddToCart = () => {
-    console.log('도서카트에 추가');
+    console.log('도서카트에 추가 실행됨');
+    const cartItem = {
+      id:axiosResult.book_id,
+      book_ISBN: axiosResult.book_ISBN,
+      book_AUTHOR: axiosResult.book_AUTHOR,
+      book_availability:axiosResult.book_availability,
+      book_description: axiosResult.book_description,
+      book_genre:axiosResult.book_genre,
+      book_img_url:axiosResult.book_img_url,
+      book_name: axiosResult.book_name,
+      book_publisher:axiosResult.book_publisher,
+      created_at:axiosResult.created_at,
+    };
+    // 로컬 스토리지에서 기존의 장바구니 아이템을 가져오거나 빈 배열로 초기화합니다.
+    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+    // 새로운 아이템을 장바구니에 추가
+    existingCartItems.push(cartItem);
+    // 업데이트된 장바구니 아이템을 다시 로컬 스토리지에 저장합니다.
+    sessionStorage.setItem("cart", JSON.stringify(existingCartItems));
+    navigate("/cart");
   };
 
   const [newReview, setNewReview] = React.useState({

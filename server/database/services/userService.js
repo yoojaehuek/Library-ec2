@@ -9,7 +9,7 @@ class UserService{
 	//유효성 검사 이메일 겹치는지 등등
 	static async createUser({email, pwd, user_name, phone}){
 
-		const user = await UserModel.findOneUserEmail({ email });
+		const user = await UserModel.findOneUserEmail({ email });// 이미 가입된유저 확인
 		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";

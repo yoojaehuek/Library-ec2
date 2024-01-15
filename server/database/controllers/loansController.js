@@ -5,18 +5,17 @@
 const LoansService = require('../services/loansService');
 
 class LoansController {
-  /** 등록 */
+  /** 대출 등록 */
   static async addLoans(req,res,next){
     try {
       const tmp = req.body;
+      console.log("req.body: ",req.body);
       // tmp.userId = req.userId;
-      tmp.user_email = "ki";
-      tmp.user_id = 1;
+      console.log("미들웨어 userId: ",req.userId);
+      // tmp.user_email = "ki";
       
       tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
-        orderItem.user_id = tmp.user_id;
-        orderItem.user_email = tmp.user_email;
-        // orderItem.user_id = req.userId; // 로그인 되면 이걸로
+        orderItem.user_id = req.userId; // 로그인 되면 이걸로
       }); 
       const one = tmp.order
       console.log("tmp 안의 one: ", one);

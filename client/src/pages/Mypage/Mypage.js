@@ -38,7 +38,7 @@ const Mypage = () => {
     // console.log("유저 대출정보 : ", userbyLoans);
 
   const visibleBooks = showAllBooks ? userbyLoans : userbyLoans.slice(0, 3);
- 
+
   return (
     <div className='mypage-container-kjh'>
       <div className='pageTop-kjh'>
@@ -55,14 +55,13 @@ const Mypage = () => {
               //   {id:1, name: "김정혁", "남"},
               //   {id:2, name: "유재혁", "여"}
               // ] */}
-              <tr>
+              {/* <tr>
                 <td className='tWriter-kjh'>{book.book_author}</td>
                 <td className='tTitle-kjh'>{book.book_name}</td>
                 <td className='tSdate-kjh'>{loans.loan_date}</td>
                 <td className='tEdate-kjh'>{loans.due_date}</td>
-              </tr>
-            {/* })} */}
-            ;
+              </tr> */}
+
             <tr>
               <td className='tWriter-kjh'>작가</td>
               <td className='tTitle-kjh'>제목</td>
