@@ -19,6 +19,42 @@
     margin-left: 10px;
   }
 
+  .editMain-kjh {
+    width: 700px;
+    height: 200px;
+    padding: 0;
+    margin: 0 auto;
+    label {
+      color: gray;
+      width: 700px;
+      // float: left;
+      height: 20px;
+    }
+    input {
+      margin: 10px 0;
+      height: 40px;
+      width: 680px;
+      padding: 5px 7px;
+      outline: none;
+      font-size: 20px;
+      transition: border-color 0.5s;
+      &:focus {
+        border-color: #6ba10e; // 클릭시 border 색상 변경
+      }
+      &:focus::placeholder {
+        //엣지에선 안됨
+        color: transparent;
+      }
+    }
+    button {
+      float: right;
+      border: none;
+      width: 160px;
+      height: 60px;
+      background-color: #6ba10e;
+      color: #fff;
+    }
+  }
 
 
 }
