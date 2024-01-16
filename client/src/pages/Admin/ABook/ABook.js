@@ -104,14 +104,14 @@ const ABook = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>책 ID</TableCell>
-              <TableCell>책 이름</TableCell>
-              <TableCell>책 표지</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>이름</TableCell>
+              <TableCell>표지</TableCell>
               <TableCell>저자</TableCell>
               <TableCell>출판사</TableCell>
               <TableCell>장르</TableCell>
               <TableCell>대출 여부</TableCell>
-              <TableCell>책 간단 소개</TableCell>
+              <TableCell>줄거리</TableCell>
               <TableCell>고유 번호</TableCell>
               <TableCell>작성 시간</TableCell>
               <TableCell>관리</TableCell>
@@ -125,6 +125,7 @@ const ABook = () => {
         page={currentPage}
         onChange={handlePageChange}
         color="primary"
+        sx={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}
       />
     </div>
   );
