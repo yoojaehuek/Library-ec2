@@ -8,16 +8,7 @@ const ListItems = [
     title: 'Book',
     value: 'book',
     sub_title: [
-      { sub_title: '총류', value: '1'},
-      { sub_title: '철학', value: '2' },
-      { sub_title: '종교', value: '3' },
-      { sub_title: '사회과학', value: '4' },
-      { sub_title: '자연과학', value: '5' },
-      { sub_title: '기술과학', value: '6' },
-      { sub_title: '예술', value: '7' },
-      { sub_title: '언어', value: '8' },
-      { sub_title: '문학', value: '9' },
-      { sub_title: '역사', value: '10' }
+      { sub_title: '책관리', value: 'book'},
     ],
   },
   {
