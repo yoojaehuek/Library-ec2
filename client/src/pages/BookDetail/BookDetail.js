@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
 import { API_URL } from '../../config/contansts';
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios  from 'axios';
 
 
@@ -12,6 +12,8 @@ const BookDetail = () => {
   console.log(id);
   const [book_publisher,setBook_Publisher] = useState("");
   const [book_author,setbook_author] = useState("");
+  const [reviews, setReviews] = useState([]); // 리뷰 상태 추가
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axios.get(`${API_URL}/api/book?book_id=${id}`)
@@ -49,21 +51,38 @@ const BookDetail = () => {
     console.log('예약하기');
   };
 
+  /** 카트담기 버튼 */
   const handleAddToCart = () => {
-    console.log('도서카트에 추가');
+    console.log('도서카트에 추가 실행됨');
+    const cartItem = {
+      id:axiosResult.book_id,
+      book_ISBN: axiosResult.book_ISBN,
+      book_AUTHOR: axiosResult.book_author,
+      book_availability:axiosResult.book_availability,
+      book_description: axiosResult.book_description,
+      book_genre:axiosResult.book_genre,
+      book_img_url:axiosResult.book_img_url,
+      book_name: axiosResult.book_name,
+      book_publisher:axiosResult.book_publisher,
+      created_at:axiosResult.created_at,
+    };
+    // 로컬 스토리지에서 기존의 장바구니 아이템을 가져오거나 빈 배열로 초기화합니다.
+    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+    // 새로운 아이템을 장바구니에 추가
+    existingCartItems.push(cartItem);
+    // 업데이트된 장바구니 아이템을 다시 로컬 스토리지에 저장합니다.
+    sessionStorage.setItem("cart", JSON.stringify(existingCartItems));
+    navigate("/cart");
   };
 
-  const [newReview, setNewReview] = React.useState({
-    user_id: 'currentUserId', // 현재 사용자 ID를 얻어와야 함
-    review_text: '',
-    rating: 0,
-  });
+  if (!reviews || reviews.length === 0) {
+  const tempReviews = [
+    { id: 1, review_text: '정말 좋은 책이었습니다!', rating: 5, create_at: '2022-01-15' },
+    { id: 2, review_text: '재미있게 읽었습니다.', rating: 4, create_at: '2022-01-14' },
+  ];
 
-  const handleReviewSubmit = () => {
-    // TODO: 새 리뷰를 저장하는 로직 추가
-    console.log('새 리뷰를 저장합니다:', newReview);
-  };
-
+  setReviews(tempReviews);
+}
 
     return (
       <div className='book-detail-container-lhs'>
@@ -130,31 +149,18 @@ const BookDetail = () => {
         </div>
         <div className='reviews-container-lhs'>
           <h2>리뷰</h2>
-          {/* 리뷰 목록 표시 로직 추가 */}
-          {axiosResult.reviews && axiosResult.reviews.map((review) => (
-            <div key={review.id} className='review-item-lhs'>
+            {reviews.map((review) => (
+              <div key={review.id} className='review-item-lhs'>
               <p>{review.review_text}</p>
-              <p>평점: {review.rating}</p>
+              <div className="rating-container">
+                <p>평점:</p>
+                {Array.from({ length: review.rating }, (_, index) => (
+                  <span key={index} className="star-icon">★</span>
+                ))}
+              </div>
               <p>작성일: {review.create_at}</p>
             </div>
           ))}
-          {/* 새 리뷰 작성 양식 */}
-          {newReview.book_id && (
-            <div className='new-review-form-lhs'>
-              <textarea
-                placeholder='리뷰를 작성하세요...'
-                value={newReview.review_text}
-                onChange={(e) => setNewReview({ ...newReview, review_text: e.target.value })}
-              />
-              <input
-                type='number'
-                placeholder='평점 (1~5)'
-                value={newReview.rating}
-                onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })}
-              />
-              <button onClick={handleReviewSubmit}>리뷰 작성</button>
-            </div>
-          )}
         </div>
       </div>
     );

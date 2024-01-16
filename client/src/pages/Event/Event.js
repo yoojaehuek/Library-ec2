@@ -26,18 +26,24 @@ const Event = () => {
         {events && events.map((event, index) => (
           <div className='event-kjh'>
             <div>
-              <NavLink to={'/event/'+event.event_id}>
+              <NavLink to={'/event/'+event.event_id} className='event-img-button-kjh'>
                 <img src={`${API_URL}${event.event_img_url}`} alt="" />
               </NavLink>
               <p>상태: {event.event_status}</p>
             </div>
             <div>
               <NavLink to={'/event/'+event.event_id}>
-                <p key={index}>{event.event_title}</p>
+                <h3 key={index}>{event.event_title}</h3>
               </NavLink>
               <div className='event-date-kjh'>
-                <span>{event.event_start_date}</span>
-                {event.event_end_date && <span>~{event.event_end_date}</span>}
+                <div className='event-date-content-kjh'>
+                  <span>기간:&nbsp;</span>
+                  <p>{event.event_start_date}{event.event_end_date && ' ~ '+event.event_end_date}</p>
+                </div>
+                <div className='event-date-content-kjh'>
+                  <span>모집정원:&nbsp;</span>
+                  <p>{event.event_max_applicants}명</p>
+                </div>
               </div>
             </div>
             <p>조회수: {event.read_count}</p>

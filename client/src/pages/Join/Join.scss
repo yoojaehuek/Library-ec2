@@ -1,7 +1,6 @@
 .join-container-yjh {
   margin: 50px auto;
   li{ list-style: none; }
-  a{ color: blue; }
   h1{ color: #6BA10E; }
   #Join-form-yjh {
     margin: 0 auto;
@@ -32,7 +31,6 @@
             border-color: #6BA10E; // 클릭시 border 색상 변경
           }
           &:focus::placeholder {
-            //엣지에선 안됨
             color: transparent;
           }
         }
@@ -46,24 +44,6 @@
           }
           button {
             padding: 5px;
-          }
-        }
-        .boxecal {
-          display: flex;
-          justify-content: start;
-          padding-bottom: 50px;
-          padding-top: 10px;
-          select {
-            min-width: 150px;
-            background-color: #fff;
-            font-weight: 500;
-            height: 42px;
-            border: 1px solid rgba(112, 112, 112, 0.575);
-            padding: 0 20px;
-            padding-right: 50px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 800;
           }
         }
         p {
@@ -91,76 +71,48 @@
 }
 
 //미디어 쿼리 
-@media (max-width: 1023px) {
+@media (min-width: 1023px) {
   .join-container-yjh {
-    // 모바일 화면에 대한 추가 스타일
-    width: 80%; // 화면 너비를 80%로 조정
-    padding: 20px; // 좌우 여백을 추가
+    padding: 20px; 
     #Join-form-yjh {
-      width: 100%; // 폼의 폭을 100%로 조정
+      // width: 40vw; 
       #join-input-yjh {
         .input-li-yjh {
-          margin: 10px auto; // 입력 요소들 간의 간격을 조정
-        }
-        .boxecal {
-          flex-direction: column; // 상자 선택 부분을 세로로 배열
-          align-items: flex-start; // 상자 선택 부분을 시작점에 정렬
-          
-          select {
-            width: 100%; // 선택 상자 폭을 100%로 조정
-            margin-bottom: 10px; // 선택 상자 간의 간격을 조정
+          margin: 10px auto; 
+          input{
+            // height: 5vh;
           }
         }
         .message {
-          margin-top: 10px; // 메시지 상자 위 여백을 조정
-          margin-bottom: 10px; // 메시지 상자 아래 여백을 조정
+          margin-top: 10px; 
+          margin-bottom: 10px; 
         }
       }
     }
     #join-btn-yjh {
-      width: 100%; // 가입 버튼 폭을 100%로 조정
+      width: 100%; 
     }
   }
 }
-// 767px 이하의 화면 크기에 대한 스타일
+
 @media (max-width: 767px) {
   .join-container-yjh {
-    // 모바일 화면에 대한 추가 스타일
-    width: 90%; // 화면 너비를 90%로 조정
-    padding: 10px; // 좌우 여백을 조정
+    width: 90%; 
+    padding: 10px; 
     #Join-form-yjh {
-      width: 100%; // 폼의 폭을 100%로 조정
+      width: 100%; 
       #join-input-yjh {
         .input-li-yjh {
-          margin: 10px auto; // 입력 요소들 간의 간격을 조정
-        }
-        #input-li-addr-yjh {
-          flex-direction: column; // 주소 입력 부분을 세로로 배열
-          align-items: flex-start; // 주소 입력 부분을 시작점에 정렬
-          input {
-            width: 100%; // 주소 입력 필드의 폭을 100%로 조정
-            margin-bottom: 10px; // 입력 필드 간의 간격을 조정
-          }
-          button {
-            width: 100%; // 우편번호 검색 버튼 폭을 100%로 조정
-          }
-        }
-        .boxecal {
-          flex-direction: column; // 상자 선택 부분을 세로로 배열
-          align-items: flex-start; // 상자 선택 부분을 시작점에 정렬
-          select {
-            width: 100%; // 선택 상자 폭을 100%로 조정
-            margin-bottom: 10px; // 선택 상자 간의 간격을 조정
-          }
+          margin: 10px auto; 
         }
         .message {
-          margin-top: 10px; // 메시지 상자 위 여백을 조정
-          margin-bottom: 10px; // 메시지 상자 아래 여백을 조정
+          margin-top: 10px; 
+          margin-bottom: 10px;
         }
       }
     }
     #join-btn-yjh {
-      width: 100%; // 가입 버튼 폭을 100%로 조정
+      width: 100%;
     }
   }
 }

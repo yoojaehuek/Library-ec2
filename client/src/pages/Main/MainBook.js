@@ -10,7 +10,7 @@ const MainBook = ({Genre}) => {
   const [axiosResult, setAxiosResult] = useState([]);
 
   useEffect(()=>{
-    axios.get(`${API_URL}/api/book?book_genre=${Genre}&limit=6`)
+    axios.get(`${API_URL}/api/book?book_genre=${Genre}&limit=5`)
     .then(res => {
       setAxiosResult(res.data);
       console.log("응답 데이터: ", res.data);

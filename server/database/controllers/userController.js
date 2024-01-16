@@ -86,6 +86,23 @@ class UserController {
       next(error);
     }
   }
+  static async checkPassword(req, res, next) {
+    try {
+      const user_email = req.user_email;
+      const user_pwd = req.body.pwd;
+      console.log("컨트롤러에서 pwd: ", user_pwd);
+      const user = await UserService.checkPassword({user_email, user_pwd});
+      console.log("userControll.loginUser: ", user);
+
+      if (user.errorMessage) {
+        throw new Error(user.errorMessage);
+      }
+
+      res.status(200).json({"status": user});
+    } catch (error) {
+      next(error);
+    }
+  }
 
   static async getAllUser(req, res, next) {
     try {
