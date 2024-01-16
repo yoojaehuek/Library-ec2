@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../config/contansts';
+import Fab from '@mui/material/Fab';
+import { InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import {
   Table,
   TableBody,
@@ -15,6 +18,8 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  Input,
+  Pagination,
 } from '@mui/material';
 
 const ABanner = () => {
@@ -22,40 +27,57 @@ const ABanner = () => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [editBannerId, setEditBannerId] = useState(null);
   const [bannerImg, setBannerImg] = useState('');
-  const [selectedItem, setSelectedItem] = useState(null);
   const [bannerTitle, setBannerTitle] = useState('');
   const [bannerDescription, setBannerDescription] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
+  const [newbannerImg, setnewBannerImg] = useState('');
+  const [newbannerTitle, setnewBannerTitle] = useState('');
+  const [newbannerDescription, setnewBannerDescription] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const [title, setEditedType] = useState('image');
+
 
   useEffect(() => {
-    fetchSliderData();
-  }, []);
+    fetchBannerData();
+  }, [currentPage]);
 
-  const fetchSliderData = () => {
+  const fetchBannerData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
     axios
       .get(`${API_URL}/api/banner`)
       .then((res) => {
-        console.log(res.data);
-        setAxiosResult(res.data);
+        setAxiosResult(res.data.slice(startIndex, endIndex));
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const handleCloseEditDialog = () => {
+    setOpenEditDialog(false);
+  };
+
   const handleEdit = (banner_id) => {
     setEditBannerId(banner_id);
-    console.log("Edit Banner ID:", banner_id); // 디버깅을 위한 라인 추가
     setOpenEditDialog(true);
     fetchBannerDetails(banner_id);
   };
+
+  const [openAddDialog, setOpenAddDialog] = useState(false);
+  const handleOpenAddDialog = () => setOpenAddDialog(true);
+  const handleCloseAddDialog = () => setOpenAddDialog(false);
 
   const fetchBannerDetails = (banner_id) => {
     axios
       .get(`${API_URL}/api/banner/${banner_id}`)
       .then((res) => {
-        console.log("Banner Details:", res.data); // 디버깅을 위한 라인 추가
         const bannerDetails = res.data;
         setBannerTitle(bannerDetails.banner_title);
         setBannerImg(bannerDetails.banner_img_url);
@@ -69,19 +91,26 @@ const ABanner = () => {
   const handleSave = () => {
     if (editBannerId) {
       const updatedItem = {
-        title: bannerTitle,
-        content_url: bannerImg,
-        description: bannerDescription,
+        banner_title: bannerTitle,
+        banner_img_url: imageUrl,
+        banner_description: bannerDescription,
       };
-      console.log(updatedItem);
+  
+      // 강제로 상태 업데이트를 동기적으로 수행
+      setBannerTitle(updatedItem.title);
+      setBannerImg(updatedItem.content_url);
+      setBannerDescription(updatedItem.description);
+  
+      console.log('update:', updatedItem);
       const userConfirmed = window.confirm('수정하시겠습니까?');
   
       if (userConfirmed) {
+        console.log(editBannerId)
         axios
           .patch(`${API_URL}/api/banner/${editBannerId}`, updatedItem)
           .then(() => {
             alert('수정되었습니다.');
-            fetchSliderData(); // 데이터 갱신
+            fetchBannerData(); // 데이터 갱신
             handleCloseEditDialog();
           })
           .catch((err) => {
@@ -94,35 +123,102 @@ const ABanner = () => {
     }
   };
 
+  const handleDelete = (banner_id) => {
+    const userConfirmed = window.confirm('삭제하시겠습니까?');
 
-  const handleCloseEditDialog = () => {
-    setOpenEditDialog(false);
+    if (userConfirmed) {
+      axios
+        .delete(`${API_URL}/api/banner/${banner_id}`)
+        .then(() => {
+          alert('삭제되었습니다.');
+          fetchBannerData(); // 데이터 갱신
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('삭제에 실패했습니다.');
+        });
+    }
   };
+
+  const onChangeImage = (info) => {
+    // 파일이 업로드 중일 때
+    console.log("upload/index.js/onChangeImage() info.file: ", info.file);
+    console.log('info', info);
+    
+    // info.file이 정의되어 있는지 확인
+    if (info.file && info.file.status === "uploading") {
+        return;
+    }
+
+    // 파일이 업로드 완료 되었을 때
+    if (info.file && info.file.status === "done") {
+        const response = info.file.response;
+        console.log(response);
+        const imageUrl = response.imageUrl;
+        // 받은 이미지경로를 imageUrl에 넣어줌
+        setImageUrl(imageUrl); //이미지 선택하면 이미지 url넣음
+    }
+};
+
+  const handleAdd = () => {
+    const createItem = {
+      banner_title: newbannerTitle,
+      banner_img_url: newbannerImg,
+      banner_description: newbannerDescription,
+    };
+    
+
+    const userConfirmed = window.confirm('추가하시겠습니까?');
+    if (userConfirmed) {
+      axios
+        .post(`${API_URL}/api/banner`, createItem)
+        .then(() => {
+          alert('추가되었습니다.');
+          fetchBannerData();
+          handleCloseAddDialog();
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('추가에 실패했습니다.');
+        });
+    }
+  };
+
 
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        sx={{ maxWidth: "75vw", margin: "auto", overflowX: 'auto' }}
+      >
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Image URL</TableCell>
-              <TableCell>제목</TableCell>
-              <TableCell>설명</TableCell>
-              <TableCell>작성 시간</TableCell>
-              <TableCell>업데이트 시간</TableCell>
-              <TableCell>관리</TableCell>
+              <TableCell sx={{textAlign:"center"}}>ID</TableCell>
+              <TableCell sx={{textAlign:"center"}}>Image</TableCell>
+              <TableCell sx={{textAlign:"center"}}>제목</TableCell>
+              <TableCell sx={{textAlign:"center"}}>설명</TableCell>
+              <TableCell sx={{textAlign:"center"}}>작성 시간</TableCell>
+              <TableCell sx={{textAlign:"center"}}>업데이트 시간</TableCell>
+              <TableCell sx={{textAlign:"center"}}>관리</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {axiosResult.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>{item.banner_id}</TableCell>
-                <TableCell>{item.banner_img_url}</TableCell>
-                <TableCell>{item.banner_title}</TableCell>
-                <TableCell>{item.banner_description}</TableCell>
-                <TableCell>{item.createdAt}</TableCell>
-                <TableCell>{item.updatedAt}</TableCell>
+                <TableCell>
+                  <img
+                    src={ API_URL + item.banner_img_url}
+                    alt={item.banner_title}
+                    style={{ maxWidth: '100px', maxHeight: '100px' }}
+                  />
+                </TableCell>
+                <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.banner_title}</TableCell>
+                <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.banner_description}</TableCell>
+                <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.createdAt}</TableCell>
+                <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.updatedAt}</TableCell>
                 <TableCell>
                   <Button
                     variant="contained"
@@ -134,7 +230,7 @@ const ABanner = () => {
                   <Button
                     variant="contained"
                     color="error"
-                    // onClick={() => handleDelete(item.banner_id)}
+                    onClick={() => handleDelete(item.banner_id)}
                   >
                     삭제
                   </Button>
@@ -142,8 +238,68 @@ const ABanner = () => {
               </TableRow>
             ))}
           </TableBody>
+          <Fab
+            color="primary"
+            aria-label="add"
+            sx={{ position: 'fixed', bottom: 16, right: 16 }}
+            onClick={handleOpenAddDialog}
+          >
+            <AddIcon />
+          </Fab>
         </Table>
       </TableContainer>
+      <Pagination
+        count={Math.ceil(axiosResult.length / itemsPerPage)}
+        page={currentPage}
+        onChange={handlePageChange}
+        color="primary"
+        size="large"
+        sx={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}
+      />
+       {/* 추가하기 다이얼로그 */}
+      <Dialog open={openAddDialog} onClose={handleCloseAddDialog}>
+        <DialogTitle>배너 추가</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="제목"
+            value={newbannerTitle}
+            onChange={(e) => setnewBannerTitle(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>이미지 업로드</InputLabel>
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={onChangeImage}
+            />
+          </FormControl>
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt="Banner"
+              style={{ maxWidth: '100%', marginTop: '10px' }}
+            />
+          )}
+          <TextField
+            label="설명"
+            value={newbannerDescription}
+            onChange={(e) => setnewBannerDescription(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseAddDialog} color="primary">
+            취소
+          </Button>
+          <Button onClick={handleAdd} color="primary">
+            추가
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       {/* Edit Banner Modal */}
       <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
         <DialogTitle>배너 수정</DialogTitle>
@@ -156,11 +312,16 @@ const ABanner = () => {
             margin="normal"
           />
           <TextField
-            label="이미지"
+            label="이미지 URL"
             value={bannerImg}
             onChange={(e) => setBannerImg(e.target.value)}
             fullWidth
             margin="normal"
+          />
+          <img
+            src={API_URL + bannerImg}
+            alt={bannerTitle}
+            style={{ maxWidth: '200px', maxHeight: '200px', marginTop: '10px' }}
           />
           <TextField
             label="설명"
