@@ -7,16 +7,16 @@ import axios from "axios";
 import "./Cart.scss";
 
 const Cart = () => {
-  // const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
-  const [cart, setCart] = useState([]); // 장바구니에 담은 상품목록
+  const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [cart, setCart] = useState([]); // 장바구니에 담은 상품목록 
   const [checkItems, setCheckItems] = useState([]); // 체크된 책
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // 로컬스토리지에서 cart 를 가져와서 storedCart 에 담음
+  useEffect(() => { // 로컬스토리지에서 cart 를 가져와서 storedCart 에 담음
     const storedCart = JSON.parse(sessionStorage.getItem("cart"));
     if (storedCart && storedCart.length > 0) setCart(storedCart);
   }, []);
+  console.log("로컬에서 받아서 담음 cart : ",cart);
 
   /** 반납일 계산 함수 */
   const getFutureDate = () => {
@@ -28,8 +28,11 @@ const Cart = () => {
   /** 대출신청함수 */
   const handleOrder = () => {
     // 선택된 책들만 필터링
+    console.log("신청함수 실행은 됨1");
     const selectedBooks = cart.filter((book) => checkItems.includes(book.id));
+    console.log("신청함수 실행은 됨2selectedBooks",selectedBooks);
     const futureDate = getFutureDate(); // 7일뒤 반납일
+    console.log("신청함수 실행은 됨3");
     // 선택된 책이 하나 이상인 경우에만 대출 신청 처리
     if (selectedBooks.length > 0) {
       console.log("if문 들어옴");
@@ -37,7 +40,7 @@ const Cart = () => {
         book_id: book.id,
         due_date: futureDate,
       }));
-      console.log("if문 들어옴selectedBooks: ", booksWithDueDate);
+      console.log("if문 들어옴selectedBooks: ",booksWithDueDate);
       axios
         .post(`${API_URL}/api/loans`, { order: booksWithDueDate })
         .then(() => {
@@ -78,7 +81,9 @@ const Cart = () => {
   };
 
   return (
+
     <form id="cart-container-yjh">
+
       <li id="cart-header-yjh">
         <h1>내가 담은 책</h1>
         <div>
@@ -98,8 +103,10 @@ const Cart = () => {
       <ul id="book-list-yjh">
         {cart && cart.length > 0 ? (
           cart.map((book, index) => (
-            <li key={index} id="book-yjh" className="grid-container">
-              <div id="book-checkbox-yjh" className="grid-item box-1">
+            <li key={index} id="book-yjh">
+
+
+              <div id="book-checkbox-yjh">
                 {book.book_availability === false ? (
                   <div id="empty-yjh"></div>
                 ) : (
@@ -115,40 +122,39 @@ const Cart = () => {
                   />
                 )}
               </div>
-              <div id="img-box-yjh" className="grid-item box-2">
-                <div>
-                  <img src={API_URL + book.book_img_url} alt="" />
+
+
+              <div id="book-img-yjh">
+                <div id="img-box-yjh">
+                  <div>
+                    <img src={API_URL + book.book_img_url} alt="" />
+                  </div>
                 </div>
+                <NavLink to={`/BookDetail/${book.id}`}>도서정보</NavLink>
               </div>
-              <div className="grid-item box-3">
-                <NavLink to={`/BookDetail/${book.id}`}>도서정보</NavLink>{" "}
-              </div>
-              <div className="grid-item box-4">
+
+
+              <div id="book-info-yjh">
                 <h3>{book.book_name}</h3>
-              </div>
-              <p id="writer-yjh" className="grid-item box-5">
-                {book.book_AUTHOR} | {book.book_publisher} |{" "}
-                {book.book_publisher}
-              </p>
-              <p id="book-description-yjh" className="grid-item box-6">
-                {book.book_description}
-              </p>
-              <div className="grid-item box-7">
+                <p id="writer-yjh">
+                  {book.book_AUTHOR} | {book.book_publisher} | {book.book_publisher}
+                </p>
+                <p id="book-description-yjh">{book.book_description}</p>
                 {book.book_availability == true ? (
                   <div id="loan-a-yjh">대출가능</div>
                 ) : (
                   <div id="loan-p-yjh">대출불가</div>
                 )}
               </div>
+
+              
             </li>
           ))
         ) : (
           <p>장바구니에 담은 책이 없습니다</p>
         )}
         <li id="loan-btn-yjh">
-          <button type="button" onClick={handleOrder}>
-            대출신청
-          </button>
+          <button type="button" onClick={handleOrder}> 대출신청 </button>
         </li>
       </ul>
     </form>
