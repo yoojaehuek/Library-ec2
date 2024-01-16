@@ -31,7 +31,7 @@ const AMap = () => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={hoverGeo === geo.rsmKey ? 'purple' : '#EAEAEC'}
+                fill={hoverGeo === geo.rsmKey ? 'yellow' : '#EAEAEC'}
                 stroke="#D6D6DA"
                 onMouseEnter={() => handleMouseIn(geo.rsmKey)}
                 onMouseLeave={handleMouseOut}
