@@ -24,9 +24,10 @@ const faqFormatDate = (result) => {
 
 const eventFormatDate = (result) => {	
 	console.log("eventFormatDate: ", result.length);
-	let tmp = null;
-	if (result.length > 1) {
-		tmp = result.map(el => el.get({ plain: true }));
+	let tmp = result;
+	if (Array.isArray(tmp)) {
+		console.log('배열임');
+		tmp = tmp.map(el => el.get({ plain: true }));
 		tmp.map((order, index) => {
 			const { event_start_date, event_end_date } = tmp[index];
 	
@@ -36,9 +37,9 @@ const eventFormatDate = (result) => {
 			tmp[index].event_end_date = new Date(event_end_date.setHours(event_end_date.getHours() + 9));
 			tmp[index].event_end_date = tmp[index].event_end_date.toISOString().split('T')[0];
 		})
-	}else {
+	}else if (!Array.isArray(tmp)) {
 		console.log("들어옴");
-		tmp = result;
+		console.log("tmp: ", tmp);
 		console.log("tmp.event_end_date: ", tmp.event_start_date);
 		tmp.event_start_date = new Date(tmp.event_start_date.setHours(tmp.event_start_date.getHours() + 9));
 		tmp.event_start_date = tmp.event_start_date.toISOString().split('T')[0];
@@ -46,6 +47,8 @@ const eventFormatDate = (result) => {
 		tmp.event_end_date = new Date(tmp.event_end_date.setHours(tmp.event_end_date.getHours() + 9));
 		tmp.event_end_date = tmp.event_end_date.toISOString().split('T')[0];
 		console.log(tmp);
+	}else{
+		console.log('뭐ㅑ');
 	}
 	return tmp
 }
