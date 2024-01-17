@@ -120,16 +120,13 @@ const AListbar = () => {
 
   return (
     <div id='AListbar-container-kjn'>
-      {/* <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} />
-      </div> */}
       <Drawer
         variant="permanent"
         sx={{
-          width: 240,
+          width: 220,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 240,
+            width: 220,
             boxSizing: 'border-box',
             backgroundColor: '#81c147',
             paddingTop: 1,
