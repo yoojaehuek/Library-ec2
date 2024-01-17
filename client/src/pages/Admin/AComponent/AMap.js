@@ -14,7 +14,7 @@ const AMap = () => {
   };
 
   return (
-    <div style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+    <div style={{ width: '50vw' }}>
       <ComposableMap
         projectionConfig={{
           scale: 200,

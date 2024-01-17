@@ -100,7 +100,7 @@ const AFaq = () => {
     setEditResponseTime("");
     setEditStatus("");
   };
-  
+
   const handleDelete = (faq_Id) => {
     const userPassword = prompt("비밀번호 입력하세요:");
     if (userPassword !== null) {
@@ -180,7 +180,16 @@ const AFaq = () => {
                 {item.faq_content}
               </TableCell>
               <TableCell>{item.faq_password}</TableCell>
-              <TableCell>{item.faq_response}</TableCell>
+              <TableCell
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "150px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.faq_response}
+              </TableCell>
               <TableCell>{item.faq_response_time}</TableCell>
               {/* <TableCell>{item.faq_status}</TableCell> */}
               <TableCell>{item.faq_status ? "답변 완료" : "대기"}</TableCell>

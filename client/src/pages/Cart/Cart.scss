@@ -1,140 +1,158 @@
-#cart-container-yjh{
+#cart-container-yjh {
   width: 1200px;
   margin: auto;
-  li{
+  li {
     list-style-type: none;
   }
-  #cart-header-yjh{
+  #cart-header-yjh {
     display: flex;
     justify-content: space-between;
     align-items: end;
-    border-bottom: 1px solid #B3B3B3;
+    border-bottom: 1px solid #b3b3b3;
     width: 90%;
     margin: auto;
-    &>div{
+    & > div {
       display: flex;
-      span{line-height: 25px;}
-      input[type=checkbox]{
+      span {
+        line-height: 25px;
+      }
+      input[type="checkbox"] {
         width: 20px;
         height: 20px;
-        accent-color: #6BA10E;
+        accent-color: #6ba10e;
       }
     }
   }
-  #book-list-yjh{
+  #book-list-yjh {
     padding: 0%;
-    #book-yjh{
-      border-bottom:1px solid #979797;
-    }
-    li{
-      height: 250px;
-      width: 90%;
-      display: flex;
+    .grid-container {
+      border-bottom: 1px solid #979797;
       align-items: center;
+
       margin: auto;
-      gap: 20px;
-      &>div{
-        text-align: start;
-        input[type=checkbox]{
+      padding: 15px 0px;
+      display: grid;
+      grid-template-rows: 0.8fr 0.5fr 1.7fr 1fr 1fr 1fr;
+      grid-template-columns: 50px 1fr auto;
+      column-gap: 20px;
+      grid-template-areas:
+        "box-1 box-2 box-4 box-4 box-4 box-4 box-4"
+        "box-1 box-2 box-5 box-5 box-5 box-5 box-5"
+        "box-1 box-2 box-6 box-6 box-6 box-6 box-6"
+        "box-1 box-2 box-6 box-6 box-6 box-6 box-6"
+        "box-1 box-2 box-6 box-6 box-6 box-6 box-6"
+        "box-1 box-3 box-7 box-8 box-8 box-8 box-8";
+
+      .grid-item {
+        border: 0px solid #000;
+      }
+      .box-1 {grid-area: box-1;}
+      .box-2 {grid-area: box-2;}
+      .box-3 {grid-area: box-3;}
+      .box-4 {grid-area: box-4;}
+      .box-5 {grid-area: box-5;}
+      .box-6 {grid-area: box-6;}
+      .box-7 {grid-area: box-7;}
+      .box-8 {grid-area: box-8;}
+
+      & > div {
+        input[type="checkbox"] {
           width: 30px;
           height: 30px;
-          accent-color: #6BA10E;
+          accent-color: #6ba10e;
         }
       }
-      #book-checkbox-yjh{
-        #empty-yjh{
-          width: 35px;
-        }
-      }
-      #book-img-yjh{
-        width: 15%;
-        height: 88%;
-        #img-box-yjh{
-          width: 150px;
-          height: 180px;
-          border: 1px solid #000;
-          margin: auto;
-          display: table;
-          &>div{
-            display: table-cell;
+      #img-box-yjh {
+        height: 100%;
+        border: 1px solid #b3b3b3;
+        margin: auto;
+        display: table;
+        & > div {
+          display: table-cell;
+          vertical-align: middle;
+          img {
+            max-width: 150px;
+            max-height: 240px;
+            border: 1px solid #b3b3b3;
             vertical-align: middle;
-            img{
-              max-width: 150px;
-              max-height: 180px;
-              border: 1px solid #B3B3B3;margin: 0px;
-              padding: 0px;
-            }
           }
         }
-        a{
-          text-decoration: none;
-          width: 150px;
-          text-align: center;
-          display: block;
-          margin: 5px auto;
-          border: 1px solid #000;
-          font-weight: bold;
-          color: black;
-          padding: 5px 0px;
-        }
       }
-      #book-info-yjh{
-        width: 70%;
-        height: 88%;
-        margin: 25px;
-        h3{
-          margin: 8px 0px;
-        }
-        #writer-yjh{
-          color: #979797;
-          margin: 0px;
-        }
-        #book-description-yjh{
-          width: 90%;
-          height: 100px;
-          margin-bottom: 0px;
-          overflow:hidden;
-          overflow-y: auto;
-          overflow: hidden; /* 스크롤바를 숨깁니다. */
-        }
-        #book-description-yjh:hover{
-          overflow-y: auto; /* 호버 상태에서만 스크롤바를 표시합니다. */
-        }
-        #loan-p-yjh{
-          width: 150px;
-          text-align: center;
-          font-weight: bold;
-          color: white;
-          padding: 5px 0px;
-          margin-top: 12px;
-          background-color: #D64940;
-        }
-        #loan-a-yjh{
-          width: 150px;
-          text-align: center;
-          font-weight: bold;
-          color: white;
-          padding: 5px 0px;
-          margin-top: 12px;
-          background-color: #4070CD;
-          
-        }
+      a {
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        display: block;
+        border: 1px solid #000;
+        font-weight: bold;
+        color: black;
+        padding: 5px 0px;
       }
     }
-    #loan-btn-yjh{
+    h3 {
+      margin: 0;
+    }
+    #writer-yjh {
+      color: #979797;
+      margin: 0;
+      padding: 0;
+    }
+    #book-description-yjh {
       width: 90%;
-      height: 80px;
-      position: relative;
-      button{
-        position: absolute;
-        right: 0px;
-        font-size: 22px;
-        font-weight: bold;
-        color: white;
-        padding: 8px 17px;
-        border: 0px;
-        background-color: #6BA10E;
-      }
+      height: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      overflow: hidden; /* 스크롤바를 숨김 */
+    }
+    #book-description-yjh:hover {
+      overflow-y: auto; /* 호버 상태에서만 스크롤바를 표시 */
+    }
+    #loan-p-yjh {
+      width: 150px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      padding: 5px 0px;
+      background-color: #d64940;
+    }
+    #loan-a-yjh {
+      width: 150px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      padding: 5px 0px;
+      background-color: #4070cd;
+    }
+  }
+  #loan-btn-yjh {
+    width: 90%;
+    height: 80px;
+    position: relative;
+    border: 0px solid #000;
+    button {
+      position: absolute;
+      right: 0px;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      padding: 8px 17px;
+      border: 0px;
+      background-color: #6ba10e;
     }
   }
 }
+
+// PC (해상도 1024px)/ 
+@media all and (min-width:1024px) {
+
+} 
+
+// 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+
+} 
+
+// 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)
+@media all and (max-width:767px) {
+  
+} 
