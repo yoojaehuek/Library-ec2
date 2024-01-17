@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import A from './A.scss';
 
 const AHeader = () => {
   return (
     <header style={headerStyle}>
-      <img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={logoStyle} />
-      <button style={ButtonStyle}><Link to='/admin/test'>로그인</Link></button>
+      <img
+        src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`}
+        alt='로고'
+        style={logoStyle}
+        className="logo-kjn"
+      />
+      <button style={buttonStyle}>
+        <Link to='/admin/login' style={linkStyle}>로그인</Link>
+      </button>
     </header>
   );
 };
@@ -22,9 +30,22 @@ const logoStyle = {
   height: '50px',
 };
 
-const ButtonStyle = {
-  padding: '8px',
+const buttonStyle = {
+  padding: '10px 20px',
   marginLeft: '10px',
+  background: '#4CAF50',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  transition: 'background 0.3s ease-in-out',
 };
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'white',
+};
+
+
 
 export default AHeader;

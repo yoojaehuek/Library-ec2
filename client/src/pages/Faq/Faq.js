@@ -12,6 +12,7 @@ import {
   FormControlLabel,
   Radio,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import FaqModal from "./FaqModal";
@@ -26,7 +27,6 @@ const Faq = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [faqData, setFaqData] = useState([]);
-  
 
   useEffect(() => {
     fetchData();
@@ -74,7 +74,6 @@ const Faq = () => {
     setIsModalOpen(false);
   };
 
-
   const fixedFaqId = [1, 2, 3, 4];
   const fixedFaqs = faqData.filter((faq) => fixedFaqId.includes(faq.faq_id));
   const remainingFaqs = faqData.filter((faq) => !fixedFaqId.includes(faq.faq_id));
@@ -86,41 +85,45 @@ const Faq = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentFaqs = sortedFaqData.slice(startIndex, endIndex);
 
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   return (
-    <div style={{ maxWidth: "60vw", margin: "2vw auto" }}>
-      <h1 style={{ textAlign: "center" }}>FAQ</h1>
-      <Box
-        display="flex"
-        alignItems="center"
-        mb={2}
-        style={{ maxWidth: "50vw", margin: "0 auto" }}
+    <div style={{ maxWidth: isMobile ? "95vw" : "60vw", margin: "2vw auto" }}>
+    <h1 style={{ textAlign: "center" }}>FAQ</h1>
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", sm: "row" }}
+      alignItems="center"
+      mb={2}
+      style={{ maxWidth: "100vw", margin: "0 auto" }}
+    >
+      <FormControl
+        style={{ flex: isMobile ? "1" : "0.7", marginTop: "8px", marginRight: isMobile ? 0 : "10px" }}
       >
-        <FormControl
-          style={{ flex: 0.7, marginTop: "8px", marginRight: "10px" }}
-        >
-          <Select
-            value={selectedCategory}
-            onChange={handleChangeCategory}
-            fullWidth
-            style={{ width: "15vw" }}
-          >
-            {categories.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          label="Search"
-          value={searchTerm}
-          onChange={handleSearch}
-          variant="outlined"
+        <Select
+          value={selectedCategory}
+          onChange={handleChangeCategory}
           fullWidth
-          margin="normal"
-          style={{ flex: 1.3 }}
-        />
-      </Box>
+          style={{ width: isMobile ? "95vw" : "15vw" }}
+        >
+          {categories.map((category) => (
+            <MenuItem key={category} value={category}>
+              {category}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <TextField
+        label="Search"
+        value={searchTerm}
+        onChange={handleSearch}
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        style={{ flex: isMobile ? "1" : "1.3" }}
+      />
+    </Box>
+    {!isMobile && (
       <RadioGroup
         value={selectedCategory}
         onChange={handleChangeCategory}
@@ -141,6 +144,7 @@ const Faq = () => {
           />
         ))}
       </RadioGroup>
+    )}
       <Box mt={2} style={{ display: "grid", gap: "16px" }}>
         {currentFaqs.map((faq, index) => (
           <Link
