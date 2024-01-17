@@ -127,8 +127,7 @@ const Cart = () => {
                 <h3>{book.book_name}</h3>
               </div>
               <p id="writer-yjh" className="grid-item box-5">
-                {book.book_AUTHOR} | {book.book_publisher} |{" "}
-                {book.book_publisher}
+                {book.book_AUTHOR} | {book.book_publisher} | {book.book_publisher}
               </p>
               <p id="book-description-yjh" className="grid-item box-6">
                 {book.book_description}
