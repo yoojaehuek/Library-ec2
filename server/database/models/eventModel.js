@@ -13,6 +13,17 @@ class EventModel {
     return result;
   }
 
+  static async getPageEvent({ event_id, event_limit, orderBy }){
+    const result = await Event.findAll({
+      where: {
+        event_id: event_id
+      },
+      order: [ ['event_id', orderBy] ],
+      limit: event_limit,
+    });
+    return result;
+  }
+
   static async getCategoryEvent(wheres){
     console.log("wheres: ", wheres);
     const result = await Event.findAll({
