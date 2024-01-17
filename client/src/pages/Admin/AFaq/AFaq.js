@@ -100,6 +100,7 @@ const AFaq = () => {
     setEditResponseTime("");
     setEditStatus("");
   };
+  
   const handleDelete = (faq_Id) => {
     const userPassword = prompt("비밀번호 입력하세요:");
     if (userPassword !== null) {
