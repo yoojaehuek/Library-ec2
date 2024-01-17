@@ -44,7 +44,47 @@ app.use(cors());
 
 // '/server/upload'경로로 뭔가 요청이오면 여기서 걸리고 server/upload폴더의 정적 파일을 제공하겠다
 // 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
-app.use("/server/upload", express.static("server/upload"));  
+app.use("/server/upload", express.static(__dirname + "/server/upload"));
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      if (file.fieldname == "image") {
+        cb(null, './server/upload/book/');
+      } else if (file.fieldname == "file") {
+        cb(null, './server/upload/event/');
+      }
+    },
+    filename: function (req, file, cb) {
+      cb(null, new Date().valueOf() + path.extname(file.originalname));
+    },
+  }),
+});
+
+app.post('/image', upload.single('image'), (req, res) => {
+  const file = req.file;
+  console.log("post(/image) file:", file);
+  res.send({
+    imageUrl: "/server/upload/" + file.filename
+  });
+});
+
+app.post('/api/eventimg', upload.single('image'), (req, res) => {
+  const file = req.file;
+  console.log("post(/image) file:", file);
+  res.send({
+    imageUrl: "/server/upload/event/" + file.filename
+  });
+});
+
+app.post('/api/bookimg', upload.single('image'), (req, res) => {
+  const file = req.file;
+  console.log("post(/image) file:", file);
+  res.send({
+    imageUrl: "/server/upload/book/" + file.filename
+  });
+});
+
 
 app.use('/api/admin', adminRouter);
 app.use('/api/book', bookRouter);
@@ -68,3 +108,4 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`${port}에서 대기중....`);
 })
+

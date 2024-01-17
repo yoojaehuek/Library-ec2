@@ -23,7 +23,7 @@ const Check = () => {
       console.log("res.status : ", res.data);
 
       if(res.data.status == true){
-        navigate('/mypage');
+        navigate('/myedit');
       } else {
         setCheckPwd(false);
       }
