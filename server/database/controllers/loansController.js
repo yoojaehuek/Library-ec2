@@ -9,10 +9,10 @@ class LoansController {
   static async addLoans(req,res,next){
     try {
       const tmp = req.body;
-      console.log("미들웨어 userId: ",req.user_email);
+      console.log("미들웨어 userId: ", req.user_id);
       
-      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_email를 추가시킴
-        orderItem.user_id = req.user_email; // 로그인 되면 이걸로
+      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
+        orderItem.user_id = req.user_id; // 로그인 되면 이걸로
       }); 
       const one = tmp.order
       console.log("tmp 안의 one: ", one);
@@ -28,7 +28,6 @@ class LoansController {
   }
   /** 전체조회 */
   static async getAllLoans(req, res, next){
-    // console.log("컨트롤러 전체조회 들어옴");
     try {
       const result = await LoansService.getAllLoans();
       // console.log("컨트롤러 전체조회 받음: ",result);
@@ -37,13 +36,13 @@ class LoansController {
       next(error);
     }
   }
-  // 유저 대출정보 가져오기 전거
+  // 유저 대출정보 가져오기
   static async getLoansByUserId(req, res, next){
     console.log("유저 대출정보 조회 컨트롤러 들어옴");
     try {
-      const finduserid = req.params.user_id;
+      const finduserid = req.user_id;
       console.log("컨트롤러에서 유저대출정보 : ", finduserid);
-      const result = await LoansService.getLoansByUserId({user_id: finduserid});
+      const result = await LoansService.getLoansByUserId(finduserid);
       console.log("loansController.js/getLoansByUserId()/result: ", result);
       res.status(200).json(result);
     } catch (error) {
@@ -63,10 +62,10 @@ class LoansController {
 
   static async findAllLoansDate(req, res, next){
     try {
-      const userId = req.userId;
+      const user_id = req.user_id;
       // const userId = 1;
       const dateType = req.query;
-      const result = await LoansService.findAllLoansDate({userId, dateType});
+      const result = await LoansService.findAllLoansDate({user_id, dateType});
       if (result.errorMessage) {
         throw new Error(result.errorMessage);
       }
@@ -140,7 +139,6 @@ class LoansController {
   static async deleteLoans(req, res, next){
     try {
       const loans_id = req.params.loans_id;
-      // const loansId = 8;
       const result = await LoansService.deleteLoans({loans_id});
       res.status(200).json(result);
     } catch (error) {

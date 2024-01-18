@@ -24,8 +24,7 @@ const Mypage = () => {
   },[]);
   /** 받은 유저id로 유저 대출정보 조회요청 */
   useEffect(() => {
-    if (userId) { 
-      axios.get(`${API_URL}/api/loans/userbyloans/${userId}`)
+      axios.get(`${API_URL}/api/loans/userbyloans`)
         .then(res => {
           setUserbyLoans(res.data);
           console.log("유저 대출정보 : ", res.data);
@@ -33,8 +32,7 @@ const Mypage = () => {
         .catch((err) => {
           console.error(err);
         });
-    }
-  }, [userId]);
+  }, []);
     // console.log("유저 대출정보 : ", userbyLoans);
 
   const visibleBooks = showAllBooks ? userbyLoans : userbyLoans.slice(0, 3);
@@ -50,30 +48,15 @@ const Mypage = () => {
         <div className='rentTable-kjh'>
           <table>
             <tr><td colSpan='4' className='tdTitle-kjh'>대여 중인 책</td></tr>
-            {/* {currentItems.map((book, index) => { */}
-              {/* // currentItems =[
-              //   {id:1, name: "김정혁", "남"},
-              //   {id:2, name: "유재혁", "여"}
-              // ] */}
-              {/* <tr>
+            {visibleBooks.map((book, index) => (
+              <tr>
                 <td className='tWriter-kjh'>{book.book_author}</td>
-                <td className='tTitle-kjh'>{book.book_name}</td>
-                <td className='tSdate-kjh'>{loans.loan_date}</td>
-                <td className='tEdate-kjh'>{loans.due_date}</td>
-              </tr> */}
+                <td className='tTitle-kjh'>{book.Book.book_name}</td>
+                <td className='tSdate-kjh'>{book.loan_date}</td>
+                <td className='tEdate-kjh'>{book.due_date}</td>
+              </tr>
+            ))}
 
-            <tr>
-              <td className='tWriter-kjh'>작가</td>
-              <td className='tTitle-kjh'>제목</td>
-              <td className='tSdate-kjh'>대여시작일</td>
-              <td className='tEdate-kjh'>반납일</td>
-            </tr>
-            <tr>
-              <td className='tWriter-kjh'>작가</td>
-              <td className='tTitle-kjh'>제목</td>
-              <td className='tSdate-kjh'>대여시작일</td>
-              <td className='tEdate-kjh'>반납일</td>
-            </tr>
           </table>
           {!showAllBooks && (
             <NavLink onClick={() => setShowAllBooks(true)} className='more-kjh'>더보기 {'>'}</NavLink>
