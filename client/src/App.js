@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main.js';
 import BookDetail from './pages/BookDetail/BookDetail.js';
 import Header from './components/Header/Header.js';
+import Header2 from './components/Header/Header2.js';
 import Footer from './components/Footer/Footer.js'
 import Join from './pages/Join/Join.js';
 import Login from './pages/Login/Login.js';
@@ -24,7 +25,7 @@ const currentPath = window.location.pathname;
 function App() {
   return (
     <div className="App">
-      {!currentPath.includes('/admin') && <Header />}
+      {!currentPath.includes('/admin') && <Header2 />}
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/BookDetail/:id' element={<BookDetail />}></Route>
