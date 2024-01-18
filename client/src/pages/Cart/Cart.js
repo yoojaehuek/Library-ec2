@@ -49,7 +49,7 @@ const Cart = () => {
           console.error(err);
         });
     } else {
-      alert("선택된 책이 없습니다. 책을 선택해주세요.");
+      alert("선택된 책이 없습니다. 책을 선택해주세요."); 
     }
   };
 

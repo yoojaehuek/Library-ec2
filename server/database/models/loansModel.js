@@ -1,5 +1,6 @@
 const Loans = require('../schemas/loans'); 
 const Book = require('../schemas/book');
+const User = require('../schemas/user');
 const { Op } = require('sequelize');
 
 class LoansModel {
@@ -39,7 +40,37 @@ class LoansModel {
   static async getAllLoans(){
     // console.log("모델 전체조회 들어옴");
     const loans = await Loans.findAll();
-    // console.log("전체조회로 찾은거: ",loans);
+    console.log("전체조회로 찾은거: ",loans);
+    return loans;
+  }
+  /** 최신순으로 대출 정보 조회 */
+  static async getAllLoansDESC() {
+    const loans = await Loans.findAll({
+      // order: [['loan_date', 'DESC']], // 오래된순
+      order: [['loan_date', 'ASC']], 
+    });
+    console.log("최신순 전체조회로 찾은거: ", loans);
+    return loans;
+  }
+  /** 최근대출순으로 책 , 유저 불러오기*/
+  static async getRecentBorrowedBooksAndUsers() {
+    const loans = await Loans.findAll({
+      // order: [['loan_date', 'DESC']], // 오래된순
+      include: [
+        {
+          model: Book,
+          attributes: ['book_name', 'book_author'],
+        },
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ], 
+      order: [
+        ['loan_date', 'ASC']
+      ], 
+    });
+    console.log("최신순 전체조회로 찾은거: ", loans);
     return loans;
   }
   /** 유저대출정보조회 */
@@ -56,6 +87,43 @@ class LoansModel {
           attributes: ['book_name', 'book_author'],
         }
       ],
+    }); //where: {id: asdf} 형태가 들어와야함
+    return loans;
+  }
+  /** 유저별 대출 목록 책만  */
+  static async getBooksBorrowedByUser({id}){
+    console.log("aa모델에서 받은 유저id: ", id);
+    console.log("aa모델에서 받은 유저id: ", typeof(id));
+    const loans = await Loans.findAll({
+      where: {
+        user_id: id,
+      },
+      include: [
+        {
+          model: Book,
+          attributes: ['book_name', 'book_author'],
+        }
+      ],
+    }); //where: {id: asdf} 형태가 들어와야함
+    return loans;
+  }
+  /** 책을 대출한 유저 최신순으로   */
+  static async getUsersByBookBorrowed({id}){
+    console.log("aa모델에서 받은 book_id: ", id);
+    console.log("aa모델에서 받은 book_id: ", typeof(id));
+    const loans = await Loans.findAll({
+      where: {
+        book_id: id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      order: [
+        ['loan_date', 'ASC']
+      ], 
     }); //where: {id: asdf} 형태가 들어와야함
     return loans;
   }
