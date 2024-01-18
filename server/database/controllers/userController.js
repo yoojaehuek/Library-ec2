@@ -88,10 +88,10 @@ class UserController {
   }
   static async checkPassword(req, res, next) {
     try {
-      const user_email = req.user_email;
+      const user_id = req.user_id;
       const user_pwd = req.body.pwd;
       console.log("컨트롤러에서 pwd: ", user_pwd);
-      const user = await UserService.checkPassword({user_email, user_pwd});
+      const user = await UserService.checkPassword({user_id, user_pwd});
       console.log("userControll.loginUser: ", user);
 
       if (user.errorMessage) {
@@ -116,10 +116,10 @@ class UserController {
 
   static async detailUser(req, res, next) {
     try {
-      const user_email = req.user_email;
+      const userId = req.user_id;
       // const id = "rlarorn@naver.com";
-      console.log("email: ", user_email);
-      const user = await UserService.detailUser({ user_email });
+      console.log("userId: ", userId);
+      const user = await UserService.detailUser({ userId });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
@@ -130,13 +130,12 @@ class UserController {
 
   static async patchUser(req, res, next) {
     try {
-      const userId = req.userId;
+      const user_id = req.user_id;
       // const userId = 1;
-      const { ...props } = req.body;
-      const toUpdate = { ...props };
+      const toUpdate = { ...req.body };
       // const updateValue = req.body;
-      console.log("userController/updateValue: ", toUpdate, userId);
-      const user = await UserService.patchUser({ toUpdate, userId });
+      console.log("userController/updateValue: ", toUpdate, user_id);
+      const user = await UserService.patchUser({ toUpdate, user_id });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
@@ -147,10 +146,10 @@ class UserController {
 
   static async deleteUser(req, res, next) {
     try {
-      const userId = req.userId;
+      const user_id = req.user_id;
       // const userId = 1;
-      console.log("userController/deleteUser: ", userId);
-      const user = await UserService.deleteUser({ userId });
+      console.log("userController/deleteUser: ", user_id);
+      const user = await UserService.deleteUser({ user_id });
 
       // console.log("res임니다요: ",res);
       res.status(200).json(user);
