@@ -54,8 +54,11 @@ class Loans extends Sequelize.Model {
   }
 
   static associate(db) {
+    // //참조키로 Admin 모델의 admin_id(targetKey)를 admin_id(foreignKey)라는 이름으로 가져옴
+    // db.Loans.belongsTo(db.Admin, {foreignKey: 'admin_id', targetKey: 'admin_id'});
+
     //참조키로 Admin 모델의 admin_id(targetKey)를 admin_id(foreignKey)라는 이름으로 가져옴
-    db.Loans.belongsTo(db.Admin, {foreignKey: 'admin_id', targetKey: 'admin_id'});
+    db.Loans.belongsTo(db.Book, {foreignKey: 'book_id', targetKey: 'book_id'});
     
     //참조키로 User 모델의 user_id(targetKey)를 user_id(foreignKey)라는 이름으로 가져옴
     db.Loans.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'user_id'});

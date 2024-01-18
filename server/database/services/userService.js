@@ -9,7 +9,7 @@ class UserService{
 	//유효성 검사 이메일 겹치는지 등등
 	static async createUser({email, pwd, user_name, phone}){
 
-	const user = await UserModel.findOneUserEmail({ user_email: email });
+		const user = await UserModel.findOneUserEmail({ user_email: email });
 		
 		if (user) {
 			user.errorMessage = "해당 id는 이미 가입되어 있습니다.";
@@ -63,11 +63,11 @@ class UserService{
 		if (hashedPassword === user.user_pwd) {
 			console.log('Login successful!');
 			// console.log("userService.js/loginUser()/user: ", user);
-			const accessToken = makeAccessToken({email: user.user_email});
+			const accessToken = makeAccessToken({user_id: user.user_id});
 			const refreshToken = makeRefreshToken();
 
 			// userId를 키값으로 refresh token을 redis server에 저장
-			await redisClient.set(user.user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+			await redisClient.set(user.user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 			// await redisClient.get(user.id, (err, value) => {
 			// 	console.log("redis.value: ", value); 
 			// });
@@ -130,7 +130,7 @@ class UserService{
 			console.log('신규 회원 회원 가입!');
 		}
 		
-		const accessToken = makeAccessToken({email: result[0].user_email});
+		const accessToken = makeAccessToken({user_id: result[0].user_id});
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
@@ -143,11 +143,11 @@ class UserService{
 		return serviceResult
 	}
 
-	static async checkPassword({user_email, user_pwd}){
-		console.log("이메일서비스들어옴 : ", user_email);
+	static async checkPassword({user_id, user_pwd}){
+		console.log("이메일서비스들어옴 : ", user_id);
 		console.log("비번서비스들어옴 : ", user_pwd);
 		
-		let user = await UserModel.findOneUserEmail({ user_email });
+		let user = await UserModel.findOneUserId({ user_id });
 		console.log("user: ", user);
 		
 		if (!user) {
@@ -187,8 +187,8 @@ class UserService{
 		return dataFormatUser;
 	}
 
-	static async detailUser({user_email}){
-		const user = await UserModel.findOneUserEmail({user_email});
+	static async detailUser({userId}){
+		const user = await UserModel.findOneUserId({user_id: userId});
 		// console.log({myId});
 		const name = user.user_name;
 		const pwd = user.user_pwd;
@@ -206,20 +206,35 @@ class UserService{
 		return userInfo;
 	}
 
-	static async patchUser({toUpdate, user_email}){
-		console.log("서비스에서: ",toUpdate, user_email);
+	static async patchUser({toUpdate, user_id}){
+		console.log("서비스에서: ",toUpdate, user_id);
 		// const email = toUpdate.user_name;
 		// const phone = toUpdate.phoneNumberPrefix + toUpdate.phoneNumberSuffix;
 		// const address = toUpdate.address;
 		// const detail_address = toUpdate.detail_address;
 		// const birth = toUpdate.selectedYear+'-'+toUpdate.selectedMonth+'-'+toUpdate.selectedDay;
+
+		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
+		//.toString('base64'): 임의의 바이트를 base64로 인코딩된 문자열로 변환
+		
+		// crypto.createHash('sha512'): SHA-512 해시 개체를 생성
+		//.update(pwd + salt): 비밀번호( pwd)와 솔트를 연결하여 해시를 업데이트
+		//.digest('hex'): 16진수 형식으로 최종 해시를 생성
 		const update = {
 			user_name: toUpdate.user_name,
-			phone: toUpdate.phone_number_prefix + toUpdate.phone_number_suffix,
-			address: toUpdate.address,
-			detail_address: toUpdate.detail_address,
-			birth: toUpdate.selected_year+'-'+toUpdate.selected_month+'-'+toUpdate.selected_day,
+			user_phone: toUpdate.user_phone,
 		};
+		if(toUpdate.user_pwd) {
+			const salt = crypto.randomBytes(128).toString('base64'); 
+			const hashPassword = crypto
+				.createHash('sha512')
+				.update(toUpdate.user_pwd + salt)
+				.digest('hex'); 
+			
+				update.salt = salt;
+				update.hashPassword = hashPassword;
+		}
+
 		// update.user_name = toUpdate.user_name;
 		// update.phone = toUpdate.phone_number_prefix + toUpdate.phone_number_suffix;
 		// update.address = toUpdate.address;
@@ -227,13 +242,13 @@ class UserService{
 		// update.birth = toUpdate.selectedYear+'-'+toUpdate.selectedMonth+'-'+toUpdate.selectedDay;
 		console.log(update);
 
-		const user = await UserModel.patchUser({update, user_email});
+		const user = await UserModel.patchUser({update, user_id});
 		return user;
 	}
 
-	static async deleteUser({user_email}){
-		console.log("서비스에서: ", user_email);
-		const user = await UserModel.destroyUser({user_email});
+	static async deleteUser({user_id}){
+		console.log("서비스에서: ", user_id);
+		const user = await UserModel.destroyUser({user_id});
 		return user;
 	}
 	static async deleteAdminUser({user_id}){
