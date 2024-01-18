@@ -1,7 +1,8 @@
 const EventModel = require('../models/eventModel');
 const { Op } = require('sequelize');
 const {eventFormatDate} = require('../../utils/dataUtils');
-const EventApplicalntModel = require('../models/event_applicantsModel');
+const EventApplicantModel = require('../models/event_applicantsModel');
+const Event = require('../schemas/event');
 
 class EventService{
 	
@@ -74,29 +75,37 @@ class EventService{
 	}
 
 	static async applyEvent({ event_id, user_id }) {
-		const event = await EventModel.getOneEvent(event_id);
+		console.log("EventService applyEvent: ", event_id, user_id);
+		console.log("EventModel: ", EventModel);
+		const event = await EventModel.getOneEvent({event_id});		
 
 		if(event.event_max_applicants !== null && event.event_current_applicants >= event.event_max_applicants){
 			throw new Error('인원이 가득 찼습니다');
 		}
 
-		const existingApplicant = await EventApplicalntModel.findOne({
-			where: {
-				event_id: event_id,
-				user_id: user_id,
-			},
-		});
+		if(event.event_status == "expired" ){
+			throw new Error('종료된 이벤트');
+		}
+
+		const existingApplicant = await EventApplicantModel.getOneEvent_applicantsByID({	event_id, user_id	});
+		console.log("신청여부확인test: ",existingApplicant);
 
 		if(existingApplicant) {
 			throw new Error('이미 신청한 이벤트입니다');
 		}
 
-		await EventApplicalntModel.createEvent_applicants({
+		await EventApplicantModel.createEvent_applicants({
 			event_id: event_id,
 			user_id: user_id,
 		});
 
-		await EventModel.increment({'event_current_applicants': 1}, {where: { user_id }});
+		await Event.increment('event_current_applicants', {
+      by: 1,
+      where: {
+        event_id: event_id,
+        // 추가적인 조건을 필요에 따라 여기에 추가
+      },
+    });
 
 		return { success: true, message: '이벤트 신청 완료'}
 	}
@@ -104,6 +113,46 @@ class EventService{
 	static async getOneEvent({event_id}){
 		const tmpResult = await EventModel.getOneEvent({event_id});
 		const result = await eventFormatDate(tmpResult);
+		await Event.increment('read_count', {
+      by: 1,
+      where: {
+        event_id: event_id,
+        // 추가적인 조건을 필요에 따라 여기에 추가
+      },
+    });
+		return result;
+	}
+
+	static async unapplyEvent({ event_id, user_id }) {
+		console.log("EventService unapplyEvent: ", event_id, user_id);
+		console.log("EventModel: ", EventModel);	
+		
+		await EventApplicantModel.createEvent_applicants({
+			event_id: event_id,
+			user_id: user_id,
+		});
+
+		await Event.increment('event_current_applicants', {
+      by: -1,
+      where: {
+        event_id: event_id,
+        // 추가적인 조건을 필요에 따라 여기에 추가
+      },
+    });
+
+		return { success: true, message: '이벤트 신청 취소 완료'}
+	}
+
+	static async getOneEvent({event_id}){
+		const tmpResult = await EventModel.getOneEvent({event_id});
+		const result = await eventFormatDate(tmpResult);
+		await Event.increment('read_count', {
+      by: 1,
+      where: {
+        event_id: event_id,
+        // 추가적인 조건을 필요에 따라 여기에 추가
+      },
+    });
 		return result;
 	}
 

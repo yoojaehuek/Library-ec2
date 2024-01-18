@@ -106,9 +106,20 @@ class EventController {
 		try {
 			const event_id = req.params.event_id;
 			const user_id = req.user_id;
-			console.log(event_id, user_id);
+			console.log("EventController applyEvent: ", event_id, user_id);
 			const result = await EventService.applyEvent({event_id, user_id});
-			res.status(200).json(result);
+			res.status(201).json(result);
+		} catch (error) {
+			next(error);
+		}
+	}
+	static async unapplyEvent(req, res, next){
+		try {
+			const event_id = req.params.event_id;
+			const user_id = req.user_id;
+			console.log("EventController applyEvent: ", event_id, user_id);
+			const result = await EventService.unapplyEvent({event_id, user_id});
+			res.status(201).json(result);
 		} catch (error) {
 			next(error);
 		}
