@@ -13,8 +13,9 @@ import FaqDetail from './pages/Faq/FaqDetail.js';
 import RentalManage from './pages/rentalmanage/rentalmanage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
-import Check from './pages/Mypage/Check.js';
-import MyEdit from './pages/Mypage/MyEdit.js';
+import Check from './pages/Mypage/Check/Check.js';
+import MyEdit from './pages/Mypage/MyEdit/MyEdit.js';
+import Review from './pages/Mypage/Review/Review.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 import EventDetail from './pages/Event/EventDetail/EventDetail.js';
@@ -39,6 +40,7 @@ function App() {
         <Route path='/mypage' element={<Mypage />}></Route>
         <Route path='/check' element={<Check />}></Route>
         <Route path='/myedit' element={<MyEdit />}></Route>
+        <Route path='/review' element={<Review />}></Route>
         <Route path='/loantest' element={<LoanTest />}></Route>
         <Route path='/event' element={<Event />}></Route>
         <Route path='/event/:id' element={<EventDetail />}></Route>
