@@ -88,7 +88,7 @@ class EventController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	}	
 
 }
 

@@ -1,6 +1,7 @@
 const EventModel = require('../models/eventModel');
 const { Op } = require('sequelize');
 const {eventFormatDate} = require('../../utils/dataUtils');
+const EventApplicalntModel = require('../models/event_applicantsModel');
 
 class EventService{
 	
@@ -55,6 +56,34 @@ class EventService{
     })
     
 		return result;
+	}
+
+	static async applyEvent({ event_id, user_id }) {
+		const event_id = req.params.event_id;
+
+		if(event.event_max_applicants !== null && event.event_current_applicants >= event.event_max_applicants){
+			throw new Error('인원이 가득 찼습니다');
+		}
+
+		const existingApplicant = await EventApplicalntModel.findOne({
+			where: {
+				event_id: event_id,
+				user_id: user_id,
+			},
+		});
+
+		if(existingApplicant) {
+			throw new Error('이미 신청한 이벤트입니다');
+		}
+
+		await EventApplicalntModel.createEvent_applicants({
+			event_id: event_id,
+			user_id: user_id,
+		});
+
+		await event.increment('event_current_applicants');
+
+		return { success: true, message: '이벤트 신청 완료'}
 	}
 
 	static async getOneEvent({event_id}){
