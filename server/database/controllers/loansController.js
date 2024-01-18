@@ -36,6 +36,47 @@ class LoansController {
       next(error);
     }
   }
+  /** 최신순 전체조회  */
+  static async getAllLoansDESC(req, res, next){
+    try {
+      const result = await LoansService.getAllLoansDESC();
+      // console.log("컨트롤러 최신순 전체조회 받음: ",result);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  /** 최근대출순으로 책 , 유저 불러오기  */
+  static async getRecentBorrowedBooksAndUsers(req, res, next){
+    try {
+      const result = await LoansService.getRecentBorrowedBooksAndUsers();
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  /** 유저별 대출 목록 책만   */
+  static async getBooksBorrowedByUser(req, res, next){
+    try {
+			const user_id = req.params.user_id;
+      console.log("컨트롤러에서user_id 타입 : ",typeof(user_id));
+      const result = await LoansService.getBooksBorrowedByUser(user_id);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  /** 책을 대출한 유저 최신순으로 */
+  static async getUsersByBookBorrowed(req, res, next){
+    try {
+			const book_id = req.params.book_id;
+      console.log("컨트롤러에서user_id 타입 : ",typeof(book_id));
+      const result = await LoansService.getUsersByBookBorrowed(book_id);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
   // 유저 대출정보 가져오기
   static async getLoansByUserId(req, res, next){
     console.log("유저 대출정보 조회 컨트롤러 들어옴");
