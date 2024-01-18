@@ -29,6 +29,9 @@ const Check = () => {
       }
     }
   }
+  const handleClose = () => {
+    navigate(-1);
+  }
 
   return (
     <div className='check-container-kjh'>
@@ -45,7 +48,8 @@ const Check = () => {
             id="pwd"
             placeholder="비밀번호"
           />
-          <button id="check_btn-kjh" type='submit'>확인</button>
+          <button className='check_cancell-kjh' type='button' onClick={handleClose}>취소</button>
+          <button className='check_button-kjh' type='submit'>확인</button>
         </div>
       </form>
 

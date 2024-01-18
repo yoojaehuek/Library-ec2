@@ -4,7 +4,7 @@ class Event_applicantsController {
 
 	static async createEvent_applicants(req, res, next){
 		try {
-			// const user_id = req.user_email;
+			// const user_id = req.user_id;
 			const user_id = '1';
 			const event_id = req.body.event_id;
 			const result = await Event_applicantsService.createEvent_applicants({event_id, user_id});
