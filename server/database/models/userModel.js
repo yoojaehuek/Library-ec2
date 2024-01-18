@@ -48,23 +48,23 @@ class UserModel {
     return user;
   }
   
-  static async patchUser({update, user_email}){
+  static async patchUser({update, user_id}){
     console.log("update: ",update);
     const user = await User.update({
       ...update
     }, {
       where: {
-        user_email: user_email
+        user_id: user_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return user;
   }
 
-  static async destroyUser({user_email}){
+  static async destroyUser({user_id}){
     // console.log("userId",userId);
     const user = await User.destroy({
       where: {
-        user_email: user_email
+        user_id: user_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return user;

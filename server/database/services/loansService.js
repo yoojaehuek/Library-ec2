@@ -51,7 +51,7 @@ class LoansService{
 		return result;
 	}
 
-  static async findAllLoansDate({userId, dateType}){
+  static async findAllLoansDate({user_id, dateType}){
 
     const date = new Date();
     //월별 조회
@@ -77,7 +77,7 @@ class LoansService{
       const errorMessage = "잘못 요청";
       return errorMessage;
     }
-    let result = await LoansModel.findAllLoansDate({userId, date});
+    let result = await LoansModel.findAllLoansDate({user_id, date});
     // console.log(result);
     // result.map((loans, index)=> {
     //   console.log(loans.LoansMenus);

@@ -10,12 +10,14 @@ class LoansController {
     try {
       const tmp = req.body;
       console.log("req.body: ",req.body);
-      // tmp.userId = req.userId;
-      console.log("미들웨어 userId: ",req.userId);
+      // tmp.user_id = req.user_id;
+      // console.log("미들웨어 user_email: ", req.user_id);
+      console.log("미들웨어 req: ", req);
+      console.log("미들웨어 userId: ", req.user_id);
       // tmp.user_email = "ki";
       
       tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
-        orderItem.user_id = req.userId; // 로그인 되면 이걸로
+        orderItem.user_id = req.user_id; // 로그인 되면 이걸로
       }); 
       const one = tmp.order
       console.log("tmp 안의 one: ", one);
@@ -44,9 +46,9 @@ class LoansController {
   static async getLoansByUserId(req, res, next){
     console.log("유저 대출정보 조회 컨트롤러 들어옴");
     try {
-      const finduserid = req.params.user_id;
+      const finduserid = req.user_id;
       console.log("컨트롤러에서 유저대출정보 : ", finduserid);
-      const result = await LoansService.getLoansByUserId({user_id: finduserid});
+      const result = await LoansService.getLoansByUserId(finduserid);
       console.log("loansController.js/getLoansByUserId()/result: ", result);
       res.status(200).json(result);
     } catch (error) {
@@ -66,10 +68,10 @@ class LoansController {
 
   static async findAllLoansDate(req, res, next){
     try {
-      const userId = req.userId;
+      const user_id = req.user_id;
       // const userId = 1;
       const dateType = req.query;
-      const result = await LoansService.findAllLoansDate({userId, dateType});
+      const result = await LoansService.findAllLoansDate({user_id, dateType});
       if (result.errorMessage) {
         throw new Error(result.errorMessage);
       }

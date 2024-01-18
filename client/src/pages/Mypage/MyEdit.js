@@ -9,50 +9,84 @@ import './MyEdit.scss';
 // 나머지 온채인지 하면 각변수에 담아서 유효성 검사도 함
 // 프로필 수정 누르면 변수에 담으거 배열에 담아서 patch 로 보냄 
 const MyEdit = () => {
-  const [user, setUser] = useState("");
-
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+  const [newItem, setNewItem] = useState({
+    email: '',
+    name: '',
+    phone: '',
+    pwd: '',
+    pwdconfirm: '',
+  });
+  // const [selectedItem, setSelectedItem] = useState(null);
   const [newPassword, setNewPassword] = useState("");
 	const [newpasswordConfirm, setNewPasswordConfirm] = useState("");
 	const [newpasswordConfirmMessage, setNewPasswordConfirmMessage] = useState("");
   
   useEffect(() => {
-    // 사용자 데이터를 가져오기 위한 API 호출
     axios.get(`${API_URL}/api/user/one`)
       .then(res => {
-        // 상태에 사용자 데이터 설정
-        // 예를 들어, 응답이 { id, name, email, phone }와 같은 데이터를 가지고 있다면
-        console.log("유저 데이터 : ", res);
         setUser(res.data);
-        // 나머지 사용자 정보 설정
       })
       .catch(error => {
-        // 에러 처리
         console.error('사용자 정보를 가져오는 중 에러 발생:', error);
       });
-  }, []); // 빈 배열을 전달하여 컴포넌트가 처음 마운트될 때만 실행
+  }, []);
 
-  const [newItem, setNewItem] = useState({// 초기값
-    email: user.email,
-    name: user.name,
-    phone: user.phone,
-    pwd: '',
-    pwdconfirm: '',
-  });
+  useEffect(() => {
+    setNewItem((prevData) => ({
+      ...prevData,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      pwd: '',
+      pwdconfirm: '',
+    }));
+  }, [user]);
+
   const handleNewItemChange = (e) => {
     const { name, value } = e.target;
-    setNewItem((prevData) => ({ ...prevData, [name]: value }));
+    setNewItem((prevData) => ({ 
+      ...prevData, 
+      [name]: value }));
   };
 
-  const updateUser = () => {  
-    // 수정된 사용자 정보를 서버로 보내는 API 호출
-    axios.patch(`${API_URL}/api/user/update`, { newItem })
-    .then(res => {
-      alert('프로필이 성공적으로 업데이트되었습니다!');
-    })
-    .catch(error => {
-      console.error('프로필 업데이트 중 에러 발생:', error);
-      alert('프로필 업데이트에 실패했습니다. 다시 시도해 주세요.');
-    });
+  const handleClose = () => {
+    // setSelectedItem(null);
+    // setIsModalOpen(false);
+    navigate(-1);
+  }
+
+  //수정2
+  const updateUser = () => {
+    let updatedItem = {
+      user_name: newItem.name,
+      user_phone: newItem.phone,
+    };
+    if(newItem.pwd.length > 0 && newItem.pwd === newItem.pwdconfirm) {
+      updatedItem.user_pwd = newItem.pwd;
+    }else if(newItem.pwd !== newItem.pwdconfirm){
+      alert("비밀번호가 똑같지 않아요");
+      return;
+    }
+
+      console.log("수정: ", updatedItem);
+      const userConfirmed = window.confirm('수정하시겠습니까?');
+
+      if(userConfirmed) {
+        console.log("업데이트아이템: ", updatedItem);
+        axios.patch(`${API_URL}/api/user`, updatedItem)
+          .then(() => {
+            alert('프로필이 성공적으로 업데이트되었습니다!');
+            handleClose();
+          })
+          .catch(error => {
+            console.error('프로필 업데이트 중 에러 발생:', error);  
+            alert('프로필 업데이트에 실패했습니다. 다시 시도해 주세요.');
+          });
+      } else {
+        return;
+      }
   };
 
   // /** 이름유효성검사 */
@@ -121,6 +155,7 @@ const MyEdit = () => {
             type="text"
             id="id"
             name="id"
+            // placeholder={newItem.email}
             value={newItem.email}
             readOnly
           />
@@ -131,6 +166,7 @@ const MyEdit = () => {
             type="text"
             id="name"
             name="name"
+            // placeholder={newItem.name}
             value={newItem.name}
             onChange={handleNewItemChange}
             />
@@ -149,8 +185,8 @@ const MyEdit = () => {
           <label>새비밀번호 확인</label>
           <input
             type="password"
-            id="pwdConfirm"
-            name="pwdConfirm"
+            id="pwdconfirm"
+            name="pwdconfirm"
             value={newItem.pwdconfirm}
 						onChange={handleNewItemChange}
           />
@@ -161,12 +197,14 @@ const MyEdit = () => {
             type="phone"
             id="phone"
             name="phone"
-            value={newItem.phone} 
+            placeholder={newItem.phone}
+            // value={newItem.phone} 
 						onChange={handleNewItemChange}
           />
         </div>
         <div className='editMain_btn-kjh'>
-          <button type='submit' onClick={updateUser }>프로필 수정</button>
+          <button className='button_cancell-kjh' type='button' onClick={handleClose}>취소</button>
+          <button className='button_edit-kjh' type='button' onClick={updateUser}>프로필 수정</button>
         </div>
 
       </div>
