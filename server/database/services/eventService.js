@@ -74,7 +74,7 @@ class EventService{
 	}
 
 	static async applyEvent({ event_id, user_id }) {
-		const event_id = req.params.event_id;
+		const event = await EventModel.getOneEvent(event_id);
 
 		if(event.event_max_applicants !== null && event.event_current_applicants >= event.event_max_applicants){
 			throw new Error('인원이 가득 찼습니다');
@@ -96,7 +96,7 @@ class EventService{
 			user_id: user_id,
 		});
 
-		await event.increment('event_current_applicants');
+		await EventModel.increment({'event_current_applicants': 1}, {where: { user_id }});
 
 		return { success: true, message: '이벤트 신청 완료'}
 	}
@@ -110,6 +110,7 @@ class EventService{
 	static async updateEvent({ event_id, toUpdate }){
 		console.log("서비스에서: ",toUpdate);
 		const result = await EventModel.updateEvent({ event_id, toUpdate });
+		console.log("result: ",result);
 		return result;
 	}
 

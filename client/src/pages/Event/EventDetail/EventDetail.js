@@ -22,6 +22,11 @@ const EventDetail = () => {
       });
   }, []);
 
+  const handleEventApply = async () => {
+    const result = await axios.post(`${API_URL}/api/event/apply/${id}`);
+    console.log("result: ", result);
+  }
+
   return (
     <div className="eventDetail-container-kjh">
       <div className='event-kjh'>
@@ -41,6 +46,9 @@ const EventDetail = () => {
             </div>
             <div className='event-date-content-kjh'>
               <p>상태: {detailEvent.event_status}</p>
+            </div>
+            <div className='event-date-content-kjh'>
+              <button onClick={handleEventApply}>신청</button>
             </div>
           </div>
         </div>
