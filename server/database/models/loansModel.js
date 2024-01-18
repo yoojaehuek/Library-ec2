@@ -84,7 +84,7 @@ class LoansModel {
       include: [
         {
           model: Book,
-          attributes: ['book_id', 'book_name', 'book_author'],
+          attributes: ['book_id', 'book_name', 'book_author'], 
         }
       ],
     }); //where: {id: asdf} 형태가 들어와야함
