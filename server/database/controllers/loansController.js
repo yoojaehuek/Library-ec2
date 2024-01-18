@@ -9,13 +9,10 @@ class LoansController {
   static async addLoans(req,res,next){
     try {
       const tmp = req.body;
-      console.log("req.body: ",req.body);
-      // tmp.userId = req.userId;
-      console.log("미들웨어 userId: ",req.userId);
-      // tmp.user_email = "ki";
+      console.log("미들웨어 userId: ",req.user_email);
       
-      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_id를 추가시킴
-        orderItem.user_id = req.userId; // 로그인 되면 이걸로
+      tmp.order.forEach(orderItem => { //tmp.order 각각의 요소에 user_email를 추가시킴
+        orderItem.user_id = req.user_email; // 로그인 되면 이걸로
       }); 
       const one = tmp.order
       console.log("tmp 안의 one: ", one);
