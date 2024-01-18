@@ -1,199 +1,390 @@
 
-.book-detail-container-lhs{
-  padding-left: 17.6875rem;
-  padding-right: 17.6875rem;
-
-  .book-detail-content-lhs {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px;
+@media all and (min-width:900px){
+  .book-detail-container-lhs{
+    padding-left: 17.6875rem;
+    padding-right: 17.6875rem;
   
-    .book-detail-left-lhs {
-      width: 25%;
-      
-      img {
-        width: 100%;
-        height: 27vw;
-      }
-    }
-  
-    .book-detail-right-lhs {
-      width: 50%;
-      padding: 0 20px;
-      box-sizing: border-box;
-  
-      > h1 {
-        font-size: 2.2vw
-      }
-      > p {
-        text-align: left;
-        font-weight: 400;
-        font-size: 1.2vw;
-  
-        > span{
-          font-size: 1.5vw;
-          font-weight: 900;
-        }
-      }  
-  
-      .book-detail-availability-lhs{
-        margin-top: 20px;
-        width: 60%;
-        height: 14%;
-        text-align: center;
-        float: left;
-  
-        span{
-          font-size: 1.6vw;
-          position: relative;
-          top: 25%;
-          font-weight: 900;
-          color: white;
-        }
-      }
-    }
-    .buttons-container-lhs {
+    .book-detail-content-lhs {
       display: flex;
-      float: left;
-      width: 9vw;
-      margin-top: 40px;
-      flex-direction: column;
-      gap: 10px;
-      
-  
-      button {
-        margin-top: 10px;
-        padding: 10px;
-        font-size: 1.1vw;
-        font-weight: 800;
-        height: 3vw;
-        background-color: white;
-        cursor: pointer;
-        border: 2px solid #17ad51;
-        color: #17ad51; 
-        transition: background-color 0.3s ease;
-      
-        &:hover {
-          background-color: #17ad51;
-          color: white;
-        }
-      }      
-    }
-  }  
-
-  .book-description-top-lhs{
-    margin-top: 60px;
+      justify-content: space-around;
+      margin: 20px;
     
-    .book-description-top-name-lhs{
-      text-align: left;
-      border-bottom: solid 1px gray;
-  
-      >h2{
-        font-size: 2vw;
-        margin-top: 20px;
-      }
-    }
-
-    >p{
-      margin: 4vh 0;
-      font-size: 1.1vw;
-      padding-left: 10px;
-      text-align: left;
-    }
-  }
-
-  .related-books-container-lhs {
-    margin: 30px 0;
-    width: 100%;
-
-    > h2 {
-      text-align: left;
-      margin-top: 20px;
-      font-size: 2vw;
-      margin-bottom: 20px;
-    }
-
-    .related-books-lhs {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      border-top: 1px solid gray;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 20px 0;
-
-      .related-book-lhs {
-        cursor: pointer;
-        text-align: center;
-        position: relative;
-        transition: filter 0.3s ease; /* Adding transition for smooth effect */
-
+      .book-detail-left-lhs {
+        width: 25%;
+        
         img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 5px;
-          margin-bottom: 10px;
+          height: 27vw;
         }
-
-        h3 {
-          position: absolute;
-          font-size: 1vw;
-          width: 80%;
-          top: 30%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          opacity: 0; /* Initially hidden */
-          color: white;
-          text-align: center;
-          transition: opacity 0.3s ease; /* Adding transition for smooth effect */
-        }
-
-        p {
-          position: absolute;
-          top: 60%;
-          left: 50%;
-          font-size: 0.9vw;
-          transform: translate(-50%, -50%);
-          opacity: 0; /* Initially hidden */
-          color: rgb(255, 255, 255);
-          text-align: center;
-          transition: opacity 0.3s ease; /* Adding transition for smooth effect */
-        }
+      }
     
-        &:hover img {
-          filter: brightness(40%); /* Darken the image on hover */
+      .book-detail-right-lhs {
+        width: 50%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    
+        > h1 {
+          font-size: 2.2vw
         }
-
-        &:hover{
-
-          h3,
+        > p {
+          text-align: left;
+          font-weight: 400;
+          font-size: 1.2vw;
+    
+          > span{
+            font-size: 1.5vw;
+            font-weight: 900;
+          }
+        }  
+    
+        .book-detail-availability-lhs{
+          margin-top: 20px;
+          width: 60%;
+          height: 14%;
+          text-align: center;
+          float: left;
+    
+          span{
+            font-size: 1.6vw;
+            position: relative;
+            top: 25%;
+            font-weight: 900;
+            color: white;
+          }
+        }
+      }
+      .buttons-container-lhs {
+        display: flex;
+        float: left;
+        width: 9vw;
+        margin-top: 40px;
+        flex-direction: column;
+        gap: 10px;
+        
+    
+        button {
+          margin-top: 10px;
+          padding: 10px;
+          font-size: 1.1vw;
+          font-weight: 800;
+          height: 3vw;
+          background-color: white;
+          cursor: pointer;
+          border: 2px solid #17ad51;
+          color: #17ad51; 
+          transition: background-color 0.3s ease;
+        
+          &:hover {
+            background-color: #17ad51;
+            color: white;
+          }
+        }      
+      }
+    }  
+  
+    .book-description-top-lhs{
+      margin-top: 60px;
+      
+      .book-description-top-name-lhs{
+        text-align: left;
+        border-bottom: solid 1px gray;
+    
+        >h2{
+          font-size: 2vw;
+          margin-top: 20px;
+        }
+      }
+  
+      >p{
+        margin: 4vh 0;
+        font-size: 1.1vw;
+        padding-left: 10px;
+        text-align: left;
+      }
+    }
+  
+    .related-books-container-lhs {
+      margin: 30px 0;
+      width: 100%;
+  
+      > h2 {
+        text-align: left;
+        margin-top: 20px;
+        font-size: 2vw;
+        margin-bottom: 20px;
+      }
+  
+      .related-books-lhs {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        border-top: 1px solid gray;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 20px 0;
+  
+        .related-book-lhs {
+          cursor: pointer;
+          text-align: center;
+          position: relative;
+          transition: filter 0.3s ease; /* Adding transition for smooth effect */
+  
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          }
+  
+          h3 {
+            position: absolute;
+            font-size: 1vw;
+            width: 80%;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Initially hidden */
+            color: white;
+            text-align: center;
+            transition: opacity 0.3s ease; /* Adding transition for smooth effect */
+          }
+  
           p {
-            opacity: 1; /* Show the text on hover */
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            font-size: 0.9vw;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Initially hidden */
+            color: rgb(255, 255, 255);
+            text-align: center;
+            transition: opacity 0.3s ease; /* Adding transition for smooth effect */
+          }
+      
+          &:hover img {
+            filter: brightness(40%); /* Darken the image on hover */
+          }
+  
+          &:hover{
+  
+            h3,
+            p {
+              opacity: 1; /* Show the text on hover */
+            }
           }
         }
       }
     }
-  }
-
-  .reviews-container-lhs{
-    .review-item-lhs {
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .rating-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .star-icon {
-      color: #FFD700; // 금색 별 아이콘 색상
-      margin-right: 5px;
+  
+    .reviews-container-lhs{
+      .review-item-lhs {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+  
+      .rating-container {
+        display: flex;
+        align-items: center;
+      }
+  
+      .star-icon {
+        color: #FFD700; // 금색 별 아이콘 색상
+        margin-right: 5px;
+      }
     }
   }
 }
 
+@media all and (max-width:767px){
+  .book-detail-container-lhs{
+  
+    .book-detail-content-lhs {
+      justify-content: space-around;
+      margin: 20px;
+    
+      .book-detail-left-lhs {
+        width: 100%;
+        
+        img {
+          width: 100%;
+        }
+      }
+    
+      .book-detail-right-lhs {
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    
+        > h1 {
+          text-align: center;
+          font-size: 7.2vw;
+        }
+        > p {
+          text-align: center;
+          font-weight: 400;
+          font-size: 6vw;
+    
+          > span{
+            font-size: 6.5vw;
+            font-weight: 900;
+          }
+        }  
+    
+        .book-detail-availability-lhs{
+          margin-top: 20px;
+          width: 100%;
+          height: 8vh;
+          text-align: center;
+    
+          span{
+            font-size: 6.6vw;
+            position: relative;
+            top: 25%;
+            font-weight: 900;
+            color: white;
+          }
+        }
+      }
+      .buttons-container-lhs {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 10px;
+        
+    
+        button {
+          margin-top: 10px;
+          padding: 5px;
+          font-size: 6.1vw;
+          font-weight: 800;
+          background-color: white;
+          cursor: pointer;
+          border: 2px solid #17ad51;
+          color: #17ad51; 
+          transition: background-color 0.3s ease;
+        
+          &:hover {
+            background-color: #17ad51;
+            color: white;
+          }
+        }      
+      }
+    }  
+  
+    .book-description-top-lhs{
+      margin-top: 20px;
+      
+      .book-description-top-name-lhs{
+        text-align: left;
+        border-bottom: solid 1px gray;
+    
+        >h2{
+          font-size: 6vw;
+          margin-top: 20px;
+        }
+      }
+  
+      >p{
+        font-size: 4vw;
+        padding-left: 10px;
+        text-align: left;
+      }
+    }
+  
+    .related-books-container-lhs {
+      margin: 30px 0;
+      width: 100%;
+  
+      > h2 {
+        text-align: left;
+        margin-top: 20px;
+        font-size: 6vw;
+        margin-bottom: 20px;
+      }
+  
+      .related-books-lhs {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        border-top: 1px solid gray;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 20px 0;
+  
+        .related-book-lhs {
+          cursor: pointer;
+          text-align: center;
+          position: relative;
+          transition: filter 0.3s ease; /* Adding transition for smooth effect */
+  
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          }
+  
+          h3 {
+            position: absolute;
+            font-size: 1vw;
+            width: 80%;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Initially hidden */
+            color: white;
+            text-align: center;
+            transition: opacity 0.3s ease; /* Adding transition for smooth effect */
+          }
+  
+          p {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            font-size: 0.9vw;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Initially hidden */
+            color: rgb(255, 255, 255);
+            text-align: center;
+            transition: opacity 0.3s ease; /* Adding transition for smooth effect */
+          }
+      
+          &:hover img {
+            filter: brightness(40%); /* Darken the image on hover */
+          }
+  
+          &:hover{
+  
+            h3,
+            p {
+              opacity: 1; /* Show the text on hover */
+            }
+          }
+        }
+      }
+    }
+  
+    .reviews-container-lhs{
+      .review-item-lhs {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+  
+      .rating-container {
+        display: flex;
+        align-items: center;
+      }
+  
+      .star-icon {
+        color: #FFD700; // 금색 별 아이콘 색상
+        margin-right: 5px;
+      }
+    }
+  }
+}
 
 
 

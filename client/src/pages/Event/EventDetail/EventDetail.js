@@ -27,7 +27,6 @@ const EventDetail = () => {
       <div className='event-kjh'>
         <div>
           <img src={`${API_URL}${detailEvent.event_img_url}`} alt="" className='event-img-button-kjh' />
-          <p>상태: {detailEvent.event_status}</p>
         </div>
         <div>
           <h3>{detailEvent.event_title}</h3>
@@ -40,25 +39,19 @@ const EventDetail = () => {
               <span>모집정원:&nbsp;</span>
               <p>{detailEvent.event_max_applicants}명</p>
             </div>
+            <div className='event-date-content-kjh'>
+              <p>상태: {detailEvent.event_status}</p>
+            </div>
           </div>
-          {/* <dl className='event-date-kjh'>
-            <div className='event-date-content-kjh'>
-              <dd><span>기간:&nbsp;</span></dd>
-              <dt>
-                <p>{detailEvent.event_start_date}{detailEvent.event_end_date && ' ~ '+detailEvent.event_end_date}</p>
-              </dt>
-            </div>
-            <div className='event-date-content-kjh'>
-              <dd><span>모집정원:&nbsp;</span></dd>
-              <dt>
-                <p>{detailEvent.event_max_applicants}명</p>
-              </dt>
-            </div>
-          </dl> */}
         </div>
-        <p>조회수: {detailEvent.read_count}</p>
+        <p className="read-count-kjh">조회수: {detailEvent.read_count}</p>
       </div>
-      <img src={`${API_URL}${detailEvent.event_img_url}`} alt={detailEvent.event_title} className="content-img-kjh" />
+      <div className="img-div-kjh">
+        <img src={`${API_URL}${detailEvent.event_img_url}`} alt={detailEvent.event_title} className="content-img-kjh" />
+      </div>
+      <div className="listBtn-div-kjh">
+        <NavLink to='/event' className='button btnPush eventlist-button-kjh'>목록</NavLink>
+      </div>
     </div>
   )
 }
