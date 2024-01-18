@@ -33,7 +33,7 @@ const AdminMain = () => {
       <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
         <Route path='/' element={<AChart></AChart>}></Route>
-        <Route path='/test' element={<ALogin />} />
+        <Route path='/login' element={<ALogin />} />
         <Route path='/faq/faq' element={<AFaq />} />
         <Route path='/banner/banner' element={<ABanner />} />
         <Route path='/book/book' element={<ABook />} />

@@ -15,6 +15,21 @@ class EventService{
 		return result;
 	}
 
+	static async getPageEvent(option){
+		const event_limit = parseInt(option.event_limit);
+		const orderBy = option.orderBy;
+		const event_id = orderBy == 'ASC' ? {[Op.gt]: parseInt(option.event_id),} : {[Op.lte]: parseInt(option.event_id)-1,};
+		
+		const tmpResult = await EventModel.getPageEvent({ event_id, event_limit, orderBy });
+		const result = await eventFormatDate(tmpResult);
+		console.log(result);
+
+		if (orderBy == 'DESC') {
+			result.reverse(); //DESC 떄문에 뒤집혀서 오면 다시 원래 순서로 바꾸기
+		}
+		return result;
+	}
+
 	static async getCategoryEvent(options){
 		const wheres = this.buildWhereClause(options);
 		let result = await EventModel.getCategoryEvent(wheres);

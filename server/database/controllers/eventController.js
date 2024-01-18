@@ -22,6 +22,18 @@ class EventController {
 			next(error)
 		}
 	}
+
+	static async getPageEvent(req, res, next){
+		try {
+			console.log(req.query);
+			const option = req.query;
+			console.log("req.query: ", option);
+			const result = await EventService.getPageEvent(option);
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
 	
 	static async getCategoryEvent(req, res, next){ //장르별 조회
 		try {

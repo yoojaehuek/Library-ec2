@@ -70,7 +70,7 @@ const ACalendar = () => {
 
 
   return (
-    <div style={{ textAlign: 'center', margin: '0 auto' }}>
+    <div style={{ margin: '0 9vw' ,textAlign: 'center' }}>
       <h2>많이 이쁜 달력.</h2>
       <Calendar
         onChange={handleDateChange}
@@ -79,7 +79,7 @@ const ACalendar = () => {
         tileContent={tileContent}
       />
       {editMode ? (
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <div style={{ marginTop: '2vw', textAlign: 'center' }}>
           <h3>{date.toDateString()}</h3>
           <textarea
             rows="4"

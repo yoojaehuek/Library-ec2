@@ -5,7 +5,7 @@
   #Join-form-yjh {
     margin: 0 auto;
     width: 500px;
-    #join-input-yjh {
+    #input-ul-yjh {
       margin-top: 40px;
       margin-bottom: 20px;
       padding: 0;
@@ -70,40 +70,56 @@
   }
 }
 
-//미디어 쿼리 
-@media (min-width: 1023px) {
+// PC (해상도 1024px)
+@media all and (min-width:1024px) {
   .join-container-yjh {
-    padding: 20px; 
+    width: 30vw; 
+    padding: 10px; 
     #Join-form-yjh {
-      // width: 40vw; 
-      #join-input-yjh {
+      h1{
+        font-size: 3vh;
+      }
+      width: 100%; 
+      #input-ul-yjh {
         .input-li-yjh {
           margin: 10px auto; 
+          label{
+            font-size: 1.7vh;
+          }
           input{
-            // height: 5vh;
+            height: 5vh;
+            width: 97%;
+            font-size: 2vh;
           }
         }
-        .message {
+        .message{
+          font-size: 1.3vh;
           margin-top: 10px; 
-          margin-bottom: 10px; 
+          margin-bottom: 10px;
         }
       }
-    }
-    #join-btn-yjh {
-      width: 100%; 
+      #join-btn-yjh {
+        width: 100%;
+        height: 5vh;
+        font-size: 2vh;
+      }
     }
   }
-}
+} 
 
-@media (max-width: 767px) {
+// 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)
+@media all and (min-width:768px) and (max-width:1023px) {
   .join-container-yjh {
     width: 90%; 
     padding: 10px; 
     #Join-form-yjh {
       width: 100%; 
-      #join-input-yjh {
+      #input-ul-yjh {
         .input-li-yjh {
           margin: 10px auto; 
+          input{
+            width: 97%;
+          }
         }
         .message {
           margin-top: 10px; 
@@ -115,4 +131,30 @@
       width: 100%;
     }
   }
-}
+} 
+
+// 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)
+@media all and (max-width:767px) {
+  .join-container-yjh {
+    width: 90%; 
+    padding: 10px; 
+    #Join-form-yjh {
+      width: 100%; 
+      #input-ul-yjh {
+        .input-li-yjh {
+          margin: 10px auto; 
+          input{
+            width: 97%;
+          }
+        }
+        .message {
+          margin-top: 10px; 
+          margin-bottom: 10px;
+        }
+      }
+    }
+    #join-btn-yjh {
+      width: 100%;
+    }
+  }
+} 

@@ -4,7 +4,8 @@ const EventController = require('../database/controllers/eventController');
 
 router.post('/', EventController.createEvent);
 router.get('/', EventController.getAllEvent);
-router.get('/', EventController.getCategoryEvent);
+router.get('/page', EventController.getPageEvent);
+// router.get('/', EventController.getCategoryEvent);
 // router.get('/search/:input', EventController.getSearchEvent);
 router.get('/:event_id', EventController.getOneEvent);
 router.patch('/:event_id', EventController.updateEvent);
