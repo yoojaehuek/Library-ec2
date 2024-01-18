@@ -1,5 +1,5 @@
 const Faq = require('../schemas/faq'); 
-const User = require('../schemas/user')
+const User = require('../schemas/user');
 const { Op } = require('sequelize');
 
 class FaqModel {
