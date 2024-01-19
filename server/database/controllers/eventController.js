@@ -82,8 +82,8 @@ class EventController {
 	static async updateEvent(req, res, next){
 		try {
 			const event_id = req.params.event_id;
-        const toUpdate = {...req.body};
-
+			const toUpdate = {...req.body};
+				// console.log("123");/
 			const result = await EventService.updateEvent({ event_id, toUpdate });
 			res.status(200).json(result);
 		} catch (error) {
@@ -97,6 +97,29 @@ class EventController {
 
 			const result = await EventService.deleteEvent({ event_id });
 			res.status(200).json(result);
+		} catch (error) {
+			next(error);
+		}
+	}	
+
+	static async applyEvent(req, res, next){
+		try {
+			const event_id = req.params.event_id;
+			const user_id = req.user_id;
+			console.log("EventController applyEvent: ", event_id, user_id);
+			const result = await EventService.applyEvent({event_id, user_id});
+			res.status(201).json(result);
+		} catch (error) {
+			next(error);
+		}
+	}
+	static async unapplyEvent(req, res, next){
+		try {
+			const event_id = req.params.event_id;
+			const user_id = req.user_id;
+			console.log("EventController applyEvent: ", event_id, user_id);
+			const result = await EventService.unapplyEvent({event_id, user_id});
+			res.status(201).json(result);
 		} catch (error) {
 			next(error);
 		}

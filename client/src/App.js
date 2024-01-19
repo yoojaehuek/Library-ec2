@@ -11,11 +11,12 @@ import Cart from './pages/Cart/Cart.js';
 import Faq from './pages/Faq/Faq.js';
 import BookList from './pages/BookList/BookList.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
-import RentalManage from './pages/rentalmanage/rentalmanage.js';
+// import LoanManage from './pages/LoanManage/LoanManage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
-import Check from './pages/Mypage/Check.js';
-import MyEdit from './pages/Mypage/MyEdit.js';
+import Check from './pages/Mypage/Check/Check.js';
+import MyEdit from './pages/Mypage/MyEdit/MyEdit.js';
+import Review from './pages/Mypage/Review/Review.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 import EventDetail from './pages/Event/EventDetail/EventDetail.js';
@@ -35,11 +36,12 @@ function App() {
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/faq' element={<Faq />}></Route>
         <Route path='/faq/:id' element={<FaqDetail />}></Route>
-        <Route path='rentalmanage' element={<RentalManage />}></Route>
+        {/* <Route path='/loanmanage' element={<LoanManage />}></Route> */}
         <Route path='/admin/*' element={<Adminmain />}></Route>
         <Route path='/mypage' element={<Mypage />}></Route>
         <Route path='/check' element={<Check />}></Route>
         <Route path='/myedit' element={<MyEdit />}></Route>
+        <Route path='/review' element={<Review />}></Route>
         <Route path='/loantest' element={<LoanTest />}></Route>
         <Route path='/event' element={<Event />}></Route>
         <Route path='/event/:id' element={<EventDetail />}></Route>

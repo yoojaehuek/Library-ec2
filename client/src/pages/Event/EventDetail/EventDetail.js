@@ -22,6 +22,42 @@ const EventDetail = () => {
       });
   }, []);
 
+  const handleEventApply =  () => {
+    axios.post(`${API_URL}/api/event/apply/${id}`)
+      .then(res => {
+        console.log(res.data);
+        alert("신청 성공");
+      })
+      .catch(e => {    
+        console.error(e.response.data);
+        alert(e.response.data.message);
+      })
+    // console.log("result: ", result);
+    // if(result.status == 201){
+    //   alert("신청 성공")
+    // } else {
+    //   alert("신청 실패")
+    // }
+  }
+
+  const handleEventunApply =  () => {
+    axios.delete(`${API_URL}/api/event/apply/${id}`)
+      .then(res => {
+        console.log(res.data);
+        alert("취소 성공");
+      })
+      .catch(e => {    
+        console.error(e.response.data);
+        alert(e.response.data.message);
+      })
+    // console.log("result: ", result);
+    // if(result.status == 201){
+    //   alert("신청 성공")
+    // } else {
+    //   alert("신청 실패")
+    // }
+  }
+
   return (
     <div className="eventDetail-container-kjh">
       <div className='event-kjh'>
@@ -41,6 +77,10 @@ const EventDetail = () => {
             </div>
             <div className='event-date-content-kjh'>
               <p>상태: {detailEvent.event_status}</p>
+            </div>
+            <div className='event-date-content-kjh'>
+              <button onClick={handleEventApply}>신청</button>
+              <button onClick={handleEventunApply}>신청취소</button>
             </div>
           </div>
         </div>
