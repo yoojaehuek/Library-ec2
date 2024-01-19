@@ -9,7 +9,6 @@
     list-style: none;
   }
   #login-form-yjh {
-    border: 1px solid blueviolet;
     margin: 0 auto;
     width: 35vw;
     #input-box-yjh {
@@ -34,7 +33,6 @@
           }
           input {
             height: 5.25vh;
-            
             padding-top: calc(0.7vh);
             padding-bottom: calc(0.7vh);
             padding-left: calc(1.2vh);
@@ -83,12 +81,13 @@
 // PC (해상도 1024px)/ 
 @media all and (min-width:1024px) {
   .login-container-yjh {
+    border: 1px solid red;
     h1{
       font-size: 5vh;
     }
     #login-form-yjh {
-      border: 1px solid blue;
-      width: 35vw;
+      // width: 35vw;
+      border: 1px solid #000;
       #input-box-yjh {
         &>div{
           .input-li-yjh {
@@ -122,7 +121,6 @@
 @media all and (min-width:768px) and (max-width:1023px) {
   .login-container-yjh {
     #login-form-yjh {
-      border: 1px solid green;
       width: 70vw;
       padding: 0px 15px;
       #input-box-yjh {
@@ -161,7 +159,6 @@
 @media all and (max-width:767px) {
   .login-container-yjh {
     #login-form-yjh {
-      border: 1px solid red;
       width: 90vw;
       padding: 0px 10px;
       #input-box-yjh {

@@ -7,7 +7,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import axios from 'axios';
 import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
 import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
-import KakaoLoginButton from '../../components/SocialLoginButtons/KakaoLoginButton/KakaoLoginButton'
+import KakaoLoginButton from '../../components/SocialLoginButtons/KakaoLoginButton/KakaoLoginButton.js'
 import './Login.scss';
 
 const Login = () => {
@@ -136,11 +136,7 @@ const Login = () => {
 					<p><AiOutlineQuestionCircle className='icon'/>계속 로그인이 안되시는 경우 관리자에게 문의 해주세요</p>
 				</div>
 
-				{/* <div style={{float:"right", marginRight: "20px"}}>
-				</div> */}
-				<NavLink to="/join" className="txt-kjh">
-					<p className='txt-kjh'>회원가입</p>
-				</NavLink>
+				<NavLink to="/join" className="txt-kjh"><p className='txt-kjh'>회원가입</p></NavLink>
 				<NaverLoginButton />
 				<GoogleLoginButton />
 				<KakaoLoginButton />

@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
   try {
     const {access_token} = req.body;
+    console.log("카카오 access_token: ", access_token);
 
     var request = require('request');
     var options = {
@@ -20,7 +21,7 @@ router.post('/', async (req, res, next) => {
       if (!error && response.statusCode == 200) {
         console.log("카카오로그인 body: ", body);
         // res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
-        // res.end(body);
+        res.status(200).json(body);
         //여기서 쿠키 설정해주기?
       } else {
         res.status(response.statusCode).end();

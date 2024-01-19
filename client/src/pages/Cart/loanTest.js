@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { API_URL } from "../../config/contansts";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./loantest.scss";
 
@@ -108,7 +108,6 @@ const LoanTest = () => {
       });
   };
 
-
   //------------ 대출 삭제 -------------------------------
   // params 로 loans_id 가져옴
   // const loans_id = 1;
@@ -122,9 +121,6 @@ const LoanTest = () => {
         console.error(err);
       });
   };
-
-
-
 
   // ---------- 반납일 최근순으로 불러오기------------------------------------------------------------
   /** 최신순으로 서버에서 정렬 해서 불러 */
@@ -140,10 +136,6 @@ const LoanTest = () => {
         console.error(err);
       });
   };
-
-
-
-
 
   // ---------- 책별 대출 유저들 대출날짜 최근날짜수으로 불러오기------------------------------------------------------------
   const book_id = 44
@@ -193,7 +185,6 @@ const LoanTest = () => {
       <button type="button" onClick={findAllOrderASC}>반납일 최근순으로 불러오기</button>
       <button type="button" onClick={BooksBorrowedByUser}>유저별 대출목록 </button>
       <button type="button" onClick={UsersByBookBorrowed}>책을 대출한 유저를 대출날짜 최근순으로불러오기</button>
-      
       <button type="button" onClick={RecentBorrowedBooksAndUsers}>최근 대출순으로 책, 유저 불러오기</button>
     </form>
   );

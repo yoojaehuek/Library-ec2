@@ -15,7 +15,7 @@ const loansRouter = require("./server/routers/loans");
 const userRouter = require("./server/routers/user");
 const bannerRouter = require("./server/routers/banner");
 const eventRouter = require("./server/routers/event");
-const testRouter = require("./server/routers/test");
+const naverRouter = require("./server/routers/naver");
 const event_applicantsRouter = require("./server/routers/event_applicants");
 const googleRouter = require('./server/routers/google');
 const kakaoRouter = require('./server/routers/kakao');
@@ -99,8 +99,8 @@ app.use("/api/loans", loansRouter);
 app.use("/api/user", userRouter);
 app.use("/api/banner", bannerRouter);
 app.use("/api/event", eventRouter);
+app.use("/api/naver", naverRouter);
 app.use("/api/event_applicants", event_applicantsRouter);
-app.use("/api/test", testRouter);
 app.use("/api/google", googleRouter);
 app.use("/api/kakao", kakaoRouter);
 
