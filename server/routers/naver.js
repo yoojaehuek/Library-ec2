@@ -19,7 +19,7 @@ router.get("/naverlogin", function (req, res) {
   );
 });
 
-router.get("/callback", function (req, res) {
+router.get("/callback", async (req, res) => {
   code = req.query.code;
   state = req.query.state;
   console.log("code, state: ", code, state);

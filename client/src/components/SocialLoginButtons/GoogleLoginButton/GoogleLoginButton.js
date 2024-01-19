@@ -2,14 +2,14 @@
 import {GoogleLogin} from "@react-oauth/google";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import axios from "axios";
-import { API_URL } from "../../config/contansts";
+import { API_URL } from "../../../config/contansts";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { loginState } from "../../recoil/atoms/State";
+import { loginState } from "../../../recoil/atoms/State";
 
 const GoogleLoginButton = () => {   
 	const navigate = useNavigate();
-	const clientId = '224284524130-bon8sv624psparrbeoucngp1q3it4d7b.apps.googleusercontent.com';
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 	const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
 
 	const decodeToken = async (token) => {
