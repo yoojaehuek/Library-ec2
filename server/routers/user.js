@@ -6,6 +6,7 @@ const authMiddleware = require('../utils/authMiddleware');
 router.post('/join', UserController.createUser);
 router.post('/login', UserController.loginUser);
 router.post('/naver-login', UserController.naverLogin);
+router.post('/google-login', UserController.googleLogin);
 router.post('/password-check', authMiddleware, UserController.checkPassword);
 // router.get('/one', authMiddleware, UserController.detailUser);
 router.get('/', UserController.getAllUser)
