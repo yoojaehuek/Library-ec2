@@ -41,7 +41,12 @@ class Event extends Sequelize.Model {
           allowNull: true,
           comment: "이벤트 인원 제한"
         },
-        
+        event_current_applicants: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          defaultValue: 0,
+          comment: "현재 이벤트 신청인원"
+        },
         read_count: {
           type: Sequelize.INTEGER,
           allowNull: false,

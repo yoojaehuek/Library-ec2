@@ -9,6 +9,11 @@ class Event_applicantsModel {
     const result = await Event_applicants.create(newEvent_applicants);
     return result;
   }
+  static async deleteEvent_applicants(deleteEvent_applicants){
+    console.log("deleteEvent_applicants",deleteEvent_applicants);
+    const result = await Event_applicants.destroy(deleteEvent_applicants);
+    return result;
+  }
 
   static async getAllEvent_applicants(query){
     const result = await Event_applicants.findAll({
@@ -58,6 +63,16 @@ class Event_applicantsModel {
     const result = await Event_applicants.findOne({
       where: {
         event_id: event_id,
+      },
+    });
+    return result;
+  }
+
+  static async getOneEvent_applicantsByID({event_id, user_id}){
+    const result = await Event_applicants.findOne({
+      where: {
+        event_id: event_id,
+        user_id: user_id,
       },
     });
     return result;

@@ -1,0 +1,33 @@
+.reivew-container-kjh {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 1200px;
+  height: 800px;
+  background-color: #fff;
+  
+  border: 1px solid #000;
+
+
+
+  button {
+    margin-right: 5px;
+  }
+  .button_edit-kjh {
+    float: right;
+    border: none;
+    width: 160px;
+    height: 60px;
+    background-color: #6ba10e;
+    color: #fff;
+    cursor: pointer;
+  }
+  .button_cancell-kjh {
+    border: 1px solid #6ba10e;
+    float: right;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    color: #6ba10e;
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './MyEdit.scss';
@@ -52,9 +52,7 @@ const MyEdit = () => {
   };
 
   const handleClose = () => {
-    // setSelectedItem(null);
-    // setIsModalOpen(false);
-    navigate(-1);
+    navigate('/mypage');
   }
 
   //수정2
