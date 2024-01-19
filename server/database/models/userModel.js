@@ -19,6 +19,17 @@ class UserModel {
     return result;
   }
 
+  //있으면 조회, 없으면 가입
+  static async googleLogin(newUser){
+    // console.log("newUser",newUser);
+    const result = await User.findOrCreate({
+      where: {user_email: newUser.user_email},
+      defaults: newUser
+    });
+
+    return result;
+  }
+
   static async getAllUser(){
     const user = await User.findAll({
       attributes: ["user_id", "user_email", "user_name", "user_phone", "sns_type", "created_at"]
