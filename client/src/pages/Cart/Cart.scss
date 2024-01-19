@@ -137,10 +137,15 @@
   }
 }
 
-// // PC (해상도 1024px)/ 
-// @media all and (min-width:1024px) {
-
-// } 
+// PC (해상도 1024px)/ 
+@media all and (min-width:1024px) {
+  #cart-container-yjh {
+    border: 1px solid #000;
+    // min-width: 60vw;
+    // max-width: 60vw;
+    
+  }
+} 
 
 // // 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)/ 
 // @media all and (min-width:768px) and (max-width:1023px) {
@@ -148,7 +153,7 @@
 // } 
 
 // 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)
-@media all and (max-width:767px) {
+@media all and (min-width:500px) and (max-width:767px) {
   #cart-container-yjh {
     width: 90%;
     #cart-header-yjh {
@@ -173,17 +178,18 @@
     }
     #book-list-yjh {
       width: 100%;
-      margin: 20px auto;
+      margin: 10px auto;
       .grid-container {
-        grid-template-rows: 0.7fr 0.7fr 1.6fr;
-        grid-template-columns: 20px 100px 1.5fr 1.5fr 0fr 0.5fr;
-        height: 150px;
-        column-gap: 10px;
+        height: 130px;
         width: 95%;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 20px 100px 1fr 1fr 1fr 1fr;
+        column-gap: 10px;
         grid-template-areas:
           "box-1 box-2 box-4 box-4 box-4 box-4"
           "box-1 box-2 box-5 box-5 box-5 box-5"
-          "box-1 box-2 box-3 box-7 box-0 box-0";
+          "box-1 box-2 box-9 box-9 box-9 box-9"
+          "box-1 box-2 box-7 box-3 box-0 box-0";
         .box-6 { 
           grid-area: box-6; 
           display: none;
@@ -208,4 +214,69 @@
       }
     }
   } 
+}
+@media all and (max-width:499px) {
+  #cart-container-yjh {
+    min-width: 320px;
+    max-width: 400px; 
+    #cart-header-yjh {
+      width: 95%;
+      h1{
+        font-size: 25px;
+      }
+      & > div {
+        display: flex;
+        align-items: center;
+        span {
+          line-height: 25px;
+          font-size: 20px;
+          display: block;
+        }
+        input[type="checkbox"] {
+          width: 25px;
+          height: 25px;
+          accent-color: #6ba10e;
+        }
+      }
+    }
+    #book-list-yjh {
+      width: 100%;
+      margin: 10px auto;
+      .grid-container {
+        padding: 7px 0px;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 20px 100px 1.5fr 1.5fr 0fr 0.5fr;
+        height: 150px;
+        column-gap: 10px;
+        width: 95%;
+        grid-template-areas:
+          "box-1 box-2 box-4 box-4 box-4 box-4"
+          "box-1 box-2 box-5 box-5 box-5 box-5"
+          "box-1 box-2 box-9 box-9 box-9 box-9"
+          "box-1 box-2 box-7 box-3 box-0 box-0";
+        .box-6 { 
+          grid-area: box-6; 
+          display: none;
+        }
+        & > div {
+          input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #6ba10e;
+          }
+        }
+      }
+    }
+    #loan-btn-yjh {
+      margin: 20px auto;
+      width: 80%;
+      button {
+        font-size: 22px;
+        width: 100%;
+        display: block;
+        border-radius: 5px;
+      }
+    }
+  } 
+
 }

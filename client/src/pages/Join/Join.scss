@@ -73,8 +73,9 @@
 // PC (해상도 1024px)
 @media all and (min-width:1024px) {
   .join-container-yjh {
-    width: 30vw; 
+    width: 55vw; 
     padding: 10px; 
+    border: 1px solid #000;
     #Join-form-yjh {
       h1{
         font-size: 3vh;
