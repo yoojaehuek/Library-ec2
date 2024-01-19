@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../config/contansts'
 import axios from 'axios';
+import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
+import NaverLoginButton from '../../components/NaverLoginButton/NaverLoginButton';
 import './Join.scss'
 
 function Join() {
@@ -227,6 +229,10 @@ function Join() {
 				</li>
 			</ul>
 			<li><button type='submit' id='join-btn-yjh'>가입</button></li>
+			<li id='social-login-yjh'>
+				<NaverLoginButton/>
+				<GoogleLoginButton/>
+			</li>
 		</form>
 	</div>
 	);

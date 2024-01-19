@@ -135,11 +135,7 @@ const Login = () => {
 					<p><AiOutlineQuestionCircle className='icon'/>계속 로그인이 안되시는 경우 관리자에게 문의 해주세요</p>
 				</div>
 
-				{/* <div style={{float:"right", marginRight: "20px"}}>
-				</div> */}
-				<NavLink to="/join" className="txt-kjh">
-					<p className='txt-kjh'>회원가입</p>
-				</NavLink>
+				<NavLink to="/join" className="txt-kjh"><p className='txt-kjh'>회원가입</p></NavLink>
 				<NaverLoginButton />
 				<GoogleLoginButton />
 			</form>

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Mypage.scss';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
-import LoansTable from '../../components/Mypage/loansTable';
+import LoansTable from '../../components/Mypage/LoansTable';
 
 const Mypage = () => {
   const [user, setUser] = useState({});

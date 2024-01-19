@@ -70,6 +70,17 @@ class UserModel {
     });//where: {id: asdf} 형태가 들어와야함
     return user;
   }
+  static async patchUserByEmail({update, user_email}){
+    console.log("update: ",update);
+    const user = await User.update({
+      ...update
+    }, {
+      where: {
+        user_email: user_email
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    return user;
+  }
 
   static async destroyUser({user_id}){
     // console.log("userId",userId);

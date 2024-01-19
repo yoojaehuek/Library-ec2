@@ -26,7 +26,7 @@ const GoogleLoginButton = () => {
 
 		if(res.status == 200){
 			console.log('로그인성공!');
-			alert("로그인성공!");
+			// alert("로그인성공!");
 			setIslogin(true);// 로컬스토리지에 저장. 브라우저닫아도 유지
 			navigate('/'); 
 		}

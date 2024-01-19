@@ -11,7 +11,7 @@ const LoansTable = ({is_returned}) => {
   const [userbyLoans, setUserbyLoans] = useState([]);
 
    /** 받은 유저id로 유저 대출정보 조회요청 */
-   useEffect(() => {
+  useEffect(() => {
     axios.get(`${API_URL}/api/loans/userbyloans`)
       .then(res => {
         const loansBooks = res.data.filter(book => book.is_returned === is_returned);

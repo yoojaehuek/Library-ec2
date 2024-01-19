@@ -119,7 +119,7 @@ class UserService{
 					sns_type: "naver", 
 				}
 				const user_email = tmp.email;
-				const putResult = await UserModel.patchUser({update, user_email}); // 네이버 연동!
+				const putResult = await UserModel.patchUserByEmail({update, user_email}); // 네이버 연동!
 			}else { //연동 했음
 				//로그인 처리
 				console.log('가입도 했고 네이버도 연동됨');
@@ -175,7 +175,7 @@ class UserService{
 					sns_type: "google", 
 				}
 				const user_email = tmp.email;
-				const putResult = await UserModel.patchUser({update, user_email}); // 네이버 연동!
+				const putResult = await UserModel.patchUserByEmail({update, user_email}); // 네이버 연동!
 			}else { //연동 했음
 				//로그인 처리
 				console.log('가입도 했고 구글도 연동됨');
