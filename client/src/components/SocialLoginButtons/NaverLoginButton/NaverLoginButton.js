@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../../config/contansts";
+import { API_URL } from "../../../config/contansts";
 import { useRecoilState } from "recoil";
-import { loginState } from "../../recoil/atoms/State";
+import { loginState } from "../../../recoil/atoms/State";
 
 const NaverLoginButton = () => {   
 	const navigate = useNavigate();

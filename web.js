@@ -14,11 +14,11 @@ const faqRouter = require("./server/routers/faq");
 const loansRouter = require("./server/routers/loans");
 const userRouter = require("./server/routers/user");
 const bannerRouter = require("./server/routers/banner");
-// const multer = require('multer'); //파일 업로드
 const eventRouter = require("./server/routers/event");
 const testRouter = require("./server/routers/test");
 const event_applicantsRouter = require("./server/routers/event_applicants");
 const googleRouter = require('./server/routers/google');
+const kakaoRouter = require('./server/routers/kakao');
 const multer = require("multer"); //파일 업로드
 
 //시퀄라이즈 연결 부분
@@ -41,7 +41,6 @@ app.use(express.json());
 
 // 브라우저 cors 이슈를 막기 위해 사용(모든 브라우저의 요청을 일정하게 받겠다)
 var cors = require("cors");
-const { log } = require("console");
 app.use(cors());
 
 // '/server/upload'경로로 뭔가 요청이오면 여기서 걸리고 server/upload폴더의 정적 파일을 제공하겠다
@@ -100,9 +99,10 @@ app.use("/api/loans", loansRouter);
 app.use("/api/user", userRouter);
 app.use("/api/banner", bannerRouter);
 app.use("/api/event", eventRouter);
-app.use("/api/test", testRouter);
 app.use("/api/event_applicants", event_applicantsRouter);
+app.use("/api/test", testRouter);
 app.use("/api/google", googleRouter);
+app.use("/api/kakao", kakaoRouter);
 
 app.use(errorMiddleware);
 
