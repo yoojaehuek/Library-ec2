@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import axios from 'axios';
+import GoogleLoginButton from './GoogleLoginButton/GoogleLoginButton';
 import './Login.scss';
 
 const Login = () => {
@@ -132,6 +133,7 @@ const Login = () => {
 				<p><AiOutlineQuestionCircle className='icon'/>로그인이 안되시는 경우 한/영키와 Caps Lock이 켜져 있는지 확인해주세요</p>
 				<p><AiOutlineQuestionCircle className='icon'/>계속 로그인이 안되시는 경우 관리자에게 문의 해주세요</p>
 				{naverLoginButton}
+				<GoogleLoginButton />
 			</div>
 
 

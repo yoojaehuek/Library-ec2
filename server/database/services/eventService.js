@@ -18,7 +18,7 @@ class EventService{
 	static async getPageEvent(option){
 		const event_limit = parseInt(option.event_limit);
 		const orderBy = option.orderBy;
-		const event_id = orderBy == 'ASC' ? {[Op.gt]: parseInt(option.event_id),} : {[Op.lte]: parseInt(option.event_id)-1,};
+		const event_id = orderBy == 'ASC' ? {[Op.gt]: parseInt(option.event_id),} : {[Op.lt]: parseInt(option.event_id),};
 		
 		const tmpResult = await EventModel.getPageEvent({ event_id, event_limit, orderBy });
 		const result = await eventFormatDate(tmpResult);
