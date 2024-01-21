@@ -8,6 +8,11 @@ class ReviewService{
 		const result = await ReviewModel.createReview({newReview});
 		return result;
 	}
+	
+	static async getBookReview({book_id}){
+		const result = await ReviewModel.getBookReview({book_id});
+		return result;
+	}
 
 	static async getAllReview(){
 		const result = await ReviewModel.getAllReview();
@@ -58,6 +63,14 @@ class ReviewService{
 
 	static async getOneReview({review_id}){
 		const result = await ReviewModel.getOneReview({review_id});
+		return result;
+	}
+	
+	static async reviewCheck({book_id, user_id}){
+		const result = await ReviewModel.reviewCheck({book_id, user_id});
+		// if (result==null) {
+			
+		// }
 		return result;
 	}
 

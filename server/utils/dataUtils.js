@@ -1,10 +1,28 @@
-const formatDate = (result) => {	
-	const tmp = result.map(el => el.get({ plain: true }));
-	tmp.map((order, index) => {
-		const { created_at } = tmp[index];
-		tmp[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
-		tmp[index].created_at = tmp[index].created_at.toISOString().split('T')[0];
-	})
+const loansformatDate = (result) => {	
+	console.log(result);
+	console.log("eventFormatDate: ", result.length);
+	let tmp = result;
+
+	if (Array.isArray(tmp)) {
+		console.log('배열임');
+		tmp = tmp.map(el => el.get({ plain: true }));
+		tmp.map((order, index) => {
+			const { loan_date, due_date } = tmp[index];
+			tmp[index].loan_date = new Date(loan_date.setHours(loan_date.getHours() + 9));
+			tmp[index].loan_date = tmp[index].loan_date.toISOString().split('T')[0];
+			tmp[index].due_date = new Date(due_date.setHours(due_date.getHours() + 9));
+			tmp[index].due_date = tmp[index].due_date.toISOString().split('T')[0];
+		})
+	}else if (!Array.isArray(tmp)) {
+		console.log("들어옴");
+		console.log("tmp: ", tmp);
+			tmp.loan_date = new Date(tmp.loan_date.setHours(tmp.loan_date.getHours() + 9));
+			tmp.loan_date = tmp.loan_date.toISOString().split('T')[0];
+			tmp.due_date = new Date(tmp.due_date.setHours(tmp.due_date.getHours() + 9));
+			tmp.due_date = tmp.due_date.toISOString().split('T')[0];
+	} else {
+		console.log('뭐ㅑ');
+	}
 	return tmp
 }
 
@@ -66,4 +84,4 @@ const userFormat = (result) => {
 	return tmp
 }
 
-  module.exports = { formatDate, faqFormatDate, eventFormatDate, userFormat };
+  module.exports = { loansformatDate, faqFormatDate, eventFormatDate, userFormat };

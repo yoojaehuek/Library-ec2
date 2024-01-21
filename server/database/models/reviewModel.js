@@ -1,10 +1,24 @@
 const Review = require('../schemas/review'); 
+const User = require('../schemas/user'); 
 const { Op } = require('sequelize');
 
 class ReviewModel {
   static async createReview({newReview}){
     console.log("newReview",newReview);
     const result = await Review.create(newReview);
+    return result;
+  }
+
+  static async getBookReview({book_id}){
+    const result = await Review.findAll({
+      where: {
+        book_id: book_id,
+      },
+      include: [{
+        model: User,
+        attributes: ['user_name'],
+      }]
+    });
     return result;
   }
 
@@ -45,6 +59,16 @@ class ReviewModel {
     const result = await Review.findOne({
       where: {
         review_id: review_id,
+      },
+    });
+    return result;
+  }
+
+  static async reviewCheck({book_id, user_id}){
+    const result = await Review.findOne({
+      where: {
+        book_id: book_id, 
+        user_id: user_id,
       },
     });
     return result;
