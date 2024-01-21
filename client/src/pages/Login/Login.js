@@ -104,9 +104,7 @@ const Login = () => {
 		<div className="login-container-yjh">
 			<form id='login-form-yjh' onSubmit={onSubmitLogin}>
 				<h1>로그인</h1>
-
 				<ul id='input-box-yjh'>
-
 					<div>
 						<li className="input-li-yjh">
 							<label>아이디(이메일주소)</label>
@@ -125,19 +123,18 @@ const Login = () => {
 							/>
 						</li>
 					</div>
-
 					<button id='login-btn-yjh' type='submit'>로그인</button>
-
 				</ul>
-
 				<div id='login-tip-yjh'>
 					<p><AiOutlineQuestionCircle className='icon'/>로그인이 안되시는 경우 한/영키와 Caps Lock이 켜져 있는지 확인해주세요</p>
 					<p><AiOutlineQuestionCircle className='icon'/>계속 로그인이 안되시는 경우 관리자에게 문의 해주세요</p>
+					<p id='join-link-yjh'><NavLink to="/join" className="join-link-kjh">회원이 아니신가요? 회원가입하러가기</NavLink></p>
 				</div>
-
-				<NavLink to="/join" className="txt-kjh"><p className='txt-kjh'>회원가입</p></NavLink>
-				<NaverLoginButton />
-				<GoogleLoginButton />
+				<fieldset id='social-login-yjh'>
+					<legend htmlFor="">or</legend>
+					<NaverLoginButton/>
+					<GoogleLoginButton/>
+				</fieldset>
 			</form>
 		</div>
 	);
