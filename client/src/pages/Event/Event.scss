@@ -1,5 +1,8 @@
-
 .event-container-kjh{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
   .read-count-kjh{
     margin-top: 1.5vw;
   }
@@ -33,6 +36,20 @@
       height: 100%;
     }
   }
+
+  .event-status-kjh{
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+
+    &.false{
+      background-color: #F36B3C;
+    }
+    &.true{
+      background-color: #3F8BCC;
+    }
+  }
+
 }
 
 /* PC (해상도 1024px)*/ 

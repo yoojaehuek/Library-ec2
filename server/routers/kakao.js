@@ -19,9 +19,9 @@ router.post('/', async (req, res, next) => {
 
     request.post(options, (error, response, body) => {
       if (!error && response.statusCode == 200) {
-        console.log("카카오로그인 body: ", body);
-        // res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
-        res.status(200).json(body);
+        console.log("카카오로그인 body: ", JSON.parse(body));
+        const userData = JSON.parse(body);
+        res.status(200).json(userData);
         //여기서 쿠키 설정해주기?
       } else {
         res.status(response.statusCode).end();

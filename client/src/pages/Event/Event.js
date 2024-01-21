@@ -106,7 +106,8 @@ const Event = () => {
                   <span>모집정원:&nbsp;</span>
                   <p>{event.event_max_applicants}명</p>
                 </div>
-                <p>상태: {event.event_status}</p>
+                {/* <p>상태: {event.event_status}</p> */}
+                {event.event_status == "expired" ? <div className='event-status-kjh false'>마감</div> : <div className='event-status-kjh true'>모집중</div>}
               </div>
             </div>
             <p className='read-count-kjh'>조회수: {event.read_count}</p>

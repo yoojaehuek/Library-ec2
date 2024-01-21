@@ -32,9 +32,11 @@ const Pagination = ({ total, limit, page, setPage, getData, noPrev, noNext, star
 
   return (
     <div className="pagination-container-kjh">
-      <button onClick={() => handlePrevious(0)} disabled={noPrev}>
-        <IoIosArrowBack />
-      </button>
+      {!noPrev && 
+        <button onClick={() => handlePrevious(0)} disabled={noPrev}>
+          <IoIosArrowBack />
+        </button>
+      }
       {Array(numPages)
         .fill()
         .map((_, i) => (
@@ -48,10 +50,11 @@ const Pagination = ({ total, limit, page, setPage, getData, noPrev, noNext, star
           </button>
         ))
       }
-      {/* <button onClick={() => setPage(page + 1)} disabled={page === numPages} > */}
-      <button onClick={() => handleNext(0)} disabled={noNext} >
+      {!noNext && 
+        <button onClick={() => handleNext(0)} disabled={noNext} >
         <IoIosArrowForward />
-      </button>
+        </button>
+      }
     </div>
   );
 };
