@@ -38,6 +38,7 @@
     position: relative;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
   }
   .rentTable-kjh td {
     height: 30px;
@@ -65,7 +66,8 @@
   }
 
   .tWriter-kjh {
-    width: 50px;
+    width: 70px;
+    // font-size: 10px;
   }
   .tTitle-kjh {
     width: 300px;

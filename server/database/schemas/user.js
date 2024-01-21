@@ -10,7 +10,7 @@ class User extends Sequelize.Model {
       },
       user_email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         comment: "ID(이메일)",
       },
       user_pwd: {
@@ -70,6 +70,9 @@ class User extends Sequelize.Model {
 
     //참조키로 Loans 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
     db.User.hasMany(db.Review, { foreignKey: 'user_id', sourceKey: 'user_id'});
+
+    //참조키로 Event_applicants 모델에 user_id(sourceKey)를 user_id(foreignKey)라는 이름으로 보냄
+    db.User.hasMany(db.Event_applicants, { foreignKey: 'user_id', sourceKey: 'user_id'});
   }
 };
 

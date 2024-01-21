@@ -3,8 +3,8 @@ const BannerModel = require('../models/bannerModel')
 
 class BannerService{
 	
-	static async createBanner({newBanner}){
-		const result = await BannerModel.createBanner({newBanner});
+	static async createBanner({newbanner}){
+		const result = await BannerModel.createBanner({newbanner});
 		return result;
 	}
 
@@ -13,14 +13,22 @@ class BannerService{
 		return result;
 	}
 
-	static async updateBanner({ Banner_id, toUpdate }){
+	static async getOneBanner(banner_id){
+		const tmpResult = await BannerModel.getOneBanner(banner_id);
+		console.log("tmpResult:", tmpResult);
+		// const result = bannerFormatDate([tmpResult])
+		return tmpResult;
+	}
+
+	static async updateBanner({ banner_id, toUpdate }){
 		console.log("서비스에서: ",toUpdate);
-		const result = await BannerModel.updateBanner({ Banner_id, toUpdate });
+		console.log("서비스에서: ",banner_id);
+		const result = await BannerModel.updateBanner({ banner_id, toUpdate });
 		return result;
 	}
 
-	static async deleteBanner({ Banner_id }){
-    const result = await BannerModel.deleteBanner({ Banner_id });
+	static async deleteBanner({ banner_id }){
+    const result = await BannerModel.deleteBanner({ banner_id });
     return result;
   }
 

@@ -1,0 +1,39 @@
+//////admin main
+.a-chart-container-kjn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chart-section-kjn,
+  .bottom-section-kjn {
+    display: flex;
+    justify-content: space-between;
+    width: 70vw;
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    .a-chart-container-kjn {
+      flex-direction: column;
+    }
+  
+    .chart-section-kjn,
+    .bottom-section-kjn {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .a-chart-container-kjn {
+        display: none;
+    }
+  }
+    
+  //admin header
+  @media (max-width: 480px) {
+    .logo-kjn {
+      display: none;
+    }
+
+  }

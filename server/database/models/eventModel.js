@@ -13,6 +13,17 @@ class EventModel {
     return result;
   }
 
+  static async getPageEvent({ event_id, event_limit, orderBy }){
+    const result = await Event.findAll({
+      where: {
+        event_id: event_id
+      },
+      order: [ ['event_id', orderBy] ],
+      limit: event_limit,
+    });
+    return result;
+  }
+
   static async getCategoryEvent(wheres){
     console.log("wheres: ", wheres);
     const result = await Event.findAll({
@@ -42,16 +53,18 @@ class EventModel {
   // }
 
   static async getOneEvent({event_id}){
+    console.log("EventModel getOneEvent: ", event_id);
     const result = await Event.findOne({
       where: {
         event_id: event_id,
       },
+      raw:true,
     });
     return result;
   }
   
   static async updateEvent({ event_id, toUpdate }){
-    console.log("update: ",toUpdate);
+    console.log("update: ",toUpdate);    
     const result = await Event.update({
       ...toUpdate 
     }, {
@@ -72,6 +85,26 @@ class EventModel {
     return result;
   }
 
+  static async applyEvent({ event_id, user_id }){
+    console.log(event_id, user_id);
+    const result = await Event.apply({
+      where: {
+        event_id: event_id,
+        user_id: user_id
+      }
+    });
+    return result;
+  }
+  static async unapplyEvent({ event_id, user_id }){
+    console.log(event_id, user_id);
+    const result = await Event.unapplyEvent({
+      where: {
+        event_id: event_id,
+        user_id: user_id
+      }
+    });
+    return result;
+  }
 }
 
 module.exports = EventModel; 

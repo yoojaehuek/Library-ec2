@@ -1,8 +1,7 @@
-const { Product, Store, Option, sequelize } = require('../schemas');
 const Loans = require('../schemas/loans'); 
-// const LoansMenu = require('../schemas/loansMenu'); 
-// const LoansOption = require('../schemas/loansOption'); 
-const { Op, QueryTypes } = require('sequelize');
+const Book = require('../schemas/book');
+const User = require('../schemas/user');
+const { Op } = require('sequelize');
 
 class LoansModel {
 
@@ -10,49 +9,99 @@ class LoansModel {
     console.log("모델에서받은 newLoans: ",newLoans);
     const createNewLoans = await Loans.create({
       book_id: newLoans.book_id,
-      user_email: newLoans.user_email,
       user_id: newLoans.user_id,
       due_date: newLoans.due_date,
     });
     return createNewLoans;
   }
-
-  // static async createLoansMenu({loans_id, item}){
-  //   // console.log("LoansMenu: ",loans_id);
-  //   const createNewLoansMenu = await LoansMenu.create({
-  //     'loans_id': loans_id,
-  //     product_id: item.menu_id,
-  //     quantity: item.quantity,
-  //   });
-  //   return createNewLoansMenu;
-  // }
-
-  // static async createLoansOption({loansMenu_id, option}){
-  //   // console.log("option: ",option);
-  //   const createNewLoansMenu = await LoansOption.create({
-  //     'loansMenu_id': loansMenu_id,
-  //     option_id: option.option_id,
-  //     quantity: option.quantity,
-  //   });
-  //   return createNewLoansMenu;
-  // }
-
-
-  //조회 쿼리
+  /** 조회 쿼리 */
   static async getAllLoans(){
-    console.log("모델 전체조회 들어옴");
     const loans = await Loans.findAll();
     console.log("전체조회로 찾은거: ",loans);
     return loans;
   }
-
+  /** 최신순으로 대출 정보 조회 */
+  static async getAllLoansDESC() {
+    const loans = await Loans.findAll({
+      // order: [['loan_date', 'DESC']], // 오래된순
+      order: [['loan_date', 'ASC']], 
+    });
+    console.log("최신순 전체조회로 찾은거: ", loans);
+    return loans;
+  }
+  /** 최근대출순으로 책 , 유저 불러오기*/
+  static async getRecentBorrowedBooksAndUsers() {
+    const loans = await Loans.findAll({
+      // order: [['loan_date', 'DESC']], // 오래된순
+      include: [
+        {
+          model: Book,
+          attributes: ['book_name', 'book_author'],
+        },
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ], 
+      order: [
+        ['loan_date', 'ASC']
+      ], 
+    });
+    console.log("최신순 전체조회로 찾은거: ", loans);
+    return loans;
+  }
+  /** 유저대출정보조회 */
   static async findOneLoansUserId({id}){
-    // console.log("loansId",id);
+    console.log("loansId",id);
+    console.log("모델에서 받은 유저id: ", id);
     const loans = await Loans.findAll({
       where: {
         user_id: id,
       },
+      include: [
+        {
+          model: Book,
+          attributes: ['book_id', 'book_name', 'book_author'], 
+        }
+      ],
     }); //where: {id: asdf} 형태가 들어와야함
+    return loans;
+  }
+  /** 유저별 대출 목록 책만  */
+  static async getBooksBorrowedByUser({id}){
+    console.log("aa모델에서 받은 유저id: ", id);
+    console.log("aa모델에서 받은 유저id: ", typeof(id));
+    const loans = await Loans.findAll({
+      where: {
+        user_id: id,
+      },
+      include: [
+        {
+          model: Book,
+          attributes: ['book_name', 'book_author'],
+        }
+      ],
+    }); 
+    return loans;
+  }
+  /** 책을 대출한 유저 최신순으로   */
+  static async getUsersByBookBorrowed({id}){
+    console.log("aa모델에서 받은 book_id: ", id);
+    console.log("aa모델에서 받은 book_id: ", typeof(id));
+    const loans = await Loans.findAll({
+      where: {
+        book_id: id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['user_name'],
+        }
+      ],
+      order: [
+        ['loan_date', 'ASC']
+      ], 
+    });
     return loans;
   }
 
@@ -190,7 +239,7 @@ class LoansModel {
   /** 책 반납 */
   static async returnLoans({loans_id, returned, returnDate}){
     console.log("모델에서 받음 책반납 : ",loans_id, returned, returnDate);
-    // 받은 값을 loans_id와 id가 일치하는 값을 찾아 그 값의 반환여부 와 실제 반납일 에 업데이트 함
+    // 받은 값을 loans_id와 id가 일치하는 값을 찾아 그 값의 반환여부 와 실제 반납일에 업데이트 함
     const result = await Loans.update({
       "is_returned": returned,
       "returned_date": returnDate,
@@ -198,7 +247,7 @@ class LoansModel {
       where: { 
         loans_id: loans_id
       }
-    });//where: {id: asdf} 형태가 들어와야함
+    });
     console.log("책반납성공!! result: ",result);
     return result;
   }
@@ -212,19 +261,18 @@ class LoansModel {
       where: { 
         loans_id: loans_id
       }
-    });//where: {id: asdf} 형태가 들어와야함
+    });
     console.log("대출연장성공!! result: ",result);
     return result;
   }
 
   //삭제 쿼리
   static async deleteLoans({loans_id}){
-    // console.log("loansId",loansId);
     const loans = await Loans.destroy({
       where: {
         loans_id: loans_id
       }
-    });//where: {id: asdf} 형태가 들어와야함
+    });
     
     return loans;
   }

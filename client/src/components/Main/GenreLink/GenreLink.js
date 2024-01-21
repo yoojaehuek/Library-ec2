@@ -17,7 +17,15 @@ const GenreLink = ({ item, index }) => {
       case '문학':
         return '/BookList?genre=문학'; // 원하는 Literary 페이지의 링크로 변경
       case '철학':
-        return '/BookList?genre=철학'; // 원하는 Philosophical 페이지의 링크로 변경
+        return '/BookList?genre=철학'; 
+      case '역사':
+        return '/BookList?genre=역사';
+      case '종교':
+        return '/BookList?genre=종교';
+      case '예술':
+        return '/BookList?genre=예술';
+      case '언어':
+        return '/BookList?genre=언어';
       default:
         return '/';
     }

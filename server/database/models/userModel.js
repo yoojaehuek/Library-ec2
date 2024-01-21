@@ -19,49 +19,87 @@ class UserModel {
     return result;
   }
 
-  static async findOneUserId({id}){
+  //있으면 조회, 없으면 가입
+  static async googleLogin(newUser){
+    // console.log("newUser",newUser);
+    const result = await User.findOrCreate({
+      where: {user_email: newUser.user_email},
+      defaults: newUser
+    });
+
+    return result;
+  }
+
+  static async getAllUser(){
+    const user = await User.findAll({
+      attributes: ["user_id", "user_email", "user_name", "user_phone", "sns_type", "created_at"]
+    })
+    console.log(user);
+    return user;
+  }
+
+  static async findOneUserId({user_id}){
     // console.log("userId",id);
     const user = await User.findOne({
       where: {
-        user_email: id
+        user_id: user_id
       }
     }); //where: {id: asdf} 형태가 들어와야함
     return user;
   }
 
-  static async findOneUserEmail({email}){
-    console.log("userId",typeof(email));
+  static async findOneUserEmail({user_email}){
+    console.log("userId",typeof(user_email));
     const user = await User.findOne({
       where: {
-        user_email: email
+        user_email: user_email
       }
     }); //where: {id: asdf} 형태가 들어와야함
     console.log("user 모델에서 email로 찾음: ",user);
     return user;
   }
   
-  static async patchUser({update, userId}){
+  static async patchUser({update, user_id}){
     console.log("update: ",update);
     const user = await User.update({
       ...update
     }, {
       where: {
-        user_email: userId
+        user_id: user_id
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    return user;
+  }
+  static async patchUserByEmail({update, user_email}){
+    console.log("update: ",update);
+    const user = await User.update({
+      ...update
+    }, {
+      where: {
+        user_email: user_email
       }
     });//where: {id: asdf} 형태가 들어와야함
     return user;
   }
 
-  static async destroyUser({userId}){
+  static async destroyUser({user_id}){
     // console.log("userId",userId);
     const user = await User.destroy({
       where: {
-        user_email: userId
+        user_id: user_id
       }
     });//where: {id: asdf} 형태가 들어와야함
     return user;
   }
-
+  static async deleteAdminUser({user_id}){
+    // console.log("userId",userId);
+    const user = await User.destroy({
+      where: {
+        user_id: user_id
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    return user;
+  }
 }
 
 module.exports = UserModel; 

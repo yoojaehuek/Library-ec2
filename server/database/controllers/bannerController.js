@@ -4,8 +4,8 @@ class BannerController {
 
 	static async createBanner(req, res, next){
 		try {
-			const newBanner = req.body;
-			const result = await BannerService.createBanner({newBanner});
+			const newbanner = req.body;
+			const result = await BannerService.createBanner({newbanner});
 			res.status(201).json(result);
 		} catch (error) {
 			next(error);
@@ -21,11 +21,21 @@ class BannerController {
 		}
 	}
 
+	
+	static async getOneBanner(req, res, next){
+		try {
+			const banner_id = req.params.banner_id;
+			const result = await BannerService.getOneBanner(banner_id);
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
 	static async updateBanner(req, res, next){
 		try {
 			const banner_id = req.params.banner_id;
-			const {...props} = req.body;
-      const toUpdate = {...props}
+      const toUpdate = {...req.body}
 
 			const result = await BannerService.updateBanner({ banner_id, toUpdate });
 			res.status(200).json(result);
@@ -36,7 +46,7 @@ class BannerController {
 
 	static async deleteBanner(req, res, next){
 		try {
-			const Banner_id = req.params.banner_id;
+			const banner_id = req.params.banner_id;
 
 			const result = await BannerService.deleteBanner({ banner_id });
 			res.status(200).json(result);

@@ -1,436 +1,793 @@
 //Main css 무조건 .main-container-kjh{} 안쪽에 작성하기
-.main-container-lhs {
-  flex-direction: column;
-  flex-grow: 1;
-  margin-top: 15px;
-  width: 100%;
-  transition: background-color 1s ease;
-  display: flex;
-  overflow-y: hidden;
 
-  .main-content-lhs{
-    padding-left: 20.6875rem;
-    padding-right: 19.6875rem;
-
-    @media only screen and (max-width: 1200px) {
-      .main-content-lhs {
-        padding-left: 10rem;
-        padding-right: 9.6875rem;
-      }
-    }
+@media all and (min-width:800px) {
+  .main-container-lhs {
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 1s ease;
+    display: flex;
+    max-width: 60vw;
+    margin: 0 auto;
   
-    @media only screen and (max-width: 1000px) {
-      .main-content-lhs {
-        padding-left: 5rem;
-        padding-right: 4.6875rem;
-      }
-    }
+    .main-content-kjh{
+      max-width: 60vw;
+      margin: 0 auto;
   
-    @media only screen and (max-width: 768px) {
-      .main-content-lhs {
-        padding-left: 2rem;
-        padding-right: 1.6875rem;
-      }
-    }
-  
-    @media only screen and (max-width: 576px) {
-      .main-content-lhs {
-        padding-left: 1rem;
-        padding-right: 0.6875rem;
-      }
-    }
-
-    .main-welcome-lhs {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      // background-image: url('../../../public/images/main/black.png'); // 이미지 경로 설정
-      background-size: cover; // 배경 이미지를 커버로 채우기
-      background-position: center; // 배경 이미지를 가운데로 정렬
-      color: rgb(0, 0, 0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 5rem;
-      opacity: 1;
-      transition: opacity 2s ease;
-      font-size: 35px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .main-welcome-lhs.visible {
-      opacity: 0;
-    }
-
-  //////////////////////////////topcomponentzzz
-    .main-top-lhs{
-      // background-color: rgb(189, 180, 180);
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 1s, transform 1s;
-
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      a{
-        color: inherit;
-        text-decoration: inherit;
-  
-        .main-top-name-lhs{
-          background-color:  rgba(206, 206, 206, 0.582);
-          border-radius: 0.5rem;
-          align-items: center;
-          cursor: pointer;
-          width: 100%;
-          height: 2.75rem;
-          display: flex;
-          margin-bottom: 0.5rem;
-  
-          > img{
-            width: 2rem;
-            height: 2rem;
-            margin-right: 0.25rem;
-            margin-left: 0.625rem;
-            max-width: 100%;
-          }
-
-          span{
-            overflow: hidden;
-            display: -webkit-box;
-            color: var(--element-el-60);
-            flex: 1 1 0%;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 20px;
-          }
-
-          .main-top-img-lhs{
-            width: 1.5rem;
-            height: 1.5rem;
-            margin-left: 0.625rem;
-            margin-right: 0.625rem;
-            max-width: 100%;
-            border-style: none;
-          }
-        }
-      }
-    }
-
-  /////////////////////////////slider
-    .main-slider-lhs{
-      margin-bottom: 0.25rem;
-
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 2s, transform 2s;
-
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-
-      .main-slider-mid-lhs{
-        position: relative;
-        transition: none 0s ease 0s;
-        max-height: 100%;
-        display: flex;
-
-        .main-slider-img-lhs{
-          position: relative;
-          width: calc(55%);
-          padding-left: 1.5px;
-          padding-right: 1.5px;
-          max-height: 100%;
-
-          > img{
-            position: relative;
-            width: 180%;
-            cursor: pointer;
-            height: 180%;
-            object-fit: cover;
-            border-radius: 40px;
-
-            &:hover{
-              opacity: 0.5;
-            }
-          }
-        }
-
-        .current-slide-info-lhs {
-          text-align: left;
-          color: rgb(0, 0, 0);
-          border-radius: 20px;
-          max-width: 100%;
-          max-width: 200px; /* 텍스트의 최대 넓이 설정 */
-          font-size: 25px;
-          font-weight: 800;
-          padding: 10px;
-
-          .image-text-lhs {
-            position: absolute;
-            max-width: 100%;
-            font-family: 'Nanum Gothic', sans-serif; /* 글꼴 설정 */
-            color: white;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 1.3;
-            padding: 8px;
-            top: 75%;
-            right:20%;
-            margin-bottom: 5px;
-          
-            > span {
-              font-size: 14px;
-              opacity: 0.8;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  ///////////////////////////////////슬라이더 아래 css 
-  .mid-content-lhs{
-    padding: auto;
-    cursor: pointer;
-
-    .main-mid-top-lhs{
-      cursor: default;
-      margin: 0;
-      width: 68vw;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-top: 3px solid black;
-      border-bottom: 3px solid black;
-
-      >h1{
-        margin: 2px;
-        text-align: left;
-        width: 66vw;
-        padding: 10px;
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
-      }
-    }
-
-    .main-mid-content-lhs {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s, transform 2s;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      grid-template-rows: auto; /* 행 크기 자동 조절 */
-      width: calc(100% + 4px);
-
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .main-mid-img-lhs {
+      
+      .main-welcome-lhs {
+        position: fixed;
+        // top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // background-image: url('../../../public/images/main/black.png'); // 이미지 경로 설정
+        background-size: cover; // 배경 이미지를 커버로 채우기
+        background-position: center; // 배경 이미지를 가운데로 정렬
+        color: rgb(0, 0, 0);
         display: flex;
         align-items: center;
-        width: 85vw;
-        margin: 5px;
-      
-
-        .grid-item-lhs {
+        justify-content: center;
+        line-height: 5rem;
+        opacity: 1;
+        transition: opacity 2s ease;
+        font-size: 35px;
+        font-weight: 700;
+        text-align: center;
+      }
+  
+      .main-welcome-lhs.visible {
+        opacity: 0;
+      }
+  
+    //////////////////////////////topcomponentzzz
+      .main-top-lhs{
+        // background-color: rgb(189, 180, 180);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s, transform 1s;
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+        a{
+          color: inherit;
+          text-decoration: inherit;
+    
+          .main-top-name-lhs{
+            background-color:  rgba(206, 206, 206, 0.582);
+            border-radius: 0.5rem;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            height: 2.75rem;
+            display: flex;
+            margin-bottom: 0.5rem;
+    
+            > img{
+              width: 2rem;
+              height: 2rem;
+              margin-right: 0.25rem;
+              margin-left: 0.625rem;
+              max-width: 100%;
+            }
+  
+            span{
+              overflow: hidden;
+              display: -webkit-box;
+              color: var(--element-el-60);
+              flex: 1 1 0%;
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 20px;
+            }
+  
+            .main-top-img-lhs{
+              width: 1.5rem;
+              height: 1.5rem;
+              margin-left: 0.625rem;
+              margin-right: 0.625rem;
+              max-width: 100%;
+              border-style: none;
+            }
+          }
+        }
+      }
+  
+    /////////////////////////////slider
+      .main-slider-lhs{
+        margin-bottom: 0.25rem;
+  
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 2s, transform 2s;
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+  
+        .main-slider-mid-lhs{
           position: relative;
-          margin-left: 15px;
-
-          &:hover{
-            opacity: 0.8;
+          transition: none 0s ease 0s;
+          max-height: 20vw;
+          display: flex;
+  
+          .main-slider-img-lhs{
+            position: relative;
+            // width: calc(55%);
+            padding-left: 1.5px;
+            padding-right: 1.5px;
+            // max-height: 100%;
+  
+            > img{
+              position: relative;
+              width: 100%;
+              height: 20vw;
+              cursor: pointer;
+              // height: 180%;
+              // object-fit: cover;
+              border-radius: 40px;
+  
+              &:hover{
+                opacity: 0.5;
+              }
+            }
+          }
+  
+          .current-slide-info-lhs {
+            text-align: left;
+            color: rgb(0, 0, 0);
+            border-radius: 20px;
+            max-width: 100%;
+            max-width: 200px; /* 텍스트의 최대 넓이 설정 */
+            font-size: 25px;
+            font-weight: 800;
+            padding: 10px;
+  
+            .image-text-lhs {
+              position: absolute;
+              max-width: 100%;
+              font-family: 'Nanum Gothic', sans-serif; /* 글꼴 설정 */
+              color: white;
+              text-align: center;
+              font-size: 1.6vw;
+              font-weight: 600;
+              top: 75%;
+              left: 30%;
+              margin-bottom: 5px;
+            
+              > span {
+                font-size: 1vw;
+                width: 58vw;
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    ///////////////////////////////////슬라이더 아래 css 
+    .mid-content-lhs{
+      padding: auto;
+      max-width: 60vw;
+      margin: 0 auto;
+      cursor: pointer;
+  
+      .main-mid-top-lhs{
+        cursor: default;
+        margin: 0;
+        width: 7vw;
+        margin-top: 10px;
+        margin-bottom: 20px;
+  
+        >h1{
+          margin: 2px;
+          text-align: left;
+          width: 77.5vw;
+          padding: 10px;
+        }
+      }
+  
+      .main-mid-content-lhs {
+        opacity: 0;
+        transform: translateY(20px);
+        width: 100%;
+        transition: opacity 1s, transform 2s;
+        padding: 15px 0 ;
+        margin-top: 15px;
+        border: 1px solid black;
+        border-radius: 15px;
+        display: grid;
+        grid-template-rows: auto; /* 행 크기 자동 조절 */
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+        .main-mid-img-lhs {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          margin: 5px;
+        
+  
+          .grid-item-lhs {
+            position: relative;
+            margin-left: 15px;
+  
+            &:hover{
+              opacity: 0.8;
+            }
+          
+            &:before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+              z-index: 1;
+            }
+          
+            > img {
+              width: 10.2vw;
+              height: 15vw;
+              border-radius: 10px; // 이미지에 원하는 모양의 모서리를 적용하세요
+              z-index: 2; // 그라데이션 위에 표시되도록 설정
+            }
+          
+            .image-text-lhs {
+              position: absolute;
+              bottom: 15px;
+              text-align: center;
+              left: 0;
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              border-radius: 0 0 10px 10px; // 텍스트 영역에 원하는 모양의 모서리를 적용하세요
+              color: #fff; // 텍스트 색상
+              font-size: 1vw;// 텍스트 크기
+              font-weight: 600;
+              z-index: 3; // 그라데이션 위에 표시되도록 설정
+            }
+          }
+        }
+      }
+      .main-bottom1-content-lhs,
+      .main-bottom-content-lhs {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s, transform 1s;
+        display: grid;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+  
+        &:last-child{
+          margin-bottom: 50px;
+        }
+      
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      
+        .main-bottom-container-lhs {
+          // width: 100%;
+          height: auto;
+          padding: 0 20px;
+          box-sizing: border-box;
+  
+  
+          .main-bottom-fullbooktop-lhs{
+            width: 100%;
+  
+            .main-bottom-fullbook-lhs{
+              width: 57.7vw;
+              padding: 20px;
+              box-sizing: border-box;
+              color: #fff;
+              position: relative;
+              overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
+            
+              p {
+                text-align: center;
+                font-size: 25px;
+                font-weight: 500;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
+                transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+              }
+            }
+  
+          }
+  
+          >a{
+            width: 49%;
+  
+            .main-bottom-dark2-lhs,
+            .main-bottom-sf-lhs {
+              width: 100%;
+              margin-bottom: 30px;
+              padding: 30px;
+              box-sizing: border-box;
+              background-size: 100% 100%;
+              color: #fff;
+              position: relative;
+              overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
+        
+              p {
+                font-size: 25px;
+                font-weight: 900;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
+                transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+              }
+            }
           }
         
-          &:before {
-            content: "";
+          .main-bottom-dark2-lhs > p {
+            float: left;
+          }
+        
+          .main-bottom-sf-lhs > p {
+            float: right;
+          }
+  
+          .main-bottom-fullbook-lhs::before,
+          .main-bottom-dark2-lhs::before,
+          .main-bottom-sf-lhs::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-            z-index: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0; /* 텍스트 위에 이미지를 표시하기 위해 z-index 설정 */
+            transition: transform 5s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+          }
+  
+          .main-bottom-fullbook-lhs::before {
+            background: url('../../../public/images/main/fullbook.png') center/cover; /* dark 이미지 경로 */
           }
         
-          > img {
-            width: 10vw;
-            height: 15vw;
-            border-radius: 10px; // 이미지에 원하는 모양의 모서리를 적용하세요
-            z-index: 2; // 그라데이션 위에 표시되도록 설정
+          // .main-bottom-dark2-lhs::before {
+          //   background: url('../../../public/images/main/horro.png') center/cover; /* dark 이미지 경로 */
+          //   border-radius: 0 30px 30px 0;
+          // }
+  
+          // .main-bottom-fantsymain-lhs::before{
+          //   background: url('../../../public/images/main/fantasymain.png') center/cover; /* dark 이미지 경로 */
+          //   border-radius: 0 30px 30px 0;
+          // }
+  
+          // .main-bottom-mystery-lhs::before{
+          //   background: url('../../../public/images/main/mystery.png') center/cover; /* dark 이미지 경로 */
+          //   border-radius: 0 30px 30px 0;
+          // }
+        
+          // .main-bottom-sf-lhs::before {
+          //   background: url('../../../public/images/main/sf.png') center/cover; /* sf 이미지 경로 */
+          //   border-radius: 30px 0 0 30px;
+          // }
+  
+          // .main-bottom-comic-lhs::before{
+          //   background: url('../../../public/images/main/comic.png') center/cover; /* dark 이미지 경로 */
+          //   border-radius: 30px 0 0 30px;
+          // }
+  
+          // .main-bottom-thiller-lhs::before {
+          //   background: url('../../../public/images/main/thiller.png') center/cover; /* sf 이미지 경로 */
+          //   border-radius: 30px 0 0 30px;
+          // }
+        
+          // .main-bottom-fullbook-lhs:hover::before,
+          // .main-bottom-sf-lhs:hover::before,
+          // .main-bottom-dark2-lhs:hover::before {
+          //   transform: scale(1.5); /* 이미지 축소 효과 적용 */
+          // }
+        }
+      }
+  
+      .main-bottom-content-lhs{
+  
+        &.show{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }      
+} 
+
+/* 모바일 화면 크기 범위에 대한 스타일 */
+@media all and (max-width:799px){
+  .main-container-lhs {
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 1s ease;
+    display: flex;
+    max-width: 90vw;
+    margin: 0 auto;
+
+    .main-content-kjh{
+      max-width: 90vw;
+      margin: 0 auto;
+  
+      
+      .main-welcome-lhs {
+        position: fixed;
+        // top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover; // 배경 이미지를 커버로 채우기
+        background-position: center; // 배경 이미지를 가운데로 정렬
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 5rem;
+        opacity: 1;
+        transition: opacity 2s ease;
+        font-size: 35px;
+        font-weight: 700;
+        text-align: center;
+      }
+  
+      .main-welcome-lhs.visible {
+        opacity: 0;
+      }
+  
+    //////////////////////////////topcomponentzzz
+      .main-top-lhs{
+        // background-color: rgb(189, 180, 180);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s, transform 1s;
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+        a{
+          color: inherit;
+          text-decoration: inherit;
+    
+          .main-top-name-lhs{
+            background-color:  rgba(206, 206, 206, 0.582);
+            border-radius: 0.5rem;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            height: 2.75rem;
+            display: flex;
+            margin-bottom: 0.5rem;
+    
+            > img{
+              width: 2rem;
+              height: 2rem;
+              margin-right: 0.25rem;
+              margin-left: 0.625rem;
+              max-width: 100%;
+            }
+  
+            span{
+              overflow: hidden;
+              display: -webkit-box;
+              color: var(--element-el-60);
+              flex: 1 1 0%;
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 20px;
+            }
+  
+            .main-top-img-lhs{
+              width: 1.5rem;
+              height: 1.5rem;
+              margin-left: 0.625rem;
+              margin-right: 0.625rem;
+              max-width: 100%;
+              border-style: none;
+            }
+          }
+        }
+      }
+  
+    /////////////////////////////slider
+      .main-slider-lhs{
+        margin-bottom: 0.25rem;
+  
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 2s, transform 2s;
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+  
+        .main-slider-mid-lhs {
+          position: relative;
+          transition: none 0s ease 0s;
+          max-height: 100%;
+          display: flex;
+          overflow: hidden; /* 이미지가 넘치는 부분을 가리기 위해 overflow 속성을 추가합니다. */
+        
+          .main-slider-img-lhs {
+            position: relative;;
+            padding-left: 1.5px;
+            padding-right: 1.5px;
+            max-height: 100%;
+            flex-shrink: 0; /* 이미지가 줄어들지 않도록 flex-shrink 속성을 0으로 설정합니다. */
+        
+            > img {
+              position: relative;
+              width: 100%;
+              height: 50vw;
+              cursor: pointer;
+              object-fit: cover;
+              border-radius: 40px;
+        
+              &:hover {
+                opacity: 0.5;
+              }
+            }
           }
         
-          .image-text-lhs {
+  
+          .current-slide-info-lhs {
+            text-align: left;
+            color: rgb(0, 0, 0);
+            border-radius: 20px;
+            max-width: 100%;
+            max-width: 200px; /* 텍스트의 최대 넓이 설정 */
+            font-size: 25px;
+            font-weight: 800;
+  
+            .image-text-lhs {
+              position: absolute;
+              max-width: 100%;
+              font-family: 'Nanum Gothic', sans-serif; /* 글꼴 설정 */
+              color: white;
+              text-align: center;
+              font-size: 4.1vw;
+              font-weight: 600;
+              top: 65%;
+              left: 5%;
+              margin-bottom: 5px;
+            
+              > span {
+                font-size: 4vw;
+                width: 58vw;
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    ///////////////////////////////////슬라이더 아래 css 
+    .mid-content-lhs{
+      padding: auto;
+      overflow: hidden;
+      margin: 0 auto;
+      cursor: pointer;
+  
+      .main-mid-top-lhs{
+        cursor: default;
+        margin: 0;
+        width: 79vw;
+        margin-top: 10px;
+        margin-bottom: 20px;
+  
+        >h1{
+          margin: 2px;
+          font-size: 25px;
+          text-align: left;
+          width: 77.5vw;
+          padding: 3px 0 0 20px;
+        }
+      }
+  
+      .main-mid-content-lhs {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s, transform 2s;
+        padding: 0 0 15px 0;
+        margin-top: 15px;
+        border: 1px solid black;
+        border-radius: 15px ;
+        display: grid;
+        grid-template-rows: auto; /* 행 크기 자동 조절 */
+        grid-template-columns: repeat( 1fr); /* 3개의 항목으로 변경 */
+  
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+  
+        .main-mid-img-lhs {
+          display: flex;
+          align-items: center;
+          margin: 5px;
+          
+        
+  
+          .grid-item-lhs {
+            position: relative;
+            margin-left: 15px;
+            
+  
+            &:hover{
+              opacity: 0.8;
+            }
+          
+            &:before {
+              
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+              z-index: 1;
+            }
+          
+            > img {
+              width: 24.67vw;
+              height: 35vw;
+              border-radius: 10px; // 이미지에 원하는 모양의 모서리를 적용하세요
+              z-index: 2; // 그라데이션 위에 표시되도록 설정
+            }
+          
+            .image-text-lhs {
+              position: absolute;
+              bottom: 15px;
+              text-align: center;
+              left: 0;
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              overflow: hidden;
+              text-overflow: ellipsis; 
+              max-width: 200px ;
+              white-space: nomal;
+              border-radius: 0 0 10px 10px; // 텍스트 영역에 원하는 모양의 모서리를 적용하세요
+              color: #fff; // 텍스트 색상
+              font-size: 2.3vw;// 텍스트 크기
+              font-weight: 600;
+              z-index: 3; // 그라데이션 위에 표시되도록 설정
+            }
+          }
+        }
+      }
+      .main-bottom1-content-lhs,
+      .main-bottom-content-lhs {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s, transform 1s;
+        display: grid;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+      
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      
+        .main-bottom-container-lhs {
+          // width: 100%;
+          height: auto;
+          padding: 0 5px;
+          box-sizing: border-box;
+  
+  
+          .main-bottom-fullbooktop-lhs{
+            width: 100%;
+  
+            .main-bottom-fullbook-lhs{
+              box-sizing: border-box;
+              color: #fff;
+              overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
+            
+              p {
+                text-align: center;
+                font-size: 25px;
+                font-weight: 500;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
+                transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+              }
+            }
+  
+          }
+  
+          >a{
+            
+  
+            .main-bottom-dark2-lhs,
+            .main-bottom-sf-lhs {
+              width: 100%;
+              margin-bottom: 5px;
+              padding: 5px;
+              box-sizing: border-box;
+              background-size: 100% 100%;
+              color: #fff;
+              position: relative;
+              overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
+        
+              p {
+                font-size: 20px;
+                font-weight: 900;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
+                transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+              }
+            }
+          }
+        
+          .main-bottom-dark2-lhs > p {
+            float: left;
+          }
+        
+          .main-bottom-sf-lhs > p {
+            float: right;
+          }
+  
+          .main-bottom-fullbook-lhs::before,
+          .main-bottom-dark2-lhs::before,
+          .main-bottom-sf-lhs::before {
+            content: '';
             position: absolute;
-            bottom: 15px;
-            text-align: center;
+            top: 0;
             left: 0;
             width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 0 0 10px 10px; // 텍스트 영역에 원하는 모양의 모서리를 적용하세요
-            color: #fff; // 텍스트 색상
-            font-size: 16px; // 텍스트 크기
-            font-weight: 600;
-            z-index: 3; // 그라데이션 위에 표시되도록 설정
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0; /* 텍스트 위에 이미지를 표시하기 위해 z-index 설정 */
+            transition: transform 5s ease; /* 이미지 축소 효과에 대한 transition 추가 */
+          }
+  
+          .main-bottom-fullbook-lhs::before {
+            background: url('../../../public/images/main/fullbook.png') center/cover; /* dark 이미지 경로 */
           }
         }
       }
-    }
-    .main-bottom1-content-lhs,
-    .main-bottom-content-lhs {
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 1s, transform 1s;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: 20px;
-
-      &:last-child{
-        margin-bottom: 50px;
-      }
-    
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    
-      .main-bottom-container-lhs {
-        width: 100%;
-        height: auto;
-        padding: 0 20px;
-        box-sizing: border-box;
-
-
-        .main-bottom-fullbooktop-lhs{
-          width: 100%;
-
-          .main-bottom-fullbook-lhs{
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            color: #fff;
-            position: relative;
-            overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
-          
-            p {
-              text-align: center;
-              font-size: 25px;
-              font-weight: 500;
-              line-height: 1.6;
-              position: relative;
-              z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
-              transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
-            }
-          }
-
+  
+      .main-bottom-content-lhs{
+  
+        &.show{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
         }
-
-        >a{
-          width: 49%;
-
-          .main-bottom-dark2-lhs,
-          .main-bottom-sf-lhs {
-            width: 100%;
-            margin-bottom: 30px;
-            padding: 30px;
-            box-sizing: border-box;
-            color: #fff;
-            position: relative;
-            overflow: hidden; /* 이미지를 부모 요소의 영역 안에 가두기 위해 추가 */
-      
-            p {
-              font-size: 25px;
-              font-weight: 900;
-              line-height: 1.6;
-              position: relative;
-              z-index: 1; /* 이미지 위에 텍스트를 표시하기 위해 z-index 설정 */
-              transition: transform 1s ease; /* 이미지 축소 효과에 대한 transition 추가 */
-            }
-          }
-        }
-      
-        .main-bottom-dark2-lhs > p {
-          float: left;
-        }
-      
-        .main-bottom-sf-lhs > p {
-          float: right;
-        }
-
-        .main-bottom-fullbook-lhs::before,
-        .main-bottom-dark2-lhs::before,
-        .main-bottom-sf-lhs::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          z-index: 0; /* 텍스트 위에 이미지를 표시하기 위해 z-index 설정 */
-          transition: transform 5s ease; /* 이미지 축소 효과에 대한 transition 추가 */
-        }
-
-        .main-bottom-fullbook-lhs::before {
-          background: url('../../../public/images/main/fullbook.png') center/cover; /* dark 이미지 경로 */
-        }
-      
-        // .main-bottom-dark2-lhs::before {
-        //   background: url('../../../public/images/main/horro.png') center/cover; /* dark 이미지 경로 */
-        //   border-radius: 0 30px 30px 0;
-        // }
-
-        // .main-bottom-fantsymain-lhs::before{
-        //   background: url('../../../public/images/main/fantasymain.png') center/cover; /* dark 이미지 경로 */
-        //   border-radius: 0 30px 30px 0;
-        // }
-
-        // .main-bottom-mystery-lhs::before{
-        //   background: url('../../../public/images/main/mystery.png') center/cover; /* dark 이미지 경로 */
-        //   border-radius: 0 30px 30px 0;
-        // }
-      
-        // .main-bottom-sf-lhs::before {
-        //   background: url('../../../public/images/main/sf.png') center/cover; /* sf 이미지 경로 */
-        //   border-radius: 30px 0 0 30px;
-        // }
-
-        // .main-bottom-comic-lhs::before{
-        //   background: url('../../../public/images/main/comic.png') center/cover; /* dark 이미지 경로 */
-        //   border-radius: 30px 0 0 30px;
-        // }
-
-        // .main-bottom-thiller-lhs::before {
-        //   background: url('../../../public/images/main/thiller.png') center/cover; /* sf 이미지 경로 */
-        //   border-radius: 30px 0 0 30px;
-        // }
-      
-        // .main-bottom-fullbook-lhs:hover::before,
-        // .main-bottom-sf-lhs:hover::before,
-        // .main-bottom-dark2-lhs:hover::before {
-        //   transform: scale(1.5); /* 이미지 축소 효과 적용 */
-        // }
       }
     }
-
-    .main-bottom-content-lhs{
-
-      &.show{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  }
-}    
+  }  
+}

@@ -1,164 +1,259 @@
-.BookList-container-lhs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.BookList-content-lhs {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  box-sizing: border-box;
-}
-.BookList-Thiller-welcome-lhs,
-.BookList-Mystery-welcome-lhs,
-.BookList-Comic-welcome-lhs,
-.BookList-Fantasy-welcome-lhs,
-.BookList-SF-welcome-lhs,
-.BookList-horro-welcome-lhs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  color: rgb(0, 0, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 5rem;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  font-size: 35px;
-  font-weight: 700;
-  text-align: center;
-
-  &.visible {
-    opacity: 0;
-  }
-}
-
-// .BookList-SF-welcome-lhs{
-//   background-image: url('../../../public/images/main/sf.png');
-// }
-
-// .BookList-horro-welcome-lhs{
-//   background-image: url('../../../public/images/main/horro.png');
-// }
-
-// .BookList-Fantasy-welcome-lhs{
-//   background-image: url('../../../public/images/main/fantasymain.png');
-// }
-
-// .BookList-Comic-welcome-lhs{
-//   background-image: url('../../../public/images/main/comic.png');
-// }
-
-// .BookList-Mystery-welcome-lhs{
-//   background-image: url('../../../public/images/main/mystery.png');
-// }
-
-// .BookList-Thiller-welcome-lhs{
-//   background-image: url('../../../public/images/main/thiller.png');
-// }
-
-.BookList-main-content-lhs {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s, transform 1s;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  &.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .grid-item-lhs {
-    width: 100%; /* 필요한 경우에 따라 폭 조절 */
-    height: 11vw;
-    margin-bottom: 20px;
+@media all and (min-width:900px){
+  
+  .BookList-container-lhs {
     display: flex;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: center;
 
-    &:hover {
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+    .BookList-content-lhs {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      box-sizing: border-box;
 
-    .grid-item-info-lhs {
-      flex: 1;
-      display: flex;
+      
+      .BookList-main-content-lhs {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 1s;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
-      .book-image-lhs {
-        border-radius: 10px 0 0 10px;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .book-details-lhs {
-        position: relative;
-        width: 100%;
-        padding: 10px 10px 10px 40px;
-        text-align: left;
-
-        .book-detail-availability-lhs {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          padding: 20px 50px;
-          border-radius: 5px;
-          font-size: 20px;
-          color: #fff;
-          font-weight: bold;
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
         }
 
-        h3 {
-          margin: 0;
-          color: black;
-          font-size: 25px;
-          margin-bottom: 5px;
+        .grid-item-lhs {
+          width: 100%; /* 필요한 경우에 따라 폭 조절 */
+          height: 13vw;
+          margin-bottom: 20px;
+          display: flex;
           overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-        p {
-          font-size: 19px;
-          color: black;
-          margin: 0;
-          span {
-            font-weight: bold;
-            margin-right: 5px;
+          &:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
           }
-        }
 
-        .book-rating-lhs {
-          > p{
-            margin-top: 10px;
-            font-size: 19px;
-            color: #f39c12;
+          .grid-item-info-lhs {
+            flex: 1;
+            display: flex;
+
+            .book-image-lhs {
+              border-radius: 10px 0 0 10px;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+
+            .book-details-lhs {
+              position: relative;
+              width: 100%;
+              padding: 10px 10px 10px 40px;
+              text-align: left;
+
+              .book-detail-availability-lhs {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                padding: 1vw 4vw;
+                border-radius: 5px;
+                font-size: 20px;
+                color: #fff;
+                font-weight: bold;
+              }
+
+              h3 {
+                margin: 0;
+                color: black;
+                font-size: 1.3vw;
+                margin-bottom: 5px;
+                max-width: 600px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+              p {
+                font-size: 1vw;
+                color: black;
+                margin: 0;
+                span {
+                  font-weight: bold;
+                  margin-right: 5px;
+                }
+              }
+
+              .book-rating-lhs {
+                > p{
+                  margin-top: 10px;
+                  font-size: 1.2vw;
+                  color: #f39c12;
+                }
+              }
+
+              .book-description-lhs{
+                max-width: 100%;
+                margin-top: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; /* Show 3 lines before adding ellipsis */
+                -webkit-box-orient: vertical;
+              }
+            }
           }
-        }
-
-        .book-description-lhs{
-          max-width: 100%;
-          margin-top: 10px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 1; /* Show 3 lines before adding ellipsis */
-          -webkit-box-orient: vertical;
         }
       }
     }
   }
 }
+
+
+@media all and (max-width:767px){
+  .BookList-container-lhs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .BookList-content-lhs {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      box-sizing: border-box;
+
+      
+      .BookList-main-content-lhs {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 1s;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .grid-item-lhs {
+          width: 100%; /* 필요한 경우에 따라 폭 조절 */
+          margin-bottom: 20px;
+          display: flex;
+          overflow: hidden;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+          &:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+          }
+
+          .grid-item-info-lhs {
+            flex: 1;
+
+            .book-image-lhs {
+              border-radius: 10px 0 0 10px;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+
+            .book-details-lhs {
+              position: relative;
+              padding: 10px 10px 10px 20px;
+              text-align: left;
+
+              .book-detail-availability-lhs {
+                top: 170px;
+                right: 20px;
+                padding: 10px 10px;
+                border-radius: 5px;
+                font-size: 20px;
+                color: #fff;
+                font-weight: bold;
+              }
+
+              h3 {
+                margin: 5px 0;
+                color: black;
+                font-size: 6vw;
+                max-width: 300px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+              p {
+                font-size: 5vw;
+                color: black;
+                margin: 0;
+                span {
+                  font-weight: bold;
+                  margin-right: 5px;
+                }
+              }
+
+              .book-rating-lhs {
+                > p{
+                  margin-top: 10px;
+                  font-size: 6.2vw;
+                  color: #f39c12;
+                }
+              }
+
+              .book-description-lhs{
+                max-width: 100%;
+                margin-top: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; /* Show 3 lines before adding ellipsis */
+                -webkit-box-orient: vertical;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// .BookList-Thiller-welcome-lhs,
+// .BookList-Mystery-welcome-lhs,
+// .BookList-Comic-welcome-lhs,
+// .BookList-Fantasy-welcome-lhs,
+// .BookList-SF-welcome-lhs,
+// .BookList-horro-welcome-lhs {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-size: cover;
+//   background-position: center;
+//   color: rgb(0, 0, 0);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   line-height: 5rem;
+//   opacity: 1;
+//   transition: opacity 0.5s ease;
+//   font-size: 35px;
+//   font-weight: 700;
+//   text-align: center;
+
+//   &.visible {
+//     opacity: 0;
+//   }
+// }

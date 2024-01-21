@@ -129,7 +129,7 @@ const Header = () => {
             {isLogin ? 
               <>
               {/* 로그인 하고 난 후 */}
-                <NavLink to="/" className="utilbtn-kjh">
+                <NavLink to="/mypage" className="utilbtn-kjh">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
                 <NavLink to="/cart" className="utilbtn-kjh">
@@ -139,7 +139,7 @@ const Header = () => {
               :
               <>
               {/* 로그인 하기 전 */}
-                <NavLink to="/" className="utilbtn-kjh renter4">
+                <NavLink to="/login" className="utilbtn-kjh renter4">
                   <img src="/images/Header/my.svg" alt="마이페이지"/>
                 </NavLink>
                 <NavLink to="/login" className="utilbtn-kjh renter5">
@@ -176,7 +176,6 @@ const Header = () => {
           </div>
         </nav>
       </div>
-
     </div>
   );
 };

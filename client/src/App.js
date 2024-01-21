@@ -3,39 +3,48 @@ import { Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main.js';
 import BookDetail from './pages/BookDetail/BookDetail.js';
 import Header from './components/Header/Header.js';
+import Header2 from './components/Header/Header2.js';
 import Footer from './components/Footer/Footer.js'
 import Join from './pages/Join/Join.js';
 import Login from './pages/Login/Login.js';
 import Cart from './pages/Cart/Cart.js';
 import Faq from './pages/Faq/Faq.js';
-import Fear from './pages/BookList/Literature.js'
 import BookList from './pages/BookList/BookList.js'
-import ABanner from './admin/page/ABanner/ABanner.js'
 import FaqDetail from './pages/Faq/FaqDetail.js';
-import RentalManage from './pages/rentalmanage/rentalmanage.js';
+// import LoanManage from './pages/LoanManage/LoanManage.js';
 import Adminmain from './pages/Admin/Adminmain.js'
 import Mypage from './pages/Mypage/Mypage.js';
+import Check from './pages/Mypage/Check/Check.js';
+import MyEdit from './pages/Mypage/MyEdit/MyEdit.js';
+import Review from './pages/Mypage/Review/Review.js';
 import LoanTest from './pages/Cart/loanTest.js';
+import Event from './pages/Event/Event.js';
+import EventDetail from './pages/Event/EventDetail/EventDetail.js';
 
 const currentPath = window.location.pathname;
 
 function App() {
   return (
     <div className="App">
-      {!currentPath.includes('/admin') && <Header />}
+      {!currentPath.includes('/admin') && <Header2 />}
       <Routes>
-        <Route path='/' element={<Main></Main>}></Route>
-        <Route path='/BookDetail/:id' element={<BookDetail></BookDetail>}></Route>
-        <Route path='/booklist' element={<BookList></BookList>}></Route>
-        <Route path='/join' element={<Join></Join>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/cart' element={<Cart></Cart>}></Route>
-        <Route path='/faq' element={<Faq></Faq>}></Route>
-        <Route path='/faq/:id' element={<FaqDetail></FaqDetail>}></Route>
-        <Route path='rentalmanage' element={<RentalManage></RentalManage>}></Route>
-        <Route path='/admin/*' element={<Adminmain></Adminmain>}></Route>
-        <Route path='/mypage' element={<Mypage></Mypage>}></Route>
-        <Route path='/loantest' element={<LoanTest></LoanTest>}></Route>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/BookDetail/:id' element={<BookDetail />}></Route>
+        <Route path='/booklist' element={<BookList />}></Route>
+        <Route path='/join' element={<Join />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/faq' element={<Faq />}></Route>
+        <Route path='/faq/:id' element={<FaqDetail />}></Route>
+        {/* <Route path='/loanmanage' element={<LoanManage />}></Route> */}
+        <Route path='/admin/*' element={<Adminmain />}></Route>
+        <Route path='/mypage' element={<Mypage />}></Route>
+        <Route path='/check' element={<Check />}></Route>
+        <Route path='/myedit' element={<MyEdit />}></Route>
+        <Route path='/review' element={<Review />}></Route>
+        <Route path='/loantest' element={<LoanTest />}></Route>
+        <Route path='/event' element={<Event />}></Route>
+        <Route path='/event/:id' element={<EventDetail />}></Route>
       </Routes>
       {!currentPath.includes('/admin') && <Footer />}
     </div>

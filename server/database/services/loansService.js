@@ -14,7 +14,7 @@ class LoansService{
   }
 
   static async getAllLoans(){
-    console.log("서비스 전체조회들어옴 ");
+    // console.log("서비스 전체조회들어옴 ");
     let loansData = await LoansModel.getAllLoans();
     loansData = loansData.map(el => el.get({ plain: true }));
     
@@ -29,16 +29,62 @@ class LoansService{
         loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
       }
     }) 
-    console.log("서비스 전체조회 받음 : ", loansData);
+    // console.log("서비스 전체조회 받음 : ", loansData);
+
+    return loansData;
+  }
+  /** 최신순 전체조회  */
+  static async getAllLoansDESC(){
+    // console.log("서비스 전체조회들어옴 ");
+    let loansData = await LoansModel.getAllLoansDESC();
+    loansData = loansData.map(el => el.get({ plain: true }));
+    
+    loansData.map((loans, index) => {
+      const { loan_date, due_date } = loansData[index];
+      if (loan_date) {// 한국표준시로 변경, T뒷부분인 시간 값을 자르고 날짜만 가져옴
+        loansData[index].loan_date = new Date(loan_date.setHours(loan_date.getHours() + 9));
+        loansData[index].loan_date = loansData[index].loan_date.toISOString().split('T')[0];
+      }
+      if (due_date) {
+        loansData[index].due_date = new Date(due_date.setHours(due_date.getHours() + 9));
+        loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
+      }
+    }) 
+    // console.log("서비스 전체조회 받음 : ", loansData);
+
+    return loansData;
+  }
+  /** 최근대출순으로 책 , 유저 불러오기  */
+  static async getRecentBorrowedBooksAndUsers(){
+    // console.log("서비스 전체조회들어옴 ");
+    let loansData = await LoansModel.getRecentBorrowedBooksAndUsers();
+    loansData = loansData.map(el => el.get({ plain: true }));
+    
+    loansData.map((loans, index) => {
+      const { loan_date, due_date } = loansData[index];
+      if (loan_date) {// 한국표준시로 변경, T뒷부분인 시간 값을 자르고 날짜만 가져옴
+        loansData[index].loan_date = new Date(loan_date.setHours(loan_date.getHours() + 9));
+        loansData[index].loan_date = loansData[index].loan_date.toISOString().split('T')[0];
+      }
+      if (due_date) {
+        loansData[index].due_date = new Date(due_date.setHours(due_date.getHours() + 9));
+        loansData[index].due_date = loansData[index].due_date.toISOString().split('T')[0];
+      }
+    }) 
+    // console.log("서비스 전체조회 받음 : ", loansData);
 
     return loansData;
   }
 
-  static async getLoansByUserId({id}){
+  /** 유저대출정보조회 */
+  static async getLoansByUserId(id){
+    console.log("서비스 들어옴 id: ", id);
+
     const loansData = await LoansModel.findOneLoansUserId({id});
     // if (loansData.length === 0) {
     //   return [];
     // }
+    console.log("서비에서 찾은거 받음", loansData);
     return loansData;
   }
 
@@ -47,7 +93,23 @@ class LoansService{
 		return result;
 	}
 
-  static async findAllLoansDate({userId, dateType}){
+  /**  유저별 대출 목록 책만  */
+  static async getBooksBorrowedByUser(id){
+    const loansData = await LoansModel.getBooksBorrowedByUser({id});
+    return loansData;
+  }
+  /** 책을 대출한 유저 최신순으로  */
+  static async getUsersByBookBorrowed(id){
+    const loansData = await LoansModel.getUsersByBookBorrowed({id});
+    return loansData;
+  }
+
+  static async getLoansByLoansId({loans_id}){
+		const result = await LoansModel.getLoansByLoansId({loans_id});
+		return result;
+	}
+
+  static async findAllLoansDate({user_id, dateType}){
 
     const date = new Date();
     //월별 조회
@@ -73,7 +135,7 @@ class LoansService{
       const errorMessage = "잘못 요청";
       return errorMessage;
     }
-    let result = await LoansModel.findAllLoansDate({userId, date});
+    let result = await LoansModel.findAllLoansDate({user_id, date});
     // console.log(result);
     // result.map((loans, index)=> {
     //   console.log(loans.LoansMenus);

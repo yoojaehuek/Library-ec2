@@ -5,7 +5,10 @@ import './Adminmain.scss';
 import AChart from './AComponent/AChart.js';
 import AHeader from './AComponent/AHeader.js';
 import ALogin from './ALogin/ALogin.js';
+import ABanner from './ABanner/ABanner.js';
+import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
+import AUser from './AUser/AUser.js';
 // import { getCookie } from '../utils/cookie.js';
 
 const AdminMain = () => {
@@ -20,6 +23,8 @@ const AdminMain = () => {
 //     }
 //   }, [location]);
 
+
+
   return (
     // <div id='Admin' style={{ display: 'flex', flexDirection: 'column'}}>
     <div id='Admin' >
@@ -28,8 +33,11 @@ const AdminMain = () => {
       <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
         <Route path='/' element={<AChart></AChart>}></Route>
-        <Route path='/test' element={<ALogin />} />
+        <Route path='/login' element={<ALogin />} />
         <Route path='/faq/faq' element={<AFaq />} />
+        <Route path='/banner/banner' element={<ABanner />} />
+        <Route path='/book/book' element={<ABook />} />
+        <Route path='/user/user' element={<AUser />} />
         </Routes>
       </div>
     </div>

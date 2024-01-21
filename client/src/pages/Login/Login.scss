@@ -2,69 +2,190 @@
   margin: 50px auto;
   h1{
     text-align: center;
-  }
-  p{
-    text-align: center;
+    font-size: 40px;
+    color:#6ba10e;
   }
   li {
     list-style: none;
   }
   #login-form-yjh {
     margin: 0 auto;
-    width: 800px;
-    #login-input-yjh {
+    width: 35vw;
+    #input-box-yjh {
       display: flex;
       justify-content: space-between;
-      width: 700px;
-      height: 170px;
+      align-items: flex-end;
+      width: 100%;
       margin: 0px;
       padding: 0px;
-      .input-li-yjh {
-        margin: 0px;
-        padding: 0px;
-        width: 430px;
-        label {
-          color: gray;
-          float: inline-start;
-          height: 20px;
-        }
-        input {
-          height: 51px;
-          width: 470px;
-          padding: 5px 7px;
-          outline: none;
-          font-size: 20px;
-          transition: border-color 0.5s;
-          &:focus {
-            border-color: #6ba10e; // 클릭시 border 색상 변경
+      margin: auto;
+      &>div{
+        padding: 0;
+        width: 67%;
+        .input-li-yjh {
+          margin: 0px;
+          padding: 0px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          label {
+            color: gray;
           }
-          &:focus::placeholder {
-            //엣지에선 안됨
-            color: transparent;
+          input {
+            height: 5.25vh;
+            padding-top: calc(0.7vh);
+            padding-bottom: calc(0.7vh);
+            padding-left: calc(1.2vh);
+            padding-right: calc(1.2vh);
+            font-size: 2.1vh;
+            outline: none;
+            transition: border-color 0.5s;
+            &:focus {
+              border-color: #6ba10e; // 클릭시 border 색상 변경
+            }
+            &:focus::placeholder {
+              color: transparent;//placeholder 안보이게하기
+            }
           }
         }
       }
-    }
-    #login-btn-yjh {
-      background-color: #6ba10e;
-      margin: 20px 0px;
-      width: 200px;
-      height: 150px;
-      font-size: 35px;
-      font-weight: bold;
-      color: white;
-      border: 0px;
+      #login-btn-yjh {
+        background-color: #6ba10e;
+        width: 30%;
+        height: 16vh;
+        font-size: 4vh;
+        font-weight: bold;
+        color: white;
+        border: 0px;
+      }
     }
     #login-tip-yjh {
       p {
         text-align: start;
         display: flex;
-        line-height: 30px;
+        align-items: center;
+        font-size: 1.3vh;
         .icon {
           margin-right: 10px;
           color: #6ba10e;
+          width: 2vh;
+          height: 2vh;
+        }
+      }
+    
+    }
+  }
+}
+
+
+// PC (해상도 1024px)/ 
+@media all and (min-width:1024px) {
+  .login-container-yjh {
+    border: 1px solid red;
+    h1{
+      font-size: 5vh;
+    }
+    #login-form-yjh {
+      // width: 35vw;
+      border: 1px solid #000;
+      #input-box-yjh {
+        &>div{
+          .input-li-yjh {
+            label{
+              width: 90%;
+              font-size: 1.5vh;
+            }
+          }
+        }
+      }
+      #login-btn-yjh {
+        width: 30%;
+        font-size: 35px;
+      }
+    }
+    #login-tip-yjh {
+      p {
+        width: 100%;
+      }
+      a{
+        img{
+          width: 6.8vw;
+          height: 5.4vh;
         }
       }
     }
   }
-}
+} 
+
+// 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+  .login-container-yjh {
+    #login-form-yjh {
+      width: 70vw;
+      padding: 0px 15px;
+      #input-box-yjh {
+        flex-direction: column;
+        margin: auto;
+        &>div{
+          width: 100%;
+          .input-li-yjh {
+            width: 100%;
+            margin: 10px 0px;
+          }
+        }
+        #login-btn-yjh {
+          margin: 20px 0px;
+          width: 100%;
+          height: 50px;
+          font-size: 30px;
+        }
+      }
+      #login-tip-yjh {
+        p {
+          width: 100%;
+          font-size: 15px;
+          .icon {
+            margin-right: 10px;
+            width: 2vh;
+            height: 2vh;
+          }
+        }
+      }
+    }
+  }
+} 
+
+// 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)
+@media all and (max-width:767px) {
+  .login-container-yjh {
+    #login-form-yjh {
+      width: 90vw;
+      padding: 0px 10px;
+      #input-box-yjh {
+        flex-direction: column;
+        &>div{
+          width: 100%;
+          .input-li-yjh {
+            width: 100%;
+            margin: 10px 0px;
+          }
+        }
+        #login-btn-yjh {
+          margin: 20px 0px;
+          width: 100%;
+          height: 50px;
+          font-size: 30px;
+        }
+      }
+    }
+    #login-tip-yjh {
+      p {
+        width: 100%;
+        .icon {
+          width: 3vh;
+          height: 3vh;
+        }
+      }
+    }
+  }
+} 

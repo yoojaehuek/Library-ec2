@@ -1,0 +1,73 @@
+.myedit-container-kjh {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 1200px;
+  height: 1000px;
+
+  .editpageTop-kjh {
+    margin: 50px auto;
+    width: 1000px;
+    height: 100px;
+    position: relative;
+    border-bottom: 3px solid #333;
+  }
+  .editpageTop-kjh h1 {
+    width: 700px;
+    float: left;
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
+  }
+
+  .editMain-kjh {
+    width: 700px;
+    height: 200px;
+    padding: 0;
+    margin: 0 auto;
+    label {
+      color: gray;
+      width: 700px;
+      // float: left;
+      height: 20px;
+    }
+    input {
+      margin: 10px 0;
+      height: 40px;
+      width: 680px;
+      padding: 5px 7px;
+      outline: none;
+      font-size: 20px;
+      transition: border-color 0.5s;
+      &:focus {
+        border-color: #6ba10e; // 클릭시 border 색상 변경
+      }
+      &:focus::placeholder {
+        //엣지에선 안됨
+        color: transparent;
+      }
+    }
+    button {
+      margin-right: 5px;
+    }
+    .button_edit-kjh {
+      float: right;
+      border: none;
+      width: 160px;
+      height: 60px;
+      background-color: #6ba10e;
+      color: #fff;
+      cursor: pointer;
+    }
+    .button_cancell-kjh {
+      border: 1px solid #6ba10e;
+      float: right;
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      color: #6ba10e;
+      cursor: pointer;
+    }
+  }
+
+
+}

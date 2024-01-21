@@ -1,0 +1,110 @@
+
+.event-container-kjh{
+  .read-count-kjh{
+    margin-top: 1.5vw;
+  }
+
+  .event-date-content-kjh{
+    margin-bottom: 1vw;
+    display: flex;
+  }
+  
+  a{
+    color: #000;
+  }
+
+  .event-date-kjh{
+    margin-top: 3vw;
+  }
+
+  .event-kjh{
+    padding: 2vh;   
+    border: 1px #adadad;
+    border-style: solid none;
+  }
+
+  .event-img-button-kjh{
+    display: block;
+    border: 1px solid #adadad;
+
+    img{
+      object-fit:cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* PC (해상도 1024px)*/ 
+@media all and (min-width:1024px) {
+
+  .event-container-kjh{
+    font-size: 1.25vw;
+    padding: 0 15vw;
+
+    span,
+    p{
+      font-size: 1.25vw;
+      margin: 0;
+    }
+
+    .event-kjh{
+      display: flex;
+      gap: 1.3vw;  
+    }
+  
+    .event-img-button-kjh{
+      width: 12vw;
+      height: 18vw;
+    }
+  }
+} 
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+  .event-container-kjh{
+    font-size: 1.25vw;
+    padding: 0 10vw;
+    
+    span,
+    p{
+      font-size: 1.25vw;
+      margin: 0;
+    }
+  
+    .event-kjh{
+      display: flex;
+      gap: 10px;
+    }
+  
+    .event-img-button-kjh{
+      width: 15vw;
+      height: 23vw;
+    }
+  }
+} 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+@media all and (max-width:767px) {
+  .event-container-kjh{
+    padding: 0 10vw;
+
+    h1{
+      font-size: 5vw;
+    }
+
+    h3{
+      font-size: 4vw;
+    }
+
+    span, p{
+      margin: 0;
+      font-size: 3.5vw;
+    }
+
+    .event-img-button-kjh{
+      width: 35vw;
+      height: 50vw;
+    }
+  }
+}

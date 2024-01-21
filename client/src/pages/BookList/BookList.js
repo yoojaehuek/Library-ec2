@@ -13,9 +13,10 @@ const BookList = () => {
   const [showWelcome, setShowWelcome] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const [genre, setGenre] = useState(decodeURI(search.split('=')[1]));
+  // const [genre, setGenre] = useState(decodeURI(search.split('=')[1]));
   const [books, setBooks] = useState([]);
-  console.log("url: ", genre);
+  // console.log("url: ", genre);
+  console.log("url: ", search);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -28,6 +29,7 @@ const BookList = () => {
   }, []);
 
   useEffect(() => {
+    const genre = decodeURI(search.split('=')[1]);
     // 데이터베이스에서 도서 목록을 가져오는 로직
     axios.get(`${API_URL}/api/book?book_genre=${genre}`)
       .then(res => {
@@ -37,12 +39,11 @@ const BookList = () => {
       .catch(err => {
         console.error(err);
       });
-  }, [genre]);
+  }, [search]);
 
   // 현재 페이지에 표시할 데이터 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = books.slice(indexOfFirstItem, indexOfLastItem);
 
   // 페이지 변경 함수
   const handlePageChange = (event, pageNumber) => {
@@ -56,7 +57,7 @@ const BookList = () => {
         <div className='BookList-content-lhs'>
           <div className={`BookList-main-content-lhs  ${showWelcome ? 'show' : ''}`}>
             <div className='BookList-main-img-lhs'>
-              {books.map((item, index) => {
+              {books.slice(indexOfFirstItem,indexOfLastItem).map((item, index) => {
                 return (
                   <NavLink to={`/BookDetail/${item.book_id}`} key={index} className={`grid-item-lhs ${item.book_availability === '대출 가능' ? 'available' : 'unavailable'}`}>
                     <div className='grid-item-info-lhs'>

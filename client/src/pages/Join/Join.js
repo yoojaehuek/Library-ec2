@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../config/contansts'
 import axios from 'axios';
+import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
+import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
+import KakaoLog from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
 import './Join.scss'
 
 function Join() {
@@ -55,7 +58,7 @@ function Join() {
 	const onChangePassword = (e) => {
 		const currentPassword = e.target.value;
 		setPassword(currentPassword);
-		const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+		const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$&%^*+=-])(?=.*[0-9]).{8,25}$/;
 		if (!passwordRegExp.test(currentPassword)) {
 			setPasswordMessage("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!");
 			setIsPassword(false);
@@ -154,7 +157,7 @@ function Join() {
 	<div className="join-container-yjh">
 		<form id='Join-form-yjh' onSubmit={onSubmitJoin}>
 			<h1>회원가입</h1>
-			<ul id='join-input-yjh'>
+			<ul id='input-ul-yjh'>
 				<li className="input-li-yjh">
 					<label className={isLabelVisible.email  ? '' : 'hidden'}>아이디(이메일주소)</label>
 					<input
@@ -227,6 +230,10 @@ function Join() {
 				</li>
 			</ul>
 			<li><button type='submit' id='join-btn-yjh'>가입</button></li>
+			<li id='social-login-yjh'>
+				<NaverLoginButton/>
+				<GoogleLoginButton/>
+			</li>
 		</form>
 	</div>
 	);
