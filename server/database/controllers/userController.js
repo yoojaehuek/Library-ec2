@@ -119,6 +119,41 @@ class UserController {
       next(error);
     }
   }
+  static async kakaoLogin(req, res, next) {
+    try {
+      //가입했는지 검사
+        //if 신규
+          //가입
+        //else 신규 아님
+          //if 이미 소셜
+            //이미 있는 회원 - 로그인처리
+          //else 소셜 아님 일반 회원
+            //연동
+      const tmp = req.body.userData;
+      console.log("컨트롤러에서 tmp: ", tmp);
+
+      const serviceResult = await UserService.kakaoLogin(tmp);
+      console.log("userControll.kakaoLogin: ", serviceResult);
+
+      if(serviceResult.errorMessage){
+          throw new Error(serviceResult.errorMessage);
+      };
+
+      res.cookie('accessToken', serviceResult.accessToken, {
+          httpOnly : true,
+          secure : false,
+          sameSite : 'strict',
+      });
+      res.cookie('refreshToken', serviceResult.refreshToken, {
+          httpOnly : true,
+          secure : false,
+          sameSite : 'strict',
+      });
+      res.status(200).json({status: 'true'});
+    } catch (error) {
+      next(error);
+    }
+  }
 
   static async checkPassword(req, res, next) {
     try {

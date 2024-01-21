@@ -1,6 +1,26 @@
 .pagination-container-kjh{
+  margin-top: 1.5vw;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 0px 6px;
+    margin: 0px 3px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    min-width: 32px;
+    height: 32px;
+    color: #3F8BCC;
+  }
 
   .active{
-    background-color: green;
+    background-color: #3F8BCC;
+    color: #fff;
   }
 }
