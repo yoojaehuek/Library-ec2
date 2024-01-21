@@ -230,10 +230,13 @@ function Join() {
 				</li>
 			</ul>
 			<li><button type='submit' id='join-btn-yjh'>가입</button></li>
-			<li id='social-login-yjh'>
+
+			<fieldset id='social-login-yjh'>
+				<legend htmlFor="">or</legend>
 				<NaverLoginButton/>
 				<GoogleLoginButton/>
-			</li>
+			</fieldset>
+			
 		</form>
 	</div>
 	);
