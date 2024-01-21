@@ -1,4 +1,5 @@
 const LoansModel = require('../models/loansModel');
+const {loansformatDate} = require('../../utils/dataUtils');
 
 class LoansService{
 
@@ -84,8 +85,9 @@ class LoansService{
     // if (loansData.length === 0) {
     //   return [];
     // }
-    console.log("서비에서 찾은거 받음", loansData);
-    return loansData;
+    const result = loansformatDate(loansData);
+    console.log("서비에서 찾은거 받음", result);
+    return result;
   }
 
   static async getLoansByLoansId({loans_id}){

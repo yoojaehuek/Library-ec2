@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './LoansTable.scss';
 import axios from 'axios';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
+import LoansRow from '../LoansRow/LoansRow';
 
 const LoansTable = ({is_returned}) => {
   console.log(is_returned);
@@ -38,15 +39,10 @@ const LoansTable = ({is_returned}) => {
       <table>
         <tr><td colSpan='4' className='tdTitle-kjh'>{is_returned ? "내가 봤던 책" : "대여 중인 책"}</td></tr>
         {visibleBooks.map((book, index) => (
-          <tr key={index}>
-            <td className='tWriter-kjh'>{book.Book.book_author}</td>
-            <td className='tTitle-kjh'>{book.Book.book_name}</td>
-            <td className='tSdate-kjh'>{book.loan_date}</td>
-            <td className='tEdate-kjh'>{book.due_date}</td>
-            <td className='reviewbtn-kjh'>
-              <NavLink to={`/review/${book.Book.book_id}`} className="reviewBtn-kjh">리뷰 쓰러 가기</NavLink>
-            </td>
-          </tr>
+          <LoansRow 
+            book={book} 
+            index={index}
+          />
         ))}
   
       </table>

@@ -2,8 +2,9 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../config/contansts'
 import axios from 'axios';
-import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
-import NaverLoginButton from '../../components/NaverLoginButton/NaverLoginButton';
+import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
+import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
+import KakaoLog from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
 import './Join.scss'
 
 function Join() {

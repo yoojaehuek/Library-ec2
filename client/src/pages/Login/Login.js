@@ -5,8 +5,9 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import axios from 'axios';
-import GoogleLoginButton from '../../components/GoogleLoginButton/GoogleLoginButton';
-import NaverLoginButton from '../../components/NaverLoginButton/NaverLoginButton';
+import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
+import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
+import KakaoLoginButton from '../../components/SocialLoginButtons/KakaoLoginButton/KakaoLoginButton.js'
 import './Login.scss';
 
 const Login = () => {
@@ -134,6 +135,7 @@ const Login = () => {
 					<legend htmlFor="">or</legend>
 					<NaverLoginButton/>
 					<GoogleLoginButton/>
+					<KakaoLoginButton />		
 				</fieldset>
 			</form>
 		</div>

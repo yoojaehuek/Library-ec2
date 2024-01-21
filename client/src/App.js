@@ -41,7 +41,7 @@ function App() {
         <Route path='/mypage' element={<Mypage />}></Route>
         <Route path='/check' element={<Check />}></Route>
         <Route path='/myedit' element={<MyEdit />}></Route>
-        <Route path='/review' element={<Review />}></Route>
+        <Route path='/review/:id' element={<Review />}></Route>
         <Route path='/loantest' element={<LoanTest />}></Route>
         <Route path='/event' element={<Event />}></Route>
         <Route path='/event/:id' element={<EventDetail />}></Route>

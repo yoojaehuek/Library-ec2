@@ -50,16 +50,46 @@
   }
 
   .eventlist-button-kjh{
-    padding: 1.01417vw 2.7778vw;
+    display: block;
+    height: 3.5vw;
+    width: 8vw;
+    text-align: center;
+    line-height: 3.5vw;
     font-size: 1.3889vw;
     color: #fff;
     background-color: #6BA10E;
     border-radius: 0.3472vw;;
     transition: all 0.2s ;
+
+    margin: 2vw auto;
   }
 
   .btnPush:hover {
     filter: brightness(90%)
+  }
+
+  .event-status-kjh{
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+
+    &.false{
+      background-color: #F36B3C;
+    }
+    &.true{
+      background-color: #3F8BCC;
+    }
+  }
+
+  .event-apply-kjh{
+    background-color: #fff;
+    border: 1px solid #000;
+    margin-right: 10px;
+    padding: 5px 10px;
+  }
+  .event-unapply-kjh{
+    background-color: #fff;
+    border: 1px solid #000;
   }
 }
 
