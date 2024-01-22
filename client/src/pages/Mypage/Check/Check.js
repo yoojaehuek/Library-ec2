@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Check.scss';
