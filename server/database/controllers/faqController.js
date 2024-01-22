@@ -34,6 +34,17 @@ class FaqController {
 		}
 	}
 
+	static async getAllFaqByUser(req, res, next){
+		try {
+			const user_id = req.user_id;
+			console.log("user_id: ", user_id);
+			const result = await FaqService.getAllFaqByUser({user_id});
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
 	static async getOneFaq(req, res, next){
 		try {
 			const faq_id = req.params.faq_id;

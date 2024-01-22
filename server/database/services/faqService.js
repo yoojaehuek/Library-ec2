@@ -1,5 +1,5 @@
 const FaqModel = require('../models/faqModel')
-const {faqFormatDate} = require('../../utils/dataUtils');
+const {faqFormatDate, faqFormatDate2} = require('../../utils/dataUtils');
 
 class FaqService{
 	
@@ -18,6 +18,13 @@ class FaqService{
 	static async getCategoryFaq(category){
 		const tmpResult = await FaqModel.getCategoryFaq(category);
 		const result = faqFormatDate(tmpResult)
+		return result;
+	}
+
+	static async getAllFaqByUser({user_id}){
+		const tmpResult = await FaqModel.getAllFaqByUser({user_id});
+		console.log("tmpResult:", tmpResult);
+		const result = faqFormatDate2([tmpResult])
 		return result;
 	}
 	
