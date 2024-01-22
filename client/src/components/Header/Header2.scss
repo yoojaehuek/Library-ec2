@@ -3,8 +3,8 @@
   .header-container-kjh {
     max-width: 70vw;
     margin: 0 auto 20px auto;
+    border-bottom: 1px solid;
     background-color: #fff; /* 원하는 배경색을 추가하세요 */
-    padding: 10px; /* 필요에 따라 패딩을 조정하세요 */
   
     .header-content-lim{
       display: flex;
@@ -13,6 +13,12 @@
       flex-direction: column;
       width: 100%;
       background-color: var(--bg-a-10);
+
+      .header-top-green-lim {
+        background-color: rgb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
+        height: 30px;
+        width: 110%;
+      }
   
       .header-item-lim {
         display: flex;
@@ -176,10 +182,12 @@
     }
   
     .LHeaderBottom-kjh {
+      margin-top: 10px;
       overflow: hidden;
       position: relative;
     
       .Llistul-kjh {
+        margin: 0 0 10px 0;
         flex-direction: row;
         justify-content: space-evenly;
         background-color: transparent;
@@ -196,8 +204,6 @@
     
           a {
             padding: 0.5rem 1rem;
-            border: 1px solid gray;
-            border-radius: 2rem;
             font-size: 1vw;
             transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
     
@@ -216,7 +222,12 @@
 @media all and (max-width:767px){
   .header-container-kjh {
     background-color: #fff; /* 원하는 배경색을 추가하세요 */
-    padding: 10px; /* 필요에 따라 패딩을 조정하세요 */
+
+    .header-top-green-lim {
+        background-color: rgb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
+        height: 30px;
+        width: 110%;
+      }
   
     .header-content-lim{
       display: flex;
@@ -233,11 +244,13 @@
         flex-wrap: wrap;
         flex-direction: row;
         align-content: space-around;
+        justify-content: center;
   
         a{
   
           > img{
-            width: 20vw;
+            padding-left: 20px;
+            width: 22vw;
           }
         }
   
@@ -246,11 +259,10 @@
   
           a{
             cursor: pointer;
-            font-size: 3.8vw;
+            font-size: 18px;
             font-weight: 800;
             --tw-space-x-reverse: 0;
-            margin-right: calc(2rem * var(--tw-space-x-reverse));
-            margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+            margin-left: 20px;
           }
         }
   

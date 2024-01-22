@@ -79,9 +79,10 @@ const Header2 = () => {
   return (
     <div className='header-container-kjh'>
       <div className='header-content-lim'>
+        <div className='header-top-green-lim'></div>
         <div className='header-item-lim'>
           <NavLink to="/">
-            <img src='/images/Header/Group_129.svg'></img>
+            <img src='/images/Header/logo.png'></img>
           </NavLink>  
           <div className='LHeaderWrap-kjh'>
           <NavLink
