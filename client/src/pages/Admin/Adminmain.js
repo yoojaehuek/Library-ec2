@@ -32,12 +32,12 @@ const AdminMain = () => {
       <AHeader id='Header' />
       <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
-        <Route path='/' element={<AChart></AChart>}></Route>
-        <Route path='/login' element={<ALogin />} />
-        <Route path='/faq/faq' element={<AFaq />} />
-        <Route path='/banner/banner' element={<ABanner />} />
-        <Route path='/book/book' element={<ABook />} />
-        <Route path='/user/user' element={<AUser />} />
+          <Route path='/' element={<AChart></AChart>}></Route>
+          <Route path='/login' element={<ALogin />} />
+          <Route path='/faq/faq' element={<AFaq />} />
+          <Route path='/banner/banner' element={<ABanner />} />
+          <Route path='/book/book' element={<ABook />} />
+          <Route path='/user/user' element={<AUser />} />
         </Routes>
       </div>
     </div>
