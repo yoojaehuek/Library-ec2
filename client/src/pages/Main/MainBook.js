@@ -41,6 +41,7 @@ const MainBook = ({ Genre }) => {
       </div>
     </div>
   );
-}
+} 
+
 
 export default MainBook;
