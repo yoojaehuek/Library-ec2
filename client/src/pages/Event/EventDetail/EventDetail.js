@@ -3,9 +3,13 @@ import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../../config/contansts";
 import './EventDetail.scss';
+import { errHandler } from "../../../utils/globalFunction";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../recoil/atoms/State";
 
 
 const EventDetail = () => {
+  const [islogin, setIslogin] = useRecoilState(loginState);
   const [detailEvent, setDetailEvent] = useState("");
   const { id } = useParams();
   console.log(id);
@@ -29,8 +33,13 @@ const EventDetail = () => {
         alert("신청 성공");
       })
       .catch(e => {    
-        console.error(e.response.data);
-        alert(e.response.data.message);
+        // console.error(e.response.data);
+        // alert(e.response.data.message);
+
+        const {reLogin} = errHandler(e);
+        if (reLogin === true) {
+          setIslogin(false);
+        }
       })
     // console.log("result: ", result);
     // if(result.status == 201){
@@ -47,8 +56,10 @@ const EventDetail = () => {
         alert("취소 성공");
       })
       .catch(e => {    
-        console.error(e.response);
-        alert(e.response.data.message);
+        const {reLogin} = errHandler(e);
+        if (reLogin === true) {
+          setIslogin(false);
+        }
       })
     // console.log("result: ", result);
     // if(result.status == 201){

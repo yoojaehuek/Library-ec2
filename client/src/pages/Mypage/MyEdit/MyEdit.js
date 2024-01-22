@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../config/contansts';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { errHandler } from "../../../utils/globalFunction";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../recoil/atoms/State";
 import './MyEdit.scss';
 
 // 로그인 중인 유저 정보 담아서 변수에 담음 화면에 띄움
@@ -9,8 +12,9 @@ import './MyEdit.scss';
 // 나머지 온채인지 하면 각변수에 담아서 유효성 검사도 함
 // 프로필 수정 누르면 변수에 담으거 배열에 담아서 patch 로 보냄 
 const MyEdit = () => {
-  const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [user, setUser] = useState({});
   const [newItem, setNewItem] = useState({
     email: '',
     name: '',
@@ -29,7 +33,11 @@ const MyEdit = () => {
         setUser(res.data);
       })
       .catch(error => {
-        console.error('사용자 정보를 가져오는 중 에러 발생:', error);
+        // console.error('사용자 정보를 가져오는 중 에러 발생:', error);
+        const {reLogin} = errHandler(error);
+        if (reLogin === true) {
+          setIslogin(false);
+        }
       });
   }, []);
 
@@ -82,8 +90,12 @@ const MyEdit = () => {
             handleClose();
           })
           .catch(error => {
-            console.error('프로필 업데이트 중 에러 발생:', error);  
-            alert('프로필 업데이트에 실패했습니다. 다시 시도해 주세요.');
+            // console.error('프로필 업데이트 중 에러 발생:', error);  
+            // alert('프로필 업데이트에 실패했습니다. 다시 시도해 주세요.');
+            const {reLogin} = errHandler(error);
+            if (reLogin === true) {
+              setIslogin(false);
+            }
           });
       } else {
         return;
@@ -100,8 +112,12 @@ const MyEdit = () => {
           handleClose_home();
         })
         .catch(error => {
-          console.error('회원 탈퇴 중 에러 발생:', error);  
-          alert('회원 탈퇴에 실패했습니다. 다시 시도해 주세요.');
+          // console.error('회원 탈퇴 중 에러 발생:', error);  
+          // alert('회원 탈퇴에 실패했습니다. 다시 시도해 주세요.');
+          const {reLogin} = errHandler(error);
+          if (reLogin === true) {
+            setIslogin(false);
+          }
         });
     }
   };
