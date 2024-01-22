@@ -8,8 +8,10 @@ import { LiaUserEditSolid } from "react-icons/lia";
 
 const Mypage = () => {
   const [user, setUser] = useState({});
-  const [userId, setUserId] = useState({});
-  const [event, setEvent] = useState({});
+  const [userId, setUserId] = useState([]);
+  const [event, setEvent] = useState([]);
+  const [faq, setFaq] = useState([]);
+
   useEffect(()=>{
     axios.get(`${API_URL}/api/user/one`)
     .then(res => {
@@ -20,17 +22,27 @@ const Mypage = () => {
       console.error(err);
     });
   },[]);
+
   useEffect(()=>{
     axios.get(`${API_URL}/api/event_applicants/user`)
     .then(res => {
       setEvent(res.data);
-      setUserId(res.data.user_id);
-      console.log("getAllByUserTesting", res.data);
+      console.log("이벤트 : ", res.data);
     }).catch((err) => {
       console.error(err);
     });
   },[]);
-  console.log("아앙아앙: ", user);
+
+  useEffect(()=>{
+    axios.get(`${API_URL}/api/faq/user`)
+    .then(res => {
+      setFaq(res.data);
+      console.log("FAQ : ", res.data);
+    }).catch((err) => {
+      console.error(err);
+    });
+  },[]);
+  
   return (
     <div className='mypage-container-kjh'>
       <div className='pageTop-kjh'>
