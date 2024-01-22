@@ -5,7 +5,6 @@ import { API_URL } from "../../config/contansts";
 
 const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
   const [newPost, setNewPost] = useState({
-    user_id: '',
     faq_password: '',
     faq_tags: '',
     faq_title: '',
@@ -17,7 +16,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
   useEffect(() => {
     if (isOpen) {
       setNewPost({
-        user_id: '',
         faq_password: '',
         faq_tags: '',
         faq_title: '',
@@ -32,7 +30,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
     try {
       if (newPost.faq_tags && newPost.faq_title && newPost.faq_content) {
         const faqData = {
-          user_id: newPost.user_id,
           faq_password: newPost.faq_password,
           faq_tags: newPost.faq_tags,
           faq_title: newPost.faq_title,
@@ -78,13 +75,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
             ))}
           </Select>
         </FormControl>
-        <TextField
-          label="작성자"
-          fullWidth
-          margin="normal"
-          value={newPost.user_id}
-          onChange={(e) => setNewPost({ ...newPost, user_id: e.target.value })}
-        />
         <TextField
           label="비밀번호"
           fullWidth
