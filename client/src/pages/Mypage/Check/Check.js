@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { API_URL } from '../../../config/contansts';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { errHandler } from "../../../utils/globalFunction";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../recoil/atoms/State";
 import './Check.scss';
 
 const Check = () => {
-
   const navigate = useNavigate();
+  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const [ checkPwd, setCheckPwd ] = useState(true);
 
   const onSubmitCheckPwd = async (e) => {
@@ -15,17 +18,19 @@ const Check = () => {
 
     console.log("pwd:", pwd);
     if(pwd !== ""){ 
-      const res = await axios.post(
-        `${API_URL}/api/user/password-check`,
-        {pwd}
-      )
-
-      console.log("res.status : ", res.data);
-
-      if(res.data.status == true){
-        navigate('/myedit');
-      } else {
-        setCheckPwd(false);
+      try {
+        const res = await axios.post(`${API_URL}/api/user/password-check`, {pwd});
+        console.log("res.status : ", res.data);
+        if(res.data.status == true){
+          navigate('/myedit');
+        } else {
+          setCheckPwd(false);
+        }
+      } catch (error) {
+        const {reLogin} = errHandler(error);
+        if (reLogin === true) {
+          setIslogin(false);
+        }
       }
     }
   }
