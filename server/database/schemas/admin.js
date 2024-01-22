@@ -4,8 +4,9 @@ class Admin extends Sequelize.Model {
   static initiate(sequelize) {
     Admin.init({
       admin_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
         allowNull: false,
         comment: "ID (기본키)",
       },
