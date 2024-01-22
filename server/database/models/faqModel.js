@@ -38,6 +38,22 @@ class FaqModel {
     return result;
   }
   
+  static async getAllFaqByUser({user_id}){
+    const result = await Faq.findAll({
+      where: {
+        user_id: user_id,
+      },
+      include: [
+        {
+          model: User,    
+          attributes: ['user_id'],
+        }
+      ],
+      // raw:true,
+    });
+    return result;
+  }
+
   static async getOneFaq(faq_id){
     const result = await Faq.findOne({
       where: {

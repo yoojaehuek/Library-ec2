@@ -20,6 +20,7 @@ import Review from './pages/Mypage/Review/Review.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 import EventDetail from './pages/Event/EventDetail/EventDetail.js';
+import Test from './routetest.js';
 import ALogin from './pages/Admin/ALogin/ALogin.js';
 
 const currentPath = window.location.pathname;
@@ -47,6 +48,7 @@ function App() {
         <Route path='/loantest' element={<LoanTest />}></Route>
         <Route path='/event' element={<Event />}></Route>
         <Route path='/event/:id' element={<EventDetail />}></Route>
+        <Route path='/test' element={<Test />}></Route>
       </Routes>
       {!currentPath.includes('/admin') && <Footer />}
     </div>

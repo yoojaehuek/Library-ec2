@@ -1,10 +1,12 @@
 .join-container-yjh {
   margin: 50px auto;
+  width: 55vw; 
+
   li{ list-style: none; }
   h1{ color: #6BA10E; }
   #Join-form-yjh {
     margin: 0 auto;
-    width: 500px;
+    // width: 500px;
     #input-ul-yjh {
       margin-top: 40px;
       margin-bottom: 20px;
@@ -76,8 +78,9 @@
 // PC (해상도 1024px)
 @media all and (min-width:1024px) {
   .join-container-yjh {
-    width: 55vw; 
     padding: 10px; 
+    max-width: 800px;
+    min-width: 40vw;
     #Join-form-yjh {
       width: 100%; 
       h1{
@@ -113,7 +116,6 @@
 // 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)
 @media all and (min-width:768px) and (max-width:1023px) {
   .join-container-yjh {
-    width: 55vw; 
     padding: 10px; 
     #Join-form-yjh {
       width: 100%; 
@@ -141,6 +143,7 @@
   .join-container-yjh {
     width: 90%; 
     padding: 10px; 
+    min-width: 320px;
     #Join-form-yjh {
       width: 100%; 
       #input-ul-yjh {
