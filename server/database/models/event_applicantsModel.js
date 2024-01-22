@@ -100,6 +100,21 @@ class Event_applicantsModel {
     return result;
   }
 
+  static async getAllByUser({ user_id }){
+    const result = await Event_applicants.findAll({
+      where: {
+        user_id: user_id
+      },
+      include: [
+        {
+          model: Event 
+        }
+      ],
+    });
+    console.log("ModelgetAllByUserresult", result);
+    return result;
+  }
+
 }
 
 module.exports = Event_applicantsModel; 
