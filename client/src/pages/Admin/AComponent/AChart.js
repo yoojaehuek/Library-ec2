@@ -79,6 +79,9 @@ const AChart = () => {
   return (
     <div className="a-chart-container-kjn">
       <div className="chart-section-kjn">
+      {chartData.length === 0 ? (
+        <div className='chart-none-kjn'>이 차트에 표시할 데이터가 없습니다.<br/>새로운 데이터를 등록하여 차트를 확인하세요.</div>
+      ) : (
         <PieChart width={500} height={300}>
           <Pie
             dataKey="value"
@@ -94,8 +97,16 @@ const AChart = () => {
             ))}
           </Pie>
           <Tooltip formatter={(value, name, props) => [`${props.payload.book_id}: ${value}`]} />
-          <Legend payload={chartData.map((entry, index) => ({ value: entry.book_id, type: 'circle', id: index, color: entry.color }))} />
+          <Legend
+            payload={chartData.map((entry, index) => ({
+              value: entry.book_id,
+              type: 'circle',
+              id: index,
+              color: entry.color,
+            }))}
+          />
         </PieChart>
+      )}
         <AMap />
       </div>
       <div className="bottom-section-kjn">
