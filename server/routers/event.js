@@ -5,6 +5,7 @@ const authMiddleware = require('../utils/authMiddleware');
 
 router.post('/', EventController.createEvent);
 router.post('/apply/:event_id', authMiddleware, EventController.applyEvent);
+router.delete('/apply/:event_id', authMiddleware, EventController.unapplyEvent);
 router.get('/', EventController.getAllEvent);
 router.get('/page', EventController.getPageEvent);
 // router.get('/', EventController.getCategoryEvent);

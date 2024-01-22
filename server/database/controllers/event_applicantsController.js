@@ -92,6 +92,18 @@ class Event_applicantsController {
 		}
 	}
 
+	static async getAllByUser(req, res, next){
+		try{
+			console.log("getAllByUser들어옴");
+			const user_id = req.user_id;
+			const result = await Event_applicantsService.getAllByUser({ user_id });
+			console.log("getAllByUserresult", result);
+			res.status(200).json(result);
+		} catch (error) {
+			next(error);
+		}
+	}
+
 }
 
 module.exports = Event_applicantsController;
