@@ -49,10 +49,10 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
         alert('필수 입력.');
       }
     } catch (error) {
-      console.error('에러:', error);
-      setIslogin(false);
-      errHandler(error);
-      
+      const {reLogin} = errHandler(error);
+      if (reLogin === true) {
+        setIslogin(false);
+      }
     }
   };
 

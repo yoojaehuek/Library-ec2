@@ -1,9 +1,19 @@
+.header-container-kjh {
+  .LHeaderBottom-kjh{
+    border-top: 1px solid #eaeaea;
+  }
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+}
 
 @media all and (min-width:768px){
   .header-container-kjh {
     max-width: 70vw;
     margin: 0 auto 20px auto;
-    border-bottom: 1px solid;
+    // border-bottom: 1px solid ;
+    border-bottom: 2px solid #6BA10E;
     background-color: #fff; /* 원하는 배경색을 추가하세요 */
   
     .header-content-lim{
@@ -15,7 +25,8 @@
       background-color: var(--bg-a-10);
 
       .header-top-green-lim {
-        background-color: rgb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
+        // background-color: 6BA10Ergb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
+        background-color: #6BA10E; /* 원하는 색상으로 변경하세요 */
         height: 30px;
         width: 100vw;
       }
@@ -187,7 +198,9 @@
       position: relative;
     
       .Llistul-kjh {
-        margin: 0 0 10px 0;
+        // margin: 0 0 10px 0;
+        padding: 0;
+        margin: 0;
         flex-direction: row;
         justify-content: space-evenly;
         background-color: transparent;
@@ -198,7 +211,8 @@
           justify-content: space-around;
           align-items: center;
           width: 100%;
-          height: 2.25rem;
+          // height: 2.25rem;
+          height: 2.5rem;
           display: flex;
           cursor: pointer;
     
@@ -457,6 +471,10 @@
   cursor: pointer;
 }
 
+.LHeaderWrap-kjh a {
+  color:  #000; /* 클릭한 후의 색상 설정 */
+  font-weight: 700;
+}
 .LHeaderWrap-kjh a.active {
   color:  rgb(3, 196, 3);/* 클릭한 후의 색상 설정 */
   font-weight: 700;
