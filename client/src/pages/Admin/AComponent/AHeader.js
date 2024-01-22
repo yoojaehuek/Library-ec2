@@ -25,7 +25,7 @@ const AHeader = () => {
       </button> */}
       
 
-      { !getCookie('login') ? 
+      {getCookie('login') ? 
           <button 
             style={buttonStyle} 
             onClick={onLogout} 
