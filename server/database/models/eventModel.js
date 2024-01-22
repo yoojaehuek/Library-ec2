@@ -97,7 +97,7 @@ class EventModel {
   }
   static async unapplyEvent({ event_id, user_id }){
     console.log(event_id, user_id);
-    const result = await Event.unapplyEvent({
+    const result = await Event.unapply({
       where: {
         event_id: event_id,
         user_id: user_id

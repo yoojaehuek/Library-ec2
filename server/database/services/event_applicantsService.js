@@ -72,6 +72,12 @@ class Event_applicantsService{
     return result;
   }
 
+	static async getAllByUser({ user_id }){
+		const result = await Event_applicantsModel.getAllByUser({ user_id });
+		console.log("ServicegetAllByUserresult", result);
+		return result;
+	}
+
 
 	static buildWhereClause(options){
 		const wheres = {};
