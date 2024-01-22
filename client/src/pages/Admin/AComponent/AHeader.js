@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import A from './A.scss';
+import { getCookie, removeCookie } from '../../../utils/cookie';
+import { Button } from '@mui/material';
 
 const AHeader = () => {
+  const onLogout = () => {
+    console.log('관리자 로그아웃!');
+    removeCookie('login');
+    // window.location.replace('/app1/admin/login');
+    window.location.replace('/admin/login');
+  }
+
   return (
     <header style={headerStyle}>
       {/* <img
@@ -11,9 +20,26 @@ const AHeader = () => {
         style={logoStyle}
         className="logo-kjn"
       /> */}
-      <button style={buttonStyle}>
+      {/* <button style={buttonStyle}>
         <Link to='/admin/login' style={linkStyle}>로그인</Link>
-      </button>
+      </button> */}
+      
+
+      {getCookie('login') ? 
+          <button 
+            style={buttonStyle} 
+            onClick={onLogout} 
+          >
+            Logout
+          </button>
+          :
+          <button 
+          style={buttonStyle} 
+          onClick={() => window.location.replace('/admin/login')} 
+          >
+            Login
+          </button>
+      }
     </header>
   );
 };
