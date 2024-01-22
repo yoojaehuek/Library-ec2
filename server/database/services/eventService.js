@@ -127,7 +127,7 @@ class EventService{
 		console.log("EventService unapplyEvent: ", event_id, user_id);
 		console.log("EventModel: ", EventModel);	
 		
-		await EventApplicantModel.createEvent_applicants({
+		await EventApplicantModel.deleteEvent_applicants({
 			event_id: event_id,
 			user_id: user_id,
 		});
