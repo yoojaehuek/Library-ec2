@@ -1,3 +1,9 @@
+INSERT INTO library.admin (admin_id, admin_email, admin_pwd, salt, admin_name, admin_phone, created_at) 
+values 
+(1, "i1004902@naver.com", "bb8b126ed9d240da8de3c9671baa0cdd07cc81c1ab27096560bad572f21648d513dde731da924a521fbe36e489b147f18c046f9078e34ca1c11201d5aca34095", "fzNwlKN0MCgWnv3zcmn4wgORICW3ge/r0fBDCAz6ul855NM/mTw5yTl4/XivHtiVUGun1Lqaqe+dEyA16AxdBWSGY8YUhiAQBKExy44yHdLFyfNU4jY0o7OGFSzdx1CEwxfbwV/5hcy5noF+AOgrBPGKCxQ/QK6g3x6ORo3F0i4=", "김지환", "01093120285", '2023-11-02 00:46:04')
+;
+
+
 INSERT INTO `library`.`banner` (`banner_id`, `banner_img_url`, `banner_title`, `banner_description`, `createdAt`, `updatedAt`) 
 VALUES 
 ('1', '/server/upload/banner/dark.png', '21세기 저승사자', '하기 싫은 저승사자 그의 운명은....', '2023-01-10 10:29:04', '2023-01-10 10:29:04'),
