@@ -5,6 +5,7 @@ class FaqController {
 	static async createFaq(req, res, next){
 		try {
 			const newFaq = req.body;
+			newFaq.user_id = req.user_id;
 			console.log(newFaq);
 			const result = await FaqService.createFaq({newFaq});
 			res.status(201).json(result);
