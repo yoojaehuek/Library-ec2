@@ -54,6 +54,9 @@ const MyEdit = () => {
   const handleClose = () => {
     navigate('/mypage');
   }
+  const handleClose_home = () => {
+    navigate('/');
+  }
 
   //수정2
   const updateUser = () => {
@@ -87,58 +90,21 @@ const MyEdit = () => {
       }
   };
 
-  // /** 이름유효성검사 */
-	// const onChangeName = (e) => {
-	// 	const currentName = e.target.value;
-	// 	setName(currentName);
+  const withdrawUser = () => {
+    const userConfirmed = window.confirm('정말로 회원 탈퇴하시겠습니까?');
 
-	// 	if (currentName.length < 2 || currentName.length > 10) {
-	// 		setNameMessage("닉네임은 2글자 이상 10글자 이하로 입력해주세요!");
-	// 		setIsName(false);
-	// 	} else {
-	// 		setNameMessage("사용가능한 닉네임 입니다.");
-	// 		setIsName(true);
-	// 	}
-	// };
-	// /** 비밀번호 유효성검사 */
-	// const onChangePassword = (e) => {
-	// 	const currentPassword = e.target.value;
-	// 	setPassword(currentPassword);
-	// 	const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-	// 	if (!passwordRegExp.test(currentPassword)) {
-	// 		setPasswordMessage("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!");
-	// 		setIsPassword(false);
-	// 	} else {
-	// 		setPasswordMessage("안전한 비밀번호 입니다.");
-	// 		setIsPassword(true);
-	// 	}
-	// };
-	// /** 비밀번호 확인 유효성검사 */
-	// const onChangeNewPasswordConfirm = (e) => {
-	// 	const currentPasswordConfirm = e.target.value;
-	// 	setNewPasswordConfirm(currentPasswordConfirm);
-	// 	if (password !== currentPasswordConfirm) {
-	// 		setNewPasswordConfirmMessage("비밀번호가 똑같지 않아요!");
-	// 		setIsPasswordConfirm(false);
-	// 	} else {
-	// 		setNewPasswordConfirmMessage("똑같은 비밀번호를 입력했습니다.");
-	// 		setIsPasswordConfirm(true);
-	// 	}
-	// };
-	// /** 전화번호 유효성검사 */
-	// const onChangePhone = (e) => {
-	// 	const currentPhone = e.target.value;
-	// 	setPhone(currentPhone);
-	// 	const phoneRegExp = /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-
-	// 	if (!phoneRegExp.test(currentPhone)) {
-	// 		setPhoneMessage("올바른 형식이 아닙니다!");
-	// 		setIsPhone(false);
-	// 	} else {
-	// 		setPhoneMessage("사용 가능한 번호입니다:-)");
-	// 		setIsPhone(true);
-	// 	}
-	// };
+    if (userConfirmed) {
+      axios.delete(`${API_URL}/api/user`)
+        .then(() => {
+          alert('회원 탈퇴가 성공적으로 처리되었습니다.');
+          handleClose_home();
+        })
+        .catch(error => {
+          console.error('회원 탈퇴 중 에러 발생:', error);  
+          alert('회원 탈퇴에 실패했습니다. 다시 시도해 주세요.');
+        });
+    }
+  };
 
   return(
     <div className='myedit-container-kjh'>
@@ -204,7 +170,9 @@ const MyEdit = () => {
           <button className='button_cancell-kjh' type='button' onClick={handleClose}>취소</button>
           <button className='button_edit-kjh' type='button' onClick={updateUser}>프로필 수정</button>
         </div>
-
+        <div className='withdraw-kjh'>
+          <button className='withdrawbtn-kjh' type='button' onClick={withdrawUser}>회원 탈퇴</button>
+        </div>
       </div>
     </div>
   )

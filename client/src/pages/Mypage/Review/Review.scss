@@ -1,31 +1,31 @@
 .reivew-container-kjh {
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 40px;
-  width: 1200px;
-  height: 800px;
+  padding: 2.7778vw;
+  width: 83.3333vw;
+  height: 55.5556vw;
   background-color: #fff;
   
   .review-form-kjh {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    row-gap: 10px;
+    row-gap: 0.6944vw;
   }
   // .review-form-kjh:nth-child(1)
   img {
     width: 30%;
     float: left;
-    margin: 30px;
+    margin: 2.0833vw;
   }
   button {
-    margin: 10px;
+    margin: 0.6944vw;
     float: right;
   }
   .button_edit-kjh {
     float: right;
     border: none;
-    width: 160px;
-    height: 60px;
+    width: 11.1111vw;
+    height: 4.1667vw;
     background-color: #6ba10e;
     color: #fff;
     cursor: pointer;
@@ -33,8 +33,8 @@
   .button_cancell-kjh {
     border: 1px solid #6ba10e;
     float: right;
-    width: 60px;
-    height: 60px;
+    width: 4.1667vw;
+    height: 4.1667vw;
     background-color: #fff;
     color: #6ba10e;
     cursor: pointer;
@@ -42,7 +42,7 @@
 
   textarea {
     width: 100%;
-    height: 200px;
+    height: 13.8889vw;
     resize: none;
   }
 }
