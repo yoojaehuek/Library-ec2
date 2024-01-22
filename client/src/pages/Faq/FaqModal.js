@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Box, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { API_URL } from "../../config/contansts";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../recoil/atoms/State";
+import { errHandler } from '../../utils/globalFunction';
 
 const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
+  const [islogin, setIslogin] = useRecoilState(loginState);
   const [newPost, setNewPost] = useState({
     faq_password: '',
     faq_tags: '',
@@ -46,6 +50,9 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
       }
     } catch (error) {
       console.error('에러:', error);
+      setIslogin(false);
+      errHandler(error);
+      
     }
   };
 

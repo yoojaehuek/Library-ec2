@@ -1,5 +1,5 @@
 
-@media all and (min-width:900px){
+@media all and (min-width:800px){
   .book-detail-container-lhs{
     padding-left: 17.6875rem;
     padding-right: 17.6875rem;
@@ -181,22 +181,41 @@
         border: 1px solid #ddd;
         padding: 10px;
         margin-bottom: 10px;
-      }
+
+        .review-title{
+          font-size: 1.6vw;
+          font-weight: 700;
+        }
+
+        .rating-container {
+          display: flex;
+          align-items: center;
   
-      .rating-container {
-        display: flex;
-        align-items: center;
-      }
+          .star-icon {
+            color: #FFD700; // 금색 별 아이콘 색상
+            margin-right: 5px;
   
-      .star-icon {
-        color: #FFD700; // 금색 별 아이콘 색상
-        margin-right: 5px;
+            span &:last-child{
+              margin-right: 10px;
+            }
+          }
+  
+          .user-name{
+            padding: 0 10px;
+            border-left: solid 1px black;
+            border-right: solid 1px black;
+          }
+  
+          p{
+            padding: 0 10px;
+          }
+        }
       }
     }
   }
 }
 
-@media all and (max-width:767px){
+@media all and (max-width:799px){
   .book-detail-container-lhs{
   
     .book-detail-content-lhs {
@@ -371,16 +390,35 @@
         border: 1px solid #ddd;
         padding: 10px;
         margin-bottom: 10px;
-      }
+
+        .review-title{
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        .rating-container {
+          display: flex;
+          align-items: center;
   
-      .rating-container {
-        display: flex;
-        align-items: center;
-      }
+          .star-icon {
+            color: #FFD700; // 금색 별 아이콘 색상
+            margin-right: 5px;
   
-      .star-icon {
-        color: #FFD700; // 금색 별 아이콘 색상
-        margin-right: 5px;
+            span &:last-child{
+              margin-right: 10px;
+            }
+          }
+  
+          .user-name{
+            padding: 0 10px;
+            border-left: solid 1px black;
+            border-right: solid 1px black;
+          }
+  
+          p{
+            padding: 0 10px;
+          }
+        }
       }
     }
   }

@@ -238,14 +238,14 @@ const ABook = () => {
             style={{ width: '80px', height: '120px' }}
           />
         </TableCell>
-        <TableCell>{item.book_author}</TableCell>
+        <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100px" ,whiteSpace: "nowrap",}}>{item.book_author}</TableCell>
         <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "250px" ,whiteSpace: "nowrap",}} >{item.book_publisher}</TableCell>
         <TableCell>{item.book_genre}</TableCell>
         <TableCell>
           {item.book_availability === 1 ? "가능" : "불가능"}
         </TableCell>
         <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "250px" ,whiteSpace: "nowrap",}}>{item.book_description}</TableCell>
-        <TableCell>{item.book_ISBN}</TableCell>
+        <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100px" ,whiteSpace: "nowrap"}}>{item.book_ISBN}</TableCell>
         <TableCell>{item.created_at}</TableCell>
         <TableCell>
           <Button
@@ -268,7 +268,7 @@ const ABook = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center',maxWidth: "75vw", margin: "auto", overflowX: 'auto'  }}>
+    <div style={{ textAlign: 'center',maxWidth: "80vw", margin: "auto", overflowX: 'auto'  }}>
       <ButtonGroup>
         {genres.map((genre, index) => (
           <Button key={index} onClick={() => handleGenreClick(genre)}>

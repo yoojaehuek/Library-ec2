@@ -187,10 +187,16 @@
         margin-bottom: 20px;
   
         >h1{
+          display: flex;
+          justify-content: space-between;
           margin: 2px;
           text-align: left;
-          width: 77.5vw;
+          width: 58vw;
           padding: 10px;
+
+          .more-link{
+            font-size: 1vw;
+          }
         }
       }
   
@@ -601,11 +607,17 @@
         margin-bottom: 20px;
   
         >h1{
+          display: flex;
+          justify-content: space-between;
           margin: 2px;
           font-size: 25px;
           text-align: left;
-          width: 77.5vw;
+          width: 100%;
           padding: 3px 0 0 20px;
+
+          .more-link{
+            font-size: 2.2vw;
+          }
         }
       }
   
