@@ -1,4 +1,4 @@
-const Book = require('../schemas/book'); 
+const {Book, Review, sequelize} = require('../schemas'); 
 const { Op } = require('sequelize');
 
 class BookModel {
@@ -15,10 +15,29 @@ class BookModel {
 
   static async getCategoryBook({limit, ...wheres}){
     console.log("wheres: ", wheres);
+    const ratingAvgRound = sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Reviews.review_rating')));
     const result = await Book.findAll({
+      attributes: [
+        'book_id',
+        'book_name',
+        'book_img_url',
+        'book_author',
+        'book_publisher',
+        'book_genre',
+        'book_availability',
+        'book_description',
+        'book_ISBN',
+        'created_at',
+        [ratingAvgRound, 'average_rating'],
+      ],
+      include: [{
+        model: Review,
+        attributes: [],
+        duplicating: false,
+      }],
       where: wheres,
       limit: limit,
-      // order: [ ['book_id', 'ASC'] ],
+      group: ['Book.book_id'],
       raw:true,
     });
     return result;

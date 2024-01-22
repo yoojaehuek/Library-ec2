@@ -9,13 +9,24 @@ const Mypage = () => {
   const [user, setUser] = useState({});
   const [userId, setUserId] = useState({});
 
+  // useEffect(()=>{
+  //   axios.get(`${API_URL}/api/user/one`)
+  //   .then(res => {
+  //     setUser(res.data);
+  //     setUserId(res.data.user_id);
+  //     console.log("받은 유저정보: ", res.data);
+  //   }).catch((err) =>{
+  //     console.error(err);
+  //   });
+  // },[]);
+
   useEffect(()=>{
-    axios.get(`${API_URL}/api/user/one`)
+    axios.get(`${API_URL}/api/event_applicants/user`)
     .then(res => {
       setUser(res.data);
       setUserId(res.data.user_id);
-      console.log("받은 유저정보: ", res.data);
-    }).catch((err) =>{
+      console.log("getAllByUserTesting", res.data);
+    }).catch((err) => {
       console.error(err);
     });
   },[]);

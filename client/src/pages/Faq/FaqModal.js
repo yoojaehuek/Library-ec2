@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Box, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { API_URL } from "../../config/contansts";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../recoil/atoms/State";
+import { errHandler } from '../../utils/globalFunction';
 
 const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
+  const [islogin, setIslogin] = useRecoilState(loginState);
   const [newPost, setNewPost] = useState({
-    user_id: '',
     faq_password: '',
     faq_tags: '',
     faq_title: '',
@@ -17,7 +20,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
   useEffect(() => {
     if (isOpen) {
       setNewPost({
-        user_id: '',
         faq_password: '',
         faq_tags: '',
         faq_title: '',
@@ -32,7 +34,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
     try {
       if (newPost.faq_tags && newPost.faq_title && newPost.faq_content) {
         const faqData = {
-          user_id: newPost.user_id,
           faq_password: newPost.faq_password,
           faq_tags: newPost.faq_tags,
           faq_title: newPost.faq_title,
@@ -49,6 +50,9 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
       }
     } catch (error) {
       console.error('에러:', error);
+      setIslogin(false);
+      errHandler(error);
+      
     }
   };
 
@@ -78,13 +82,6 @@ const FaqModal = ({ isOpen, onClose, onSubmit, categories }) => {
             ))}
           </Select>
         </FormControl>
-        <TextField
-          label="작성자"
-          fullWidth
-          margin="normal"
-          value={newPost.user_id}
-          onChange={(e) => setNewPost({ ...newPost, user_id: e.target.value })}
-        />
         <TextField
           label="비밀번호"
           fullWidth

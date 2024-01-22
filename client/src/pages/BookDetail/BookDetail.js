@@ -76,13 +76,15 @@ const BookDetail = () => {
   };
 
   if (!reviews || reviews.length === 0) {
-  const tempReviews = [
-    { id: 1, review_text: '정말 좋은 책이었습니다!', rating: 5, create_at: '2022-01-15' },
-    { id: 2, review_text: '재미있게 읽었습니다.', rating: 4, create_at: '2022-01-14' },
-  ];
-
-  setReviews(tempReviews);
-}
+    axios.get(`${API_URL}/api/review?book_id=${id}`)
+    .then(res => {
+      setReviews(res.data);
+      console.log("응답 데이터: ", res.data)
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
 
     return (
       <div className='book-detail-container-lhs'>
@@ -147,20 +149,25 @@ const BookDetail = () => {
               ))}
           </div>
         </div>
-        <div className='reviews-container-lhs'>
+        <div className="reviews-container-lhs">
           <h2>리뷰</h2>
-            {reviews.map((review) => (
+          {reviews.length === 0 ? (
+            <p>리뷰가 없습니다.</p>
+          ) : (
+            reviews.map((review) => (
               <div key={review.id} className='review-item-lhs'>
-              <p>{review.review_text}</p>
-              <div className="rating-container">
-                <p>평점:</p>
-                {Array.from({ length: review.rating }, (_, index) => (
-                  <span key={index} className="star-icon">★</span>
-                ))}
+                <span className='review-title'>{review.review_title}</span>
+                <div className="rating-container">
+                  {Array.from({ length: review.review_rating }, (_, index) => (
+                    <span key={index} className="star-icon">★</span>
+                  ))}
+                  <span className='user-name'>{review.User.user_name}</span>
+                  <p>{review.created_at}</p>
+                </div>
+                <p>{review.review_content}</p>
               </div>
-              <p>작성일: {review.create_at}</p>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     );

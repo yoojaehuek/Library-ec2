@@ -5,6 +5,7 @@ class FaqController {
 	static async createFaq(req, res, next){
 		try {
 			const newFaq = req.body;
+			newFaq.user_id = req.user_id;
 			console.log(newFaq);
 			const result = await FaqService.createFaq({newFaq});
 			res.status(201).json(result);
@@ -27,6 +28,17 @@ class FaqController {
 			const category = req.params.category;
 			const result = await FaqService.getCategoryFaq(category);
 			// const result = {question:"123", content: "123", category:"123", author:"123", date:"123", answer:"123"}			
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
+
+	static async getAllFaqByUser(req, res, next){
+		try {
+			const user_id = req.user_id;
+			console.log("user_id: ", user_id);
+			const result = await FaqService.getAllFaqByUser({user_id});
 			res.status(200).json(result);
 		} catch (error) {
 			next(error)

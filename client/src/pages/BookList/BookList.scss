@@ -64,7 +64,7 @@
                 position: absolute;
                 top: 20px;
                 right: 20px;
-                padding: 1vw 4vw;
+                padding: 1vw 2vw;
                 border-radius: 5px;
                 font-size: 20px;
                 color: #fff;
@@ -83,7 +83,7 @@
               }
 
               p {
-                font-size: 1vw;
+                font-size: 1.1vw;
                 color: black;
                 margin: 0;
                 span {
@@ -93,16 +93,29 @@
               }
 
               .book-rating-lhs {
-                > p{
-                  margin-top: 10px;
-                  font-size: 1.2vw;
-                  color: #f39c12;
+                margin-top: 15px;
+                height: 10px;
+                line-height: 10px;
+                align-items: center;
+                display: flex;
+
+                .book-rating-name{
+                  margin-right: 10px;
+                  font-size: 1.3vw;
+                  color: #FFD700;
+                }
+
+                .star-icon{
+                  font-size: 1.3vw;
+                  text-align: center;
+                  color: #FFD700; // 금색 별 아이콘 색상
+                  margin-right: 5px;
                 }
               }
 
               .book-description-lhs{
                 max-width: 100%;
-                margin-top: 10px;
+                margin-top: 20px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
@@ -205,10 +218,23 @@
               }
 
               .book-rating-lhs {
-                > p{
-                  margin-top: 10px;
-                  font-size: 6.2vw;
-                  color: #f39c12;
+                margin-top: 15px;
+                height: 10px;
+                line-height: 10px;
+                align-items: center;
+                display: flex;
+
+                .book-rating-name{
+                  margin-right: 10px;
+                  font-size: 20px;
+                  color: #FFD700;
+                }
+
+                .star-icon{
+                  font-size: 20px;
+                  text-align: center;
+                  color: #FFD700; // 금색 별 아이콘 색상
+                  margin-right: 5px;
                 }
               }
 
