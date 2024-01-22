@@ -6,6 +6,7 @@ import axios from 'axios';
 import { API_URL } from '../../config/contansts';
 import './Main.scss';
 
+
 const MainBook = ({ Genre }) => {
   const [axiosResult, setAxiosResult] = useState([]);
 
@@ -22,7 +23,13 @@ const MainBook = ({ Genre }) => {
   return (
     <div className='main-mid-container-lhs'>
       <div className='main-mid-top-lhs'>
-        <h1>{Genre}</h1>
+        <h1>{Genre}
+        <NavLink to={`/booklist?genre=${Genre}`} className='more-link'>
+          <div className='main-bottom-more-lhs'>
+            <p>더 보기</p>
+          </div>
+        </NavLink>
+        </h1>
       </div>
       <div className='main-mid-img-lhs'>
         {axiosResult.map((item, index) => (
@@ -34,6 +41,7 @@ const MainBook = ({ Genre }) => {
       </div>
     </div>
   );
-}
+} 
+
 
 export default MainBook;
