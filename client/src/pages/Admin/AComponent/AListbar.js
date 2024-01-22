@@ -134,7 +134,7 @@ const AListbar = () => {
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <NavLink to='/admin'><img src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`} alt='로고' style={{ width: '50px', height: '50px' }} /></NavLink>
+          <NavLink to='/admin'><img src={`${process.env.PUBLIC_URL}/adminlogo.png`} alt='로고' style={{ width: '200px', height: '150px' }} /></NavLink>
         </div>
         <List>{renderListItems(ListItems)}</List>
       </Drawer>

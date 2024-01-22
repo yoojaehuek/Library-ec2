@@ -56,7 +56,7 @@ const FaqDetail = () => {
     <Box
       width={{ xs: "75%", sm: "70%", md: "60%", lg: "45%" }}
       mx="auto"
-      p={4}
+      padding="4vw 4vw 0.5vw 4vw"
       boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
       backgroundColor="#f8f8f8"
       borderRadius="2vw"
@@ -161,14 +161,12 @@ const FaqDetail = () => {
       )}
       <Button
         style={{
-          position: "absolute",
-          bottom: "0",
-          left: "50%",
-          transform: "translateX(-50%)",
           width: "50px",
           color: "white",
           fontSize: "1rem",
           backgroundColor: "green",
+          display: "block",
+          margin: "10px auto",
         }}
         onClick={goBack}
       >
