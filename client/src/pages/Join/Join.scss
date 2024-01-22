@@ -34,18 +34,6 @@
             color: transparent;
           }
         }
-        #input-li-addr-yjh {
-          display: flex;
-          justify-content: space-between;
-          padding-bottom: 50px;
-          input {
-            width: 80%;
-            margin: 0px;
-          }
-          button {
-            padding: 5px;
-          }
-        }
         p {
           margin-bottom: 40px;
         }
@@ -67,19 +55,34 @@
       font-weight: bold;
       color: white;
     }
+    #social-login-yjh{
+      display: flex;
+      flex-wrap: wrap;// 넘치면 줄바꿈
+      align-items: center;
+      gap: 20px;
+      border: 0;
+      border-top: 1px solid black;
+      margin-top: 30px;
+      padding-top: 20px;
+      legend{
+        padding: 0px 10px;
+        margin: auto;
+        font-size: 25px;
+      }
+    }
   }
 }
 
 // PC (해상도 1024px)
 @media all and (min-width:1024px) {
   .join-container-yjh {
-    width: 30vw; 
+    width: 55vw; 
     padding: 10px; 
     #Join-form-yjh {
+      width: 100%; 
       h1{
         font-size: 3vh;
       }
-      width: 100%; 
       #input-ul-yjh {
         .input-li-yjh {
           margin: 10px auto; 
@@ -110,7 +113,7 @@
 // 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)
 @media all and (min-width:768px) and (max-width:1023px) {
   .join-container-yjh {
-    width: 90%; 
+    width: 55vw; 
     padding: 10px; 
     #Join-form-yjh {
       width: 100%; 
