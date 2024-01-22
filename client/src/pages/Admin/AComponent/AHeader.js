@@ -5,12 +5,12 @@ import A from './A.scss';
 const AHeader = () => {
   return (
     <header style={headerStyle}>
-      <img
-        src={`${process.env.PUBLIC_URL}/images/Footer/kakao.svg`}
+      {/* <img
+        src={`${process.env.PUBLIC_URL}/adminlogo.png`}
         alt='로고'
         style={logoStyle}
         className="logo-kjn"
-      />
+      /> */}
       <button style={buttonStyle}>
         <Link to='/admin/login' style={linkStyle}>로그인</Link>
       </button>
@@ -20,15 +20,15 @@ const AHeader = () => {
 
 const headerStyle = {
   display: 'flex',
-  justifyContent: 'space-between',
+  flexDirection: 'row-reverse',
   alignItems: 'center',
   padding: '1vw',
 };
 
-const logoStyle = {
-  width: '50px',
-  height: '50px',
-};
+// const logoStyle = {
+//   width: '100px',
+//   height: '50px',
+// };
 
 const buttonStyle = {
   padding: '10px 20px',
