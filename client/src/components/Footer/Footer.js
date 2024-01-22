@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
         <div className='LFooterCon-kjh'>
           <div className='footerImg-kjh'>
-            <img src='/images/Header/Group_129.svg'></img>
+            <img src='/images/Header/logo.png'></img>
           </div>
           <div className='footerAdd-kjh'>
 						<p className="addrRow">대표 : 김지환, 임헌성</p>

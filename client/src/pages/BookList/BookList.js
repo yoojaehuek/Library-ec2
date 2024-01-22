@@ -79,7 +79,14 @@ const BookList = () => {
                         <p><span>출판사:</span> {item.book_publisher}</p>
                         <p><span>출판일:</span> {item.created_at}</p>
                         <div className='book-rating-lhs'>
-                          <p>평점: {item.rating}</p>
+                          <span className='book-rating-name'>평점:</span>
+                          {item.average_rating ? (
+                            Array.from({ length: item.average_rating }, (_, index) => (
+                              <span key={index} className="star-icon">★</span>
+                            ))
+                          ) : (
+                            <span className='book-rating-name'>평점 없음</span>
+                          )}
                         </div>
                         <p className='book-description-lhs'>{item.book_description}</p>
                       </div>

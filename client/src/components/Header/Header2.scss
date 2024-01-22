@@ -17,7 +17,7 @@
       .header-top-green-lim {
         background-color: rgb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
         height: 30px;
-        width: 110%;
+        width: 100vw;
       }
   
       .header-item-lim {
@@ -458,7 +458,7 @@
 }
 
 .LHeaderWrap-kjh a.active {
-  color: rgb(190, 162, 0); /* 클릭한 후의 색상 설정 */
+  color:  rgb(3, 196, 3);/* 클릭한 후의 색상 설정 */
   font-weight: 700;
   text-decoration: underline; /* 클릭한 후에 밑줄 유지 */
 }
