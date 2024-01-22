@@ -142,7 +142,7 @@ const Cart = () => {
             </li>
           ))
         ) : (
-          <p>장바구니에 담은 책이 없습니다</p>
+          <p id="empty">장바구니에 담은 책이 없습니다</p>
         )}
         <li id="loan-btn-yjh">
           <button type="button" onClick={handleOrder}>
