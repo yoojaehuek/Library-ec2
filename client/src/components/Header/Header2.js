@@ -7,10 +7,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
-import { FaRegUser } from "react-icons/fa";
+import { GrUser } from "react-icons/gr";
 import { LuShoppingCart } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
+import { FaUserPen } from "react-icons/fa6";
 
 const Header2 = () => {
   const [buttonClassName, setButtonClassName] = useState('');
@@ -173,7 +174,7 @@ const Header2 = () => {
               <>
               {/* 로그인 하고 난 후 */}
                 <NavLink to="/mypage" className="utilbtn-kjh">
-                  <FaRegUser />
+                  <FaUserPen />
                 </NavLink>
                 <NavLink to="/cart" className="utilbtn-kjh">
                   <LuShoppingCart/>
@@ -186,7 +187,7 @@ const Header2 = () => {
               <>
               {/* 로그인 하기 전 */}
                 <NavLink to="/login" className="utilbtn-kjh renter4">
-                  <FaRegUser />
+                  <GrUser />
                 </NavLink>
                 <NavLink to="/login" className="utilbtn-kjh renter5">
                   <LuShoppingCart/>

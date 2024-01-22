@@ -20,11 +20,8 @@ import Review from './pages/Mypage/Review/Review.js';
 import LoanTest from './pages/Cart/loanTest.js';
 import Event from './pages/Event/Event.js';
 import EventDetail from './pages/Event/EventDetail/EventDetail.js';
-<<<<<<< HEAD
 import Test from './routetest.js';
-=======
 import ALogin from './pages/Admin/ALogin/ALogin.js';
->>>>>>> bc70f0dd75b02899f6beff181192f0cd997ea5fd
 
 const currentPath = window.location.pathname;
 
