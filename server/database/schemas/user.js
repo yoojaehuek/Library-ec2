@@ -10,7 +10,7 @@ class User extends Sequelize.Model {
       },
       user_email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         comment: "ID(이메일)",
       },
       user_pwd: {

@@ -47,7 +47,7 @@ const EventDetail = () => {
         alert("취소 성공");
       })
       .catch(e => {    
-        console.error(e.response.data);
+        console.error(e.response);
         alert(e.response.data.message);
       })
     // console.log("result: ", result);
@@ -76,11 +76,12 @@ const EventDetail = () => {
               <p>{detailEvent.event_max_applicants}명</p>
             </div>
             <div className='event-date-content-kjh'>
-              <p>상태: {detailEvent.event_status}</p>
+              {/* <p>상태: {detailEvent.event_status}</p> */}
+              {detailEvent.event_status == "expired" ? <p className='event-status-kjh false'>마감</p> : <p className='event-status-kjh true'>모집중</p>}
             </div>
             <div className='event-date-content-kjh'>
-              <button onClick={handleEventApply}>신청</button>
-              <button onClick={handleEventunApply}>신청취소</button>
+              <button className="event-apply-kjh" onClick={handleEventApply}>신청</button>
+              <button className="event-unapply-kjh" onClick={handleEventunApply}>신청취소</button>
             </div>
           </div>
         </div>
@@ -89,9 +90,7 @@ const EventDetail = () => {
       <div className="img-div-kjh">
         <img src={`${API_URL}${detailEvent.event_img_url}`} alt={detailEvent.event_title} className="content-img-kjh" />
       </div>
-      <div className="listBtn-div-kjh">
         <NavLink to='/event' className='button btnPush eventlist-button-kjh'>목록</NavLink>
-      </div>
     </div>
   )
 }

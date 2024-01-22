@@ -19,6 +19,28 @@ class UserModel {
     return result;
   }
 
+  //있으면 조회, 없으면 가입
+  static async googleLogin(newUser){
+    // console.log("newUser",newUser);
+    const result = await User.findOrCreate({
+      where: {user_email: newUser.user_email},
+      defaults: newUser
+    });
+
+    return result;
+  }
+
+  //있으면 조회, 없으면 가입
+  static async kakaoLogin(newUser){
+    // console.log("newUser",newUser);
+    const result = await User.findOrCreate({
+      where: {user_email: newUser.user_email},
+      defaults: newUser
+    });
+
+    return result;
+  }
+
   static async getAllUser(){
     const user = await User.findAll({
       attributes: ["user_id", "user_email", "user_name", "user_phone", "sns_type", "created_at"]
@@ -55,6 +77,17 @@ class UserModel {
     }, {
       where: {
         user_id: user_id
+      }
+    });//where: {id: asdf} 형태가 들어와야함
+    return user;
+  }
+  static async patchUserByEmail({update, user_email}){
+    console.log("update: ",update);
+    const user = await User.update({
+      ...update
+    }, {
+      where: {
+        user_email: user_email
       }
     });//where: {id: asdf} 형태가 들어와야함
     return user;
