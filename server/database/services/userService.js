@@ -7,6 +7,7 @@ const {userFormat} = require('../../utils/dataUtils');
 
 class UserService{
 	//유효성 검사 이메일 겹치는지 등등
+	
 	static async createUser({email, pwd, user_name, phone}){
 
 		const user = await UserModel.findOneUserEmail({ user_email: email });
@@ -197,6 +198,7 @@ class UserService{
 
 		return serviceResult
 	}
+
 	static async kakaoLogin(tmp){
 
 		//crypto.randomBytes(128): 길이가 128인 임의의 바이트 시퀀스를 생성
@@ -361,6 +363,7 @@ class UserService{
 		const user = await UserModel.destroyUser({user_id});
 		return user;
 	}
+
 	static async deleteAdminUser({user_id}){
 		console.log("서비스에서: ", user_id);
 		const user = await UserModel.deleteAdminUser({user_id});

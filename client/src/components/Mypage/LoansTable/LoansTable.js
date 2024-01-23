@@ -15,6 +15,7 @@ const LoansTable = ({is_returned}) => {
   useEffect(() => {
     axios.get(`${API_URL}/api/loans/userbyloans`)
       .then(res => {
+        console.log("res: ", res);
         const loansBooks = res.data.filter(book => book.is_returned === is_returned);
         setUserbyLoans(loansBooks);
         console.log("대출한 책 : ", loansBooks);
