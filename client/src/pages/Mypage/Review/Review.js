@@ -4,10 +4,14 @@ import axios from 'axios';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../../config/contansts';
 import BasicRating from '../../../components/Rating/BasicRating';
+import { errHandler } from "../../../utils/globalFunction";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../recoil/atoms/State";
 
 
 const Review = () => {
   const navigate = useNavigate();
+  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [reviewValue, setReviewValue] = useState({
@@ -37,15 +41,18 @@ const Review = () => {
       review_rating: ratingValue,
       book_id: id,
     }
-    const res = await axios.post(`${API_URL}/api/review`, reviewData);
-    if (res.status == 201) {
+    try {
+      const res = await axios.post(`${API_URL}/api/review`, reviewData);
       navigate('/mypage');
-    } else if(res.status == 404) {
-      alert("Error 작성 실패");
-    } else {
-      alert("뭔지모를 상태 코드: ", res.status);
+      
+    } catch (error) {
+      const {reLogin} = errHandler(error);
+      if (reLogin === true) {
+        setIslogin(false);
+      }
     }
   }
+
   const handleClose = () => {
     navigate('/mypage');
   }

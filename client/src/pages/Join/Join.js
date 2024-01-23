@@ -4,7 +4,7 @@ import { API_URL } from '../../config/contansts'
 import axios from 'axios';
 import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
 import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
-import KakaoLog from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
+import KakaoLoginButton from '../../components/SocialLoginButtons/KakaoLoginButton/KakaoLoginButton.js'
 import './Join.scss'
 
 function Join() {
@@ -154,91 +154,91 @@ function Join() {
 	};
 
 	return (
-	<div className="join-container-yjh">
-		<form id='Join-form-yjh' onSubmit={onSubmitJoin}>
-			<h1>회원가입</h1>
-			<ul id='input-ul-yjh'>
-				<li className="input-li-yjh">
-					<label className={isLabelVisible.email  ? '' : 'hidden'}>아이디(이메일주소)</label>
-					<input
-						id="email"
-						value={email}
-						onChange={onChangeEmail}
-						ref={inputRefs.email}
-						type="text"
-						placeholder="아이디(이메일주소)"
-						onFocus={() => handleInputFocus('email')}
-						onBlur={() => handleInputBlur('email')}
-					/>
-					<p className={`message ${!isEmail ? 'error' : ''}`}>{emailMessage}</p>
-				</li>
-				<li className="input-li-yjh">
-					<label className={isLabelVisible.password ? '' : 'hidden'}>비밀번호</label>
-					<input
-						id="pwd"
-						value={password}
-						onChange={onChangePassword}
-						ref={inputRefs.password}
-						type="password"
-						placeholder="비밀번호"
-						onFocus={() => handleInputFocus('password')}
-						onBlur={() => handleInputBlur('password')}
-					/>
-					<p className={`message ${!isPassword ? 'error' : ''}`}>{passwordMessage}</p>
-				</li>
-				<li className="input-li-yjh">
-					<label className={isLabelVisible.passwordConfirm ? '' : 'hidden'}>비밀번호 확인</label>
-					<input
-						id="confirmPwd"
-						value={passwordConfirm}
-						onChange={onChangePasswordConfirm}
-						ref={inputRefs.passwordConfirm}
-						type="password"
-						placeholder="비밀번호 확인"
-						onFocus={() => handleInputFocus('passwordConfirm')}
-            onBlur={() => handleInputBlur('passwordConfirm')}
-					/>
-					<p className={`message ${!isPasswordConfirm ? 'error' : ''}`}>{passwordConfirmMessage}</p>
-				</li>
-				<li className="input-li-yjh">
-					<label className={isLabelVisible.name ? '' : 'hidden'}>이름</label>
-					<input
-						id="name"
-						value={name}  
-						onChange={onChangeName}
-						ref={inputRefs.name}
-						type="text"
-						placeholder="이름"
-						onFocus={() => handleInputFocus('name')}
-            onBlur={() => handleInputBlur('name')}
-					/>
-					<p className={`message ${!isName ? 'error' : ''}`}>{nameMessage}</p>
-				</li>
-				<li className="input-li-yjh">
-					<label className={isLabelVisible.phone ? '' : 'hidden'}>전화번호</label>
-					<input
-						id="phone"
-						value={phone} 
-						onChange={onChangePhone}
-						ref={inputRefs.phone}
-						type="text"
-						placeholder="전화번호(01012345678)"
-						onFocus={() => handleInputFocus('phone')}
-            onBlur={() => handleInputBlur('phone')}
-					/>
-					<p className={`message ${!isPhone ? 'error' : ''}`}>{phoneMessage}</p>
-				</li>
-			</ul>
-			<li><button type='submit' id='join-btn-yjh'>가입</button></li>
-
-			<fieldset id='social-login-yjh'>
-				<legend htmlFor="">or</legend>
-				<NaverLoginButton/>
-				<GoogleLoginButton/>
-			</fieldset>
-			
-		</form>
-	</div>
+		<div className="join-container-yjh">
+			<form id='Join-form-yjh' onSubmit={onSubmitJoin}>
+				<h1>회원가입</h1>
+				<ul id='input-ul-yjh'>
+					<li className="input-li-yjh">
+						<label className={isLabelVisible.email  ? '' : 'hidden'}>아이디(이메일주소)</label>
+						<input
+							id="email"
+							value={email}
+							onChange={onChangeEmail}
+							ref={inputRefs.email}
+							type="text"
+							placeholder="아이디(이메일주소)"
+							onFocus={() => handleInputFocus('email')}
+							onBlur={() => handleInputBlur('email')}
+						/>
+						<p className={`message ${!isEmail ? 'error' : ''}`}>{emailMessage}</p>
+					</li>
+					<li className="input-li-yjh">
+						<label className={isLabelVisible.password ? '' : 'hidden'}>비밀번호</label>
+						<input
+							id="pwd"
+							value={password}
+							onChange={onChangePassword}
+							ref={inputRefs.password}
+							type="password"
+							placeholder="비밀번호"
+							onFocus={() => handleInputFocus('password')}
+							onBlur={() => handleInputBlur('password')}
+						/>
+						<p className={`message ${!isPassword ? 'error' : ''}`}>{passwordMessage}</p>
+					</li>
+					<li className="input-li-yjh">
+						<label className={isLabelVisible.passwordConfirm ? '' : 'hidden'}>비밀번호 확인</label>
+						<input
+							id="confirmPwd"
+							value={passwordConfirm}
+							onChange={onChangePasswordConfirm}
+							ref={inputRefs.passwordConfirm}
+							type="password"
+							placeholder="비밀번호 확인"
+							onFocus={() => handleInputFocus('passwordConfirm')}
+							onBlur={() => handleInputBlur('passwordConfirm')}
+						/>
+						<p className={`message ${!isPasswordConfirm ? 'error' : ''}`}>{passwordConfirmMessage}</p>
+					</li>
+					<li className="input-li-yjh">
+						<label className={isLabelVisible.name ? '' : 'hidden'}>이름</label>
+						<input
+							id="name"
+							value={name}  
+							onChange={onChangeName}
+							ref={inputRefs.name}
+							type="text"
+							placeholder="이름"
+							onFocus={() => handleInputFocus('name')}
+							onBlur={() => handleInputBlur('name')}
+						/>
+						<p className={`message ${!isName ? 'error' : ''}`}>{nameMessage}</p>
+					</li>
+					<li className="input-li-yjh">
+						<label className={isLabelVisible.phone ? '' : 'hidden'}>전화번호</label>
+						<input
+							id="phone"
+							value={phone} 
+							onChange={onChangePhone}
+							ref={inputRefs.phone}
+							type="text"
+							placeholder="전화번호(01012345678)"
+							onFocus={() => handleInputFocus('phone')}
+							onBlur={() => handleInputBlur('phone')}
+						/>
+						<p className={`message ${!isPhone ? 'error' : ''}`}>{phoneMessage}</p>
+					</li>
+				</ul>
+				<li><button type='submit' id='join-btn-yjh'>가입</button></li>
+				<fieldset id='social-login-yjh'>
+					<legend htmlFor="">or</legend>
+					<NaverLoginButton/>
+					<GoogleLoginButton/>
+					<KakaoLoginButton/>
+				</fieldset>
+				
+			</form>
+		</div>
 	);
 }
 

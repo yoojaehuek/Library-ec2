@@ -26,7 +26,7 @@ const MainBook = ({ Genre }) => {
         <h1>{Genre}
         <NavLink to={`/booklist?genre=${Genre}`} className='more-link'>
           <div className='main-bottom-more-lhs'>
-            <p>더 보기</p>
+            <p className='more-view-kjh'>더 보기+</p>
           </div>
         </NavLink>
         </h1>

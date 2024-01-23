@@ -9,19 +9,19 @@ import ABanner from './ABanner/ABanner.js';
 import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
 import AUser from './AUser/AUser.js';
-// import { getCookie } from '../utils/cookie.js';
+import { getCookie } from '../../utils/cookie.js';
 
 const AdminMain = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-//   useEffect(() => {
-//     console.log("location: ", location);
-//     if(!getCookie('login')){
-//       alert('다시 로그인 해주세요');
-//       navigate('/admin/login');
-//     }
-//   }, [location]);
+  useEffect(() => {
+    console.log("location: ", location);
+    if(!getCookie('login')){
+      alert('다시 로그인 해주세요');
+      navigate('/admin/login');
+    }
+  }, [location]);
 
 
 
@@ -32,12 +32,12 @@ const AdminMain = () => {
       <AHeader id='Header' />
       <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
-        <Route path='/' element={<AChart></AChart>}></Route>
-        <Route path='/login' element={<ALogin />} />
-        <Route path='/faq/faq' element={<AFaq />} />
-        <Route path='/banner/banner' element={<ABanner />} />
-        <Route path='/book/book' element={<ABook />} />
-        <Route path='/user/user' element={<AUser />} />
+          <Route path='/' element={<AChart></AChart>}></Route>
+          <Route path='/login' element={<ALogin />} />
+          <Route path='/faq/faq' element={<AFaq />} />
+          <Route path='/banner/banner' element={<ABanner />} />
+          <Route path='/book/book' element={<ABook />} />
+          <Route path='/user/user' element={<AUser />} />
         </Routes>
       </div>
     </div>

@@ -1,42 +1,42 @@
 .check-container-kjh {
   margin: 0 auto;
   box-sizing: border-box;
-  width: 1200px;
-  height: 1000px;
+  width: 83.3333vw;
+  height: 69.4444vw;
 
   .checkpageTop-kjh {
-    margin: 50px auto;
-    width: 1000px;
-    height: 100px;
+    margin: 3.4722vw auto;
+    width: 69.4444vw;
+    height: 6.9444vw;
     position: relative;
-    border-bottom: 3px solid #333;
+    border-bottom: 0.2083vw solid #333;
   }
   .checkpageTop-kjh h1 {
-    width: 700px;
+    width: 48.6111vw;
     float: left;
     position: absolute;
     bottom: 0;
-    margin-left: 10px;
+    margin-left: 0.6944vw;
   }
 
   .checkMain-kjh {
-    width: 700px;
-    height: 200px;
+    width: 48.6111vw;
+    height: 13.8889vw;
     padding: 0;
     margin: 0 auto;
     label {
       color: gray;
-      width: 700px;
+      width: 48.6111vw;
       // float: left;
-      height: 20px;
+      height: 1.389vw;
     }
     input {
-      margin: 10px 0;
-      height: 51px;
-      width: 680px;
-      padding: 5px 7px;
+      margin: 0.6944vw 0;
+      height: 3.5417vw;
+      width: 47.2222vw;
+      padding: 0.3472vw 0.4861vw;
       outline: none;
-      font-size: 20px;
+      font-size: 1.389vw;
       transition: border-color 0.5s;
       &:focus {
         border-color: #6ba10e; // 클릭시 border 색상 변경
@@ -47,22 +47,22 @@
       }
     }
     button {
-      margin-right: 5px;
+      margin-right: 0.3472vw;
     }
     .check_button-kjh {
       float: right;
       border: none;
-      width: 60px;
-      height: 30px;
+      width: 4.1667vw;
+      height: 2.0833vw;
       background-color: #6ba10e;
       color: #fff;
       cursor: pointer;
     }
     .check_cancell-kjh {
-      border: 1px solid #6ba10e;
+      border: 0.07vw solid #6ba10e;
       float: right;
-      width: 60px;
-      height: 30px;
+      width: 4.1667vw;
+      height: 2.0833vw;
       background-color: #fff;
       color: #6ba10e;
       cursor: pointer;
