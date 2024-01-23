@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../../config/contansts";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../config/contansts";
+import { errHandler } from "../../utils/globalFunction";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
-import axios from "axios";
 import "./Cart.scss";
 
 const Cart = () => {
-  // const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const [cart, setCart] = useState([]); // 장바구니에 담은 상품목록
   const [checkItems, setCheckItems] = useState([]); // 체크된 책
   const navigate = useNavigate();
@@ -46,7 +47,10 @@ const Cart = () => {
           navigate("/");
         })
         .catch((err) => {
-          console.error(err);
+          const {reLogin} = errHandler(err);
+          if (reLogin === true) {
+            setIslogin(false);
+          }
         });
     } else {
       alert("선택된 책이 없습니다. 책을 선택해주세요."); 
@@ -142,7 +146,7 @@ const Cart = () => {
             </li>
           ))
         ) : (
-          <p id="empty">장바구니에 담은 책이 없습니다</p>
+          <h1 id="empty">장바구니에 담은 책이 없습니다</h1>
         )}
         <li id="loan-btn-yjh">
           <button type="button" onClick={handleOrder}>
