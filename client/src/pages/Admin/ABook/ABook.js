@@ -108,7 +108,7 @@ const ABook = () => {
     if (editBookId) {
       const updatedItem = {
         book_name: bookName,
-        book_img_url: bookImgurl,
+        book_img_url: imageUrl,
         book_author: bookAuthor,
         book_publisher: bookPublisher,
         book_genre: bookGenre,
@@ -116,18 +116,24 @@ const ABook = () => {
         book_description: bookDescription,
         book_ISBN: bookISBN,
       };
-  
-  
+
+
       console.log('update:', updatedItem);
       const userConfirmed = window.confirm('수정하시겠습니까?');
   
       if (userConfirmed) {
-        console.log(editBookId)
         axios
           .patch(`${API_URL}/api/book/${editBookId}`, updatedItem)
           .then(() => {
             alert('수정되었습니다.');
-            fetchBookData(); // 데이터 갱신
+            fetchBookData(); // 전체 도서 목록을 다시 불러와서 상태를 업데이트
+            setFilteredBooks((prevFilteredBooks) => {
+              // 수정된 도서 목록을 업데이트
+              const updatedBooks = prevFilteredBooks.map((book) =>
+                book.book_id === editBookId ? { ...book, ...updatedItem } : book
+              );
+              return updatedBooks;
+            });
             handleCloseEditDialog();
           })
           .catch((err) => {
@@ -438,7 +444,7 @@ const ABook = () => {
           {imageUrl && (
             <img
               src={ API_URL + imageUrl}
-              alt="Banner"
+              alt="Book"
               style={{ width: '100%', height:"500px", marginTop: '10px' }}
             />
           )}

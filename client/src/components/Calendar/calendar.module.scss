@@ -1,0 +1,94 @@
+.datePicker {
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 50px;
+  color: black;
+  text-align: center;
+  padding-left: 14px;
+
+  &:focus{
+    border: 2px solid orangered;
+  }
+}
+
+.customHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 100%;
+  margin-top: 8px;
+  padding: 0 12px 0 24px;
+
+  .month {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .year{
+    background-color: #fff;
+    color: black;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding-right: 5px;
+    cursor: pointer;
+  }
+
+  .monthButton {
+    width: 34px;
+    height: 34px;
+    pad: 5px;
+    border-radius: 50%;
+
+    + .monthButton {
+      margin-left: 24px;
+    }
+
+    &:hover {
+      background-color: #fff, 0.08;
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: #fff;
+
+      svg {
+        fill: #575757;
+      }
+    }
+  }
+}
+
+.calendarWrapper {
+  background-color: #fff;
+  color: black;
+}
+
+.selectedDay,
+.unselectedDay {
+  color: black;
+  padding: 3px 1px 0 0;
+  width: 36px;
+  height: 36px;
+}
+
+.selectedDay {
+  background-color: orangered;
+  border-radius: 50%;
+
+  &:hover {
+    border-radius: 50%;
+    background-color: #c27101;
+  }
+}
+
+.unselectedDay {
+  &:hover {
+    border-radius: 50%;
+    background-color: #fff;
+  }
+}

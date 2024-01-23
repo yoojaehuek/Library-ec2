@@ -22,8 +22,8 @@ exports.makeRefreshToken = () =>{
       {}, // refresh token은 payload 없이 발급
       JWT_KEY, 
       {
-          algorithm: "HS256",
-          expiresIn: "12h"
+        algorithm: "HS256",
+        expiresIn: "12h"
       }
   );
   // console.log("refreshToken: ",refreshToken);

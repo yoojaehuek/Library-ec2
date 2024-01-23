@@ -11,6 +11,7 @@ class LoansService{
     // newLoans 배열을 반복하면서 각 객체를 처리
     const createdLoans = await Promise.all(newLoans.map(async (loansData) => {
       const createNewLoans = await LoansModel.createLoans(loansData);
+      // console.log("createNewLoans: ", createNewLoans);
       await BookModel.updateBook({ book_id: loansData.book_id, toUpdate: {book_availability: 0} });
       return createNewLoans
     }));
@@ -212,7 +213,9 @@ class LoansService{
   static async deleteLoans({loans_id, book_id}){
     const result = await LoansModel.deleteLoans({loans_id});
     console.log("deleteLoans: 결과: ", result);
-    await BookModel.updateBook({"book_id": book_id, toUpdate: {book_availability: 1} });
+    if (result === 1) {
+      await BookModel.updateBook({"book_id": book_id, toUpdate: {book_availability: 1} });
+    }
     return result;
   }
 }

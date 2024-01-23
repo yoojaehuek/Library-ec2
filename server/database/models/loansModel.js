@@ -112,6 +112,7 @@ class LoansModel {
     return result;
   }
   
+  //페이지네이션용 조회
   static async getPageLoans({ data_id, data_limit, orderBy }){
     const result = await Loans.findAll({
       where: {
@@ -126,6 +127,7 @@ class LoansModel {
     return result;
   }
 
+  //가장 마지막 Id 구하기
   static async getMaxId(){
     const maxId = sequelize.fn('max', sequelize.col('loans_id'));
     const result = await Loans.findOne({

@@ -10,6 +10,7 @@ import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
 import AUser from './AUser/AUser.js';
 import AEvent from './AEvent/AEvent.js';
+import AReview from './AReview/ARevirw.js';
 import ALoans from './ALoans/ALoans.js';
 import { getCookie } from '../../utils/cookie.js';
 
@@ -42,6 +43,8 @@ const AdminMain = () => {
           <Route path='/loans/loans' element={<ALoans />} />
           <Route path='/book/book' element={<ABook />} />
           <Route path='/user/user' element={<AUser />} />
+          <Route path='/event/event' element={<AEvent />} />
+          <Route path='/review/review' element={<AReview />} />
         </Routes>
       </div>
     </div>
