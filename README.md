@@ -53,7 +53,7 @@ For building and running the application you need :
 Installation
 
 ```bash
-git clone [https://github.com/KJH1225/mcdonald.git](https://github.com/KJH1225/library.git)
+git clone https://github.com/KJH1225/library.git
 cd library
 ```
 
