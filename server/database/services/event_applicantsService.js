@@ -1,6 +1,8 @@
 const Event_applicantsModel = require('../models/event_applicantsModel');
 const { Op } = require('sequelize');
 const validationUtils = require('../../utils/validationUtils');
+const {eventApplicantsFormatDate} = require('../../utils/dataUtils');
+
 
 class Event_applicantsService{
 	
@@ -72,9 +74,18 @@ class Event_applicantsService{
     return result;
   }
 
+	// static async getAllByUser({ user_id }){
+	// 	const result = await Event_applicantsModel.getAllByUser({ user_id });
+	// 	console.log("ServicegetAllByUserresult", result);
+	// 	return result;
+	// }
+
 	static async getAllByUser({ user_id }){
-		const result = await Event_applicantsModel.getAllByUser({ user_id });
-		console.log("ServicegetAllByUserresult", result);
+		const tmpResult = await Event_applicantsModel.getAllByUser({ user_id });
+		console.log("tmpResult : ", tmpResult);
+		const result = await eventApplicantsFormatDate(tmpResult);
+		console.log("result : ", result);
+
 		return result;
 	}
 
