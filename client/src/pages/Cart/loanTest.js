@@ -2,7 +2,6 @@ import React from "react";
 import { API_URL } from "../../config/contansts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./loantest.scss";
 
 const LoanTest = () => {
   const navigate = useNavigate();
