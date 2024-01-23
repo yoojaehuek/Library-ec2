@@ -132,10 +132,11 @@
   #loan-btn-yjh {
     width: 90%;
     height: 80px;
-    position: relative;
-    border: 0px solid #000;
+    margin: auto;
+    margin-top: 4vh;
+    display: flex;
+    justify-content: flex-end;
     button {
-      position: absolute;
       right: 0px;
       font-size: 22px;
       font-weight: bold;
