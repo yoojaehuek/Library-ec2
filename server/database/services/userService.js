@@ -133,7 +133,7 @@ class UserService{
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
-		await redisClient.set(result[0].user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 		
 		const name = result[0].user_name; 
 		const email = result[0].user_email;			
@@ -189,7 +189,7 @@ class UserService{
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
-		await redisClient.set(result[0].user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 		
 		const name = result[0].user_name; 
 		const email = result[0].user_email;			
@@ -244,7 +244,7 @@ class UserService{
 		const refreshToken = makeRefreshToken();
 
 		// userId를 키값으로 refresh token을 redis server에 저장
-		await redisClient.set(result[0].user_email, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
+		await redisClient.set(result[0].user_id, refreshToken); //{eee: 'qweqweqrsddsvwvqrv'}
 		
 		const name = result[0].user_name; 
 		const email = result[0].user_email;			

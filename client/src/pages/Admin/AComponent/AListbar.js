@@ -19,10 +19,10 @@ const ListItems = [
     ],
   },
   {
-    title: 'Rental',
-    value: 'rental',
+    title: 'Loans',
+    value: 'loans',
     sub_title: [
-      { sub_title: '대출 관리', value: 'rental' },
+      { sub_title: '대출 관리', value: 'loans' },
     ],
   },
   {
