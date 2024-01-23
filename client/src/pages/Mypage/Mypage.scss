@@ -29,12 +29,21 @@
   }
 
   table {
-    width: 62.5vw;
+    // width: 62.5vw;
     margin: 1.389vw 0;
+    border-collapse: collapse;
   }
   .myTable-kjh {
-    width: 62.5vw;
+    // width: 62.5vw;
     margin: 0.7vw auto;
+    display: grid;
+    grid-template-areas:
+		"loanstable loanstable"
+		"event faq";
+
+  }
+  .abc-kjh {
+    border: 1px solid #000;
   }
   .rentTable-kjh {
     position: relative;
@@ -50,7 +59,7 @@
   }
   .readTable-kjh {
     position: relative;
-    display: flex;
+    // display: flex;
     justify-content: center;
     margin-top: 3.472vw;
   }
@@ -82,6 +91,18 @@
     bottom: -1.389vw;
     right: 0;
     display: flex;
+  }
+
+  .myEvent-kjh {
+    white-space: nowrap;
+    img {
+      width: 6.7vw;
+    }
+    .eventTitle-kjh {
+      background-color: #6BA10E;
+      color: #fff;
+      text-align: center;
+    }
   }
   
 
