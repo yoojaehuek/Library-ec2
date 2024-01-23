@@ -87,7 +87,7 @@ Back-end API test
 
 ### ✔️ 배포 서버
 
-- www.i1004902.com
+- www.i1004902.com/app4
 
 ### ✔️ 프로젝트 기획 의도
 
