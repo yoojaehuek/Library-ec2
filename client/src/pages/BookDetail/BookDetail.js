@@ -9,7 +9,7 @@ import axios  from 'axios';
 const BookDetail = () => {
   const [axiosResult, setAxiosResult] = useState("");
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [book_publisher,setBook_Publisher] = useState("");
   const [book_author,setbook_author] = useState("");
   const [reviews, setReviews] = useState([]); // 리뷰 상태 추가
@@ -19,12 +19,12 @@ const BookDetail = () => {
     axios.get(`${API_URL}/api/book?book_id=${id}`)
     .then(res => {
       setAxiosResult(res.data[0]);
-      console.log("응답 데이터: ", res.data[0]);
+      console.log("book 데이터: ", res.data[0]);
 
       axios.get(`${API_URL}/api/book?book_publisher=${res.data[0].book_publisher}&limit=5`)
       .then(res => {
         setBook_Publisher(res.data);
-        console.log("관련 도서:", res.data);
+        console.log("publisher 관련 도서:", res.data);
       })
       .catch(err => {
         console.error(err);
@@ -33,17 +33,26 @@ const BookDetail = () => {
       axios.get(`${API_URL}/api/book?book_author=${res.data[0].book_author}&limit=5`)
       .then(res => {
         setbook_author(res.data);
-        console.log("관련 도서:", res.data);
+        console.log("author 관련 도서:", res.data);
       })
       .catch(err => {
         console.error(err);
       });
 
     }).catch((err) =>{
-            console.error(err);
-        });
+      console.error(err);
+    });
 
-      window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+    axios.get(`${API_URL}/api/review?book_id=${id}`)
+    .then(res => {
+      setReviews(res.data);
+      console.log("review 데이터: ", res.data)
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
   },[id]);
   
 
@@ -75,15 +84,10 @@ const BookDetail = () => {
     navigate("/cart");
   };
 
+  
+
   if (!reviews || reviews.length === 0) {
-    axios.get(`${API_URL}/api/review?book_id=${id}`)
-    .then(res => {
-      setReviews(res.data);
-      console.log("응답 데이터: ", res.data)
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    
     }
 
     return (

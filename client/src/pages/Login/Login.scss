@@ -11,6 +11,7 @@
   #login-form-yjh {
     margin: 0 auto;
     width: 35vw;
+    max-width: 800px;
     #input-box-yjh {
       display: flex;
       justify-content: space-between;
@@ -104,8 +105,7 @@
     }
     #login-form-yjh {
       width: 55vw;
-      // border: 1px solid red;  
-      // max-width: 55vw;
+      min-width: 40vw;  
       #input-box-yjh {
         &>div{
           .input-li-yjh {
@@ -179,6 +179,7 @@
     #login-form-yjh {
       width: 90vw;
       padding: 0px 10px;
+      min-width: 308px;
       #input-box-yjh {
         flex-direction: column;
         &>div{
