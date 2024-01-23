@@ -5,6 +5,7 @@ import { API_URL } from "../../config/contansts";
 import { errHandler } from "../../utils/globalFunction";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
+import { AiOutlineClose } from "react-icons/ai";
 import "./Cart.scss";
 
 const Cart = () => {
@@ -81,6 +82,16 @@ const Cart = () => {
     }
   };
 
+  /** 삭제버튼 */
+  const handleRemoveFromCart = (bookId) => {
+    // 선택된 책들만 필터링하여 삭제할 책을 제외한 배열을 만듭니다.
+    const updatedCart = cart.filter((book) => book.id !== bookId);
+    // 상태를 업데이트합니다.
+    setCart(updatedCart);
+    // 로컬 스토리지에서도 업데이트합니다.
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <form id="cart-container-yjh">
       <li id="cart-header-yjh">
@@ -98,11 +109,11 @@ const Cart = () => {
           <span>전체선택</span>
         </div>
       </li>
-
       <ul id="book-list-yjh">
         {cart && cart.length > 0 ? (
           cart.map((book, index) => (
             <li key={index} id="book-yjh" className="grid-container">
+
               <div id="book-checkbox-yjh" className="grid-item box-1">
                 {book.book_availability === false ? (
                   <div id="empty-yjh"></div>
@@ -119,23 +130,29 @@ const Cart = () => {
                   />
                 )}
               </div>
+
               <div id="img-box-yjh" className="grid-item box-2">
                 <div>
                   <img src={API_URL + book.book_img_url} alt="" />
                 </div>
               </div>
+
               <div className="grid-item box-3">
                 <NavLink to={`/BookDetail/${book.id}`}>도서정보</NavLink>{" "}
               </div>
+
               <div className="grid-item box-4">
                 <h3>{book.book_name}</h3>
               </div>
+
               <p id="writer-yjh" className="grid-item box-5">
                 {book.book_AUTHOR} | {book.book_publisher} | {book.book_publisher}
               </p>
+
               <p id="book-description-yjh" className="grid-item box-6">
                 {book.book_description}
               </p>
+
               <div className="grid-item box-7">
                 {book.book_availability == true ? (
                   <div id="loan-a-yjh">대출가능</div>
@@ -143,10 +160,15 @@ const Cart = () => {
                   <div id="loan-p-yjh">대출불가</div>
                 )}
               </div>
+
+              <div className="grid-item box-9">
+                <button type="button" onClick={() => handleRemoveFromCart(book.id)}><AiOutlineClose id="closeBtn"/></button>
+              </div>
+
             </li>
           ))
         ) : (
-          <p id="empty">장바구니에 담은 책이 없습니다</p>
+          <h1 id="empty">장바구니에 담은 책이 없습니다</h1>
         )}
         <li id="loan-btn-yjh">
           <button type="button" onClick={handleOrder}>

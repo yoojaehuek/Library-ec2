@@ -5,8 +5,8 @@ import { API_URL } from '../../../config/contansts';
 // import Stack from '@mui/material/Stack';
 import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import DatePicker from 'react-datepicker';
+import Calendar from '../../../components/Calendar/index.tsx';
 
 import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import {
@@ -262,7 +262,7 @@ const AEvent = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const eventsToRender = filteredBooks.length > 0 ? filteredBooks : axiosResult;
-
+    // const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
     return eventsToRender.slice(startIndex, endIndex).map((item, index) => (
       <TableRow key={index}>
@@ -277,7 +277,6 @@ const AEvent = () => {
         </TableCell>
         <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100px" ,whiteSpace: "nowrap",}}>{item.event_status}</TableCell>
         <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "250px" ,whiteSpace: "nowrap",}} >{item.event_start_date}</TableCell>
-        <TableCell>{item.book_genre}</TableCell>
         <TableCell>
         </TableCell>
         <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "250px" ,whiteSpace: "nowrap",}}>{item.event_end_date}</TableCell>
@@ -316,7 +315,6 @@ const AEvent = () => {
               <TableCell>시작일</TableCell>
               <TableCell>종료일</TableCell>
               <TableCell>신청가능인원</TableCell>
-              <TableCell>줄거리</TableCell>
               <TableCell>작성시간</TableCell>
               <TableCell>관리</TableCell>
             </TableRow>
@@ -373,16 +371,14 @@ const AEvent = () => {
             <Select
               label="이벤트 상태"
               value={eventStatus}
-              onChange={(e) => setEventStatus(e.target.value)}
+              getDate={eventStartDate}
+              onChange={(e) => setEventStartDate(e.target.value)}              
             >
               <MenuItem value="1">always</MenuItem>
               <MenuItem value="2">ongoing</MenuItem>
               <MenuItem value="3">expired</MenuItem>
             </Select>
-          </FormControl>
-          <Typography variant="subtitle1" gutterBottom>
-            줄거리
-          </Typography>
+          </FormControl>          
           <TextareaAutosize
             value={eventMaxApplicants}
             onChange={(e) => setEventMaxApplicants(e.target.value)}
@@ -396,24 +392,19 @@ const AEvent = () => {
               borderRadius: '4px',
               border: '1px solid #ccc',
             }}
+          />        
+          <Calendar
+            selectedDate={eventStartDate} setSelectedDate={setEventStartDate}
+            value={eventStartDate}
+            onChange={(e) => setEventStartDate(e.target.value)}
+            label="이벤트 시작일"
           />
-        <DemoItem
-          label={
-            <Label
-              componentName="DateRangePicker"
-              valueType="date range"
-              isProOnly
-            />
-          }
-          component="DateRangePicker"
-        >
-          <DateRangePicker
-            localeText={{
-              start: '',
-              end: '',
-            }}
+          <Calendar
+            selectedDate={eventEndDate} setSelectedDate={setEventEndDate}
+            value={eventEndDate}
+            onChange={(e) => setEventEndDate(e.target.value)}
+            label="이벤트 시작일"
           />
-        </DemoItem>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseAddDialog} color="primary">
@@ -482,16 +473,11 @@ const AEvent = () => {
               border: '1px solid #ccc',
             }}
           />
-          <DatePicker
+          <Calendar
             value={eventStartDate}
             onChange={(e) => setEventStartDate(e.target.value)}
             label="이벤트 시작일"
-          />
-          <DatePicker
-            value={eventStartDate}
-            onChange={(e) => setEventStartDate(e.target.value)}
-            label="이벤트 종료일"
-          />
+          />          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseEditDialog} color="primary">
