@@ -17,37 +17,46 @@ const Mypage = () => {
   const [faq, setFaq] = useState([]);
 
 
-
   const getUser = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/api/user/one`);
+    const res = await axios.get(`${API_URL}/api/user/one`);
+
+    if (res.status == 200) {
       setUser(res.data);
       setUserId(res.data.user_id);
-    } catch (error) {
-      const {reLogin} = errHandler(error);
-      if (reLogin === true) {
-        setIslogin(false);
-      }
+    }else if (res.status == 302 ){
+      console.log("에러res: ", res);
+      // setIslogin(false);
+      // errHandler(error);
+    }else {
+      alert("에러");
     }
   }
-
   const getUserEvent = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/api/event_applicants/user`);
+    const res = await axios.get(`${API_URL}/api/event_applicants/user`);
+
+    if (res.status == 200) {
       setEvent(res.data);
       console.log("이벤트 : ", res.data);
-    } catch (error) {
-      console.error('이벤트 에러res:', error);
+    }else if (res.status == 302 ){
+      console.log("이벤트 에러res: ", res);
+      // setIslogin(false);
+      // errHandler(error);
+    }else {
+      alert("에러");
     }
   }
-
   const getUserFaq = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/api/faq/user`);
+    const res = await axios.get(`${API_URL}/api/faq/user`);
+
+    if (res.status == 200) {
       setFaq(res.data);
       console.log("FAQ : ", res.data);
-    } catch (error) {
-      console.error('Faq 에러res:', error);
+    }else if (res.status == 302 ){
+      console.log("이벤트 에러res: ", res);
+      // setIslogin(false);
+      // errHandler(error);
+    }else {
+      alert("에러");
     }
   }
 
@@ -55,9 +64,51 @@ const Mypage = () => {
     getUser();
     getUserEvent();
     getUserFaq();
+    // axios.get(`${API_URL}/api/user/one`)
+    // .then(res => {
+    //   setUser(res.data);
+    //   setUserId(res.data.user_id);
+    //   console.log("받은 유저정보: ", res.data);
+    // }).catch((err) =>{
+    //   console.error(err);
+    // });
+  //   axios.get(`${API_URL}/api/event_applicants/user`)
+  //   .then(res => {
+  //     setEvent(res.data);
+  //     console.log("이벤트 : ", res.data);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
+
+  //   axios.get(`${API_URL}/api/faq/user`)
+  //   .then(res => {
+  //     setFaq(res.data);
+  //     console.log("FAQ : ", res.data);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
   },[]);
 
+  // useEffect(()=>{
+  //   axios.get(`${API_URL}/api/event_applicants/user`)
+  //   .then(res => {
+  //     setEvent(res.data);
+  //     console.log("이벤트 : ", res.data);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
+  // },[setEvent]);
 
+  // useEffect(()=>{
+  //   axios.get(`${API_URL}/api/faq/user`)
+  //   .then(res => {
+  //     setFaq(res.data);
+  //     console.log("FAQ : ", res.data);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
+  // },[setFaq]);
+  
   return (
     <div className='mypage-container-kjh'>
       <div className='pageTop-kjh'>
@@ -74,13 +125,12 @@ const Mypage = () => {
         <div className='myEvent-kjh'>
           <table>
             <tr>
-              <td>내가 신청한 이벤트</td>
+              <td colSpan='4' className='eventTitle-kjh'>내가 신청한 이벤트</td>
             </tr>
             {event.map((item, index) => (
               <tr>
                 <td><img src={API_URL+item.Event.event_img_url}></img></td>
                 <td>{item.Event.event_title}</td>
-                <td>{item.Event.event_status}</td>
                 <td>{item.Event.event_start_date}</td>
                 <td>{item.Event.event_end_date}</td>
               </tr>
