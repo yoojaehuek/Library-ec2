@@ -9,6 +9,7 @@ import ABanner from './ABanner/ABanner.js';
 import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
 import AUser from './AUser/AUser.js';
+import AReview from './AReview/ARevirw.js';
 import { getCookie } from '../../utils/cookie.js';
 
 const AdminMain = () => {
@@ -38,6 +39,7 @@ const AdminMain = () => {
           <Route path='/banner/banner' element={<ABanner />} />
           <Route path='/book/book' element={<ABook />} />
           <Route path='/user/user' element={<AUser />} />
+          <Route path='/review/review' element={<AReview />} />
         </Routes>
       </div>
     </div>

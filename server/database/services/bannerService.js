@@ -1,5 +1,5 @@
 const BannerModel = require('../models/bannerModel')
-
+// const {bannerFormat} = require('../../utils/dataUtils');
 
 class BannerService{
 	
@@ -10,6 +10,7 @@ class BannerService{
 
 	static async getAllBanner(){
 		const result = await BannerModel.getAllBanner();
+		// const result = bannerFormat(tmpResult);
 		return result;
 	}
 
