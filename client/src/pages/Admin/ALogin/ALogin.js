@@ -9,11 +9,11 @@ const ALogin = () => {
   const navigate = useNavigate();
   const setTime = 3600000; //1시간 (1000 = 1초)
   const [inputs, setInputs] = useState({
-    id: '',
+    email: '',
     password: ''
   });
 
-  const { id, password } = inputs; // 비구조화 할당을 통해 값 추출
+  const { email, password } = inputs; // 비구조화 할당을 통해 값 추출
 
   const onChange = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -24,8 +24,8 @@ const ALogin = () => {
   };
 
   const onLogin = () => {
-    console.log(id, password);
-    axios.post(`${API_URL}/api/admin/login`, {id, password})
+    console.log(email, password);
+    axios.post(`${API_URL}/api/admin/login`, {email, password})
     .then(res => {
       console.log(res);
       setCookie('login', res.data.data,{
@@ -55,14 +55,14 @@ const ALogin = () => {
           <p style={{ fontSize: '0.8rem'}}>ID: i1004902@naver.com<br/>pwd: 123</p>
         </Typography>
         <TextField
-          label="아이디"
+          label="이메일"
           variant="outlined"
           fullWidth
           margin="normal"
           autoFocus
-          name="id"
+          name="email"
           onChange={onChange}
-          value={id}
+          value={email}
         />
         <TextField
           label="비밀번호"

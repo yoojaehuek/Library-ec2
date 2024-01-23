@@ -10,19 +10,19 @@ import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
 import AUser from './AUser/AUser.js';
 import AEvent from './AEvent/AEvent.js';
-// import { getCookie } from '../utils/cookie.js';
+import { getCookie } from '../../utils/cookie.js';
 
 const AdminMain = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-//   useEffect(() => {
-//     console.log("location: ", location);
-//     if(!getCookie('login')){
-//       alert('다시 로그인 해주세요');
-//       navigate('/admin/login');
-//     }
-//   }, [location]);
+  useEffect(() => {
+    console.log("location: ", location);
+    if(!getCookie('login')){
+      alert('다시 로그인 해주세요');
+      navigate('/admin/login');
+    }
+  }, [location]);
 
 
 

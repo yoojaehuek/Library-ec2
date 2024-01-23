@@ -55,6 +55,7 @@ const Footer = () => {
             <li><a href='#none'>도서홍보안내</a></li>
             <li><a href='#none'>개인정보처리방침</a></li>
             <li><a href='#none'>청소년보호정책</a></li>
+            <li><a href="/admin/login" style={{color: "red"}}>관리자 페이지</a></li>
           </ul>
         </div>
         <div className='LFooterCon-kjh'>
