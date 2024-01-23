@@ -162,4 +162,53 @@ const userFormat = (result) => {
 	return tmp
 }
 
-  module.exports = { loansformatDate, faqFormatDate, eventFormatDate, userFormat, faqFormatDate2, eventApplicantsFormatDate };
+const reviewFormat = (result) => {	
+	console.log(result);
+	console.log("reviewFormatDate: ", result.length);
+	let tmp = result;
+
+	if (Array.isArray(tmp)) {
+		console.log('배열임', tmp);
+		tmp = tmp.map(el => el.get({ plain: true }));
+		tmp.map((order, index) => {
+			const { created_at } = tmp[index];
+			tmp[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
+			tmp[index].created_at = tmp[index].created_at.toISOString().split('T')[0];
+		})
+	}else if (!Array.isArray(tmp)) {
+		console.log("들어옴");
+		console.log("tmp: ", tmp);
+			tmp.created_at = new Date(tmp.created_at.setHours(tmp.created_at.getHours() + 9));
+			tmp.created_at = tmp.created_at.toISOString().split('T')[0];
+	} else {
+		console.log('뭐ㅑ');
+	}
+	return tmp
+}
+
+// const bannerFormat = (result) => {	
+// 	console.log(result);
+// 	console.log("reviewFormatDate: ", result.length);
+// 	let tmp = result;
+
+// 	if (Array.isArray(tmp)) {
+// 		console.log('배열임', tmp);
+// 		tmp = tmp.map(el => el.get({ plain: true }));
+// 		tmp.map((order, index) => {
+// 			const { created_at } = tmp[index];
+// 			tmp[index].created_at = new Date(created_at.setHours(created_at.getHours() + 9));
+// 			tmp[index].created_at = tmp[index].created_at.toISOString().split('T')[0];
+// 		})
+// 	}else if (!Array.isArray(tmp)) {
+// 		console.log("들어옴");
+// 		console.log("tmp: ", tmp);
+// 			tmp.created_at = new Date(tmp.created_at.setHours(tmp.created_at.getHours() + 9));
+// 			tmp.created_at = tmp.created_at.toISOString().split('T')[0];
+// 	} else {
+// 		console.log('뭐ㅑ');
+// 	}
+// 	return tmp
+// }
+
+
+  module.exports = { loansformatDate, faqFormatDate, eventFormatDate, userFormat, faqFormatDate2, reviewFormat};
