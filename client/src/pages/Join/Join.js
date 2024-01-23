@@ -5,6 +5,7 @@ import axios from 'axios';
 import GoogleLoginButton from '../../components/SocialLoginButtons/GoogleLoginButton/GoogleLoginButton';
 import NaverLoginButton from '../../components/SocialLoginButtons/NaverLoginButton/NaverLoginButton';
 import KakaoLoginButton from '../../components/SocialLoginButtons/KakaoLoginButton/KakaoLoginButton.js'
+import {emailVaildation, nameVaildation, pwdVaildation, pwdConfirmVaildation, phoneVaildation} from "../../utils/formVaildation";
 import './Join.scss'
 
 function Join() {
@@ -27,72 +28,7 @@ function Join() {
 	const [isPassword, setIsPassword] = useState(false);
 	const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 	const [isPhone, setIsPhone] = useState(false);
-	/** 이메일 유효성검사 */
-	const onChangeEmail = (e) => {
-		const currentEmail = e.target.value;
-		setEmail(currentEmail);
-		const emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
 
-		if (!emailRegExp.test(currentEmail)) {
-			setEmailMessage("이메일의 형식이 올바르지 않습니다!");
-			setIsEmail(false);
-		} else {
-			setEmailMessage("사용 가능한 이메일 입니다.");
-			setIsEmail(true);
-		}
-	};
-	/** 이름유효성검사 */
-	const onChangeName = (e) => {
-		const currentName = e.target.value;
-		setName(currentName);
-
-		if (currentName.length < 2 || currentName.length > 10) {
-			setNameMessage("닉네임은 2글자 이상 10글자 이하로 입력해주세요!");
-			setIsName(false);
-		} else {
-			setNameMessage("사용가능한 닉네임 입니다.");
-			setIsName(true);
-		}
-	};
-	/** 비밀번호 유효성검사 */
-	const onChangePassword = (e) => {
-		const currentPassword = e.target.value;
-		setPassword(currentPassword);
-		const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$&%^*+=-])(?=.*[0-9]).{8,25}$/;
-		if (!passwordRegExp.test(currentPassword)) {
-			setPasswordMessage("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!");
-			setIsPassword(false);
-		} else {
-			setPasswordMessage("안전한 비밀번호 입니다.");
-			setIsPassword(true);
-		}
-	};
-	/** 비밀번호 확인 유효성검사 */
-	const onChangePasswordConfirm = (e) => {
-		const currentPasswordConfirm = e.target.value;
-		setPasswordConfirm(currentPasswordConfirm);
-		if (password !== currentPasswordConfirm) {
-			setPasswordConfirmMessage("비밀번호가 똑같지 않아요!");
-			setIsPasswordConfirm(false);
-		} else {
-			setPasswordConfirmMessage("똑같은 비밀번호를 입력했습니다.");
-			setIsPasswordConfirm(true);
-		}
-	};
-	/** 전화번호 유효성검사 */
-	const onChangePhone = (e) => {
-		const currentPhone = e.target.value;
-		setPhone(currentPhone);
-		const phoneRegExp = /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-
-		if (!phoneRegExp.test(currentPhone)) {
-			setPhoneMessage("올바른 형식이 아닙니다!");
-			setIsPhone(false);
-		} else {
-			setPhoneMessage("사용 가능한 번호입니다:-)");
-			setIsPhone(true);
-		}
-	};
 	// 각 입력창에 대한 라벨 상태 저장
 	const [isLabelVisible, setIsLabelVisible] = useState({
 		email: false,
@@ -112,7 +48,7 @@ function Join() {
 
 	const onSubmitJoin = async (e) => {// 회원가입
 		e.preventDefault();
-		const email = e.target.email.value.trim();  //  앞뒤 공백제거
+		const email = e.target.email.value.trim();// 앞뒤 공백제거
 		const pwd = e.target.pwd.value.trim(); 
 		const confirmPwd = e.target.confirmPwd.value.trim(); 
 		const user_name = e.target.name.value.trim(); 
@@ -163,12 +99,17 @@ function Join() {
 						<input
 							id="email"
 							value={email}
-							onChange={onChangeEmail}
 							ref={inputRefs.email}
 							type="text"
 							placeholder="아이디(이메일주소)"
 							onFocus={() => handleInputFocus('email')}
 							onBlur={() => handleInputBlur('email')}
+							onChange={(e) => {
+								const {emailMessage, bool} = emailVaildation(e);
+								setEmailMessage(emailMessage);
+								setIsEmail(bool);
+								setEmail(e.target.value);
+							}}
 						/>
 						<p className={`message ${!isEmail ? 'error' : ''}`}>{emailMessage}</p>
 					</li>
@@ -177,12 +118,17 @@ function Join() {
 						<input
 							id="pwd"
 							value={password}
-							onChange={onChangePassword}
 							ref={inputRefs.password}
 							type="password"
 							placeholder="비밀번호"
 							onFocus={() => handleInputFocus('password')}
 							onBlur={() => handleInputBlur('password')}
+							onChange={(e) => { 
+								const {pwdMessage, bool} = pwdVaildation(e);
+								setPasswordMessage(pwdMessage);
+								setIsPassword(bool);
+								setPassword(e.target.value);
+							}}
 						/>
 						<p className={`message ${!isPassword ? 'error' : ''}`}>{passwordMessage}</p>
 					</li>
@@ -191,12 +137,17 @@ function Join() {
 						<input
 							id="confirmPwd"
 							value={passwordConfirm}
-							onChange={onChangePasswordConfirm}
 							ref={inputRefs.passwordConfirm}
 							type="password"
 							placeholder="비밀번호 확인"
 							onFocus={() => handleInputFocus('passwordConfirm')}
 							onBlur={() => handleInputBlur('passwordConfirm')}
+							onChange={(e) => { 
+								const {pwdConfirmMessage, bool} = pwdConfirmVaildation({e, pwd: password});
+								setPasswordConfirmMessage(pwdConfirmMessage);
+								setIsPasswordConfirm(bool);
+								setPasswordConfirm(e.target.value);
+							}}
 						/>
 						<p className={`message ${!isPasswordConfirm ? 'error' : ''}`}>{passwordConfirmMessage}</p>
 					</li>
@@ -205,12 +156,17 @@ function Join() {
 						<input
 							id="name"
 							value={name}  
-							onChange={onChangeName}
 							ref={inputRefs.name}
 							type="text"
 							placeholder="이름"
 							onFocus={() => handleInputFocus('name')}
 							onBlur={() => handleInputBlur('name')}
+							onChange={(e) => { 
+								const {nameMessage, bool} = nameVaildation(e);
+								setNameMessage(nameMessage);
+								setIsName(bool);
+								setName(e.target.value);
+							}}
 						/>
 						<p className={`message ${!isName ? 'error' : ''}`}>{nameMessage}</p>
 					</li>
@@ -219,12 +175,17 @@ function Join() {
 						<input
 							id="phone"
 							value={phone} 
-							onChange={onChangePhone}
 							ref={inputRefs.phone}
 							type="text"
 							placeholder="전화번호(01012345678)"
 							onFocus={() => handleInputFocus('phone')}
 							onBlur={() => handleInputBlur('phone')}
+							onChange={(e) => { 
+								const {phoneMessage, bool} = phoneVaildation(e);
+								setPhoneMessage(phoneMessage);
+								setIsPhone(bool);
+								setPhone(e.target.value);
+							}}
 						/>
 						<p className={`message ${!isPhone ? 'error' : ''}`}>{phoneMessage}</p>
 					</li>
@@ -236,7 +197,6 @@ function Join() {
 					<GoogleLoginButton/>
 					<KakaoLoginButton/>
 				</fieldset>
-				
 			</form>
 		</div>
 	);
