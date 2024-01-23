@@ -120,8 +120,13 @@ const Mypage = () => {
 
       <div className='myTable-kjh'>
 
-        <LoansTable is_returned={false}/>
-        <LoansTable is_returned={true}/>
+        <div className='abc-kjh'>
+          <LoansTable is_returned={false}/>
+        </div>
+        <div className='abc-kjh'>
+          <LoansTable is_returned={true}/>
+        </div>
+       
         <div className='myEvent-kjh'>
           <table>
             <tr>
@@ -131,13 +136,13 @@ const Mypage = () => {
               <tr>
                 <td><img src={API_URL+item.Event.event_img_url}></img></td>
                 <td>{item.Event.event_title}</td>
-                <td>{item.Event.event_status}</td>
                 <td>{item.Event.event_start_date}</td>
                 <td>{item.Event.event_end_date}</td>
               </tr>
             ))}
           </table>
         </div>
+        <div className='myFaq-kjh'></div>
       </div>
     </div>
   )
