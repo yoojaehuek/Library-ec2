@@ -3,12 +3,13 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import './Pagination.scss';
 
 // total(데이터 총 갯수), limit(한 페이지에 보여줄 갯수)
-const Pagination = ({ total, limit, page, setPage, getData, noPrev, noNext, startEvent_id, data_limit}) => {
-  const [btnActive, setBtnActive] = useState(""); // 현재 페이지 활성화 여부
-  const [pageHeadNum, setPageHeadNum] = useState(1); // 현재 페이지 활성화 여부
+const Pagination = ({ total, limit, page, setPage, getData, data_limit, lastPage}) => {
+  console.log(lastPage);
+  const [btnActive, setBtnActive] = useState(""); // 현재 눌린 버튼
+  const [pageHeadNum, setPageHeadNum] = useState(1); // 현재 활성화된 페이지 번호
+  // const [currentPage, setCurrentPage] = useState(1);
   const numPages = Math.ceil(total / limit); // 총 페이지 수는 올림해야 함
-  // const [pageStartNum, setPageStartNum] = useState(Math.floor(startEvent_id/data_limit) * Math.floor(data_limit/limit)); 
-  // console.log("pageStartNum: ", pageStartNum);
+
 
   const hadlePageBtn = (e, i) => {
     console.log(e.target.value);
@@ -32,8 +33,8 @@ const Pagination = ({ total, limit, page, setPage, getData, noPrev, noNext, star
 
   return (
     <div className="pagination-container-kjh">
-      {!noPrev && 
-        <button onClick={() => handlePrevious(0)} disabled={noPrev}>
+      {pageHeadNum !== 1 && 
+        <button onClick={() => handlePrevious(0)}>
           <IoIosArrowBack />
         </button>
       }
@@ -50,9 +51,9 @@ const Pagination = ({ total, limit, page, setPage, getData, noPrev, noNext, star
           </button>
         ))
       }
-      {!noNext && 
-        <button onClick={() => handleNext(0)} disabled={noNext} >
-        <IoIosArrowForward />
+      {!lastPage &&  
+        <button onClick={() => handleNext(0)}>
+          <IoIosArrowForward />
         </button>
       }
     </div>

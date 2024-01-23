@@ -7,6 +7,7 @@ import LoansTable from '../../components/Mypage/LoansTable/LoansTable';
 import { LiaUserEditSolid } from "react-icons/lia";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
+import { errHandler } from '../../utils/globalFunction';
 
 const Mypage = () => {
   const [islogin, setIslogin] = useRecoilState(loginState);
@@ -21,45 +22,42 @@ const Mypage = () => {
 
 
   const getUser = async () => {
-    const res = await axios.get(`${API_URL}/api/user/one`);
-
-    if (res.status == 200) {
+    try {
+      const res = await axios.get(`${API_URL}/api/user/one`);
       setUser(res.data);
       setUserId(res.data.user_id);
-    }else if (res.status == 302 ){
-      console.log("에러res: ", res);
-      // setIslogin(false);
-      // errHandler(error);
-    }else {
-      alert("에러");
+    } catch (error) {
+      const {reLogin} = errHandler(error);
+      if (reLogin === true) {
+        setIslogin(false);
+      }
     }
   }
-  const getUserEvent = async () => {
-    const res = await axios.get(`${API_URL}/api/event_applicants/user`);
 
-    if (res.status == 200) {
+  const getUserEvent = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/api/event_applicants/user`);
       setEvent(res.data);
       console.log("이벤트 : ", res.data);
-    }else if (res.status == 302 ){
-      console.log("이벤트 에러res: ", res);
-      // setIslogin(false);
-      // errHandler(error);
-    }else {
-      alert("에러");
+    } catch (error) {
+      console.log("이벤트 에러error: ", error);
+      // const {reLogin} = errHandler(error);
+      // if (reLogin === true) {
+      //   setIslogin(false);
+      // }
     }
   }
   const getUserFaq = async () => {
-    const res = await axios.get(`${API_URL}/api/faq/user`);
-
-    if (res.status == 200) {
+    try {
+      const res = await axios.get(`${API_URL}/api/faq/user`);
       setFaq(res.data);
       console.log("FAQ : ", res.data);
-    }else if (res.status == 302 ){
-      console.log("이벤트 에러res: ", res);
-      // setIslogin(false);
-      // errHandler(error);
-    }else {
-      alert("에러");
+    } catch (error) {
+      console.log("이벤트 에러error: ", error);
+      // const {reLogin} = errHandler(error);
+      // // if (reLogin === true) {
+      // //   setIslogin(false);
+      // // }
     }
   }
 
@@ -89,50 +87,7 @@ const Mypage = () => {
     getUser();
     getUserEvent();
     getUserFaq();
-    // axios.get(`${API_URL}/api/user/one`)
-    // .then(res => {
-    //   setUser(res.data);
-    //   setUserId(res.data.user_id);
-    //   console.log("받은 유저정보: ", res.data);
-    // }).catch((err) =>{
-    //   console.error(err);
-    // });
-  //   axios.get(`${API_URL}/api/event_applicants/user`)
-  //   .then(res => {
-  //     setEvent(res.data);
-  //     console.log("이벤트 : ", res.data);
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   });
-
-  //   axios.get(`${API_URL}/api/faq/user`)
-  //   .then(res => {
-  //     setFaq(res.data);
-  //     console.log("FAQ : ", res.data);
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   });
   },[]);
-
-  // useEffect(()=>{
-  //   axios.get(`${API_URL}/api/event_applicants/user`)
-  //   .then(res => {
-  //     setEvent(res.data);
-  //     console.log("이벤트 : ", res.data);
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   });
-  // },[setEvent]);
-
-  // useEffect(()=>{
-  //   axios.get(`${API_URL}/api/faq/user`)
-  //   .then(res => {
-  //     setFaq(res.data);
-  //     console.log("FAQ : ", res.data);
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   });
-  // },[setFaq]);
   
   return (
     <div className='mypage-container-kjh'>

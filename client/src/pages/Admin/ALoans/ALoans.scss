@@ -1,0 +1,103 @@
+.aloans-container-kjh{
+  padding: 0 2vw;
+
+  h3{
+    display: inline-block;
+  }
+  p{
+    margin: 0;
+  }
+  .content-top-kjh{
+    margin-bottom: 2vw;
+    p{
+      color: #5E656B;
+    }
+  }
+  
+  display: grid;
+  grid-template-areas: 
+    "user book"
+    "user book"
+    "loans loans"
+    "loans loans";
+  ;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 2vw;
+  
+  label {
+    display:inline-block;
+    text-align:end;
+    width:5.5556vw;
+    font-weight:bold;
+  }
+
+  .user-kjh{
+    grid-area: user;
+    // border: 1px solid #000;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px, rgba(0, 0, 0, 0.08) 0px 3px 6px;
+
+    
+
+    .user-data-top-kjh{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1vw;
+      height: 3vw;
+      color: white;
+      background-color: #5E656B;
+    }
+
+    .user-data-content-kjh{
+      display: flex;
+      flex-direction: row;
+      gap: 0 1vw;
+      padding: 1.5vw;
+      height: calc(100% - 3vw);
+      
+      svg{
+        height: 100%;
+        width: 25%;
+        border: 1px solid #000;
+      }
+    }
+
+  }
+
+  .book-kjh{
+    grid-area: book;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px, rgba(0, 0, 0, 0.08) 0px 3px 6px;
+
+    .book-data-top-kjh{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1vw;
+      height: 3vw;
+      color: white;
+      background-color: #5E656B;
+    }
+
+    .book-data-content-kjh{
+      display: flex;
+      flex-direction: row;
+      padding: 1.5vw;
+      gap: 0 1vw;
+      
+      img{
+        height: 100%;
+        width: 25%;
+      }
+    }
+  }
+
+  .loans-kjh{
+    grid-area: loans;
+
+    .rowActive {
+      border: 2px solid #0085f2ae;
+      background-color: #0085f230;
+    }
+  }
+}
