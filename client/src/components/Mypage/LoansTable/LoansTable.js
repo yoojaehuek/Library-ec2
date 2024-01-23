@@ -37,7 +37,7 @@ const LoansTable = ({is_returned}) => {
   return (
     <div className='rentTable-kjh'>
       <table>
-        <tr><td colSpan='4' className='tdTitle-kjh'>{is_returned ? "내가 봤던 책" : "대여 중인 책"}</td></tr>
+        <tr><td colSpan='5' className='tdTitle-kjh'>{is_returned ? "내가 봤던 책" : "대여 중인 책"}</td></tr>
         {visibleBooks.map((book, index) => (
           <LoansRow 
             book={book} 

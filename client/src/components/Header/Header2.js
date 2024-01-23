@@ -22,7 +22,7 @@ const Header2 = () => {
 
 
   const logout = async () => {
-    axios.get(`${API_URL}/logout`, { withCredentials: true })
+    axios.get(`${API_URL}/api/user/logout`, { withCredentials: true })
       .then(()=>{
         setIsLogin(false);
       })

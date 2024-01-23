@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../../config/contansts";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../config/contansts";
+import { errHandler } from "../../utils/globalFunction";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
-import axios from "axios";
+import { AiOutlineClose } from "react-icons/ai";
 import "./Cart.scss";
 
 const Cart = () => {
-  // const [islogin, x] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
+  const [islogin, setIslogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const [cart, setCart] = useState([]); // 장바구니에 담은 상품목록
   const [checkItems, setCheckItems] = useState([]); // 체크된 책
   const navigate = useNavigate();
@@ -46,7 +48,10 @@ const Cart = () => {
           navigate("/");
         })
         .catch((err) => {
-          console.error(err);
+          const {reLogin} = errHandler(err);
+          if (reLogin === true) {
+            setIslogin(false);
+          }
         });
     } else {
       alert("선택된 책이 없습니다. 책을 선택해주세요."); 
@@ -77,6 +82,16 @@ const Cart = () => {
     }
   };
 
+  /** 삭제버튼 */
+  const handleRemoveFromCart = (bookId) => {
+    // 선택된 책들만 필터링하여 삭제할 책을 제외한 배열을 만듭니다.
+    const updatedCart = cart.filter((book) => book.id !== bookId);
+    // 상태를 업데이트합니다.
+    setCart(updatedCart);
+    // 로컬 스토리지에서도 업데이트합니다.
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <form id="cart-container-yjh">
       <li id="cart-header-yjh">
@@ -94,11 +109,11 @@ const Cart = () => {
           <span>전체선택</span>
         </div>
       </li>
-
       <ul id="book-list-yjh">
         {cart && cart.length > 0 ? (
           cart.map((book, index) => (
             <li key={index} id="book-yjh" className="grid-container">
+
               <div id="book-checkbox-yjh" className="grid-item box-1">
                 {book.book_availability === false ? (
                   <div id="empty-yjh"></div>
@@ -115,23 +130,29 @@ const Cart = () => {
                   />
                 )}
               </div>
+
               <div id="img-box-yjh" className="grid-item box-2">
                 <div>
                   <img src={API_URL + book.book_img_url} alt="" />
                 </div>
               </div>
+
               <div className="grid-item box-3">
                 <NavLink to={`/BookDetail/${book.id}`}>도서정보</NavLink>{" "}
               </div>
+
               <div className="grid-item box-4">
                 <h3>{book.book_name}</h3>
               </div>
+
               <p id="writer-yjh" className="grid-item box-5">
                 {book.book_AUTHOR} | {book.book_publisher} | {book.book_publisher}
               </p>
+
               <p id="book-description-yjh" className="grid-item box-6">
                 {book.book_description}
               </p>
+
               <div className="grid-item box-7">
                 {book.book_availability == true ? (
                   <div id="loan-a-yjh">대출가능</div>
@@ -139,10 +160,15 @@ const Cart = () => {
                   <div id="loan-p-yjh">대출불가</div>
                 )}
               </div>
+
+              <div className="grid-item box-9">
+                <button type="button" onClick={() => handleRemoveFromCart(book.id)}><AiOutlineClose id="closeBtn"/></button>
+              </div>
+
             </li>
           ))
         ) : (
-          <p>장바구니에 담은 책이 없습니다</p>
+          <h1 id="empty">장바구니에 담은 책이 없습니다</h1>
         )}
         <li id="loan-btn-yjh">
           <button type="button" onClick={handleOrder}>
