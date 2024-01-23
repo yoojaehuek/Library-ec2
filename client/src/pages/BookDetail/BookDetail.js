@@ -84,7 +84,20 @@ const BookDetail = () => {
     navigate("/cart");
   };
 
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 5;
+
+  // 현재 페이지에서 마지막 리뷰의 인덱스 계산
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  // 현재 페이지에서 첫 번째 리뷰의 인덱스 계산
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  // 현재 페이지의 리뷰 가져오기
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+
+  // 페이지 변경 함수
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   if (!reviews || reviews.length === 0) {
     
@@ -115,7 +128,6 @@ const BookDetail = () => {
           </div>
           <div className="buttons-container-lhs">
             <button onClick={handleAddToCart}>도서카트</button>
-            <button onClick={handleReservation}>예약하기</button>
           </div>
         </div>
         <div className='book-description-top-lhs'>
@@ -158,19 +170,34 @@ const BookDetail = () => {
           {reviews.length === 0 ? (
             <p>리뷰가 없습니다.</p>
           ) : (
-            reviews.map((review) => (
-              <div key={review.id} className='review-item-lhs'>
-                <span className='review-title'>{review.review_title}</span>
-                <div className="rating-container">
-                  {Array.from({ length: review.review_rating }, (_, index) => (
-                    <span key={index} className="star-icon">★</span>
-                  ))}
-                  <span className='user-name'>{review.User.user_name}</span>
-                  <p>{review.created_at}</p>
+            <>
+              {currentReviews.map((review) => (
+                // 현재 페이지에 대한 리뷰 렌더링
+                <div key={review.id} className="review-item-lhs">
+                  <span className='review-title'>{review.review_title}</span>
+                  <div className="rating-container">
+                    {Array.from({ length: review.review_rating }, (_, index) => (
+                      <span key={index} className="star-icon">★</span>
+                    ))}
+                    <span className='user-name'>{review.User.user_name}</span>
+                    <p>{review.created_at}</p>
+                  </div>
+                  <p>{review.review_content}</p>
                 </div>
-                <p>{review.review_content}</p>
+              ))}
+              {/* 페이지네이션 탐색 */}
+              <div className="pagination-container" style={{ textAlign: 'center' }}>
+                {Array.from({ length: Math.ceil(reviews.length / reviewsPerPage) }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => paginate(index + 1)}
+                    className={`pagination-button${currentPage === index + 1 ? ' active' : ''}`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
               </div>
-            ))
+            </>
           )}
         </div>
       </div>
