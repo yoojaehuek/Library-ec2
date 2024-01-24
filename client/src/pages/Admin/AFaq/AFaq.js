@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../../../config/contansts";
 import {
   Table,
   TableBody,
@@ -21,6 +20,8 @@ import {
   TablePagination,
   Typography,
 } from "@mui/material";
+import { API_URL } from "../../../config/contansts";
+import { getCookie } from "../../../utils/cookie";
 
 const AFaq = () => {
   const [axiosResult, setAxiosResult] = useState([]);
@@ -28,13 +29,13 @@ const AFaq = () => {
   const [editFaqId, setEditFaqId] = useState(null);
   const [editAnswer, setEditAnswer] = useState("");
   const [editResponseTime, setEditResponseTime] = useState(
-    new Date().toISOString().slice(0, 16)
+    new Date().toISOString().slice(0, 19).replace("T", " ")
   );
   const [editStatus, setEditStatus] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [editTitle, setEditTitle] = useState("");
-  const [editContent, setEditContent] = useState("");
+  const [editContent, setEditContent] = useState(""); 
 
   useEffect(() => {
     fetchFaqData();
@@ -73,19 +74,23 @@ const AFaq = () => {
   };
 
   const handleSaveEdit = () => {
+    const admin_id = getCookie("login");
+    console.log(admin_id);
+    const DateTime = new Date().toISOString().slice(0, 19).replace("T", " ");
+
     axios
       .patch(`${API_URL}/api/faq/${editFaqId}`, {
         faq_response: editAnswer,
-        faq_response_time: editResponseTime,
+        faq_response_time: DateTime,
         faq_status: editStatus,
-        //faq_status: editStatus === '1' ? '답변 완료' : '대기',
+        admin_id: admin_id,
       })
       .then(() => {
         fetchFaqData();
         setOpenEditDialog(false);
         setEditFaqId(null);
         setEditAnswer("");
-        setEditResponseTime(new Date().toISOString().slice(0, 16));
+        setEditResponseTime(DateTime);
         setEditStatus("");
       })
       .catch((err) => {
@@ -97,7 +102,9 @@ const AFaq = () => {
     setOpenEditDialog(false);
     setEditFaqId(null);
     setEditAnswer("");
-    setEditResponseTime("");
+    setEditResponseTime(
+      new Date().toISOString().slice(0, 19).replace("T", " ")
+    );
     setEditStatus("");
   };
 
@@ -191,7 +198,6 @@ const AFaq = () => {
                 {item.faq_response}
               </TableCell>
               <TableCell>{item.faq_response_time}</TableCell>
-              {/* <TableCell>{item.faq_status}</TableCell> */}
               <TableCell>{item.faq_status ? "답변 완료" : "대기"}</TableCell>
               <TableCell>{item.created_at}</TableCell>
               <TableCell>
@@ -200,7 +206,7 @@ const AFaq = () => {
                   color="primary"
                   onClick={() => handleEdit(item.faq_id)}
                 >
-                  수정
+                  답변
                 </Button>
                 <Button
                   variant="contained"
