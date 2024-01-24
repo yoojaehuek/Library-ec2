@@ -4,15 +4,15 @@
 
 <br/>
 
-## 대표화면 - 보류
+## 대표화면
 <table>
   <tr>
     <td><b>메인 페이지</b></td>
     <td><b>관리자 페이지</b></td>
   </tr> 
   <tr>
-    <td><img src="/readme-file/main-page.png" alt="메인 페이지"></td>
-    <td><img src="/readme-file/admin-page.png" alt="관리자 페이지"></td>
+    <td><img src="/readme-file/main.png" alt="메인 페이지"></td>
+    <td><img src="/readme-file/adminmain.png" alt="관리자 페이지"></td>
   </tr>
 </table>
 
@@ -71,11 +71,6 @@ Back
 npm install
 npm start
 ```
-
-Back-end API test
-
-- 보류
-
 
 ## 💻 2. Project Info : 프로젝트 소개
 
@@ -248,7 +243,7 @@ Back-end API test
 
 #### 🧩 Architecture
 
-![Architecture](/readme-file/Architecture.svg)
+![Architecture](/readme-file/Architecture.png)
 
 <br/>
 
@@ -370,7 +365,7 @@ Back-end API test
 - 헤더, 푸터 컴포넌트
 - 마이페이지 프론트엔드
 - 관리자 리뷰 관리 페이지
-- 리뷰 관리, 마이페이지 백엔드
+- 마이페이지 백엔드
 - 반응형 디자인 및 UI 스타일링
 
   
@@ -380,6 +375,7 @@ Back-end API test
 - 책 목록 페이지
 - 책 상세 페이지
 - 관리자 책 관리 페이지
+- 관리자 리뷰 관리 페이지
 - 관리자 배너 관리 페이지
 - 배너, 책 백엔드
 - 반응형 디자인 및 UI 스타일링
