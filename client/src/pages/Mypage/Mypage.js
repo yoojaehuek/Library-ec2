@@ -100,8 +100,8 @@ const Mypage = () => {
 
       <div className='myTable-kjh'>
 
-        <LoansTable is_returned={false}/>
         <LoansTable is_returned={true}/>
+        <LoansTable is_returned={false}/>
         <div className='myEventFaq-kjh'>
           <table>
             <tr>

@@ -16,7 +16,12 @@ const LoansTable = ({is_returned}) => {
     axios.get(`${API_URL}/api/loans/userbyloans`)
       .then(res => {
         console.log("res: ", res);
-        const loansBooks = res.data.filter(book => book.is_returned === is_returned);
+        let loansBooks = null;
+        if(is_returned){
+          loansBooks = res.data.filter(loans => loans.deletedAt != null);
+        }else {
+          loansBooks = res.data.filter(loans => loans.deletedAt == null);
+        }
         setUserbyLoans(loansBooks);
         console.log("대출한 책 : ", loansBooks);
       })
