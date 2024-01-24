@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Box, Pagination } from '@mui/material';
 import './BookList.scss';
 import axios from 'axios';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
 
 const BookList = () => {
   const {search} = useLocation();

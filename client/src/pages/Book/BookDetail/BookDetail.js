@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import axios  from 'axios';
