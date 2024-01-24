@@ -29,7 +29,7 @@ const Cart = () => {
 
   /** 대출신청함수 */
   const handleOrder = () => {
-    // 선택된 책들만 필터링
+    // 선택된 책들만 필터j링
     const selectedBooks = cart.filter((book) => checkItems.includes(book.id));
     const futureDate = getFutureDate(); // 7일뒤 반납일
     // 선택된 책이 하나 이상인 경우에만 대출 신청 처리
@@ -68,13 +68,11 @@ const Cart = () => {
       setCheckItems(checkItems.filter((el) => el !== id));
     }
   };
-  const [availableBooks, setAvailableBooks] = useState([]);
-  // 체크박스 전체 선택
+  /** 체크박스 전체 선택 */ 
   const handleAllCheck = (checked) => {
     if (checked) {
-      // 전체 선택 클릭 시 데이터의 모든 아이템(id)를 담은 배열로 checkItems 상태 업데이트
-      setAvailableBooks(cart.filter((book) => book.book_availability));
-      const idArray = availableBooks.map((book) => book.id);
+      // 체크된 책의 id 만 담은 배열로 checkItems에 업데이트
+      const idArray = cart.map((book) => book.id);
       setCheckItems(idArray);
     } else {
       // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
@@ -90,12 +88,17 @@ const Cart = () => {
     setCart(updatedCart);
     // 로컬 스토리지에서도 업데이트합니다.
     sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    // 만약 삭제된 책이 checkItems에 포함되어 있다면 해당 아이템을 제거합니다.
+    if (checkItems.includes(bookId)) {
+      setCheckItems(checkItems.filter((id) => id !== bookId));
+    }
   };
 
   return (
     <form id="cart-container-yjh">
       <li id="cart-header-yjh">
-        <h1>내가 담은 책</h1>
+        <h1>내가 담은 책 <span>{cart.length}권</span></h1>
         <div>
           <input
             type="checkbox"
@@ -103,7 +106,7 @@ const Cart = () => {
             onChange={(e) => handleAllCheck(e.target.checked)}
             checked={
               //대출가능한 책의 개수와 체크된 아이템의 개수가 다를 경우 선택 해제 (하나라도 해제 시 선택 해제)
-              availableBooks.length !== 0 && checkItems.length === availableBooks.length ? true : false
+              cart.length !== 0 && checkItems.length === cart.length ? true : false
             }
           />
           <span>전체선택</span>
@@ -113,11 +116,7 @@ const Cart = () => {
         {cart && cart.length > 0 ? (
           cart.map((book, index) => (
             <li key={index} id="book-yjh" className="grid-container">
-
               <div id="book-checkbox-yjh" className="grid-item box-1">
-                {book.book_availability === false ? (
-                  <div id="empty-yjh"></div>
-                ) : (
                   <input
                     type="checkbox"
                     name={`select-${book.id}`}
@@ -126,9 +125,7 @@ const Cart = () => {
                     }
                     // 체크된 아이템 배열에 해당 아이템이 있을 경우 선택 활성화, 아닐 시 해제
                     checked={checkItems.includes(book.id) ? true : false}
-                    disabled={!book.book_availability}
                   />
-                )}
               </div>
 
               <div id="img-box-yjh" className="grid-item box-2">
@@ -154,11 +151,7 @@ const Cart = () => {
               </p>
 
               <div className="grid-item box-7">
-                {book.book_availability == true ? (
                   <div id="loan-a-yjh">대출가능</div>
-                ) : (
-                  <div id="loan-p-yjh">대출불가</div>
-                )}
               </div>
 
               <div className="grid-item box-9">
