@@ -1,15 +1,16 @@
 // React에서 useState 및 useEffect를 가져옵니다
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Box, Pagination } from '@mui/material';
-import './BookList.scss';
+import './BookSearch.scss';
 import axios from 'axios';
 import { API_URL } from '../../../config/contansts';
 
-const BookList = () => {
-  const {search} = useLocation();
+const BookSearch = () => {
+  // const {search} = useLocation();
+  const { search } = useParams();
   const [showWelcome, setShowWelcome] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -29,14 +30,14 @@ const BookList = () => {
   }, []);
 
   useEffect(() => {
-    const genre = decodeURI(search.split('=')[1]);
     // 데이터베이스에서 도서 목록을 가져오는 로직
-    axios.get(`${API_URL}/api/book?book_genre=${genre}`)
+    axios.get(`${API_URL}/api/book/search/${search}`)
       .then(res => {
         setBooks(res.data);
         console.log("관련 도서:", res.data);
       })
       .catch(err => {
+        setBooks([]);
         console.error(err);
       });
   }, [search]);
@@ -51,14 +52,15 @@ const BookList = () => {
   };
 
   return (
-    <div className={`BookList-container-lhs ${showWelcome ? 'show' : ''}`}>
+    <div className={`BookSearch-container-lhs ${showWelcome ? 'show' : ''}`}>
       <div className={`BookList-content-lhs ${showWelcome ? 'show' : ''}`}>
         <div className={`BookList-SF-welcome-lhs ${showWelcome ? 'visible' : ''}`}></div>
         <div className='BookList-content-lhs'>
-          <h2>{search.split('=')[1] === undefined ? "도서" : decodeURI(search.split('=')[1])}</h2>
+          <h2>연관 도서</h2>
           <div className={`BookList-main-content-lhs  ${showWelcome ? 'show' : ''}`}>
             <div className='BookList-main-img-lhs'>
-              {books.slice(indexOfFirstItem,indexOfLastItem).map((item, index) => {
+              {books.length > 0 ? 
+                books.slice(indexOfFirstItem,indexOfLastItem).map((item, index) => {
                 return (
                   <NavLink to={`/BookDetail/${item.book_id}`} key={index} className={`grid-item-lhs ${item.book_availability === '대출 가능' ? 'available' : 'unavailable'}`}>
                     <div className='grid-item-info-lhs'>
@@ -94,7 +96,10 @@ const BookList = () => {
                     </div>
                   </NavLink>
                 );
-              })}
+              })
+              :
+              <h1 className=''>"{search}"에 대한 검색결과가 없습니다.</h1>
+              }
             </div>
             <div className="pagination-container-lhs" style={{ margin: "0 auto" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
@@ -114,4 +119,4 @@ const BookList = () => {
   );
 };
 
-export default BookList;
+export default BookSearch;

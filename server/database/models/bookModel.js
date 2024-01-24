@@ -43,16 +43,16 @@ class BookModel {
     return result;
   }
 
-  static async getSearchBook(validationInput){
-    console.log("validationInput: ", validationInput);
+  static async getSearchBook(input){
+    console.log("input: ", input);
     const result = await Book.findAll({
       where: {
         [Op.or]: [
-          {book_name: {[Op.like]: `%${validationInput}%`}},
-          {book_author: {[Op.like]: `%${validationInput}%`}},
-          {book_publisher: {[Op.like]: `%${validationInput}%`}},
-          {book_genre: {[Op.like]: `%${validationInput}%`}},
-          {book_ISBN: {[Op.like]: `%${validationInput}%`}},
+          {book_name: {[Op.like]: `%${input}%`}},
+          {book_author: {[Op.like]: `%${input}%`}},
+          {book_publisher: {[Op.like]: `%${input}%`}},
+          {book_genre: {[Op.like]: `%${input}%`}},
+          {book_ISBN: {[Op.like]: `%${input}%`}},
         ]
       },
       // order: [ ['book_id', 'ASC'] ],

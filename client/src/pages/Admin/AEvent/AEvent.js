@@ -193,73 +193,6 @@ const AEvent = () => {
     setCurrentPage(value);
   };
 
-  // const handleEditClick = (event) => {
-  //   setEditEventId(event.event_id);
-  //   setSelectedEvent(event);
-  //   setEventTitle(event.event_title);
-  //   setImageUrl(event.event_img_url);
-  //   setEventStatus(event.event_status);
-  //   setEventStartDate(event.event_start_date);
-  //   setEventEndDate(event.event_end_date);
-  //   setEventMaxApplicants(event.event_max_applicants);
-  //   setOpenEditDialog(true);
-  // };
-
-  // const [openAddDialog, setOpenAddDialog] = useState(false);
-  // const handleOpenAddDialog = () => setOpenAddDialog(true);
-  // const handleCloseAddDialog = () => {
-  //   setOpenAddDialog(false);
-  //   setEventTitle('');
-  //   setImageUrl('');
-  //   setEventStatus('');
-  //   setEventStartDate('');
-  //   setEventEndDate('');
-  //   setEventMaxApplicants('');
-  //   // setImageUrl(''); // 이미지 URL 초기화
-  // }
-  
-
-  // const handleSaveEdit = () => {
-  //   if (editEventId) {
-  //     const isValidStartDate = eventStartDate instanceof Date && !isNaN(eventStartDate);
-  //     const isValidEndDate = eventEndDate instanceof Date && !isNaN(eventEndDate);
-
-  //     if (!isValidStartDate || !isValidEndDate) {
-  //       console.error('Invalid Dates:', eventStartDate, eventEndDate);
-  //       alert('올바른 날짜를 선택해 주세요.');
-  //       return;
-  //     }
-
-  //     const updatedItem = {
-  //       event_title: eventTitle,
-  //       event_img_url: imageUrl,
-  //       event_status: eventStatus,
-  //       event_start_date: eventStartDate,
-  //       event_end_date: eventEndDate,
-  //       event_max_applicants: eventMaxApplicants,
-  //     };
-
-  //     console.log('update:', updatedItem);
-  //     const userConfirmed = window.confirm('수정하시겠습니까?');
-  
-  //     if (userConfirmed) {
-  //       console.log(editEventId)
-  //       axios
-  //         .patch(`${API_URL}/api/event/${editEventId}`, updatedItem)
-  //         .then(() => {
-  //           alert('수정되었습니다.');
-  //           fetchEventData(); // 데이터 갱신
-  //           handleCloseEditDialog();
-  //         })
-  //         .catch((err) => {
-  //           console.error(err);
-  //           alert('수정에 실패했습니다.');
-  //         });
-  //     } else {
-  //       return;
-  //     }
-  //   }
-  // };
 
   const handleDelete = (eventId) => {
     const userConfirmed = window.confirm('삭제하시겠습니까?');
@@ -299,45 +232,6 @@ const AEvent = () => {
   };
 
 
-  // const handleAdd = () => {
-  //   const createItem = {
-  //     event_title: eventTitle,
-  //     event_img_url: imageUrl,
-  //     event_status: eventStatus,
-  //     event_start_date: eventStartDate,
-  //     event_end_date: eventEndDate,
-  //     event_max_applicants: eventMaxApplicants,
-
-  //   };
-    
-
-  //   const userConfirmed = window.confirm('추가하시겠습니까?');
-  //   if (userConfirmed) {
-  //     axios
-  //       .post(`${API_URL}/api/event`, createItem)
-  //       .then(() => {
-  //         alert('추가되었습니다.');
-  //         fetchEventData();
-  //         handleCloseAddDialog();
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //         alert('추가에 실패했습니다.');
-  //       });
-        
-  //   }
-  // };
-
-
-  // const handleCloseEditDialog = () => {
-  //   setOpenEditDialog(false);
-  //   setOpenAddDialog(false);
-  //   setEventTitle('');
-  //   setEventStatus('');
-  //   setEventStartDate('');
-  //   setEventEndDate('');
-  //   setEventMaxApplicants('');
-  // };
   const renderEvents = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;

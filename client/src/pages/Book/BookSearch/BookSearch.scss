@@ -1,10 +1,18 @@
+.BookSearch-container-lhs {
+ 
+  h1{
+    text-align: center;
+  }
+}
+
 
 @media all and (min-width:768px){
   
-  .BookList-container-lhs {
+  .BookSearch-container-lhs {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 15vw;
 
     .BookList-content-lhs {
       width: 100%;
@@ -18,8 +26,9 @@
         transform: translateY(20px);
         transition: opacity 0.5s, transform 1s;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        // justify-content: space-between;
 
         &.show {
           opacity: 1;
@@ -132,10 +141,11 @@
 
 
 @media all and (max-width:768px){
-  .BookList-container-lhs {
+  .BookSearch-container-lhs {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 1vw;
 
     .BookList-content-lhs {
       width: 100%;
@@ -149,8 +159,9 @@
         transform: translateY(20px);
         transition: opacity 0.5s, transform 1s;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        // justify-content: space-between;
 
         &.show {
           opacity: 1;
