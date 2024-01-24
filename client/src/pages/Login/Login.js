@@ -135,7 +135,7 @@ const Login = () => {
 					<legend htmlFor="">or</legend>
 					<NaverLoginButton/>
 					<GoogleLoginButton/>
-					<KakaoLoginButton />		
+					<KakaoLoginButton/>		
 				</fieldset>
 			</form>
 		</div>

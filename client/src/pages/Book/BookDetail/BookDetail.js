@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './BookDetail.scss';
-import { API_URL } from '../../config/contansts';
+import { API_URL } from '../../../config/contansts';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import axios  from 'axios';
@@ -62,6 +62,10 @@ const BookDetail = () => {
 
   /** 카트담기 버튼 */
   const handleAddToCart = () => {
+    if(axiosResult.book_availability === 0){
+      alert("대출불가한 도서입니다.");
+      return
+    }
     console.log('도서카트에 추가 실행됨');
     const cartItem = {
       id:axiosResult.book_id,
@@ -75,13 +79,21 @@ const BookDetail = () => {
       book_publisher:axiosResult.book_publisher,
       created_at:axiosResult.created_at,
     };
-    // 로컬 스토리지에서 기존의 장바구니 아이템을 가져오거나 빈 배열로 초기화합니다.
+    // 로컬 스토리지에서 기존의 장바구니 아이템을 가져오거나 빈 배열로 초기화
     const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
-    // 새로운 아이템을 장바구니에 추가
-    existingCartItems.push(cartItem);
-    // 업데이트된 장바구니 아이템을 다시 로컬 스토리지에 저장합니다.
-    sessionStorage.setItem("cart", JSON.stringify(existingCartItems));
-    navigate("/cart");
+    // 중복 체크: 중복된게 있으면 true 없으면 false 반환
+    const isDuplicate = existingCartItems.some( 
+      (item) => item.id === axiosResult.book_id,
+    );
+    if(isDuplicate){
+      alert("이미 장바구니에 추가된 도서입니다.");
+    }else{
+      // 새로운 아이템을 장바구니에 추가
+      existingCartItems.push(cartItem);
+      // 업데이트된 장바구니 아이템을 다시 로컬 스토리지에 저장
+      sessionStorage.setItem("cart", JSON.stringify(existingCartItems));
+      navigate("/cart");
+    }
   };
 
   const [currentPage, setCurrentPage] = useState(1);

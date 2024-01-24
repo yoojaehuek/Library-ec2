@@ -1,141 +1,270 @@
-.mypage-container-kjh {
-  margin: 0 auto;
-  box-sizing: border-box;
-  width: 69.2vw;
-  height: 69.5vw;
-
-  .pageTop-kjh {
-    margin: 3.4722vw auto;
-    width: 69.4vw;
-    height: 6.9vw;
-    position: relative;
-    border-bottom: 0.2vw solid #333;
-  }
-  .pageTop-kjh h1 {
-    width: 48.6vw;
-    float: left;
-    position: absolute;
-    bottom: 0;
-  }
-  .myEdit-kjh {
-    width: 10vw;
-    margin-bottom: 0.7vw;
-    float: right;
-    text-align: center;
-    position: absolute;
-    bottom: 0.07vw;
-    right: 0;
-    color: #000;
-  }
-
-  table {
-    // width: 62.5vw;
-    width: 100%;
-    height: 2.1vw;
-    margin: 1.4vw 1.2vw;
-    border-collapse: collapse;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  }
-  .myTable-kjh {
-    // width: 62.5vw;
-    margin: 0.7vw auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px;
-  }
-  .rentTable-kjh {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2.1vw;
-  }
-  .rentTable-kjh td {
-    height: 2.08vw;
-    text-align: center;
-    border: 0.07vw solid #000;
-    border-width: 0.14vw 0vw;
-  }
-  .readTable-kjh {
-    position: relative;
-    // display: flex;
-    justify-content: center;
-    margin-top: 3.47vw;
-  }
-  .readTable-kjh td {
-    height: 2.1vw;
-    border: 0.07vw solid #000;
-    border-width: 0.14vw 0vw;
-    text-align: center;
-  }
-  .tdTitle-kjh {
-    background-color: #6BA10E;
-    color: #fff;
-    width: 100%;
-    text-align: center;
-  }
-
-  .tWriter-kjh {
-    width: 4.86vw;
-    // font-size: 10px;
-  }
-  .tTitle-kjh {
-    width: 19.3vw;
-  }
-  .tSdate-kjh {
-    width: 5vw;
-  }
-  .tEdate-kjh {
-    width: 5vw;
-  }
-
-  .myEventFaq-kjh {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2.1vw;
+@media all and (min-width:800px){
+  .mypage-container-kjh {
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 69.2vw;
+    height: 69.5vw;
+  
+    .pageTop-kjh {
+      margin: 3.4722vw auto;
+      width: 69.4vw;
+      height: 6.9vw;
+      position: relative;
+      border-bottom: 0.2vw solid #333;
+    }
+    .pageTop-kjh h1 {
+      width: 48.6vw;
+      float: left;
+      position: absolute;
+      bottom: 0;
+    }
+    .myEdit-kjh {
+      width: 10vw;
+      margin-bottom: 0.7vw;
+      float: right;
+      text-align: center;
+      position: absolute;
+      bottom: 0.07vw;
+      right: 0;
+      color: #000;
+    }
+  
     table {
-      border-collapse: collapse;
+      // width: 62.5vw;
       width: 100%;
       height: 2.1vw;
       margin: 1.4vw 1.2vw;
+      border-collapse: collapse;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
-    img {
-      object-fit: cover;
-      width: 6.7vw;
-      height: 6.7vw;
+    .myTable-kjh {
+      // width: 62.5vw;
+      margin: 0.7vw auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px;
     }
-    td {
+    .rentTable-kjh {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.1vw;
+    }
+    .rentTable-kjh td {
       height: 2.08vw;
       text-align: center;
       border: 0.07vw solid #000;
       border-width: 0.14vw 0vw;
     }
-    .eventfaqTitle-kjh {
+    .readTable-kjh {
+      position: relative;
+      // display: flex;
+      justify-content: center;
+      margin-top: 3.47vw;
+    }
+    .readTable-kjh td {
+      height: 2.1vw;
+      border: 0.07vw solid #000;
+      border-width: 0.14vw 0vw;
+      text-align: center;
+    }
+    .tdTitle-kjh {
       background-color: #6BA10E;
       color: #fff;
       width: 100%;
-      height: 2.14vw;
       text-align: center;
     }
-    .more-kjh {
-      // float: right;
-      // margin-top: 1.4vw;
-      position: absolute;
-      right: 0;
+  
+    .tWriter-kjh {
+      width: 4.86vw;
+      // font-size: 10px;
+    }
+    .tTitle-kjh {
+      width: 19.3vw;
+    }
+    .tSdate-kjh {
+      width: 5vw;
+    }
+    .tEdate-kjh {
+      width: 5vw;
+    }
+  
+    .myEventFaq-kjh {
+      position: relative;
       display: flex;
-      bottom: -1.389vw;
+      justify-content: center;
+      margin-bottom: 2.1vw;
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        height: 2.1vw;
+        margin: 1.4vw 1.2vw;
+      }
+      img {
+        object-fit: cover;
+        width: 6.7vw;
+        height: 6.7vw;
+      }
+      td {
+        height: 2.08vw;
+        text-align: center;
+        border: 0.07vw solid #000;
+        border-width: 0.14vw 0vw;
+      }
+      .eventfaqTitle-kjh {
+        background-color: #6BA10E;
+        color: #fff;
+        width: 100%;
+        height: 2.14vw;
+        text-align: center;
+      }
+      .more-kjh {
+        // float: right;
+        // margin-top: 1.4vw;
+        position: absolute;
+        right: 0;
+        display: flex;
+        bottom: -1.389vw;
+      }
+      .eventTitle-kjh {
+        width: 15vw;
+      }
+      .faqTitle-kjh {
+        width: 15vw;
+      }
+      .answer-kjh {
+        color: red;
+      }
+      .waiting-kjh {
+        color: #666;
+      }
     }
-    .eventTitle-kjh {
-      width: 15vw;
+  }  
+}
+
+@media all and (max-width:799px){
+  .mypage-container-kjh {
+    margin: 0 auto;
+    box-sizing: border-box;
+    // width: 69.2vw;
+    // height: 69.5vw;
+  
+    .pageTop-kjh {
+      border-bottom: 0.2vw solid #333;
+      height: 26.9vw;
+      margin: 3.4722vw auto;
+      position: relative;
     }
-    .faqTitle-kjh {
-      width: 15vw;
+    .pageTop-kjh h1 {
+      float: left;
     }
-    .answer-kjh {
-      color: red;
+    .myEdit-kjh {
+      font-size: 16px;
+      float: right;
+      right: 0;
+      color: #000;
     }
-    .waiting-kjh {
-      color: #666;
+  
+    table {
+      // width: 62.5vw;
+      width: 100%;
+      height: 2.1vw;
+      margin: 1.4vw 1.2vw;
+      border-collapse: collapse;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
-  }
+    .myTable-kjh {
+      // width: 62.5vw;
+      margin: 0.7vw auto;
+    }
+    .rentTable-kjh {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 6.1vw;
+    }
+    .rentTable-kjh td {
+      height: 2.08vw;
+      text-align: center;
+      border: 0.07vw solid #000;
+      border-width: 0.14vw 0vw;
+    }
+    .readTable-kjh {
+      position: relative;
+      // display: flex;
+      justify-content: center;
+      margin-top: 3.47vw;
+    }
+    .readTable-kjh td {
+      height: 2.1vw;
+      border: 0.07vw solid #000;
+      border-width: 0.14vw 0vw;
+      text-align: center;
+    }
+    .tdTitle-kjh {
+      background-color: #6BA10E;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .tTitle-kjh {
+      width: 19.3vw;
+    }
+    .tSdate-kjh {
+      width: 5vw;
+    }
+    .tEdate-kjh {
+      width: 5vw;
+    }
+  
+    .myEventFaq-kjh {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 6.1vw;
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        height: 2.1vw;
+        margin: 1.4vw 1.2vw;
+      }
+      img {
+        object-fit: cover;
+        width: 6.7vw;
+        height: 6.7vw;
+      }
+      td {
+        height: 2.08vw;
+        text-align: center;
+        border: 0.07vw solid #000;
+        border-width: 0.14vw 0vw;
+      }
+      .eventfaqTitle-kjh {
+        background-color: #6BA10E;
+        color: #fff;
+        width: 100%;
+        height: 2.14vw;
+        text-align: center;
+      }
+      .more-kjh {
+        position: absolute;
+        right: 0;
+        display: flex;
+        bottom: -5.389vw;
+      }
+      .eventTitle-kjh {
+        width: 15vw;
+      }
+      .faqTitle-kjh {
+        width: 15vw;
+      }
+      .answer-kjh {
+        color: red;
+      }
+      .waiting-kjh {
+        color: #666;
+      }
+    }
+  }  
 }

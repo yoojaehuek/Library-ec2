@@ -224,13 +224,13 @@ const ABanner = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{textAlign:"center"}}>ID</TableCell>
-              <TableCell sx={{textAlign:"center"}}>Image</TableCell>
-              <TableCell sx={{textAlign:"center"}}>제목</TableCell>
-              <TableCell sx={{textAlign:"center"}}>설명</TableCell>
-              <TableCell sx={{textAlign:"center"}}>작성 시간</TableCell>
-              <TableCell sx={{textAlign:"center"}}>업데이트 시간</TableCell>
-              <TableCell sx={{textAlign:"center"}}>관리</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell>제목</TableCell>
+              <TableCell>설명</TableCell>
+              <TableCell>작성 시간</TableCell>
+              <TableCell>업데이트 시간</TableCell>
+              <TableCell>관리</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

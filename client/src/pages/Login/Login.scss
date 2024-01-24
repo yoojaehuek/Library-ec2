@@ -33,6 +33,7 @@
             color: gray;
           }
           input {
+            box-sizing: content-box;
             height: 5.25vh;
             padding-top: calc(0.7vh);
             padding-bottom: calc(0.7vh);
