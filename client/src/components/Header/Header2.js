@@ -19,6 +19,7 @@ const Header2 = () => {
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const [activeMenu, setActiveMenu] = useState('');
   const [activeGenre, setActiveGenre] = useState('');
+  const [input, setInput] = useState('');
 
 
   const logout = async () => {
@@ -67,6 +68,17 @@ const Header2 = () => {
       setActiveGenre(genres[genreIndex]);
     }
   };
+
+  const handleSearch = async () => {
+    try {
+      console.log("input: ", input);
+      const res = await axios.get(`${API_URL}/api/book/search/${input}`);
+      console.log(res);
+      //여기서 Navlink로 데이터 보내기 
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
@@ -132,6 +144,8 @@ const Header2 = () => {
                 placeholder='검색어 입력'
                 className='iptTxt-kjh' 
                 maxLength="80"
+                value={input}
+                onChange={(e) => {setInput(e.target.value)}}
                 onClick={handleSearchClick}
                 >
                 </input>
@@ -140,8 +154,9 @@ const Header2 = () => {
                 <button
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
-                  type='submit'
+                  type='button'
                   title='검색'
+                  onClick={handleSearch}
                   className={buttonClassName}>
                   <IoIosSearch/>
                 </button>

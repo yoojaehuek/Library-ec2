@@ -1,11 +1,23 @@
 .aloans-container-kjh{
+  display: grid;
+  grid-template-areas: 
+  "user book"
+  "user book"
+  "loans loans"
+  "loans loans";
+  ;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 2vw;
   padding: 0 2vw;
 
   h3{
     display: inline-block;
+    font-size: 1.3vw;
   }
   p{
     margin: 0;
+    font-size: 1.1vw;
   }
   .content-top-kjh{
     margin-bottom: 2vw;
@@ -14,16 +26,6 @@
     }
   }
   
-  display: grid;
-  grid-template-areas: 
-    "user book"
-    "user book"
-    "loans loans"
-    "loans loans";
-  ;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr; 
-  gap: 2vw;
   
   label {
     display:inline-block;
@@ -104,4 +106,41 @@
       margin-right: 0.7vw;
     }
   }
+
+  /* PC (해상도 1024px)*/ 
+  @media all and (min-width:1025px) {
+    
+  } 
+
+  /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+  // @media all and (min-width:768px) and (max-width:1024px) {
+  @media all and (max-width:1024px) {
+    display: grid;
+    grid-template-areas: 
+    "user"
+    "book"
+    "loans"
+    "loans"
+    ; 
+    grid-template-columns: 1fr;
+    grid-template-rows:auto; 
+    // gap: 2vw;
+    
+  } 
+
+  /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+  // @media all and (max-width:767px) {
+  //   // border: 10px solid #000;
+  //   // display: grid;
+  //   // grid-template-areas: 
+  //   // "user"
+  //   // "book"
+  //   // "loans"
+  //   // "loans"
+  //   // ; 
+  //   // // grid-template-columns: 1fr 1fr;
+  //   // // grid-template-rows: 1fr 1fr 1fr 1fr; 
+  //   // gap: 2vw;
+  // } 
+
 }
