@@ -1,6 +1,8 @@
 const ReviewModel = require('../models/reviewModel');
 const { Op } = require('sequelize');
 const validationUtils = require('../../utils/validationUtils');
+const {reviewFormat} = require('../../utils/dataUtils');
+
 
 class ReviewService{
 	
@@ -15,7 +17,8 @@ class ReviewService{
 	}
 
 	static async getAllReview(){
-		const result = await ReviewModel.getAllReview();
+		const tmpResult = await ReviewModel.getAllReview();
+		const result = reviewFormat(tmpResult);
 		return result;
 	}
 

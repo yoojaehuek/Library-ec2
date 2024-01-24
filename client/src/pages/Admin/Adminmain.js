@@ -10,6 +10,8 @@ import ABook from './ABook/ABook.js'
 import AFaq from './AFaq/AFaq.js';
 import AUser from './AUser/AUser.js';
 import AEvent from './AEvent/AEvent.js';
+import AReview from './AReview/ARevirw.js';
+import ALoans from './ALoans/ALoans.js';
 import { getCookie } from '../../utils/cookie.js';
 
 const AdminMain = () => {
@@ -33,13 +35,15 @@ const AdminMain = () => {
       <AHeader id='Header' />
       <div className='AdminMain' style={{padding: ' 0 0 100px'}}>
         <Routes>
-        <Route path='/' element={<AChart></AChart>}></Route>
-        <Route path='/login' element={<ALogin />} />
-        <Route path='/faq/faq' element={<AFaq />} />
-        <Route path='/banner/banner' element={<ABanner />} />
-        <Route path='/book/book' element={<ABook />} />
-        <Route path='/user/user' element={<AUser />} />
-        <Route path='/event/event' element={<AEvent />} />
+          <Route path='/' element={<AChart></AChart>}></Route>
+          <Route path='/login' element={<ALogin />} />
+          <Route path='/faq/faq' element={<AFaq />} />
+          <Route path='/banner/banner' element={<ABanner />} />
+          <Route path='/event/event' element={<AEvent />} />
+          <Route path='/loans/loans' element={<ALoans />} />
+          <Route path='/book/book' element={<ABook />} />
+          <Route path='/user/user' element={<AUser />} />
+          <Route path='/review/review' element={<AReview />} />
         </Routes>
       </div>
     </div>

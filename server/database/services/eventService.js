@@ -26,10 +26,16 @@ class EventService{
 		const result = await eventFormatDate(tmpResult);
 		console.log(result);
 
+		const {maxId} =  await EventModel.getMaxId();
+		console.log("maxId: ", maxId);
+
+		const lastPage = result.some(data => data.event_id === maxId);
+
 		if (orderBy == 'DESC') {
 			result.reverse(); //DESC 떄문에 뒤집혀서 오면 다시 원래 순서로 바꾸기
 		}
-		return result;
+		
+		return {result, lastPage};
 	}
 
 	static async getCategoryEvent(options){
