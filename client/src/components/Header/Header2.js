@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import './Header2.scss';
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
@@ -14,6 +14,7 @@ import { IoIosSearch } from "react-icons/io";
 import { FaUserPen } from "react-icons/fa6";
 
 const Header2 = () => {
+  const navigate = useNavigate();
   const [buttonClassName, setButtonClassName] = useState('');
   const [isKeyLayerVisible, setKeyLayerVisible] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
@@ -52,8 +53,8 @@ const Header2 = () => {
   const handleSearchClick = () => {
     setKeyLayerVisible(true);
   };
-  const handleLayerClose = (event) => {
-    event.preventDefault(); // 기본 동작 중단
+  const handleLayerClose = () => {
+    // event.preventDefault(); // 기본 동작 중단
     setKeyLayerVisible(false);
   };
   
@@ -70,13 +71,11 @@ const Header2 = () => {
   };
 
   const handleSearch = async () => {
-    try {
-      console.log("input: ", input);
-      const res = await axios.get(`${API_URL}/api/book/search/${input}`);
-      console.log(res);
-      //여기서 Navlink로 데이터 보내기 
-    } catch (error) {
-      console.error(error);
+    if (!input) {
+      alert('검색어를 입력해주세요');
+    }else{
+      navigate(`/booksearch/${input}`);
+      handleLayerClose();
     }
   }
 
@@ -161,7 +160,7 @@ const Header2 = () => {
                   <IoIosSearch/>
                 </button>
               </div>
-              {isKeyLayerVisible && (
+              {/* {isKeyLayerVisible && (
                 <>
                   <div className='keyLayer-kjh'>
                     <div className='key_lastest-kjh'>
@@ -176,7 +175,7 @@ const Header2 = () => {
                           <div className='lastest_delAll-kjh'>
                             <a href='' className='lnk_delAll-kjh'><em className='txt-kjh'>검색기록 삭제</em></a>
                           </div>
-                          <a href="#" className="lnk_close-kjh" onClick={handleLayerClose}>
+                          <a href="#none" className="lnk_close-kjh" onClick={handleLayerClose}>
                             <em className='txt-kjh' style={{paddingRight:"10px"}}>닫기</em>
                             <em className='icon_del-kjh'></em>
                           </a>
@@ -185,7 +184,7 @@ const Header2 = () => {
                     </div>
                   </div>
                 </>
-              )}
+              )} */}
             </form>
           </div>
           <div className='util-kjh'>
@@ -223,13 +222,14 @@ const Header2 = () => {
               <NavLink
                 key={genre}
                 to={`/BookList?genre=${encodeURIComponent(genre)}`}
-                activeClassName="active"
+                className={activeGenre && activeGenre == genre ? "subActive" : ""}                
                 exact
                 onClick={() => {
                   handleGenreClick(genre);
                 }}
               >
-                <span className={activeGenre === genre ? 'active' : ''}>{genre}</span>
+                {/* <span className={activeGenre === genre ? 'active' : ''}>{genre}</span> */}
+                <span>{genre}</span>
               </NavLink>
             ))}
           </div>
