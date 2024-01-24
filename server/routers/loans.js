@@ -10,10 +10,11 @@ router.get('/BooksBorrowedByUser/:user_id', LoansController.getBooksBorrowedByUs
 router.get('/UsersByBookBorrowed/:book_id', LoansController.getUsersByBookBorrowed);//책을 대출한 유저들 불러오기
 router.get('/RecentBorrowedBooksAndUsers', LoansController.getRecentBorrowedBooksAndUsers);//최근대출순으로 책 , 유저 불러오기
 router.get('/userbyloans', authMiddleware, LoansController.getLoansByUserId);//유저대출조회
+router.get('/page', LoansController.getPageLoans);
 router.get('/:loans_id', LoansController.getAllLoans);//한개조회
 // router.patch('/:loans_id', LoansController.updateLoans);// 대출수정
 router.patch('/return/:loans_id', LoansController.returnLoans);// 반납
 router.patch('/renew/:loans_id', LoansController.renewLoans);// 기간연장
-router.delete('/:loans_id', LoansController.deleteLoans); //대출 삭제
+router.delete('/', LoansController.deleteLoans); //대출 삭제
 
 module.exports = router;

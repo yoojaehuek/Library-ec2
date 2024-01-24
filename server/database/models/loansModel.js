@@ -1,6 +1,4 @@
-const Loans = require('../schemas/loans'); 
-const Book = require('../schemas/book');
-const User = require('../schemas/user');
+const {Loans, Book, User, sequelize} = require('../schemas');
 const { Op } = require('sequelize');
 
 class LoansModel {
@@ -113,6 +111,33 @@ class LoansModel {
     });
     return result;
   }
+  
+  //페이지네이션용 조회
+  static async getPageLoans({ data_id, data_limit, orderBy }){
+    const result = await Loans.findAll({
+      where: {
+        loans_id: data_id
+      },
+      include: [
+        {model: User}, {model: Book}
+      ],
+      order: [ ['loans_id', orderBy] ],
+      limit: data_limit,
+    });
+    return result;
+  }
+
+  //가장 마지막 Id 구하기
+  static async getMaxId(){
+    const maxId = sequelize.fn('max', sequelize.col('loans_id'));
+    const result = await Loans.findOne({
+      attributes: [
+        [maxId, 'maxId'],
+      ],
+      raw:true,
+    });
+    return result;
+  }
 
   /** 대출 수정 */
   static async updateLoans({loans_id, state, cancel}){
@@ -143,11 +168,11 @@ class LoansModel {
     return result;
   }
   /** 대출 기간연장 */
-  static async renewLoans({loans_id, due_date}){
-    console.log("모델에서 받음 대출연장 : ",loans_id, due_date);
+  static async renewLoans({loans_id, renewDate}){
+    console.log("모델에서 받음 대출연장 : ",loans_id, renewDate);
     // 받은 값을 loans_id와 id가 일치하는 값을 찾아 그 값의 반환여부 와 실제 반납일 에 업데이트 함
     const result = await Loans.update({
-      "due_date": due_date,
+      "due_date": renewDate,
     },{
       where: { 
         loans_id: loans_id
@@ -164,7 +189,6 @@ class LoansModel {
         loans_id: loans_id
       }
     });
-    
     return loans;
   }
 

@@ -53,7 +53,7 @@ For building and running the application you need :
 Installation
 
 ```bash
-git clone [https://github.com/KJH1225/mcdonald.git](https://github.com/KJH1225/library.git)
+git clone https://github.com/KJH1225/library.git
 cd library
 ```
 
@@ -87,7 +87,7 @@ Back-end API test
 
 ### ✔️ 배포 서버
 
-- www.i1004902.com
+- www.i1004902.com/app4
 
 ### ✔️ 프로젝트 기획 의도
 

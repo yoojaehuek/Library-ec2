@@ -29,24 +29,24 @@ class Loans extends Sequelize.Model {
           allowNull: false,
           comment: "반납일",
         },
-        is_returned: {
-          type: Sequelize.BOOLEAN,
-          allowNull: false,
-          defaultValue: false, 
-          comment: "반환 여부 표시",
-        },
-        returned_date: {
-          type: Sequelize.DATE,
-          allowNull: true,
-          comment: "실제 반납일",
-        }
+        // is_returned: {
+        //   type: Sequelize.BOOLEAN,
+        //   allowNull: false,
+        //   defaultValue: false, 
+        //   comment: "반환 여부 표시",
+        // },
+        // returned_date: {
+        //   type: Sequelize.DATE,
+        //   allowNull: true,
+        //   comment: "실제 반납일",
+        // }
       },
       {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         modelName: 'Loans',
         tableName: 'loans',
-        paranoid: false,
+        paranoid: true,
         charset: 'utf8',
         collate: 'utf8_general_ci',
       }

@@ -1,4 +1,6 @@
 const LoansModel = require('../models/loansModel');
+const BookModel = require('../models/bookModel');
+const { Op } = require('sequelize');
 const {loansformatDate} = require('../../utils/dataUtils');
 
 class LoansService{
@@ -9,6 +11,8 @@ class LoansService{
     // newLoans 배열을 반복하면서 각 객체를 처리
     const createdLoans = await Promise.all(newLoans.map(async (loansData) => {
       const createNewLoans = await LoansModel.createLoans(loansData);
+      // console.log("createNewLoans: ", createNewLoans);
+      await BookModel.updateBook({ book_id: loansData.book_id, toUpdate: {book_availability: 0} });
       return createNewLoans
     }));
     return createdLoans;
@@ -111,6 +115,28 @@ class LoansService{
 		return result;
 	}
 
+  static async getPageLoans(option){
+		const data_limit = parseInt(option.data_limit);
+		const orderBy = option.orderBy;
+		const data_id = orderBy == 'ASC' ? {[Op.gt]: parseInt(option.data_id),} : {[Op.lt]: parseInt(option.data_id),};
+		
+    const tmpResult = await LoansModel.getPageLoans({ data_id, data_limit, orderBy });
+
+		const result = await loansformatDate(tmpResult);
+    console.log("result: ", result);
+    
+    const {maxId} =  await LoansModel.getMaxId();
+		console.log("maxId: ", maxId);
+
+    const lastPage = result.some(data => data.loans_id === maxId);
+    
+		if (orderBy == 'DESC') {
+			result.reverse(); //DESC 떄문에 뒤집혀서 오면 다시 원래 순서로 바꾸기
+		}
+
+		return {result, lastPage};
+	}
+
   static async findAllLoansDate({user_id, dateType}){
 
     const date = new Date();
@@ -176,13 +202,20 @@ class LoansService{
 	}
   /** 대출기간 연장 */
 	static async renewLoans({loans_id, due_date}){
-    console.log("서비스에서 대출연장 들어옴:",loans_id, due_date);
-		const result = await LoansModel.renewLoans({loans_id, due_date});
-		return result;
+    const renewDate = new Date(due_date);
+    renewDate.setDate(renewDate.getDate() + 7);
+    console.log("7일 연장 날짜: ", renewDate);
+
+    const result = await LoansModel.renewLoans({loans_id, renewDate});
+    return result;
 	}
   /** 대출 삭제 */
-  static async deleteLoans({loans_id}){
+  static async deleteLoans({loans_id, book_id}){
     const result = await LoansModel.deleteLoans({loans_id});
+    console.log("deleteLoans: 결과: ", result);
+    if (result === 1) {
+      await BookModel.updateBook({"book_id": book_id, toUpdate: {book_availability: 1} });
+    }
     return result;
   }
 }

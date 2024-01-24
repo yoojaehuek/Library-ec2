@@ -5,10 +5,11 @@ import axios from 'axios';
 import { errHandler } from "../../../utils/globalFunction";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../../recoil/atoms/State";
+import { nameVaildation, pwdVaildation, pwdConfirmVaildation, phoneVaildation} from "../../../utils/formVaildation";
 import './MyEdit.scss';
 
 // 로그인 중인 유저 정보 담아서 변수에 담음 화면에 띄움
-//아이디는 수정 안됨
+// 아이디는 수정 안됨
 // 나머지 온채인지 하면 각변수에 담아서 유효성 검사도 함
 // 프로필 수정 누르면 변수에 담으거 배열에 담아서 patch 로 보냄 
 const MyEdit = () => {
@@ -22,11 +23,16 @@ const MyEdit = () => {
     pwd: '',
     pwdconfirm: '',
   });
-  // const [selectedItem, setSelectedItem] = useState(null);
-  const [newPassword, setNewPassword] = useState("");
-	const [newpasswordConfirm, setNewPasswordConfirm] = useState("");
-	const [newpasswordConfirmMessage, setNewPasswordConfirmMessage] = useState("");
-  
+  // 오류메세지 상태 저장
+  const [nameMessage, setNameMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
+  const [phoneMessage, setPhoneMessage] = useState("");
+  // 유효성 검사
+  const [isName, setIsName] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
   useEffect(() => {
     axios.get(`${API_URL}/api/user/one`)
       .then(res => {
@@ -125,7 +131,6 @@ const MyEdit = () => {
   return(
     <div className='myedit-container-kjh'>
       <div className='editpageTop-kjh'>
-        
         <h1>회원 정보 수정</h1>
       </div>
       <div className='editMain-kjh'>
@@ -148,8 +153,13 @@ const MyEdit = () => {
             name="name"
             // placeholder={newItem.name}
             value={newItem.name}
-            onChange={handleNewItemChange}
-            />
+            onChange={(e) => { 
+              const {nameMessage, bool} = nameVaildation(e);
+              setNameMessage(nameMessage);
+              setIsName(bool);
+              handleNewItemChange(e);
+            }}/>
+          <p className={`message ${!isName ? 'error' : ''}`}>{nameMessage}</p>
         </div>
         <div className='editMain_newpwd-kjh'>
           <label>새 비밀번호</label>
@@ -158,8 +168,15 @@ const MyEdit = () => {
             id="pwd"
             name="pwd"
             value={newItem.pwd}
-            onChange={handleNewItemChange}
-          />
+            onChange={(e) => { 
+              const {pwdMessage, bool} = pwdVaildation(e);
+              console.log("유효성검사:",pwdMessage, bool);
+              setPasswordMessage(pwdMessage);
+			        setIsPassword(bool);
+              handleNewItemChange(e);
+            }}/>
+            
+          <p className={`message ${!isPassword ? 'error' : ''}`}>{passwordMessage}</p>
         </div>
         <div className='editMain_newpwdch-kjh'>
           <label>새비밀번호 확인</label>
@@ -168,8 +185,13 @@ const MyEdit = () => {
             id="pwdconfirm"
             name="pwdconfirm"
             value={newItem.pwdconfirm}
-						onChange={handleNewItemChange}
-          />
+						onChange={(e) => {
+              const {pwdConfirmMessage, bool} = pwdConfirmVaildation({e, pwd: newItem.pwd});
+              setPasswordConfirmMessage(pwdConfirmMessage);
+              setIsPasswordConfirm(bool);
+              handleNewItemChange(e);
+            }}/>
+          <p className={`message ${!isPasswordConfirm ? 'error' : ''}`}>{passwordConfirmMessage}</p>
         </div>
         <div className='editMain_phone-kjh'>
           <label>전화번호</label>
@@ -177,10 +199,14 @@ const MyEdit = () => {
             type="phone"
             id="phone"
             name="phone"
-            placeholder={newItem.phone}
-            // value={newItem.phone} 
-						onChange={handleNewItemChange}
-          />
+            value={newItem.phone} 
+						onChange={(e) => {
+              const {phoneMessage, bool} = phoneVaildation(e);
+              setPhoneMessage(phoneMessage);
+              setIsPhone(bool);
+              handleNewItemChange(e);
+            }}/>
+					<p className={`message ${!isPhone ? 'error' : ''}`}>{phoneMessage}</p>
         </div>
         <div className='editMain_btn-kjh'>
           <button className='button_cancell-kjh' type='button' onClick={handleClose}>취소</button>
