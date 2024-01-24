@@ -170,6 +170,7 @@ const ALoans = () => {
                     <Button
                       variant="contained"
                       color="error"
+                      className="return-book-button-kjh"
                       onClick={() => handleReturnBook(data)}
                     >
                       반납
