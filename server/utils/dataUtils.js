@@ -48,6 +48,7 @@ const faqFormatDate = (result) => {
 		console.log('뭐ㅑ');
 	}
 	return tmp
+	
 	// const tmp = result.map(el => el.get({ plain: true }));
 	// tmp.map((order, index) => {
 	// 	const { faq_response_time, created_at } = tmp[index];
