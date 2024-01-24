@@ -33,7 +33,7 @@ const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
   return (
     <div className={styles.datePickerWrapper}>
       <DatePicker
-        dateFormat='yyyy.MM.dd'
+        dateFormat='yyyy-MM-dd'
         formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
         showYearDropdown
         scrollableYearDropdown
