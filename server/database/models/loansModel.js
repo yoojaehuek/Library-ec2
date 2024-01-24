@@ -14,7 +14,9 @@ class LoansModel {
   }
   /** 조회 쿼리 */
   static async getAllLoans(){
-    const loans = await Loans.findAll();
+    const loans = await Loans.findAll({
+      paranoid: false
+    });
     console.log("전체조회로 찾은거: ",loans);
     return loans;
   }
@@ -62,6 +64,7 @@ class LoansModel {
           attributes: ['book_id', 'book_name', 'book_author'], 
         }
       ],
+      paranoid: false
     }); //where: {id: asdf} 형태가 들어와야함
     return loans;
   }

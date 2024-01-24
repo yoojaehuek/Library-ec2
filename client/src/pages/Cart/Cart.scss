@@ -187,7 +187,8 @@
         grid-template-columns: 3vw 1fr 1fr 1fr 1fr 1fr 1fr;
         .box-3{
           a{
-            height: 2vh;
+            height: 100%;
+            min-height: 2vh;
             font-size: 1.7vh;
           }
         }
@@ -210,13 +211,15 @@
         }
         #loan-p-yjh {
           padding: 5px 0px;
-          height: 2vh;
+          height: 100%;
+          min-height: 2vh;
           font-size: 1.5vh;
           border: 1px solid #d64940;
         }
         #loan-a-yjh {
           padding: 5px 0px;
-          height: 2vh;
+          height: 100%;
+          min-height: 2vh;
           font-size: 1.5vh;
           border: 1px solid #4070cd;
         }
