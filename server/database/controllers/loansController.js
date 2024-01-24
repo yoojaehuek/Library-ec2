@@ -100,6 +100,19 @@ class LoansController {
 			next(error)
 		}
 	}
+ 
+  static async getPageLoans(req, res, next){
+		try {
+			console.log(req.query);
+			const option = req.query;
+			console.log("req.query: ", option);
+			const result = await LoansService.getPageLoans(option);
+      console.log("대출컨트롤러에서 res: ",result);
+			res.status(200).json(result);
+		} catch (error) {
+			next(error)
+		}
+	}
 
   static async findAllLoansDate(req, res, next){
     try {
@@ -166,7 +179,7 @@ class LoansController {
 		try {
       console.log("대출연장 컨트롤러 들어옴");
 			const loans_id = req.params.loans_id;// api_url 에서 가져옴
-			const { due_date } = req.query;
+			const {due_date} = req.body;
       console.log("loans_id: ", loans_id);
       console.log("due_date: ", due_date);
 			const result = await LoansService.renewLoans({loans_id, due_date});
@@ -179,8 +192,11 @@ class LoansController {
   /** 대출 삭제 */
   static async deleteLoans(req, res, next){
     try {
-      const loans_id = req.params.loans_id;
-      const result = await LoansService.deleteLoans({loans_id});
+      // const loans_id = req.params.loans_id;
+      // const {book_id} = req.body;
+      const {loans_id, book_id} = req.query;
+      console.log("반납 book_id: ", req.query);
+      const result = await LoansService.deleteLoans({loans_id, book_id});
       res.status(200).json(result);
     } catch (error) {
       next(error)

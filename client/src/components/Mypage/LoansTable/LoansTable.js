@@ -15,7 +15,13 @@ const LoansTable = ({is_returned}) => {
   useEffect(() => {
     axios.get(`${API_URL}/api/loans/userbyloans`)
       .then(res => {
-        const loansBooks = res.data.filter(book => book.is_returned === is_returned);
+        console.log("res: ", res);
+        let loansBooks = null;
+        if(is_returned){
+          loansBooks = res.data.filter(loans => loans.deletedAt != null);
+        }else {
+          loansBooks = res.data.filter(loans => loans.deletedAt == null);
+        }
         setUserbyLoans(loansBooks);
         console.log("대출한 책 : ", loansBooks);
       })
@@ -37,7 +43,18 @@ const LoansTable = ({is_returned}) => {
   return (
     <div className='rentTable-kjh'>
       <table>
-        <tr><td colSpan='5' className='tdTitle-kjh'>{is_returned ? "내가 봤던 책" : "대여 중인 책"}</td></tr>
+        <tr>
+          <td colSpan='5' className='tdTitle-kjh'>
+            {is_returned ? "내가 봤던 책" : "대여 중인 책"}
+          </td>
+        </tr>
+        <tr>
+          <td className='tdsubTitle-kjh'>작가</td>
+          <td className='tdsubTitle-kjh'>책 제목</td>
+          <td className='tdsubTitle-kjh'>대여시작일</td>
+          <td className='tdsubTitle-kjh'>반납일</td>
+          <td className='tdsubTitle-kjh'>반납일</td>
+        </tr>
         {visibleBooks.map((book, index) => (
           <LoansRow 
             book={book} 

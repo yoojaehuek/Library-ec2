@@ -38,6 +38,13 @@ const ALogin = () => {
     })
   }
 
+  const heandleKeyUp = (e) => {
+    console.log(e);
+    if (e.key === 'Enter') {
+      onLogin(); // Enter 입력이 되면 클릭 이벤트 실행
+    }
+  }
+
   return (
     <Container
       component="main"
@@ -63,6 +70,7 @@ const ALogin = () => {
           name="email"
           onChange={onChange}
           value={email}
+          onKeyUp={heandleKeyUp}
         />
         <TextField
           label="비밀번호"
@@ -74,6 +82,7 @@ const ALogin = () => {
           style={{ marginTop: "10px" }}
           onChange={onChange}
           value={password}
+          onKeyUp={heandleKeyUp}
         />
         <Button
           variant="contained"

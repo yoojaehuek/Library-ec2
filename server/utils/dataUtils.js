@@ -212,4 +212,4 @@ const reviewFormat = (result) => {
 // }
 
 
-  module.exports = { loansformatDate, faqFormatDate, eventFormatDate, userFormat, faqFormatDate2, reviewFormat};
+  module.exports = { loansformatDate, faqFormatDate, eventFormatDate, userFormat, faqFormatDate2, reviewFormat, eventApplicantsFormatDate};

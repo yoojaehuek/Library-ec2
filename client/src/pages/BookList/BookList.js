@@ -71,7 +71,7 @@ const BookList = () => {
                             </div> 
                             : 
                             <div className='book-detail-availability-lhs' style={{backgroundColor: "red"}}> 
-                              <span> 대출 불가능 </span>
+                              <span> 대출 불가 </span>
                             </div> 
                           }
                         <h3>{item.book_name}</h3>

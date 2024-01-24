@@ -1,4 +1,4 @@
-const Event = require('../schemas/event'); 
+const {Event, sequelize} = require('../schemas'); 
 const { Op } = require('sequelize');
 
 class EventModel {
@@ -23,6 +23,19 @@ class EventModel {
     });
     return result;
   }
+
+
+  static async getMaxId(){
+    const maxId = sequelize.fn('max', sequelize.col('event_id'));
+    const result = await Event.findOne({
+      attributes: [
+        [maxId, 'maxId'],
+      ],
+      raw:true,
+    });
+    return result;
+  }
+
 
   static async getCategoryEvent(wheres){
     console.log("wheres: ", wheres);

@@ -22,8 +22,8 @@ exports.makeRefreshToken = () =>{
       {}, // refresh token은 payload 없이 발급
       JWT_KEY, 
       {
-          algorithm: "HS256",
-          expiresIn: "24h"
+        algorithm: "HS256",
+        expiresIn: "12h"
       }
   );
   // console.log("refreshToken: ",refreshToken);
@@ -38,12 +38,11 @@ exports.verify = (token) => {
     console.log("token.js/verify()/decoded: ", decoded);
     return {
       ok: true,
-      id: decoded.id
+      id: decoded.user_id
     };
   } catch (error) {
     return {
       ok: false,
-      // id: decoded.id,
       message: error.message,
     };
   }
