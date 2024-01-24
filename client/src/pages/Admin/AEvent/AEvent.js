@@ -103,9 +103,9 @@ const AEvent = () => {
       });
   };
 
-//   const handlePageChange = (event, value) => {
-//     setCurrentPage(value);
-//   };
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   const handleEditClick = (event) => {
     setEditEventId(event.event_id);
@@ -135,14 +135,6 @@ const AEvent = () => {
   const handleSaveEdit = () => {
     if (editEventId) {
       const updatedItem = {
-        // book_name: bookName,
-        // book_img_url: bookImgurl,
-        // book_author: bookAuthor,
-        // book_publisher: bookPublisher,
-        // book_genre: bookGenre,
-        // book_availability: bookAvailability,
-        // book_description: bookDescription,
-        // book_ISBN: bookISBN,
         event_title: eventTitle,
         event_img_url: eventImgurl,
         event_status: eventStatus,
@@ -200,9 +192,9 @@ const AEvent = () => {
 
     try {
       const formData = new FormData();
-      formData.append('bookimg', file);
+      formData.append('eventimg', file);
   
-      const res = await axios.post(`${API_URL}/api/bookimg`, formData);
+      const res = await axios.post(`${API_URL}/api/eventimg`, formData);
       console.log("res: ", res);
       setEventImgurl(res.data.eventImgurl)
     } catch (error) {
@@ -213,14 +205,6 @@ const AEvent = () => {
 
   const handleAdd = () => {
     const createItem = {
-      // book_name: bookName,
-      // book_img_url: imageUrl,
-      // book_author: bookAuthor,
-      // book_publisher: bookPublisher,
-      // book_genre: bookGenre,
-      // book_availability: bookAvailability,
-      // book_description: bookDescription,
-      // book_ISBN: bookISBN,
       event_title: eventTitle,
       event_img_url: eventImgurl,
       event_status: eventStatus,
@@ -293,7 +277,7 @@ const AEvent = () => {
           <Button
             variant="contained"
             color="error"
-            onClick={() => handleDelete(item.book_id)}
+            onClick={() => handleDelete(item.event_id)}
           >
             삭제
           </Button>
@@ -493,3 +477,4 @@ const AEvent = () => {
 };
 
 export default AEvent;
+
