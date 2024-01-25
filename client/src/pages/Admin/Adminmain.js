@@ -12,6 +12,7 @@ import AUser from './AUser/AUser.js';
 import AEvent from './AEvent/AEvent.js';
 import AReview from './AReview/ARevirw.js';
 import ALoans from './ALoans/ALoans.js';
+import Amanual from './AManual/AManual.js';
 import { getCookie } from '../../utils/cookie.js';
 
 const AdminMain = () => {
@@ -44,6 +45,7 @@ const AdminMain = () => {
           <Route path='/book/book' element={<ABook />} />
           <Route path='/user/user' element={<AUser />} />
           <Route path='/review/review' element={<AReview />} />
+          <Route path='/manual/manual' element={<Amanual />} />
         </Routes>
       </div>
     </div>
