@@ -28,11 +28,13 @@ const ABanner = () => {
   const [editBannerId, setEditBannerId] = useState(null);
   const [bannerImg, setBannerImg] = useState('');
   const [bannerTitle, setBannerTitle] = useState('');
+  const [bannerAdress, setBannerAdress] = useState('');
   const [bannerDescription, setBannerDescription] = useState('');
   const [imageUrl, setImageUrl] = useState("");
   const [newbannerImg, setnewBannerImg] = useState('');
   const [newbannerTitle, setnewBannerTitle] = useState('');
   const [newbannerDescription, setnewBannerDescription] = useState('');
+  const [newbannerAdress, setnewBannerAdress] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -64,6 +66,7 @@ const ABanner = () => {
     setOpenEditDialog(false);
     setBannerTitle('');
     setImageUrl('');
+    setBannerAdress('');
     setBannerDescription('');
   };
 
@@ -79,6 +82,7 @@ const ABanner = () => {
     setOpenAddDialog(false);
     setnewBannerTitle('');
     setnewBannerImg('');
+    setnewBannerAdress('');
     setnewBannerDescription('');
     setImageUrl(''); // 이미지 URL 초기화
   }
@@ -91,6 +95,7 @@ const ABanner = () => {
         const bannerDetails = res.data;
         setBannerTitle(bannerDetails.banner_title);
         setBannerImg(bannerDetails.banner_img_url);
+        setBannerAdress(bannerDetails.banner_adress);
         setBannerDescription(bannerDetails.banner_description);
       })
       .catch((err) => {
@@ -103,12 +108,14 @@ const ABanner = () => {
       const updatedItem = {
         banner_title: bannerTitle,
         banner_img_url: imageUrl,
+        banner_adress: bannerAdress,
         banner_description: bannerDescription,
       };
   
       // 강제로 상태 업데이트를 동기적으로 수행
       setBannerTitle(updatedItem.title);
       setBannerImg(updatedItem.imageUrl);
+      setBannerAdress(updatedItem.adress);
       setBannerDescription(updatedItem.description);
   
       console.log('update:', updatedItem);
@@ -191,6 +198,7 @@ const ABanner = () => {
     const createItem = {
       banner_title: newbannerTitle,
       banner_img_url: imageUrl,
+      banner_adress: newbannerAdress,
       banner_description: newbannerDescription,
     };
     
@@ -228,6 +236,7 @@ const ABanner = () => {
               <TableCell>Image</TableCell>
               <TableCell>제목</TableCell>
               <TableCell>설명</TableCell>
+              <TableCell>주소 경로</TableCell>
               <TableCell>작성 시간</TableCell>
               <TableCell>업데이트 시간</TableCell>
               <TableCell>관리</TableCell>
@@ -246,6 +255,7 @@ const ABanner = () => {
                 </TableCell>
                 <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.banner_title}</TableCell>
                 <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.banner_description}</TableCell>
+                <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.banner_adress}</TableCell>
                 <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.createdAt}</TableCell>
                 <TableCell sx={{overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px",whiteSpace: "nowrap",}}>{item.updatedAt}</TableCell>
                 <TableCell>
@@ -315,6 +325,13 @@ const ABanner = () => {
             />
           )}
           <TextField
+            label="경로 설정"
+            value={newbannerAdress}
+            onChange={(e) => setnewBannerAdress(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
             label="설명"
             value={newbannerDescription}
             onChange={(e) => setnewBannerDescription(e.target.value)}
@@ -361,6 +378,13 @@ const ABanner = () => {
               style={{ width: '100%', height:"500px", marginTop: '10px' }}
             />
           )}
+          <TextField
+            label="경로 설정"
+            value={bannerAdress}
+            onChange={(e) => setBannerAdress(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
           <TextField
             label="설명"
             value={bannerDescription}

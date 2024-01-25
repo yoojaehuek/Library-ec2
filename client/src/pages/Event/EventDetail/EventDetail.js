@@ -53,7 +53,7 @@ const EventDetail = () => {
     axios.delete(`${API_URL}/api/event/apply/${id}`)
       .then(res => {
         console.log(res.data);
-        alert("취소 성공");
+        alert(res.data.message);
       })
       .catch(e => {    
         const {reLogin} = errHandler(e);

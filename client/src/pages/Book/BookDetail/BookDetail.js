@@ -85,7 +85,7 @@ const BookDetail = () => {
       (item) => item.id === axiosResult.book_id,
     );
     if(isDuplicate){
-      alert("이미 장바구니에 추가된 도서입니다.");
+      alert("이미 도서카트에 추가된 도서입니다.");
     }else{
       // 새로운 아이템을 장바구니에 추가
       existingCartItems.push(cartItem);

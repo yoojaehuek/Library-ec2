@@ -23,8 +23,12 @@ class Banner extends Sequelize.Model {
         banner_description: {
           type: Sequelize.TEXT,
           allowNull: false,
-          defaultValue: true,
           comment: "배너 설명", 
+        },
+        banner_adress: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          comment: "배너 경로설정", 
         },
       },
       {
