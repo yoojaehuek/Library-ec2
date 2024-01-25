@@ -23,7 +23,7 @@ const multer = require("multer"); //파일 업로드
 
 //시퀄라이즈 연결 부분
 sequelize
-  .sync({ force: false }) //force가 true면 킬때마다 DB 새로 만듬
+  .sync({ force: false}) //force가 true면 킬때마다 DB 새로 만듬
   .then(() => {
     console.log("DB연결 성공");
   })

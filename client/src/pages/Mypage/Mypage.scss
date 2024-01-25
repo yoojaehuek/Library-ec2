@@ -3,7 +3,7 @@
     margin: 0 auto;
     box-sizing: border-box;
     width: 69.2vw;
-    height: 69.5vw;
+    // height: 69.5vw;
   
     .pageTop-kjh {
       margin: 3.4722vw auto;
@@ -128,9 +128,17 @@
       }
       .eventTitle-kjh {
         width: 15vw;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
       .faqTitle-kjh {
         width: 15vw;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
       .answer-kjh {
         color: red;
