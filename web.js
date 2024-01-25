@@ -47,7 +47,7 @@ app.use(cors());
 // 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
 // app.use("/app4/api/server/upload", express.static(__dirname + "/server/upload"));
 // app.use("/app4/api/server/upload", express.static("server/upload"));
-app.use("/app4/api/server/upload", express.static("server"));
+app.use("/app4/api/upload", express.static("upload"));
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -55,14 +55,14 @@ const upload = multer({
       console.log("멀터 req: ", req);
       console.log("멀터 file: ", file);
       if (file.fieldname == "bannerimg") {
-        cb(null, "server/upload/banner/");
+        cb(null, "upload/banner/");
       }
       else if (file.fieldname == "bookimg") {
-        cb(null, 'server/upload/book/');
+        cb(null, 'upload/book/');
       }else if (file.fieldname == "eventimg") {
-        cb(null, 'server/upload/event/');
+        cb(null, 'upload/event/');
       }else {
-        cb(null, 'server/upload/');
+        cb(null, 'upload/');
       }
     },
     filename: function (req, file, cb) {
@@ -75,7 +75,7 @@ app.post("/app4/api/bannerimg", upload.single("bannerimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/api/server/upload/banner/" + file.filename,
+    imageUrl: "/api/upload/banner/" + file.filename,
   });
 });
 
@@ -83,7 +83,7 @@ app.post("/app4/api/eventimg", upload.single("eventimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/api/server/upload/event/" + file.filename,
+    imageUrl: "/api/upload/event/" + file.filename,
   });
 });
 
@@ -91,7 +91,7 @@ app.post("/app4/api/bookimg", upload.single("bookimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/api/server/upload/book/" + file.filename,
+    imageUrl: "/api/upload/book/" + file.filename,
   });
 });
 
