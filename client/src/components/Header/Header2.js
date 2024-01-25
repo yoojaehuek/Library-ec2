@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import './Header2.scss';
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
@@ -14,11 +14,13 @@ import { IoIosSearch } from "react-icons/io";
 import { FaUserPen } from "react-icons/fa6";
 
 const Header2 = () => {
+  const navigate = useNavigate();
   const [buttonClassName, setButtonClassName] = useState('');
   const [isKeyLayerVisible, setKeyLayerVisible] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginState); //useState와 거의 비슷한 사용법
   const [activeMenu, setActiveMenu] = useState('');
   const [activeGenre, setActiveGenre] = useState('');
+  const [input, setInput] = useState('');
 
 
   const logout = async () => {
@@ -51,8 +53,8 @@ const Header2 = () => {
   const handleSearchClick = () => {
     setKeyLayerVisible(true);
   };
-  const handleLayerClose = (event) => {
-    event.preventDefault(); // 기본 동작 중단
+  const handleLayerClose = () => {
+    // event.preventDefault(); // 기본 동작 중단
     setKeyLayerVisible(false);
   };
   
@@ -67,6 +69,15 @@ const Header2 = () => {
       setActiveGenre(genres[genreIndex]);
     }
   };
+
+  const handleSearch = async () => {
+    if (!input) {
+      alert('검색어를 입력해주세요');
+    }else{
+      navigate(`/booksearch/${input}`);
+      handleLayerClose();
+    }
+  }
 
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
@@ -132,6 +143,8 @@ const Header2 = () => {
                 placeholder='검색어 입력'
                 className='iptTxt-kjh' 
                 maxLength="80"
+                value={input}
+                onChange={(e) => {setInput(e.target.value)}}
                 onClick={handleSearchClick}
                 >
                 </input>
@@ -140,13 +153,14 @@ const Header2 = () => {
                 <button
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
-                  type='submit'
+                  type='button'
                   title='검색'
+                  onClick={handleSearch}
                   className={buttonClassName}>
                   <IoIosSearch/>
                 </button>
               </div>
-              {isKeyLayerVisible && (
+              {/* {isKeyLayerVisible && (
                 <>
                   <div className='keyLayer-kjh'>
                     <div className='key_lastest-kjh'>
@@ -161,7 +175,7 @@ const Header2 = () => {
                           <div className='lastest_delAll-kjh'>
                             <a href='' className='lnk_delAll-kjh'><em className='txt-kjh'>검색기록 삭제</em></a>
                           </div>
-                          <a href="#" className="lnk_close-kjh" onClick={handleLayerClose}>
+                          <a href="#none" className="lnk_close-kjh" onClick={handleLayerClose}>
                             <em className='txt-kjh' style={{paddingRight:"10px"}}>닫기</em>
                             <em className='icon_del-kjh'></em>
                           </a>
@@ -170,7 +184,7 @@ const Header2 = () => {
                     </div>
                   </div>
                 </>
-              )}
+              )} */}
             </form>
           </div>
           <div className='util-kjh'>
@@ -208,13 +222,14 @@ const Header2 = () => {
               <NavLink
                 key={genre}
                 to={`/BookList?genre=${encodeURIComponent(genre)}`}
-                activeClassName="active"
+                className={activeGenre && activeGenre == genre ? "subActive" : ""}                
                 exact
                 onClick={() => {
                   handleGenreClick(genre);
                 }}
               >
-                <span className={activeGenre === genre ? 'active' : ''}>{genre}</span>
+                {/* <span className={activeGenre === genre ? 'active' : ''}>{genre}</span> */}
+                <span>{genre}</span>
               </NavLink>
             ))}
           </div>

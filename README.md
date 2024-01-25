@@ -4,15 +4,15 @@
 
 <br/>
 
-## 대표화면 - 보류
+## 대표화면
 <table>
   <tr>
     <td><b>메인 페이지</b></td>
     <td><b>관리자 페이지</b></td>
   </tr> 
   <tr>
-    <td><img src="/readme-file/main-page.png" alt="메인 페이지"></td>
-    <td><img src="/readme-file/admin-page.png" alt="관리자 페이지"></td>
+    <td><img src="/readme-file/main.png" alt="메인 페이지"></td>
+    <td><img src="/readme-file/adminmain.png" alt="관리자 페이지"></td>
   </tr>
 </table>
 
@@ -71,11 +71,6 @@ Back
 npm install
 npm start
 ```
-
-Back-end API test
-
-- 보류
-
 
 ## 💻 2. Project Info : 프로젝트 소개
 
@@ -248,7 +243,7 @@ Back-end API test
 
 #### 🧩 Architecture
 
-![Architecture](/readme-file/Architecture.svg)
+![Architecture](/readme-file/Architecture.png)
 
 <br/>
 
@@ -332,17 +327,15 @@ Back-end API test
 ## 팀원별 역할
 
 ### 김지환(팀장)
-
-- 이벤트 페이지
-- 이벤트 상세 페이지
+- 소셜로그인 구현 (네이버, 카카오, 구글)
+- 백엔드 Cursor 방식의 페이지네이션 구현
+- 이벤트 페이지, 이벤트 상세, 대출 관리 페이지 프론트 제작
 - 책, 로그인, 회원가입, (관)로그인, (관)회원관리 백엔드
 - 반응형 디자인 및 UI 스타일링
-- AWS EC2 활용하여 프로젝트 배포 (www.i1004902.com/app4)
-- NginX 리버스 프록시, https 적용
-- Node.js, React 폴더 구조 설계 (Controllers-Services-models 구조)
+- AWS EC2, NginX 활용하여 프로젝트 배포 (www.i1004902.com/app4)
 - JWT accessToken, refreshToken과 Redis를 사용한 사용자 인증 구현
 - Recoil 상태관리 라이브러리를 사용해 사용자 로그인 상태 관리
-- 백엔드 API 설계 및 DB 구조 설계
+- 전체 백엔드, API구현 보조
 
 
 ### 김준녕
@@ -370,7 +363,7 @@ Back-end API test
 - 헤더, 푸터 컴포넌트
 - 마이페이지 프론트엔드
 - 관리자 리뷰 관리 페이지
-- 리뷰 관리, 마이페이지 백엔드
+- 마이페이지 백엔드
 - 반응형 디자인 및 UI 스타일링
 
   
@@ -380,6 +373,7 @@ Back-end API test
 - 책 목록 페이지
 - 책 상세 페이지
 - 관리자 책 관리 페이지
+- 관리자 리뷰 관리 페이지
 - 관리자 배너 관리 페이지
 - 배너, 책 백엔드
 - 반응형 디자인 및 UI 스타일링
