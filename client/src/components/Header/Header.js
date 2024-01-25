@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
-import './Header.scss';
+import './Header2.scss';
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/atoms/State";
 import 'slick-carousel/slick/slick.css';
