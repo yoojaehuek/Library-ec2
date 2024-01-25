@@ -95,18 +95,18 @@ app.post("/app4/api/bookimg", upload.single("bookimg"), (req, res) => {
   });
 });
 
-app.use("app4/api/admin", adminRouter);
-app.use("app4/api/book", bookRouter);
-app.use("app4/api/review", reviewRouter);
-app.use("app4/api/faq", faqRouter);
-app.use("app4/api/loans", loansRouter);
-app.use("app4/api/user", userRouter);
-app.use("app4/api/banner", bannerRouter);
-app.use("app4/api/event", eventRouter);
-app.use("app4/api/naver", naverRouter);
-app.use("app4/api/event_applicants", event_applicantsRouter);
-app.use("app4/api/google", googleRouter);
-app.use("app4/api/kakao", kakaoRouter);
+app.use("/app4/api/admin", adminRouter);
+app.use("/app4/api/book", bookRouter);
+app.use("/app4/api/review", reviewRouter);
+app.use("/app4/api/faq", faqRouter);
+app.use("/app4/api/loans", loansRouter);
+app.use("/app4/api/user", userRouter);
+app.use("/app4/api/banner", bannerRouter);
+app.use("/app4/api/event", eventRouter);
+app.use("/app4/api/naver", naverRouter);
+app.use("/app4/api/event_applicants", event_applicantsRouter);
+app.use("/app4/api/google", googleRouter);
+app.use("/app4/api/kakao", kakaoRouter);
 
 app.use(errorMiddleware);
 
