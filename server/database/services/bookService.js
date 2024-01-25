@@ -36,8 +36,8 @@ class BookService{
 	}
 
 	static async getSearchBook(input){
-		const validationInput = this.buildWhereClause(input);
-		let result = await BookModel.getSearchBook(validationInput);
+		// const validationInput = this.buildWhereClause(input);
+		let result = await BookModel.getSearchBook(input);
     if (result.length == 0) {
       result.errorMessage = "잘못 입력 OR 관련 도서 없음";
 			return result
@@ -74,7 +74,7 @@ class BookService{
 
 
 	static buildWhereClause(options){
-		// console.log("options: ", options);
+		console.log("options: ", options);
 		const wheres = {};
 
 		//책 id 조회

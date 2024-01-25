@@ -57,6 +57,8 @@ const upload = multer({
       }
       else if (file.fieldname == "bookimg") {
         cb(null, 'server/upload/book/');
+      }else if (file.fieldname == "eventimg") {
+        cb(null, 'server/upload/event/');
       }else {
         cb(null, 'server/upload/');
       }

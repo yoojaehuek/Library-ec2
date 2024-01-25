@@ -327,17 +327,15 @@ npm start
 ## 팀원별 역할
 
 ### 김지환(팀장)
-
-- 이벤트 페이지
-- 이벤트 상세 페이지
+- 소셜로그인 구현 (네이버, 카카오, 구글)
+- 백엔드 Cursor 방식의 페이지네이션 구현
+- 이벤트 페이지, 이벤트 상세, 대출 관리 페이지 프론트 제작
 - 책, 로그인, 회원가입, (관)로그인, (관)회원관리 백엔드
 - 반응형 디자인 및 UI 스타일링
-- AWS EC2 활용하여 프로젝트 배포 (www.i1004902.com/app4)
-- NginX 리버스 프록시, https 적용
-- Node.js, React 폴더 구조 설계 (Controllers-Services-models 구조)
+- AWS EC2, NginX 활용하여 프로젝트 배포 (www.i1004902.com/app4)
 - JWT accessToken, refreshToken과 Redis를 사용한 사용자 인증 구현
 - Recoil 상태관리 라이브러리를 사용해 사용자 로그인 상태 관리
-- 백엔드 API 설계 및 DB 구조 설계
+- 전체 백엔드, API구현 보조
 
 
 ### 김준녕

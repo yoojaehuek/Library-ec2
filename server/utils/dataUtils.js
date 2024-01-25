@@ -94,7 +94,7 @@ const eventFormatDate = (result) => {
 			tmp[index].event_start_date = `${event_start_date.getFullYear()}-${(event_start_date.getMonth() + 1).toString().padStart(2, '0')}-${event_start_date.getDate().toString().padStart(2, '0')} ${event_start_date.getHours().toString().padStart(2, '0')}:${event_start_date.getMinutes().toString().padStart(2, '0')}`;
 	
 			tmp[index].event_end_date = new Date(event_end_date.setHours(event_end_date.getHours() + 9));
-			tmp[index].event_end_date = `${event_start_date.getFullYear()}-${(event_start_date.getMonth() + 1).toString().padStart(2, '0')}-${event_start_date.getDate().toString().padStart(2, '0')} ${event_start_date.getHours().toString().padStart(2, '0')}:${event_start_date.getMinutes().toString().padStart(2, '0')}`;
+			tmp[index].event_end_date = `${event_end_date.getFullYear()}-${(event_end_date.getMonth() + 1).toString().padStart(2, '0')}-${event_end_date.getDate().toString().padStart(2, '0')} ${event_end_date.getHours().toString().padStart(2, '0')}:${event_end_date.getMinutes().toString().padStart(2, '0')}`;
 		})
 	}else if (!Array.isArray(tmp)) {
 		console.log("들어옴");
@@ -104,7 +104,7 @@ const eventFormatDate = (result) => {
 		tmp.event_start_date = `${tmp.event_start_date.getFullYear()}-${(tmp.event_start_date.getMonth() + 1).toString().padStart(2, '0')}-${tmp.event_start_date.getDate().toString().padStart(2, '0')} ${tmp.event_start_date.getHours().toString().padStart(2, '0')}:${tmp.event_start_date.getMinutes().toString().padStart(2, '0')}`;
 
 		tmp.event_end_date = new Date(tmp.event_end_date.setHours(tmp.event_end_date.getHours() + 9));
-		tmp.event_end_date = `${tmp.event_start_date.getFullYear()}-${(tmp.event_start_date.getMonth() + 1).toString().padStart(2, '0')}-${tmp.event_start_date.getDate().toString().padStart(2, '0')} ${tmp.event_start_date.getHours().toString().padStart(2, '0')}:${tmp.event_start_date.getMinutes().toString().padStart(2, '0')}`;
+		tmp.event_end_date = `${tmp.event_end_date.getFullYear()}-${(tmp.event_end_date.getMonth() + 1).toString().padStart(2, '0')}-${tmp.event_end_date.getDate().toString().padStart(2, '0')} ${tmp.event_end_date.getHours().toString().padStart(2, '0')}:${tmp.event_end_date.getMinutes().toString().padStart(2, '0')}`;
 		console.log(tmp);
 	}else{
 		console.log('뭐ㅑ');

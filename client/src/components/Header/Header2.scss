@@ -1,4 +1,5 @@
 .header-container-kjh {
+  margin-top: 50px;
   .LHeaderBottom-kjh{
     border-top: 1px solid #eaeaea;
   }
@@ -28,6 +29,7 @@
         // background-color: 6BA10Ergb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
         background-color: #6BA10E; /* 원하는 색상으로 변경하세요 */
         height: 30px;
+        // width: 99vw;
         width: 100vw;
       }
   
@@ -78,9 +80,8 @@
   
             .schIpt-kjh{
               align-items: center;
-              width: 100%;
+              width: 90%;
               display: flex;
-  
               input{
                 outline: 2px solid transparent;
                 outline-offset: 2px;
@@ -92,9 +93,7 @@
                 line-height: 18px;
               }
             }
-  
             .schBtn-kjh{
-  
               button{
                 border: none;
                 font-size: 19px;
@@ -223,7 +222,7 @@
     
             &:hover {
               background-color: var(--primary-color);
-              color: #1de448;
+              color: #6BA10E;
             }
           }
         }
@@ -233,12 +232,12 @@
 }
 
 
-@media all and (max-width:767px){
+@media all and (max-width:768px){
   .header-container-kjh {
     background-color: #fff; /* 원하는 배경색을 추가하세요 */
 
     .header-top-green-lim {
-        background-color: rgb(3, 196, 3); /* 원하는 색상으로 변경하세요 */
+        background-color: #6BA10E; /* 원하는 색상으로 변경하세요 */
         height: 30px;
         width: 110%;
       }
@@ -442,7 +441,7 @@
     
             &:hover {
               background-color: var(--primary-color);
-              color: #1de448;
+              color: #6BA10E;
             }
           }
         }
