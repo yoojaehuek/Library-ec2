@@ -1,13 +1,13 @@
-.header-container-kjh {
-  margin-top: 50px;
-  .LHeaderBottom-kjh{
-    border-top: 1px solid #eaeaea;
-  }
-  a{
-    text-decoration: none;
-    color: #000;
-  }
-}
+// .header-container-kjh {
+//   margin-top: 50px;
+//   .LHeaderBottom-kjh{
+//     border-top: 1px solid #eaeaea;
+//   }
+//   a{
+//     text-decoration: none;
+//     color: #000;
+//   }
+// }
 
 @media all and (min-width:768px){
   .header-container-kjh {
@@ -30,7 +30,7 @@
         background-color: #6BA10E; /* 원하는 색상으로 변경하세요 */
         height: 30px;
         // width: 99vw;
-        width: 100vw;
+        width: 99vw;
       }
   
       .header-item-lim {
@@ -217,6 +217,7 @@
     
           a {
             padding: 0.5rem 1rem;
+            color: black;
             font-size: 1vw;
             transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
     
@@ -435,6 +436,7 @@
           a {
             padding: 0.5rem 1rem;
             border: 1px solid gray;
+            color: black;
             border-radius: 2rem;
             font-size: 1vw;
             transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
