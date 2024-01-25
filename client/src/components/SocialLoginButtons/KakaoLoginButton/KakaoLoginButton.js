@@ -48,7 +48,7 @@ const KakaoLoginButton =()=>{
               onClick();
             }}
           >
-            test
+            <img src="/images/KakaoLogin_icon/kakao_login_medium_narrow.png" alt="카카오로그인" />
           </div>
         )}
       />

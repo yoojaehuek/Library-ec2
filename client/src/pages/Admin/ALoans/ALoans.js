@@ -48,7 +48,7 @@ const ALoans = () => {
     
     if (res.data.result.length >= 0) { //불러온 데이터가 0개 이상이면
       setDatas(res.data.result);
-      setClickLoans(res.data.result[0]);
+      // setClickLoans(res.data.result[0]);
       if (res.data.result.length > 0) { //불러온 데이터가 0개 초과면 (이거 안하면 1개 남았을때 삭제해도 f5안하면 안없어짐)
         setLastPage(res.data.lastPage);
         setEndData_id(res.data.result[res.data.result.length-1].loans_id); 
@@ -82,6 +82,7 @@ const ALoans = () => {
       const res = await axios.patch(`${API_URL}/api/loans/renew/${loans.loans_id}`, {due_date: loans.due_date});
       console.log("연장 후 res: ", res);
       setEndData_id(0);
+      setClickLoans(loans);
       setReRendering(!reRendering);
     } catch (error) {
       console.error(error);

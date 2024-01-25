@@ -89,8 +89,8 @@ const Review = () => {
           setRatingValue = {setRatingValue}
         />
       </form>
-      <button className='review_cancell-kjh' type='button' onClick={handleClose}>취소</button>
       <button className='review_button-kjh' type='submit' onClick={handleSubmit}>완료</button>
+      <button className='review_cancell-kjh' type='button' onClick={handleClose}>취소</button>
     </div>
   )
 }
