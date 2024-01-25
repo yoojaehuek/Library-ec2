@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import DescriptionIcon from '@mui/icons-material/Description';
+import { API_URL } from '../../../config/contansts';
 
 const StyledAmanual = styled('div')({
   padding: '3vw',
@@ -60,7 +61,7 @@ const Amanual = () => {
       <SubTitle gutterBottom>
         Manual Download
       </SubTitle>
-      <DownloadLink href="/library.pdf" download>
+      <DownloadLink href={API_URL + "/library.pdf"} download>
         <DownloadButton startIcon={<DescriptionIcon />}>
           pdf 다운로드
         </DownloadButton>
