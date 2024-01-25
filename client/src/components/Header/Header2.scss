@@ -1,4 +1,5 @@
 .header-container-kjh {
+  margin-top: 50px;
   .LHeaderBottom-kjh{
     border-top: 1px solid #eaeaea;
   }
@@ -78,9 +79,8 @@
   
             .schIpt-kjh{
               align-items: center;
-              width: 100%;
+              width: 90%;
               display: flex;
-  
               input{
                 outline: 2px solid transparent;
                 outline-offset: 2px;
@@ -92,9 +92,7 @@
                 line-height: 18px;
               }
             }
-  
             .schBtn-kjh{
-  
               button{
                 border: none;
                 font-size: 19px;
