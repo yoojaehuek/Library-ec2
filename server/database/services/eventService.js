@@ -133,20 +133,26 @@ class EventService{
 		console.log("EventService unapplyEvent: ", event_id, user_id);
 		console.log("EventModel: ", EventModel);	
 		
-		await EventApplicantModel.deleteEvent_applicants({
+		const deleteEvent_applicants = await EventApplicantModel.deleteEvent_applicants({
 			event_id: event_id,
 			user_id: user_id,
 		});
 
-		await Event.increment('event_current_applicants', {
-      by: -1,
-      where: {
-        event_id: event_id,
-        // 추가적인 조건을 필요에 따라 여기에 추가
-      },
-    });
+		if (deleteEvent_applicants == 1){
+			console.log("이벤트 신청취소 테스팅", deleteEvent_applicants);
+			await Event.increment('event_current_applicants', {
+				by: -1,
+				where: {
+					event_id: event_id,
+					// 추가적인 조건을 필요에 따라 여기에 추가
+				},
+			});
+		
 
-		return { success: true, message: '이벤트 신청 취소 완료'}
+			return { success: true, message: '이벤트 신청 취소 완료'}
+		} else {
+			return { success: false, message: '이벤트 신청 취소 실패'}
+		}
 	}
 
 	static async getOneEvent({event_id}){
