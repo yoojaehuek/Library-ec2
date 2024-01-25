@@ -8,8 +8,8 @@ const AHeader = () => {
   const onLogout = () => {
     console.log('관리자 로그아웃!');
     removeCookie('login');
-    // window.location.replace('/app1/admin/login');
-    window.location.replace('/admin/login');
+    window.location.replace('/app4/admin/login');
+    // window.location.replace('/admin/login');
   }
 
   return (
@@ -35,7 +35,7 @@ const AHeader = () => {
           :
           <button 
           style={buttonStyle} 
-          onClick={() => window.location.replace('/admin/login')} 
+          onClick={() => window.location.replace('/app4/admin/login')} 
           >
             Login
           </button>

@@ -29,17 +29,6 @@ class Loans extends Sequelize.Model {
           allowNull: false,
           comment: "반납일",
         },
-        // is_returned: {
-        //   type: Sequelize.BOOLEAN,
-        //   allowNull: false,
-        //   defaultValue: false, 
-        //   comment: "반환 여부 표시",
-        // },
-        // returned_date: {
-        //   type: Sequelize.DATE,
-        //   allowNull: true,
-        //   comment: "실제 반납일",
-        // }
       },
       {
         sequelize,
@@ -54,8 +43,6 @@ class Loans extends Sequelize.Model {
   }
 
   static associate(db) {
-    // //참조키로 Admin 모델의 admin_id(targetKey)를 admin_id(foreignKey)라는 이름으로 가져옴
-    // db.Loans.belongsTo(db.Admin, {foreignKey: 'admin_id', targetKey: 'admin_id'});
 
     //참조키로 Admin 모델의 admin_id(targetKey)를 admin_id(foreignKey)라는 이름으로 가져옴
     db.Loans.belongsTo(db.Book, {foreignKey: 'book_id', targetKey: 'book_id'});

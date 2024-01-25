@@ -55,12 +55,12 @@ const Footer = () => {
             <li><a href='#none'>도서홍보안내</a></li>
             <li><a href='#none'>개인정보처리방침</a></li>
             <li><a href='#none'>청소년보호정책</a></li>
-            <li><a href="/admin/login" style={{color: "red"}}>관리자 페이지</a></li>
+            <li><a href="/app4/admin/login" style={{color: "red"}}>관리자 페이지</a></li>
           </ul>
         </div>
         <div className='LFooterCon-kjh'>
           <div className='footerImg-kjh'>
-            <img src='/images/Header/logo.png'></img>
+            <img src={API_URL+'/images/Header/logo.png'}></img>
           </div>
           <div className='footerAdd-kjh'>
 						<p className="addrRow">대표 : 김지환, 임헌성</p>

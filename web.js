@@ -45,7 +45,9 @@ app.use(cors());
 
 // '/server/upload'경로로 뭔가 요청이오면 여기서 걸리고 server/upload폴더의 정적 파일을 제공하겠다
 // 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
-app.use("/server/upload", express.static(__dirname + "/server/upload"));
+// app.use("/app4/api/server/upload", express.static(__dirname + "/server/upload"));
+// app.use("/app4/api/server/upload", express.static("server/upload"));
+app.use("/app4/api/server/upload", express.static("/server/upload"));
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -69,50 +71,50 @@ const upload = multer({
   }),
 });
 
-app.post("/api/bannerimg", upload.single("bannerimg"), (req, res) => {
+app.post("/app4/api/bannerimg", upload.single("bannerimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/server/upload/banner/" + file.filename,
+    imageUrl: "/api/server/upload/banner/" + file.filename,
   });
 });
 
-app.post("/api/eventimg", upload.single("eventimg"), (req, res) => {
+app.post("/app4/api/eventimg", upload.single("eventimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/server/upload/event/" + file.filename,
+    imageUrl: "/api/server/upload/event/" + file.filename,
   });
 });
 
-app.post("/api/bookimg", upload.single("bookimg"), (req, res) => {
+app.post("/app4/api/bookimg", upload.single("bookimg"), (req, res) => {
   const file = req.file;
   console.log("post(/image) file:", file);
   res.send({
-    imageUrl: "/server/upload/book/" + file.filename,
+    imageUrl: "/api/server/upload/book/" + file.filename,
   });
 });
 
-app.use("/api/admin", adminRouter);
-app.use("/api/book", bookRouter);
-app.use("/api/review", reviewRouter);
-app.use("/api/faq", faqRouter);
-app.use("/api/loans", loansRouter);
-app.use("/api/user", userRouter);
-app.use("/api/banner", bannerRouter);
-app.use("/api/event", eventRouter);
-app.use("/api/naver", naverRouter);
-app.use("/api/event_applicants", event_applicantsRouter);
-app.use("/api/google", googleRouter);
-app.use("/api/kakao", kakaoRouter);
+app.use("app4/api/admin", adminRouter);
+app.use("app4/api/book", bookRouter);
+app.use("app4/api/review", reviewRouter);
+app.use("app4/api/faq", faqRouter);
+app.use("app4/api/loans", loansRouter);
+app.use("app4/api/user", userRouter);
+app.use("app4/api/banner", bannerRouter);
+app.use("app4/api/event", eventRouter);
+app.use("app4/api/naver", naverRouter);
+app.use("app4/api/event_applicants", event_applicantsRouter);
+app.use("app4/api/google", googleRouter);
+app.use("app4/api/kakao", kakaoRouter);
 
 app.use(errorMiddleware);
 
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/client/build/index.html"));
+// });
 
 app.listen(port, () => {
   console.log(`${port}에서 대기중....`);

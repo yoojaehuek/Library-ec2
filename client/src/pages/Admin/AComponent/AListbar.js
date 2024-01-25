@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Collapse } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../../config/contansts';
 
 const ListItems = [
   {
@@ -134,7 +135,7 @@ const AListbar = () => {
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <NavLink to='/admin'><img src={`${process.env.PUBLIC_URL}/adminlogo.png`} alt='로고' style={{ width: '200px', height: '150px' }} /></NavLink>
+          <NavLink to='/admin'><img src={API_URL+`/adminlogo.png`} alt='로고' style={{ width: '200px', height: '150px' }} /></NavLink>
         </div>
         <List>{renderListItems(ListItems)}</List>
       </Drawer>

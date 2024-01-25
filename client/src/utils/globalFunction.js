@@ -5,8 +5,8 @@ export const errHandler = (err) => {
     console.log("errHandler 진입");
     
     alert(errRes.message);
-    // window.location.replace('/app1'+errRes.url);
-    window.location.replace(errRes.url);
+    window.location.replace('/app4'+errRes.url);
+    // window.location.replace(errRes.url);
     
     return {reLogin: true};
   }else{ //다른오류

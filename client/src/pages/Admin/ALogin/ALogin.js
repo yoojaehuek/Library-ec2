@@ -95,7 +95,7 @@ const ALogin = () => {
         </Button>
         {/* <Link to={'/'}>메인 페이지로</Link> */}
         {/* <a href="javascript:location.replace('/app1')">메인 페이지로</a> */}
-        <a href="javascript:location.replace('/')">메인 페이지로</a>
+        <a href="javascript:location.replace('/app4')">메인 페이지로</a>
       </Paper>
     </Container>
   );

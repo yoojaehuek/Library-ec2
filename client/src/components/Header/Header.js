@@ -105,7 +105,7 @@ const Header = () => {
         </div>
         <div className='header-item-lim'>
           <NavLink to="/">
-            <img src='/images/Header/logo.png'></img>
+            <img src={API_URL+'/images/Header/logo.png'}></img>
           </NavLink>  
           <div className='LHeaderWrap-kjh'>
           <NavLink

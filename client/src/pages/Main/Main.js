@@ -60,10 +60,10 @@ const Main = () => {
         <div className={`main-top-lhs ${showWelcome ? "show" : ""}`}>
           <NavLink to="/booklist">
             <div className="main-top-name-lhs">
-              <img src="/images/main/resource.png" alt="" />
+              <img src={API_URL+"/images/main/resource.png"} alt="" />
               <span>쉿, 지금 제일 핫한 작품 🔥</span>
               <img
-                src="/images/main/resource2.png"
+                src={API_URL+"/images/main/resource2.png"}
                 className="main-top-img-lhs"
                 alt=""
               />

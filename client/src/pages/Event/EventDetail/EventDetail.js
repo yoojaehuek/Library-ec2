@@ -73,7 +73,7 @@ const EventDetail = () => {
     <div className="eventDetail-container-kjh">
       <div className='event-kjh'>
         <div>
-          <img src={`${API_URL}${detailEvent.event_img_url}`} alt="" className='event-img-button-kjh' />
+          <img src={API_URL+detailEvent.event_img_url} alt="" className='event-img-button-kjh' />
         </div>
         <div>
           <h3>{detailEvent.event_title}</h3>
@@ -99,7 +99,7 @@ const EventDetail = () => {
         <p className="read-count-kjh">조회수: {detailEvent.read_count}</p>
       </div>
       <div className="img-div-kjh">
-        <img src={`${API_URL}${detailEvent.event_img_url}`} alt={detailEvent.event_title} className="content-img-kjh" />
+        <img src={API_URL+detailEvent.event_img_url} alt={detailEvent.event_title} className="content-img-kjh" />
       </div>
         <NavLink to='/event' className='button btnPush eventlist-button-kjh'>목록</NavLink>
     </div>

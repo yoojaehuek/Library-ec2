@@ -22,7 +22,7 @@ const FaqDetail = () => {
   const goBack = () => {
     window.history.length > 1
       ? window.history.back()
-      : (window.location.href = "/");
+      : (window.location.href = "/app4/");
   };
 
   const handleDelete = () => {

@@ -53,7 +53,7 @@ const Event = () => {
           <div key={index} className='event-kjh'>
             <div>
               <NavLink to={'/event/'+event.event_id} className='event-img-button-kjh'>
-                <img src={`${API_URL}${event.event_img_url}`} alt="" />
+                <img src={API_URL + event.event_img_url} alt="" />
               </NavLink>
             </div>
             <div>
