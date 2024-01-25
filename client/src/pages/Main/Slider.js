@@ -59,7 +59,7 @@ const Slider1 = () => {
     <div className='slider-container-lhs'>
       <Slider {...settings}>
         {axiosResult.map((slide, index) => (
-          <NavLink to='/BookDetail' key={index} className='main-slider-mid-lhs'>
+          <NavLink to={slide.banner_adress} key={index} className='main-slider-mid-lhs'>
             <div className='main-slider-img-lhs'>
               <img src={API_URL + slide.banner_img_url} alt={`temp${index + 1}`} />
             </div>

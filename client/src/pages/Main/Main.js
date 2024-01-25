@@ -58,7 +58,7 @@ const Main = () => {
           </span>
         </div>
         <div className={`main-top-lhs ${showWelcome ? "show" : ""}`}>
-          <NavLink to="/">
+          <NavLink to="/booklist">
             <div className="main-top-name-lhs">
               <img src="/images/main/resource.png" alt="" />
               <span>쉿, 지금 제일 핫한 작품 🔥</span>
