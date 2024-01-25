@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Mypage.scss';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
@@ -19,6 +19,8 @@ const Mypage = () => {
   const [showBriefViewEvent, setShowBriefViewEvent] = useState(false);
   const [showAllFaq, setShowAllFaq] = useState(false);
   const [showBriefViewFaq, setShowBriefViewFaq] = useState(false);
+
+  const navigate = useNavigate();
 
 
   const getUser = async () => {
@@ -41,10 +43,10 @@ const Mypage = () => {
       console.log("이벤트 : ", res.data);
     } catch (error) {
       console.log("이벤트 에러error: ", error);
-      // const {reLogin} = errHandler(error);
-      // if (reLogin === true) {
-      //   setIslogin(false);
-      // }
+      const {reLogin} = errHandler(error);
+      if (reLogin === true) {
+        setIslogin(false);
+      }
     }
   }
   const getUserFaq = async () => {
@@ -110,7 +112,7 @@ const Mypage = () => {
             {visibleEvent.map((item, index) => (
               <tr>
                 <td><img src={API_URL+item.Event.event_img_url}></img></td>
-                <td className='eventTitle-kjh'>{item.Event.event_title}</td>
+                <td className='eventTitle-kjh' onClick={()=>{navigate(`/event/${item.Event.event_id}`)}}>{item.Event.event_title}</td>
                 <td>{item.Event.event_start_date}</td>
                 <td>{item.Event.event_end_date}</td>
               </tr>
@@ -135,7 +137,7 @@ const Mypage = () => {
               <tr>
                 <td>{index+1}</td>
                 <td>{item.faq_tags}</td>
-                <td className='faqTitle-kjh'>{item.faq_title}</td>
+                <td className='faqTitle-kjh' onClick={()=>{navigate(`/faq/${item.faq_id}`)}}>{item.faq_title}</td>
                 <td>{item.created_at}</td>
                 <td>{item.faq_status ? <p className='answer-kjh'>답변완료</p> : <p className='waiting-kjh'>대기중</p>}</td>
               </tr>
