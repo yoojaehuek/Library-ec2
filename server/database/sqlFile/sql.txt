@@ -6,7 +6,8 @@ values
 
 INSERT INTO `library`.`user` (`user_id`, `user_email`, `user_pwd`, `salt`, `user_name`, `user_phone`, `created_at`)
 VALUES
-('1', 'i1004902@naver.com', '748600f7ad47a6f507ebc7f72caab6e08fc1accac656201ba6e6da1ef5de0973f4ad6cf81dc3b8ee96fda41ebcc8591661cff3b71e5335710a9762e61212e7bd', '748600f7ad47a6f507ebc7f72caab6e08fc1accac656201ba6e6da1ef5de0973f4ad6cf81dc3b8ee96fda41ebcc8591661cff3b71e5335710a9762e61212e7bd', '관리자', '01011111111', '2024-01-24 14:38:27')
+('1', 'i1004902@naver.com', '03779edaf73eaaa20fc8d708174acc1ce0e7513e9fbcdaf919dbfb6ccf6bc3ec7d882847dff805e3d3bb52daa63d7132da9e3f6d87d1489ece4d1a2f21295eca', 'Z8gt4KCe3OyK2WWEF7rQTQdttv5YOY8Qwt821Yr/QigPTSMt7MQk4S/gqVDzDI1FVKbQfMRXnWY9kVH3WMyaLI8+0t4F7OoPvvofcvUvTjKpUj/Kr34aitPwyMyQgzzHU/JGunLRFlfSOVpVEMxV1FAhsqWYBKRESxRHm9VlXSg=', '관리자', '01011111111', '2024-01-24 14:38:27'),
+
 ;
 
 INSERT INTO `library`.`faq` (`faq_id`, `user_id`, `faq_tags`, `faq_title`, `faq_content`, `faq_password`, `faq_status`, `created_at`)

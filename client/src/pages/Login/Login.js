@@ -47,6 +47,8 @@ const Login = () => {
 		<div className="login-container-yjh">
 			<form id='login-form-yjh' onSubmit={onSubmitLogin}>
 				<h1>로그인</h1>
+				<p>테스트 ID: <b>i1004902@naver.com</b></p>
+				<p>테스트 PWD: <b>qwer1234!</b></p>
 				<ul id='input-box-yjh'>
 					<div>
 						<li className="input-li-yjh">

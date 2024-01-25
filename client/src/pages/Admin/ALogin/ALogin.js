@@ -59,7 +59,7 @@ const ALogin = () => {
       <Paper elevation={3} style={{ padding: "20px", borderRadius: "16px" }}>
         <Typography variant="h4" style={{ marginBottom: "20px" }}>
           관리자 로그인
-          <p style={{ fontSize: '0.8rem'}}>ID: i1004902@naver.com<br/>pwd: 123</p>
+          <p style={{ fontSize: '0.8rem'}}>테스트 ID: <b>i1004902@naver.com</b><br/>테스트 PWD: <b>123</b></p>
         </Typography>
         <TextField
           label="이메일"
