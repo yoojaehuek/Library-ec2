@@ -41,6 +41,16 @@ const KakaoLoginButton =()=>{
         token={kakaoClientId}
         onSuccess={kakaoOnSuccess}
         onFail={kakaoOnFailure}
+        render={({ onClick }) => (
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              onClick();
+            }}
+          >
+            <img src="/images/KakaoLogin_icon/kakao_login_medium_narrow.png" alt="카카오로그인" />
+          </div>
+        )}
       />
     </>
   )
