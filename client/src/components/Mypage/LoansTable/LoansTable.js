@@ -7,9 +7,10 @@ import LoansRow from '../LoansRow/LoansRow';
 
 const LoansTable = ({is_returned}) => {
   console.log(is_returned);
-  const [showAllBooks, setShowAllBooks] = useState(false);
-  const [showBriefView, setShowBriefView] = useState(false);
-  const [userbyLoans, setUserbyLoans] = useState([]);
+  const [showAllBooks, setShowAllBooks] = useState(false); // 간략히 보기 버튼 표시 여부
+  const [showBriefView, setShowBriefView] = useState(false); // 더보기 버튼 표시 여부
+  const [userbyLoans, setUserbyLoans] = useState([]); //DB에서 불러온 데이터
+  const [showMoreData, setShowMoreData] = useState(3); //더보기 버튼 눌렀을 때 몇개씩 더 나타나게
 
    /** 받은 유저id로 유저 대출정보 조회요청 */
   useEffect(() => {
@@ -30,15 +31,24 @@ const LoansTable = ({is_returned}) => {
       });
   }, []);
 
-  const toggleShowAllBooks = () => {
-    setShowAllBooks(!showAllBooks);
-    setShowBriefView(false); // "간략히 보기"를 누르면 전체 보기가 해제되도록 추가
+  const toggleShowAllBooks = () => { //더보기 버튼 클릭 시 이벤트 
+    setShowAllBooks(!showAllBooks); //간략히 보기 버튼 표시 여부 반전
+    setShowBriefView(false); // 더보기 버튼 안보이게
+    setShowMoreData(3); // 더보기를 누를 때 초기화
   };
-  const toggleShowBriefView = () => {
-    setShowBriefView(!showBriefView);
+  const toggleShowBriefView = () => { // 간략히 보기 버튼 클릭시 이벤트
+    setShowBriefView(!showBriefView); //더보기 버튼 표시 여부 반전
     setShowAllBooks(false); // "더보기"를 누르면 간략히 보기가 해제되도록 추가
+    // setShowMoreData(3); // 간략히 보기를 누를 때 초기화
   };
-  const visibleBooks = showAllBooks ? userbyLoans : (showBriefView ? userbyLoans.slice(0, 3) : userbyLoans.slice(0, 3));  
+  // const visibleBooks = showAllBooks ? userbyLoans : (showBriefView ? userbyLoans.slice(0, 3) : userbyLoans.slice(0, 3));  
+  const visibleBooks = showAllBooks ? userbyLoans : userbyLoans.slice(0, showMoreData);  
+  const handleShowMore = () => {
+    setShowMoreData(prevShowMoreData => prevShowMoreData + 3);
+  };
+  const handleShowBriefView = () => {
+    setShowMoreData(3);
+  };
  
   return (
     <div className='rentTable-kjh'>
@@ -63,8 +73,14 @@ const LoansTable = ({is_returned}) => {
         ))}
   
       </table>
-      {!showAllBooks && !showBriefView && (
+      {showMoreData < userbyLoans.length && (
+        <NavLink onClick={handleShowMore} className='more-kjh'>더보기 {'>'}</NavLink>
+      )}
+      {/* {!showAllBooks && !showBriefView && (
         <NavLink onClick={toggleShowAllBooks} className='more-kjh'>더보기 {'>'}</NavLink>
+      )} */}
+      {showMoreData >= userbyLoans.length && (
+        <NavLink onClick={handleShowBriefView} className='more-kjh'>간략히 보기 {'>'}</NavLink>
       )}
       {showAllBooks && (
         <NavLink onClick={toggleShowBriefView} className='more-kjh'>간략히 보기 {'>'}</NavLink>
