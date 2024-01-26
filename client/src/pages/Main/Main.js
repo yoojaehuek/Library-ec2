@@ -41,7 +41,7 @@ const Main = () => {
     { genre: "역사", content: "역사" },
   ];
   const genrebottom = [
-    { genre: "문학", content: "문학", img_url: "/images/main/literature.png" },
+    { genre: "문학", content: "문학", img_url: "images/main/literature.png" },
     { genre: "철학", content: "철학", img_url: "images/main/philosophy.png" },
     { genre: "역사", content: "역사", img_url: "images/main/history.png" },
     { genre: "종교", content: "역사", img_url: "images/main/religious.png" },
