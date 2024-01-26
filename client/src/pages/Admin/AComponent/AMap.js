@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
+import { API_URL } from '../../../config/contansts';
 
 const AMap = () => {
   const korea = [127.7669, 35.9078];
@@ -25,7 +26,7 @@ const AMap = () => {
           height: '50vh',
         }}
       >
-        <Geographies geography="/features.json">
+        <Geographies geography={API_URL+"/features.json"}>
           {({ geographies }) =>
             geographies.map((geo) => (
               <Geography

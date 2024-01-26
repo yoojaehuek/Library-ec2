@@ -61,7 +61,7 @@ const Amanual = () => {
       <SubTitle gutterBottom>
         Manual Download
       </SubTitle>
-      <DownloadLink href={API_URL + "/library.pdf"} download>
+      <DownloadLink href={API_URL+"/library.pdf"} download>
         <DownloadButton startIcon={<DescriptionIcon />}>
           pdf 다운로드
         </DownloadButton>
