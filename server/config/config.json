@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "bory002",
-    "password": "gambo-425800",
+    "username": "yjh",
+    "password": "yuha36841!",
     "database": "library",
-    "host": "www.kimjunnyoung.com", 
+    "host": "43.202.248.142", 
     "dialect": "mysql",
     "timezone": "+09:00"
   },
