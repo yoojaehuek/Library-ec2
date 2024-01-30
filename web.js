@@ -47,7 +47,7 @@ app.use(cors());
 // 예: "/server/upload/image.jpg")에 액세스하면 Express.js는 "server/upload" 디렉터리에서 정적 파일을 찾아 제공
 // app.use("/app4/api/server/upload", express.static(__dirname + "/server/upload"));
 // app.use("/app4/api/server/upload", express.static("server/upload"));
-app.use("/app4/api/server/upload", express.static("/server/upload"));
+app.use("/app4/api/server/upload", express.static("server/upload"));
 
 const upload = multer({
   storage: multer.diskStorage({
