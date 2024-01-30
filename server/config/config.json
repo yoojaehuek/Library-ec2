@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "rlawlghks51",
+    "username": "bory002",
+    "password": "gambo-425800",
     "database": "library",
-    "host": "www.i1004902.com", 
+    "host": "www.kimjunnyoung.com", 
     "dialect": "mysql",
     "timezone": "+09:00"
   },
